@@ -1,0 +1,132 @@
+{
+  "validated_at": "2026-10-20T15:10:41.360546+08:00",
+  "platform": "Windows-10-10.0.19045-SP0",
+  "python": "3.11.4",
+  "git_branch": "feature/1-minimal-search-loop",
+  "base_commit": "13287ae266204095baf208ec4e60fde052cd2d07",
+  "verification": "Fresh venv, installed wheel (not editable), pytest and both actual CLI scenarios",
+  "log_normalization": "Workspace absolute path replaced with <REPO>; outputs otherwise preserved",
+  "data_source": "fixture",
+  "navigation": "mock",
+  "steps": [
+    {
+      "command": [
+        "<REPO>\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pip",
+        "wheel",
+        ".",
+        "--no-deps",
+        "--wheel-dir",
+        "artifacts/wheels"
+      ],
+      "exit_code": 0,
+      "output": "wheel-build.txt"
+    },
+    {
+      "command": [
+        "<REPO>\\.venv\\Scripts\\python.exe",
+        "-m",
+        "venv",
+        "<REPO>\\artifacts\\wheel-env-final"
+      ],
+      "exit_code": 0,
+      "output": "venv-create.txt"
+    },
+    {
+      "command": [
+        "<REPO>\\artifacts\\wheel-env-final\\Scripts\\python.exe",
+        "-m",
+        "pip",
+        "install",
+        "<REPO>\\artifacts\\wheels\\hometrace-0.1.0-py3-none-any.whl",
+        "pytest==9.1.1"
+      ],
+      "exit_code": 0,
+      "output": "clean-install.txt"
+    },
+    {
+      "command": [
+        "<REPO>\\artifacts\\wheel-env-final\\Scripts\\python.exe",
+        "-m",
+        "pip",
+        "check"
+      ],
+      "exit_code": 0,
+      "output": "pip-check.txt"
+    },
+    {
+      "command": [
+        "<REPO>\\artifacts\\wheel-env-final\\Scripts\\python.exe",
+        "-c",
+        "import hometrace,sys; print(sys.version); print(hometrace.__file__)"
+      ],
+      "exit_code": 0,
+      "output": "installed-package.txt"
+    },
+    {
+      "command": [
+        "<REPO>\\artifacts\\wheel-env-final\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "-q"
+      ],
+      "exit_code": 0,
+      "output": "pytest.txt"
+    },
+    {
+      "command": [
+        "<REPO>\\artifacts\\wheel-env-final\\Scripts\\python.exe",
+        "-m",
+        "hometrace",
+        "--scenario",
+        "moved",
+        "--output-dir",
+        "artifacts/moved"
+      ],
+      "exit_code": 0,
+      "output": "moved/stdout.txt"
+    },
+    {
+      "command": [
+        "<REPO>\\artifacts\\wheel-env-final\\Scripts\\python.exe",
+        "-m",
+        "hometrace",
+        "--scenario",
+        "missing",
+        "--output-dir",
+        "artifacts/missing"
+      ],
+      "exit_code": 0,
+      "output": "missing/stdout.txt"
+    },
+    {
+      "command": [
+        "<REPO>\\artifacts\\wheel-env-final\\Scripts\\python.exe",
+        "-m",
+        "pip",
+        "freeze"
+      ],
+      "exit_code": 0,
+      "output": "dependencies.txt"
+    }
+  ],
+  "source_sha256": {
+    "pyproject.toml": "c970a1d5ae05accb00285cb8081af3b0d79f339584045e6f761b2f92aebff547",
+    "src/hometrace/__init__.py": "64a03207afdfc7ff424f569a0316f78f134636728e740d553cf4bff6e6854c7a",
+    "src/hometrace/__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+    "src/hometrace/cli.py": "761361dedcf23b325030366e8fdbeab97859836ca5855a45012b6a5973f8ec67",
+    "src/hometrace/environment.py": "bfd5d5060b74fb4fb72f671deddade3d1195ce346240facbf07fc22302bc7f2b",
+    "src/hometrace/fixtures.py": "f2692250fd35ca5e46c6e9f2c5f68fe39d35d0205f22a21484c5c1eaf4dcbadf",
+    "src/hometrace/memory.py": "0a4263403d3f4cfb261d25e0a9905e7831066eef3ff5a42d68cfa8f263ce652e",
+    "src/hometrace/models.py": "e2087647b58434afb4e2b594513baf90ffc327fab03a79174d968ba4f78ef891",
+    "src/hometrace/perception.py": "84913a691fd94c34dab62e4bd47f5b9992bba0b5f95e6bf3a5828266b4278b0a",
+    "src/hometrace/search_core.py": "0020b9e133adfc80fe67a6fefa81ffcd42d3af6e4863d3938f49b442650637e1",
+    "src/hometrace/fixture_data/missing.json": "5980a0d4c17313ea4211396fcc5d431ba8f50eec4ff420baf7dc653f4dc936c6",
+    "src/hometrace/fixture_data/moved.json": "06664e9e276ed68c6bb33458f9e5b441b38f70be3ebe7f92ea705c6730dc244d",
+    "tests/test_cli.py": "6ad1ab7cbd5e3e4964b887480a5e4517ecd22474d8c914dd13b7e1f7ceaff625",
+    "tests/test_fixtures.py": "6b08a6c3df0472ab5070cd5221b734c9b03c2b3e9a5c03c2fda53c408e3df92c",
+    "tests/test_memory.py": "c60356d938793498df0b9ebaf9410a68537a72c71e6b58660cc580e209af36e4",
+    "tests/test_search_core.py": "98b10ae0a49ff8582e881e7a9e75a571f82c3c27c30ee5df3f6cb74d9cbe5c47"
+  }
+}

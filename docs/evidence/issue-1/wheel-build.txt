@@ -1,0 +1,17 @@
+Looking in indexes: https://pypi.tuna.tsinghua.edu.cn/simple
+Processing f:\qcx\code\hometrace
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: hometrace
+  Building wheel for hometrace (pyproject.toml): started
+  Building wheel for hometrace (pyproject.toml): finished with status 'done'
+  Created wheel for hometrace: filename=hometrace-0.1.0-py3-none-any.whl size=13735 sha256=dd072beea070acb5b568349a22803d52d9d69315f1fa01a72836025fce4926a9
+  Stored in directory: C:\Users\Administrator\AppData\Local\Temp\pip-ephem-wheel-cache-866biif5\wheels\0e\b0\96\ebb6c79396fbfdaedbaf43e662e9d0d0efb7a2857965a00431
+Successfully built hometrace
+
+[notice] A new release of pip is available: 23.1.2 -> 26.2.1
+[notice] To update, run: <REPO>\.venv\Scripts\python.exe -m pip install --upgrade pip

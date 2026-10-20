@@ -1,0 +1,12 @@
+HomeTrace P0 | Mock navigation | data_source=fixture
+Synthetic annotations only; no camera, visual model or real robot execution.
+[02] PLAN A reason=latest_memory_found
+[07] VIEW A -> NOT_FOUND_IN_VIEW
+[08] PLAN B reason=unvisited_fallback
+[13] VIEW B -> FOUND
+RESULT FOUND location=B
+VISITED A,B
+EVIDENCE moved-current-A,moved-current-B
+REPORT artifacts/moved/report.json
+EVENTS artifacts/moved/events.jsonl
+MEMORY artifacts/moved/memory.sqlite3
