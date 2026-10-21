@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "name": "Synthetic moved remote control",
+  "data_source": "fixture",
+  "navigation": {
+    "adapter_kind": "mock",
+    "simulated": true,
+    "unreachable_viewpoints": []
+  },
+  "object": {
+    "object_id": "remote-control",
+    "description": "A registered remote control represented only by synthetic annotations"
+  },
+  "viewpoints": [
+    {"viewpoint_id": "A", "name": "Living room table"},
+    {"viewpoint_id": "B", "name": "Living room sofa"},
+    {"viewpoint_id": "C", "name": "Bedroom shelf"}
+  ],
+  "memory_records": [
+    {
+      "observation": {
+        "evidence_id": "moved-history-A",
+        "viewpoint_id": "A",
+        "captured_at": "2026-10-01T09:00:00+08:00",
+        "data_source": "fixture",
+        "visibility_status": "clear"
+      },
+      "detection": {
+        "target_id": "remote-control",
+        "evidence_id": "moved-history-A",
+        "status": "FOUND",
+        "matcher": "fixture_annotation"
+      }
+    }
+  ],
+  "observations": [
+    {
+      "evidence_id": "moved-current-A",
+      "viewpoint_id": "A",
+      "captured_at": "2026-10-02T09:00:00+08:00",
+      "data_source": "fixture",
+      "visibility_status": "clear"
+    },
+    {
+      "evidence_id": "moved-current-B",
+      "viewpoint_id": "B",
+      "captured_at": "2026-10-02T09:01:00+08:00",
+      "data_source": "fixture",
+      "visibility_status": "clear"
+    },
+    {
+      "evidence_id": "moved-current-C",
+      "viewpoint_id": "C",
+      "captured_at": "2026-10-02T09:02:00+08:00",
+      "data_source": "fixture",
+      "visibility_status": "clear"
+    }
+  ],
+  "detections": [
+    {
+      "target_id": "remote-control",
+      "evidence_id": "moved-current-A",
+      "status": "NOT_FOUND_IN_VIEW",
+      "matcher": "fixture_annotation"
+    },
+    {
+      "target_id": "remote-control",
+      "evidence_id": "moved-current-B",
+      "status": "FOUND",
+      "matcher": "fixture_annotation"
+    },
+    {
+      "target_id": "remote-control",
+      "evidence_id": "moved-current-C",
+      "status": "NOT_FOUND_IN_VIEW",
+      "matcher": "fixture_annotation"
+    }
+  ]
+}
