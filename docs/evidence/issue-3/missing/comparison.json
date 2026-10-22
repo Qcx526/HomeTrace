@@ -1,0 +1,72 @@
+{
+  "rows": [
+    {
+      "strategy": "memory_first",
+      "result_status": "SUSPECTED",
+      "location": null,
+      "attempted": 3,
+      "arrived": 3,
+      "observed": 3,
+      "observe_calls": 3,
+      "attempted_viewpoints": [
+        "A",
+        "B",
+        "C"
+      ],
+      "observed_viewpoints": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "strategy": "fixed_order",
+      "result_status": "SUSPECTED",
+      "location": null,
+      "attempted": 3,
+      "arrived": 3,
+      "observed": 3,
+      "observe_calls": 3,
+      "attempted_viewpoints": [
+        "A",
+        "B",
+        "C"
+      ],
+      "observed_viewpoints": [
+        "A",
+        "B",
+        "C"
+      ]
+    }
+  ],
+  "fairness": {
+    "same_candidates": [
+      {
+        "viewpoint_id": "A",
+        "name": "Demo point A"
+      },
+      {
+        "viewpoint_id": "B",
+        "name": "Demo point B"
+      },
+      {
+        "viewpoint_id": "C",
+        "name": "Demo point C"
+      }
+    ],
+    "input_sha256": {
+      "apple.jpg": "e86879de3d9a807dedc742a8f464f39e6b74bbb531a1fba3583155d94997d1cd",
+      "box.png": "1094629c1e2ebbc8a9ae2c9c63e18c1dff0f5f1481146e02f3b11a3d30feb20a",
+      "fruits.jpg": "9c031d80a1c52da5eca790db896baffec6a7e52bf786cdb7bbfca5c7f880e6a1",
+      "history.json": "53dfa7017ca312e3dd5690cfa76d97a2c3367f8b4d6024de299b9e633ac9c45a",
+      "missing.json": "1ee0a46d2fd44f7ae76e84e3744c11fe5aeb40e657d1bd1a488317a0607c9bf9",
+      "orange.jpg": "152c20d2f380ac985de25e474e1a5f06ed34b932191342099b8272a63a15a079"
+    },
+    "separate_fresh_databases": true,
+    "same_enrollment": true,
+    "same_replay_seed_strategy": null,
+    "fixed_order": "viewpoint_id ascending; independent of image answers",
+    "metrics": "Actual attempted/arrived/decoded-observed counts; observe_calls counted separately. No movement time is measured.",
+    "conclusion": "Counts tie on this sample; this is not evidence of a search efficiency improvement."
+  }
+}

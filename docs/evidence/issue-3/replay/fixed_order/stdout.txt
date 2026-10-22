@@ -1,0 +1,19 @@
+HomeTrace P1 | search | simulated_navigation | data_source=recorded_image
+Actual photo matching; no live camera or real robot. Demo-sequence times are not photo capture dates.
+HISTORY 3
+STRATEGY fixed_order
+[02] PLAN A reason=fixed_order
+[05] VIEW A -> UNKNOWN reason=replayed_evidence
+[06] PLAN B reason=fixed_order
+[09] VIEW B -> UNKNOWN reason=replayed_evidence
+[10] PLAN C reason=fixed_order
+[13] MATCH UNKNOWN reason=no_verified_match inliers=0 elapsed_ms=9.151
+[15] VIEW C -> UNKNOWN reason=observation_result
+RESULT UNKNOWN location=null
+ATTEMPTED A,B,C
+ARRIVED A,B,C
+OBSERVED C
+CONFIRMED_EVIDENCE none
+REPORT F:/qcx/code/HomeTrace/artifacts/p2-validation/runs/60940a21ac3648bbaaac3e530ae34dbe/fixed_order/search/report.json
+EVENTS F:/qcx/code/HomeTrace/artifacts/p2-validation/runs/60940a21ac3648bbaaac3e530ae34dbe/fixed_order/search/events.jsonl
+DATABASE F:/qcx/code/HomeTrace/artifacts/p2-validation/runs/60940a21ac3648bbaaac3e530ae34dbe/fixed_order/memory.sqlite3

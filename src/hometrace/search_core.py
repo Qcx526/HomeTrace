@@ -16,6 +16,7 @@ from .models import (
     NavigationMode,
     PlanDecision,
     SearchReport,
+    SearchStrategy,
     Status,
     TaskEvent,
     TaskState,
@@ -29,6 +30,7 @@ class SearchCore:
         *, data_source: DataSource = DataSource.FIXTURE,
         navigation_mode: NavigationMode = NavigationMode.MOCK,
         operation: str = "search",
+        strategy: SearchStrategy = SearchStrategy.MEMORY_FIRST,
     ):
         self.memory = memory
         self.environment = environment
@@ -43,12 +45,19 @@ class SearchCore:
         if operation not in ("search", "register"):
             raise ValueError("Unsupported operation")
         self.operation = operation
+        self.strategy = SearchStrategy(strategy)
         self.adapter_kind = "mock" if self.data_source == DataSource.FIXTURE else "recorded_image"
         self._state: TaskState | None = None
 
     def plan_next(self, task_state: TaskState) -> PlanDecision | None:
         # This method sees only public viewpoint metadata and acquired memory.
         # It never reads observations/annotations from the fixture adapter.
+        if self.strategy == SearchStrategy.FIXED_ORDER:
+            remaining = sorted(
+                view.viewpoint_id for view in self.environment.list_viewpoints()
+                if view.viewpoint_id not in task_state.visited_viewpoints
+            )
+            return PlanDecision(remaining[0], "fixed_order", 0) if remaining else None
         latest = {}
         for record in self.memory.query_memory(task_state.object_id):
             latest[record.observation.viewpoint_id] = record
@@ -273,4 +282,5 @@ class SearchCore:
             historical_evidence=list(state.history),
             confirmed_evidence_ids=[r.observation.evidence_id for r in state.evidence if r.detection.status == Status.FOUND],
             operation=self.operation,
+            strategy=self.strategy,
         )

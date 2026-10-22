@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>HomeTrace · 记忆驱动寻物 Demo</title>
+  <link rel="stylesheet" href="/style.css">
+  <script defer src="/app.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="HomeTrace 首页"><span class="brand-mark" aria-hidden="true">H<span>·</span></span><span>HomeTrace<small>记住过去，验证现在</small></span></a>
+    <div class="header-tags"><span class="tag">记录实拍图片</span><span class="tag tag-amber">模拟导航</span><span class="version">P2 / 软件演示</span></div>
+  </header>
+  <main>
+    <section class="intro">
+      <div><p class="eyebrow">MEMORY → SEARCH → EVIDENCE</p><h1>让每一次寻找，都有据可循。</h1><p class="subtitle">从历史位置出发，用当前照片逐步核验，给出诚实的搜索结果。</p></div>
+      <p class="source-note" id="source-notice">公开照片驱动的软件验证 · 地点与时间为演示编排<br>不代表家庭现场或真实机器人运行</p>
+    </section>
+
+    <section class="controls panel" aria-label="运行场景">
+      <div class="scenario-group" role="group" aria-label="选择演示场景">
+        <button class="scenario selected" data-scenario="moved" aria-pressed="true"><span class="scenario-number">01</span><span><strong>找到目标</strong><small>历史 A → 继续核验</small></span></button>
+        <button class="scenario" data-scenario="missing" aria-pressed="false"><span class="scenario-number">02</span><span><strong>未确认负例</strong><small>保留不确定性</small></span></button>
+        <button class="scenario" data-scenario="replay" aria-pressed="false"><span class="scenario-number">03</span><span><strong>旧图重放保护</strong><small>历史不等于新发现</small></span></button>
+      </div>
+      <div class="run-controls"><label for="strategy">搜索策略<select id="strategy"><option value="memory_first">记忆优先</option><option value="fixed_order">固定顺序 A → B → C</option></select></label><button class="primary" id="run" type="button">运行并回放 <span aria-hidden="true">↗</span></button></div>
+    </section>
+    <div class="session-line"><p id="session-status" role="status">选择场景后运行；每次重新执行图像匹配，并保存独立运行证据。</p><span id="session-id"></span></div>
+    <div class="error-banner" id="error" role="alert" hidden></div>
+
+    <section class="workspace" aria-label="寻物过程">
+      <aside class="memory-column">
+        <section class="panel history-panel">
+          <div class="panel-heading"><h2><span class="section-index">01</span>历史记忆</h2><span class="mini-tag">仅供规划</span></div>
+          <div class="reference"><img id="reference-image" alt="登记目标的参考照片" hidden><div><strong id="object-name">待登记目标</strong><p id="history-location">等待读取 SQLite 记忆</p><span class="badge neutral" id="history-count">0 条历史</span></div></div>
+          <p class="small-note">样例历史 A 使用参考图自匹配建立，不能计作独立识别成绩。</p>
+          <details class="history-details"><summary>查看本轮开始前的历史</summary><div id="history-records" class="history-records"></div></details>
+        </section>
+        <section class="panel map-panel">
+          <div class="panel-heading"><h2><span class="section-index">02</span>观察点</h2><span class="mini-tag amber">模拟访问</span></div>
+          <div class="map" id="map" aria-label="示意拓扑，非实测房间地图"></div>
+          <div class="map-legend"><span><i class="dot active"></i>当前步骤</span><span><i class="dot done"></i>已有结果</span></div>
+          <p class="small-note">连接线为观察点示意，不表示真实路线、距离或移动耗时。</p>
+          <div class="counters">
+            <div><strong id="attempted-count">0</strong><span>尝试访问<small>attempted</small></span></div>
+            <div><strong id="arrived-count">0</strong><span>模拟到达<small>arrived</small></span></div>
+            <div><strong id="observed-count">0</strong><span>有效解码<small>observed</small></span></div>
+          </div>
+        </section>
+      </aside>
+
+      <section class="panel observation-panel">
+        <div class="panel-heading"><h2><span class="section-index">03</span>当前观察与验证</h2><span class="badge neutral" id="observation-status">待运行</span></div>
+        <div class="image-stage" id="image-stage">
+          <div class="image-placeholder" id="image-placeholder"><span aria-hidden="true">⌕</span><strong>让证据决定结果</strong><p>运行后按步骤查看实际照片与匹配框</p></div>
+          <div class="image-frame" id="image-frame" hidden><img id="observation-image" alt="本步骤读取的公开实拍照片"><svg id="box-overlay" role="img" aria-label="图像匹配器输出的原始检测框" hidden></svg></div>
+          <span class="image-label" id="image-label" hidden></span>
+        </div>
+        <div class="observation-caption"><strong id="observation-title">尚未开始搜索</strong><p id="observation-explanation">历史记录用于选择地点，只有本轮通过校验的图像才能支持当前确认。</p></div>
+        <div class="diagnostics" id="diagnostics" hidden></div>
+        <details class="evidence-details" id="evidence-details"><summary>图像证据与来源 <span id="evidence-short">等待观测</span></summary><dl id="evidence-fields"></dl></details>
+        <div class="playback"><button id="previous" class="icon-button" aria-label="上一步" disabled>←</button><button id="play" class="play-button" disabled>播放过程</button><button id="next" class="icon-button" aria-label="下一步" disabled>→</button><input id="progress" type="range" min="0" max="0" value="0" aria-label="回放步骤" disabled><span id="step-count">0 / 0</span><button id="finish" class="text-button" disabled>查看结果</button></div>
+        <p class="playback-note">本次真实计算的事件回放；播放速度不代表计算或机器人移动耗时。</p>
+      </section>
+
+      <section class="panel timeline-panel">
+        <div class="panel-heading"><h2><span class="section-index">04</span>决策过程</h2><span class="mini-tag" id="strategy-label">记忆优先</span></div>
+        <div class="timeline-empty" id="timeline-empty">每一步规划、模拟导航、观察和验证，都会留下记录。</div>
+        <ol class="timeline" id="timeline" aria-label="已回放的事件"></ol>
+      </section>
+    </section>
+
+    <section class="panel result-panel" id="result-panel" hidden>
+      <div class="result-heading"><div><p class="eyebrow">SEARCH REPORT / 本轮结果</p><h2 id="final-title"></h2><p id="final-description"></p></div><span id="final-status" class="badge"></span></div>
+      <div class="result-meta"><span>确认位置 <strong id="final-location"></strong></span><span>当前确认证据 <strong id="confirmed-evidence"></strong></span></div>
+      <div class="downloads" id="downloads"></div>
+    </section>
+    <section class="panel comparison-panel" id="comparison-panel" hidden>
+      <div class="panel-heading"><h2><span class="section-index">05</span>策略公平对照</h2><span class="mini-tag">本次真实运行计数</span></div>
+      <p class="comparison-intro">同一组候选点、照片与初始记忆，分别在独立数据库运行。对照不提供未来检测答案。</p>
+      <div class="table-scroll"><table><thead><tr><th>策略</th><th>搜索顺序</th><th>尝试步数</th><th>模拟到达</th><th>有效解码</th><th>结果</th></tr></thead><tbody id="comparison-body"></tbody></table></div>
+      <p class="small-note" id="comparison-note"></p><details><summary>查看对照输入与边界</summary><pre id="fairness"></pre></details>
+    </section>
+    <footer><strong>验证现在，不把记忆当答案。</strong><p>OpenCV 参考外观匹配 · SQLite 持久记忆 · 本地离线运行<br>低纹理、遮挡、相同外观实体仍有局限；团队家庭场景与真实机器人尚未验证。</p></footer>
+  </main>
+</body>
+</html>

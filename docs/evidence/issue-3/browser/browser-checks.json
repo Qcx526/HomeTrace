@@ -1,0 +1,502 @@
+{
+  "browser": "155.0.4283.45",
+  "viewport": {
+    "width": 1440,
+    "height": 1080
+  },
+  "scenarios": [
+    {
+      "scenario": "moved",
+      "run_id": "4164a87fe50a480b8792594aed788e9c",
+      "result_status": "FOUND",
+      "location": "B",
+      "steps": [
+        {
+          "seq": 1,
+          "action": "query_memory",
+          "attempted": 0,
+          "arrived": 0,
+          "observed": 0
+        },
+        {
+          "seq": 2,
+          "action": "plan_next",
+          "attempted": 1,
+          "arrived": 0,
+          "observed": 0
+        },
+        {
+          "seq": 3,
+          "action": "navigate",
+          "attempted": 1,
+          "arrived": 1,
+          "observed": 0
+        },
+        {
+          "seq": 4,
+          "action": "observe",
+          "attempted": 1,
+          "arrived": 1,
+          "observed": 0
+        },
+        {
+          "seq": 5,
+          "action": "detect_target",
+          "attempted": 1,
+          "arrived": 1,
+          "observed": 1
+        },
+        {
+          "seq": 6,
+          "action": "update_memory",
+          "attempted": 1,
+          "arrived": 1,
+          "observed": 1
+        },
+        {
+          "seq": 7,
+          "action": "view_result",
+          "attempted": 1,
+          "arrived": 1,
+          "observed": 1
+        },
+        {
+          "seq": 8,
+          "action": "plan_next",
+          "attempted": 2,
+          "arrived": 1,
+          "observed": 1
+        },
+        {
+          "seq": 9,
+          "action": "navigate",
+          "attempted": 2,
+          "arrived": 2,
+          "observed": 1
+        },
+        {
+          "seq": 10,
+          "action": "observe",
+          "attempted": 2,
+          "arrived": 2,
+          "observed": 1
+        },
+        {
+          "seq": 11,
+          "action": "detect_target",
+          "attempted": 2,
+          "arrived": 2,
+          "observed": 2
+        },
+        {
+          "seq": 12,
+          "action": "update_memory",
+          "attempted": 2,
+          "arrived": 2,
+          "observed": 2
+        },
+        {
+          "seq": 13,
+          "action": "view_result",
+          "attempted": 2,
+          "arrived": 2,
+          "observed": 2
+        },
+        {
+          "seq": 14,
+          "action": "complete",
+          "attempted": 2,
+          "arrived": 2,
+          "observed": 2
+        }
+      ],
+      "comparison": [
+        {
+          "strategy": "memory_first",
+          "result_status": "FOUND",
+          "location": "B",
+          "attempted": 2,
+          "arrived": 2,
+          "observed": 2,
+          "observe_calls": 2,
+          "attempted_viewpoints": [
+            "A",
+            "B"
+          ],
+          "observed_viewpoints": [
+            "A",
+            "B"
+          ]
+        },
+        {
+          "strategy": "fixed_order",
+          "result_status": "FOUND",
+          "location": "B",
+          "attempted": 2,
+          "arrived": 2,
+          "observed": 2,
+          "observe_calls": 2,
+          "attempted_viewpoints": [
+            "A",
+            "B"
+          ],
+          "observed_viewpoints": [
+            "A",
+            "B"
+          ]
+        }
+      ],
+      "downloaded_report_matches": true
+    },
+    {
+      "scenario": "missing",
+      "run_id": "eed09dfc0b634ba7b2e67381e66547fc",
+      "result_status": "SUSPECTED",
+      "location": null,
+      "steps": [
+        {
+          "seq": 1,
+          "action": "query_memory",
+          "attempted": 0,
+          "arrived": 0,
+          "observed": 0
+        },
+        {
+          "seq": 2,
+          "action": "plan_next",
+          "attempted": 1,
+          "arrived": 0,
+          "observed": 0
+        },
+        {
+          "seq": 3,
+          "action": "navigate",
+          "attempted": 1,
+          "arrived": 1,
+          "observed": 0
+        },
+        {
+          "seq": 4,
+          "action": "observe",
+          "attempted": 1,
+          "arrived": 1,
+          "observed": 0
+        },
+        {
+          "seq": 5,
+          "action": "detect_target",
+          "attempted": 1,
+          "arrived": 1,
+          "observed": 1
+        },
+        {
+          "seq": 6,
+          "action": "update_memory",
+          "attempted": 1,
+          "arrived": 1,
+          "observed": 1
+        },
+        {
+          "seq": 7,
+          "action": "view_result",
+          "attempted": 1,
+          "arrived": 1,
+          "observed": 1
+        },
+        {
+          "seq": 8,
+          "action": "plan_next",
+          "attempted": 2,
+          "arrived": 1,
+          "observed": 1
+        },
+        {
+          "seq": 9,
+          "action": "navigate",
+          "attempted": 2,
+          "arrived": 2,
+          "observed": 1
+        },
+        {
+          "seq": 10,
+          "action": "observe",
+          "attempted": 2,
+          "arrived": 2,
+          "observed": 1
+        },
+        {
+          "seq": 11,
+          "action": "detect_target",
+          "attempted": 2,
+          "arrived": 2,
+          "observed": 2
+        },
+        {
+          "seq": 12,
+          "action": "update_memory",
+          "attempted": 2,
+          "arrived": 2,
+          "observed": 2
+        },
+        {
+          "seq": 13,
+          "action": "view_result",
+          "attempted": 2,
+          "arrived": 2,
+          "observed": 2
+        },
+        {
+          "seq": 14,
+          "action": "plan_next",
+          "attempted": 3,
+          "arrived": 2,
+          "observed": 2
+        },
+        {
+          "seq": 15,
+          "action": "navigate",
+          "attempted": 3,
+          "arrived": 3,
+          "observed": 2
+        },
+        {
+          "seq": 16,
+          "action": "observe",
+          "attempted": 3,
+          "arrived": 3,
+          "observed": 2
+        },
+        {
+          "seq": 17,
+          "action": "detect_target",
+          "attempted": 3,
+          "arrived": 3,
+          "observed": 3
+        },
+        {
+          "seq": 18,
+          "action": "update_memory",
+          "attempted": 3,
+          "arrived": 3,
+          "observed": 3
+        },
+        {
+          "seq": 19,
+          "action": "view_result",
+          "attempted": 3,
+          "arrived": 3,
+          "observed": 3
+        },
+        {
+          "seq": 20,
+          "action": "complete",
+          "attempted": 3,
+          "arrived": 3,
+          "observed": 3
+        }
+      ],
+      "comparison": [
+        {
+          "strategy": "memory_first",
+          "result_status": "SUSPECTED",
+          "location": null,
+          "attempted": 3,
+          "arrived": 3,
+          "observed": 3,
+          "observe_calls": 3,
+          "attempted_viewpoints": [
+            "A",
+            "B",
+            "C"
+          ],
+          "observed_viewpoints": [
+            "A",
+            "B",
+            "C"
+          ]
+        },
+        {
+          "strategy": "fixed_order",
+          "result_status": "SUSPECTED",
+          "location": null,
+          "attempted": 3,
+          "arrived": 3,
+          "observed": 3,
+          "observe_calls": 3,
+          "attempted_viewpoints": [
+            "A",
+            "B",
+            "C"
+          ],
+          "observed_viewpoints": [
+            "A",
+            "B",
+            "C"
+          ]
+        }
+      ],
+      "downloaded_report_matches": true
+    },
+    {
+      "scenario": "replay",
+      "run_id": "59524cf8c3814e33b63f9410e5ead53c",
+      "result_status": "UNKNOWN",
+      "location": null,
+      "steps": [
+        {
+          "seq": 1,
+          "action": "query_memory",
+          "attempted": 0,
+          "arrived": 0,
+          "observed": 0
+        },
+        {
+          "seq": 2,
+          "action": "plan_next",
+          "attempted": 1,
+          "arrived": 0,
+          "observed": 0
+        },
+        {
+          "seq": 3,
+          "action": "navigate",
+          "attempted": 1,
+          "arrived": 1,
+          "observed": 0
+        },
+        {
+          "seq": 4,
+          "action": "observe",
+          "attempted": 1,
+          "arrived": 1,
+          "observed": 0
+        },
+        {
+          "seq": 5,
+          "action": "view_result",
+          "attempted": 1,
+          "arrived": 1,
+          "observed": 0
+        },
+        {
+          "seq": 6,
+          "action": "plan_next",
+          "attempted": 2,
+          "arrived": 1,
+          "observed": 0
+        },
+        {
+          "seq": 7,
+          "action": "navigate",
+          "attempted": 2,
+          "arrived": 2,
+          "observed": 0
+        },
+        {
+          "seq": 8,
+          "action": "observe",
+          "attempted": 2,
+          "arrived": 2,
+          "observed": 0
+        },
+        {
+          "seq": 9,
+          "action": "view_result",
+          "attempted": 2,
+          "arrived": 2,
+          "observed": 0
+        },
+        {
+          "seq": 10,
+          "action": "plan_next",
+          "attempted": 3,
+          "arrived": 2,
+          "observed": 0
+        },
+        {
+          "seq": 11,
+          "action": "navigate",
+          "attempted": 3,
+          "arrived": 3,
+          "observed": 0
+        },
+        {
+          "seq": 12,
+          "action": "observe",
+          "attempted": 3,
+          "arrived": 3,
+          "observed": 0
+        },
+        {
+          "seq": 13,
+          "action": "detect_target",
+          "attempted": 3,
+          "arrived": 3,
+          "observed": 1
+        },
+        {
+          "seq": 14,
+          "action": "update_memory",
+          "attempted": 3,
+          "arrived": 3,
+          "observed": 1
+        },
+        {
+          "seq": 15,
+          "action": "view_result",
+          "attempted": 3,
+          "arrived": 3,
+          "observed": 1
+        },
+        {
+          "seq": 16,
+          "action": "complete",
+          "attempted": 3,
+          "arrived": 3,
+          "observed": 1
+        }
+      ],
+      "comparison": [
+        {
+          "strategy": "memory_first",
+          "result_status": "UNKNOWN",
+          "location": null,
+          "attempted": 3,
+          "arrived": 3,
+          "observed": 1,
+          "observe_calls": 3,
+          "attempted_viewpoints": [
+            "B",
+            "A",
+            "C"
+          ],
+          "observed_viewpoints": [
+            "C"
+          ]
+        },
+        {
+          "strategy": "fixed_order",
+          "result_status": "UNKNOWN",
+          "location": null,
+          "attempted": 3,
+          "arrived": 3,
+          "observed": 1,
+          "observe_calls": 3,
+          "attempted_viewpoints": [
+            "A",
+            "B",
+            "C"
+          ],
+          "observed_viewpoints": [
+            "C"
+          ]
+        }
+      ],
+      "downloaded_report_matches": true
+    }
+  ],
+  "errors": [],
+  "mobile_no_horizontal_overflow": true,
+  "passed": true,
+  "video": "page@34c8a4ad903dd6a34170c3f7fdbdd934.webm"
+}

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "hometrace"
-version = "0.2.0"
+version = "0.3.0"
 description = "Memory-guided object search with offline photo matching and explicit provenance"
 requires-python = ">=3.11"
 dependencies = []
@@ -20,7 +20,7 @@ hometrace = "hometrace.cli:main"
 where = ["src"]
 
 [tool.setuptools.package-data]
-hometrace = ["fixture_data/*.json"]
+hometrace = ["fixture_data/*.json", "web/*.html", "web/*.css", "web/*.js"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
