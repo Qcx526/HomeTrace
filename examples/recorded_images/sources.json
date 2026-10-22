@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "upstream_repository": "https://github.com/opencv/opencv",
+  "upstream_release": "4.12.0",
+  "upstream_commit": "49486f61fb25722cbcf586b7f4320921d46fb38e",
+  "license": "Apache-2.0; retained upstream COPYRIGHT and historical BSD notice",
+  "license_url": "https://github.com/opencv/opencv/blob/49486f61fb25722cbcf586b7f4320921d46fb38e/LICENSE",
+  "license_files": ["LICENSE.opencv.txt", "COPYRIGHT.opencv.txt", "LICENSE_CHANGE_NOTICE.opencv.txt"],
+  "capture_source": "Public OpenCV sample photographs, not captured by HomeTrace or a robot",
+  "original_capture_dates": null,
+  "original_photographer": null,
+  "modifications": "None. Original downloaded image bytes are retained.",
+  "image_bytes_total": 357388,
+  "files": [
+    {
+      "path": "box.png",
+      "upstream_path": "samples/data/box.png",
+      "download_url": "https://raw.githubusercontent.com/opencv/opencv/49486f61fb25722cbcf586b7f4320921d46fb38e/samples/data/box.png",
+      "sha256": "1094629c1e2ebbc8a9ae2c9c63e18c1dff0f5f1481146e02f3b11a3d30feb20a",
+      "bytes": 50728,
+      "role": "Reference photograph of the textured biscuit-box front; also used as the explicitly staged historical A image"
+    },
+    {
+      "path": "box_in_scene.png",
+      "upstream_path": "samples/data/box_in_scene.png",
+      "download_url": "https://raw.githubusercontent.com/opencv/opencv/49486f61fb25722cbcf586b7f4320921d46fb38e/samples/data/box_in_scene.png",
+      "sha256": "8b0225ff76244a42bd1400c0904f8b7afea7d97b7d8115495e42e98ad347bd51",
+      "bytes": 122490,
+      "role": "Distinct scene photograph containing the registered appearance; positive image at staged viewpoint B"
+    },
+    {
+      "path": "apple.jpg",
+      "upstream_path": "samples/data/apple.jpg",
+      "download_url": "https://raw.githubusercontent.com/opencv/opencv/49486f61fb25722cbcf586b7f4320921d46fb38e/samples/data/apple.jpg",
+      "sha256": "e86879de3d9a807dedc742a8f464f39e6b74bbb531a1fba3583155d94997d1cd",
+      "bytes": 51705,
+      "role": "Negative photograph without the target box"
+    },
+    {
+      "path": "orange.jpg",
+      "upstream_path": "samples/data/orange.jpg",
+      "download_url": "https://raw.githubusercontent.com/opencv/opencv/49486f61fb25722cbcf586b7f4320921d46fb38e/samples/data/orange.jpg",
+      "sha256": "152c20d2f380ac985de25e474e1a5f06ed34b932191342099b8272a63a15a079",
+      "bytes": 50036,
+      "role": "Negative photograph without the target box"
+    },
+    {
+      "path": "fruits.jpg",
+      "upstream_path": "samples/data/fruits.jpg",
+      "download_url": "https://raw.githubusercontent.com/opencv/opencv/49486f61fb25722cbcf586b7f4320921d46fb38e/samples/data/fruits.jpg",
+      "sha256": "9c031d80a1c52da5eca790db896baffec6a7e52bf786cdb7bbfca5c7f880e6a1",
+      "bytes": 82429,
+      "role": "Negative photograph without the target box"
+    }
+  ]
+}

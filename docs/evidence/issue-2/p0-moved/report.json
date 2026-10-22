@@ -1,0 +1,428 @@
+{
+  "task_id": "81346822-2379-47ea-9f9e-31a09db7eb1a",
+  "object_id": "remote-control",
+  "result_status": "FOUND",
+  "location": "B",
+  "evidence_ids": [
+    "moved-current-A",
+    "moved-current-B"
+  ],
+  "visited_viewpoints": [
+    "A",
+    "B"
+  ],
+  "evidence": [
+    {
+      "observation": {
+        "evidence_id": "moved-current-A",
+        "viewpoint_id": "A",
+        "captured_at": "2026-10-02T09:00:00+08:00",
+        "data_source": "fixture",
+        "visibility_status": "clear",
+        "image_path": null,
+        "image_hash": null,
+        "capture_source": null,
+        "timestamp_basis": "fixture",
+        "error": null
+      },
+      "detection": {
+        "target_id": "remote-control",
+        "evidence_id": "moved-current-A",
+        "status": "NOT_FOUND_IN_VIEW",
+        "matcher": "fixture_annotation",
+        "score": null,
+        "data_source": null,
+        "verification_kind": "fixture_annotation",
+        "diagnostics": {},
+        "bbox": null
+      }
+    },
+    {
+      "observation": {
+        "evidence_id": "moved-current-B",
+        "viewpoint_id": "B",
+        "captured_at": "2026-10-02T09:01:00+08:00",
+        "data_source": "fixture",
+        "visibility_status": "clear",
+        "image_path": null,
+        "image_hash": null,
+        "capture_source": null,
+        "timestamp_basis": "fixture",
+        "error": null
+      },
+      "detection": {
+        "target_id": "remote-control",
+        "evidence_id": "moved-current-B",
+        "status": "FOUND",
+        "matcher": "fixture_annotation",
+        "score": null,
+        "data_source": null,
+        "verification_kind": "fixture_annotation",
+        "diagnostics": {},
+        "bbox": null
+      }
+    }
+  ],
+  "events": [
+    {
+      "seq": 1,
+      "action": "query_memory",
+      "input_ids": [
+        "remote-control"
+      ],
+      "result": {
+        "records": [
+          {
+            "observation": {
+              "evidence_id": "moved-history-A",
+              "viewpoint_id": "A",
+              "captured_at": "2026-10-01T09:00:00+08:00",
+              "data_source": "fixture",
+              "visibility_status": "clear",
+              "image_path": null,
+              "image_hash": null,
+              "capture_source": null,
+              "timestamp_basis": "fixture",
+              "error": null
+            },
+            "detection": {
+              "target_id": "remote-control",
+              "evidence_id": "moved-history-A",
+              "status": "FOUND",
+              "matcher": "fixture_annotation",
+              "score": null,
+              "data_source": null,
+              "verification_kind": "fixture_annotation",
+              "diagnostics": {},
+              "bbox": null
+            }
+          }
+        ],
+        "historical_only": true
+      },
+      "provenance": {
+        "adapter_kind": "mock",
+        "simulated": true,
+        "navigation_mode": "mock",
+        "data_source": "fixture"
+      }
+    },
+    {
+      "seq": 2,
+      "action": "plan_next",
+      "input_ids": [
+        "remote-control"
+      ],
+      "result": {
+        "viewpoint_id": "A",
+        "reason": "latest_memory_found",
+        "score": 100
+      },
+      "provenance": {
+        "adapter_kind": "mock",
+        "simulated": true,
+        "navigation_mode": "mock",
+        "data_source": "fixture"
+      }
+    },
+    {
+      "seq": 3,
+      "action": "navigate",
+      "input_ids": [
+        "A"
+      ],
+      "result": {
+        "viewpoint_id": "A",
+        "status": "ARRIVED",
+        "adapter_kind": "mock",
+        "simulated": true,
+        "navigation_mode": "mock"
+      },
+      "provenance": {
+        "adapter_kind": "mock",
+        "simulated": true,
+        "navigation_mode": "mock",
+        "data_source": "fixture"
+      }
+    },
+    {
+      "seq": 4,
+      "action": "observe",
+      "input_ids": [
+        "A"
+      ],
+      "result": {
+        "observation": {
+          "evidence_id": "moved-current-A",
+          "viewpoint_id": "A",
+          "captured_at": "2026-10-02T09:00:00+08:00",
+          "data_source": "fixture",
+          "visibility_status": "clear",
+          "image_path": null,
+          "image_hash": null,
+          "capture_source": null,
+          "timestamp_basis": "fixture",
+          "error": null
+        }
+      },
+      "provenance": {
+        "adapter_kind": "mock",
+        "simulated": true,
+        "navigation_mode": "mock",
+        "data_source": "fixture"
+      }
+    },
+    {
+      "seq": 5,
+      "action": "detect_target",
+      "input_ids": [
+        "moved-current-A",
+        "remote-control"
+      ],
+      "result": {
+        "target_id": "remote-control",
+        "evidence_id": "moved-current-A",
+        "status": "NOT_FOUND_IN_VIEW",
+        "matcher": "fixture_annotation",
+        "score": null,
+        "data_source": null,
+        "verification_kind": "fixture_annotation",
+        "diagnostics": {},
+        "bbox": null
+      },
+      "provenance": {
+        "adapter_kind": "mock",
+        "simulated": true,
+        "navigation_mode": "mock",
+        "data_source": "fixture"
+      }
+    },
+    {
+      "seq": 6,
+      "action": "update_memory",
+      "input_ids": [
+        "moved-current-A"
+      ],
+      "result": {
+        "inserted": true,
+        "status": "NOT_FOUND_IN_VIEW"
+      },
+      "provenance": {
+        "adapter_kind": "mock",
+        "simulated": true,
+        "navigation_mode": "mock",
+        "data_source": "fixture"
+      }
+    },
+    {
+      "seq": 7,
+      "action": "view_result",
+      "input_ids": [
+        "A"
+      ],
+      "result": {
+        "status": "NOT_FOUND_IN_VIEW"
+      },
+      "provenance": {
+        "adapter_kind": "mock",
+        "simulated": true,
+        "navigation_mode": "mock",
+        "data_source": "fixture"
+      }
+    },
+    {
+      "seq": 8,
+      "action": "plan_next",
+      "input_ids": [
+        "remote-control"
+      ],
+      "result": {
+        "viewpoint_id": "B",
+        "reason": "unvisited_fallback",
+        "score": 0
+      },
+      "provenance": {
+        "adapter_kind": "mock",
+        "simulated": true,
+        "navigation_mode": "mock",
+        "data_source": "fixture"
+      }
+    },
+    {
+      "seq": 9,
+      "action": "navigate",
+      "input_ids": [
+        "B"
+      ],
+      "result": {
+        "viewpoint_id": "B",
+        "status": "ARRIVED",
+        "adapter_kind": "mock",
+        "simulated": true,
+        "navigation_mode": "mock"
+      },
+      "provenance": {
+        "adapter_kind": "mock",
+        "simulated": true,
+        "navigation_mode": "mock",
+        "data_source": "fixture"
+      }
+    },
+    {
+      "seq": 10,
+      "action": "observe",
+      "input_ids": [
+        "B"
+      ],
+      "result": {
+        "observation": {
+          "evidence_id": "moved-current-B",
+          "viewpoint_id": "B",
+          "captured_at": "2026-10-02T09:01:00+08:00",
+          "data_source": "fixture",
+          "visibility_status": "clear",
+          "image_path": null,
+          "image_hash": null,
+          "capture_source": null,
+          "timestamp_basis": "fixture",
+          "error": null
+        }
+      },
+      "provenance": {
+        "adapter_kind": "mock",
+        "simulated": true,
+        "navigation_mode": "mock",
+        "data_source": "fixture"
+      }
+    },
+    {
+      "seq": 11,
+      "action": "detect_target",
+      "input_ids": [
+        "moved-current-B",
+        "remote-control"
+      ],
+      "result": {
+        "target_id": "remote-control",
+        "evidence_id": "moved-current-B",
+        "status": "FOUND",
+        "matcher": "fixture_annotation",
+        "score": null,
+        "data_source": null,
+        "verification_kind": "fixture_annotation",
+        "diagnostics": {},
+        "bbox": null
+      },
+      "provenance": {
+        "adapter_kind": "mock",
+        "simulated": true,
+        "navigation_mode": "mock",
+        "data_source": "fixture"
+      }
+    },
+    {
+      "seq": 12,
+      "action": "update_memory",
+      "input_ids": [
+        "moved-current-B"
+      ],
+      "result": {
+        "inserted": true,
+        "status": "FOUND"
+      },
+      "provenance": {
+        "adapter_kind": "mock",
+        "simulated": true,
+        "navigation_mode": "mock",
+        "data_source": "fixture"
+      }
+    },
+    {
+      "seq": 13,
+      "action": "view_result",
+      "input_ids": [
+        "B"
+      ],
+      "result": {
+        "status": "FOUND"
+      },
+      "provenance": {
+        "adapter_kind": "mock",
+        "simulated": true,
+        "navigation_mode": "mock",
+        "data_source": "fixture"
+      }
+    },
+    {
+      "seq": 14,
+      "action": "complete",
+      "input_ids": [
+        "remote-control"
+      ],
+      "result": {
+        "result_status": "FOUND",
+        "location": "B"
+      },
+      "provenance": {
+        "adapter_kind": "mock",
+        "simulated": true,
+        "navigation_mode": "mock",
+        "data_source": "fixture"
+      }
+    }
+  ],
+  "limitations": [
+    "Mock navigation only; no physical robot was run.",
+    "All observations, annotations and timestamps are synthetic fixtures; no images were captured or analyzed.",
+    "FOUND confirms a fixture annotation only, not a real-world object.",
+    "History guides planning but cannot confirm the current location.",
+    "visited_viewpoints is a legacy alias for attempted_viewpoints, including failed navigation.",
+    "No physical robot, ROS, cloud API or learned visual model is integrated."
+  ],
+  "navigation_mode": "mock",
+  "data_source": "fixture",
+  "schema_version": 2,
+  "attempted_viewpoints": [
+    "A",
+    "B"
+  ],
+  "arrived_viewpoints": [
+    "A",
+    "B"
+  ],
+  "observed_viewpoints": [
+    "A",
+    "B"
+  ],
+  "historical_evidence": [
+    {
+      "observation": {
+        "evidence_id": "moved-history-A",
+        "viewpoint_id": "A",
+        "captured_at": "2026-10-01T09:00:00+08:00",
+        "data_source": "fixture",
+        "visibility_status": "clear",
+        "image_path": null,
+        "image_hash": null,
+        "capture_source": null,
+        "timestamp_basis": "fixture",
+        "error": null
+      },
+      "detection": {
+        "target_id": "remote-control",
+        "evidence_id": "moved-history-A",
+        "status": "FOUND",
+        "matcher": "fixture_annotation",
+        "score": null,
+        "data_source": null,
+        "verification_kind": "fixture_annotation",
+        "diagnostics": {},
+        "bbox": null
+      }
+    }
+  ],
+  "confirmed_evidence_ids": [
+    "moved-current-B"
+  ],
+  "operation": "search"
+}

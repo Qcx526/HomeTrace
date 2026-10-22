@@ -4,13 +4,14 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "hometrace"
-version = "0.1.0"
-description = "Offline fixture demo of memory-guided object search"
+version = "0.2.0"
+description = "Memory-guided object search with offline photo matching and explicit provenance"
 requires-python = ">=3.11"
 dependencies = []
 
 [project.optional-dependencies]
 dev = ["pytest>=8,<10"]
+vision = ["opencv-python-headless>=4.10,<5"]
 
 [project.scripts]
 hometrace = "hometrace.cli:main"

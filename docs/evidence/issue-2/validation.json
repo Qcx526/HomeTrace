@@ -1,0 +1,188 @@
+{
+  "validated_at_utc": "2026-10-21T09:00:05.924495+00:00",
+  "platform": "Windows-10-10.0.19045-SP0",
+  "python": "3.11.4",
+  "tests": 122,
+  "p0_tests": 54,
+  "skipped": 0,
+  "git_base": "caf693f74c298992d7266049cfc29609158b43b8",
+  "log_normalization": "Workspace absolute paths replaced with <REPO> in text logs; task JSON contains relative image paths.",
+  "steps": [
+    {
+      "command": [
+        "<REPO>\\artifacts\\p1-clean-env\\Scripts\\python.exe",
+        "-m",
+        "pip",
+        "check"
+      ],
+      "exit_code": 0,
+      "output": "pip-check.txt"
+    },
+    {
+      "command": [
+        "<REPO>\\artifacts\\p1-clean-env\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "-q",
+        "--junitxml",
+        "<REPO>\\artifacts\\p1-validation\\pytest.xml"
+      ],
+      "exit_code": 0,
+      "output": "pytest.txt"
+    },
+    {
+      "command": [
+        "<REPO>\\artifacts\\p1-clean-env\\Scripts\\python.exe",
+        "-m",
+        "pip",
+        "freeze"
+      ],
+      "exit_code": 0,
+      "output": "dependencies.txt"
+    },
+    {
+      "command": [
+        "<REPO>\\artifacts\\p1-clean-env\\Scripts\\python.exe",
+        "-m",
+        "hometrace",
+        "--scenario",
+        "moved",
+        "--output-dir",
+        "<REPO>\\artifacts\\p1-validation\\p0-moved"
+      ],
+      "exit_code": 0,
+      "output": "p0-moved/stdout.txt"
+    },
+    {
+      "command": [
+        "<REPO>\\artifacts\\p1-clean-env\\Scripts\\python.exe",
+        "-m",
+        "hometrace",
+        "register",
+        "--db",
+        "<REPO>\\artifacts\\p1-validation\\moved\\memory.sqlite3",
+        "--object-id",
+        "sample-box",
+        "--reference",
+        "box.png",
+        "--scene",
+        "<REPO>\\examples\\recorded_images\\history.json",
+        "--output-dir",
+        "<REPO>\\artifacts\\p1-validation\\moved\\register"
+      ],
+      "exit_code": 0,
+      "output": "moved/register/stdout.txt"
+    },
+    {
+      "command": [
+        "<REPO>\\artifacts\\p1-clean-env\\Scripts\\python.exe",
+        "-m",
+        "hometrace",
+        "search",
+        "--db",
+        "<REPO>\\artifacts\\p1-validation\\moved\\memory.sqlite3",
+        "--object-id",
+        "sample-box",
+        "--scene",
+        "<REPO>\\examples\\recorded_images\\moved.json",
+        "--output-dir",
+        "<REPO>\\artifacts\\p1-validation\\moved\\search"
+      ],
+      "exit_code": 0,
+      "output": "moved/search/stdout.txt"
+    },
+    {
+      "command": [
+        "<REPO>\\artifacts\\p1-clean-env\\Scripts\\python.exe",
+        "-m",
+        "hometrace",
+        "--scenario",
+        "missing",
+        "--output-dir",
+        "<REPO>\\artifacts\\p1-validation\\p0-missing"
+      ],
+      "exit_code": 0,
+      "output": "p0-missing/stdout.txt"
+    },
+    {
+      "command": [
+        "<REPO>\\artifacts\\p1-clean-env\\Scripts\\python.exe",
+        "-m",
+        "hometrace",
+        "register",
+        "--db",
+        "<REPO>\\artifacts\\p1-validation\\missing\\memory.sqlite3",
+        "--object-id",
+        "sample-box",
+        "--reference",
+        "box.png",
+        "--scene",
+        "<REPO>\\examples\\recorded_images\\history.json",
+        "--output-dir",
+        "<REPO>\\artifacts\\p1-validation\\missing\\register"
+      ],
+      "exit_code": 0,
+      "output": "missing/register/stdout.txt"
+    },
+    {
+      "command": [
+        "<REPO>\\artifacts\\p1-clean-env\\Scripts\\python.exe",
+        "-m",
+        "hometrace",
+        "search",
+        "--db",
+        "<REPO>\\artifacts\\p1-validation\\missing\\memory.sqlite3",
+        "--object-id",
+        "sample-box",
+        "--scene",
+        "<REPO>\\examples\\recorded_images\\missing.json",
+        "--output-dir",
+        "<REPO>\\artifacts\\p1-validation\\missing\\search"
+      ],
+      "exit_code": 0,
+      "output": "missing/search/stdout.txt"
+    },
+    {
+      "command": [
+        "<REPO>\\artifacts\\p1-clean-env\\Scripts\\python.exe",
+        "-m",
+        "hometrace",
+        "search",
+        "--db",
+        "<REPO>\\artifacts\\p1-validation\\moved\\memory.sqlite3",
+        "--object-id",
+        "sample-box",
+        "--scene",
+        "<REPO>\\examples\\recorded_images\\moved.json",
+        "--output-dir",
+        "<REPO>\\artifacts\\p1-validation\\replay"
+      ],
+      "exit_code": 0,
+      "output": "replay/stdout.txt"
+    }
+  ],
+  "source_sha256": {
+    "pyproject.toml": "11d619b3ad1b861bff5c805da5a0040601c72710834c46d7ba100cad60f7decb",
+    "src/hometrace/__init__.py": "1485bd0a2fc69a1a03435cbf7246635db530a4e3c6c6ee5c00b7fae48199ecc7",
+    "src/hometrace/__main__.py": "482b8693e2fe6dbd732e3d7961e03827d3efa187bad11d29da188be580ebbeea",
+    "src/hometrace/cli.py": "94315b0fc56a620451fad14f9e3d40013d2bb9b95fd1efae19255c2e9f90c2a3",
+    "src/hometrace/environment.py": "e0397adaed58fb77f543f5a0d6ef625b1aa9281ccc95d3b8531647e5b744b562",
+    "src/hometrace/fixtures.py": "97c78aa408315b60e159a6e91bf9c407178050b82c4d1b297abb80c7eeb38f12",
+    "src/hometrace/image_matcher.py": "79af6edadf7315d5440735a85befa515580b4c7c60728b873cf1f7b9f0c5bd67",
+    "src/hometrace/memory.py": "e175db5280f4752a2968c585a8f742aff7c525cef2649d4c7b40e6af2c9e970c",
+    "src/hometrace/models.py": "865a6346331b871817d539be326a039bd9a9dd609940678f4058ec0e4f20e206",
+    "src/hometrace/perception.py": "dea36dc706333aa51993b9a7db3b4adb87164e9595fd63ffb699e59b09f50973",
+    "src/hometrace/recorded.py": "5abe26335a74b51274aeeb0d1683608c27e3501ff4030d6600ec80cecb3567aa",
+    "src/hometrace/recorded_cli.py": "84a45cbe7c3414a8c3dbf6450dbba4055b830ee822e89bc28759069e91a4d597",
+    "src/hometrace/search_core.py": "717dd13dea0ace3ac253b40804b25459d4524e0413c2e996aeea73b48f868682",
+    "tests/test_cli.py": "a7f3a3c56bdba4699c342d4dda0180e79a8e0bfb49f815eb7ffc2f16e6587bc9",
+    "tests/test_fixtures.py": "8eec43477de8fa9a667da09f30d471aa471ae20591dc2a04792f5b550f03c608",
+    "tests/test_image_matcher.py": "a0c312494c78d128fbffe463501a80f34a7442dc64b487e16e16c226f8147d75",
+    "tests/test_memory.py": "269570ce56082aeb3938d39ba7807ad0d698202517978fbafae4ce7eedb18fa4",
+    "tests/test_p1_integration.py": "2f36f632029341e236fee9920aaca60ebbf026941e91cfded8a6536d87d7f3dd",
+    "tests/test_recorded.py": "28d12379d5065ee8aea74985a1adc128a5939f1ba11ba681f8b73ac3a2517698",
+    "tests/test_search_core.py": "4db2a351a06e7de008c978eea3eb9a3627dd494814b8222cb6c2c6812af8772e",
+    "tests/test_search_integrity.py": "16dcee3f6c63994333839cef7b9157f5fff3580e666ac71e8bee4c0fe99f50e5",
+    "tools/validate_p1.py": "4d5331bfb7cfcb4ffe40fbd4ac11dc69677d2e68070583ac860c48c1cdb42d39"
+  }
+}

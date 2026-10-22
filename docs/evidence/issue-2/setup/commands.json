@@ -1,0 +1,46 @@
+[
+  {
+    "command": [
+      "<REPO>\\.venv\\Scripts\\python.exe",
+      "-m",
+      "pip",
+      "wheel",
+      ".",
+      "--no-deps",
+      "--wheel-dir",
+      "artifacts/p1-wheels"
+    ],
+    "exit_code": 0,
+    "output": "wheel-build.txt"
+  },
+  {
+    "command": [
+      "<REPO>\\.venv\\Scripts\\python.exe",
+      "-m",
+      "venv",
+      "<REPO>\\artifacts\\p1-clean-env"
+    ],
+    "exit_code": 0,
+    "output": "venv-create.txt"
+  },
+  {
+    "command": [
+      "<REPO>\\artifacts\\p1-clean-env\\Scripts\\python.exe",
+      "-m",
+      "pip",
+      "install",
+      "<REPO>\\artifacts\\p1-wheels\\hometrace-0.2.0-py3-none-any.whl[dev,vision]"
+    ],
+    "exit_code": 0,
+    "output": "clean-install.txt"
+  },
+  {
+    "command": [
+      "<REPO>\\artifacts\\p1-clean-env\\Scripts\\python.exe",
+      "-c",
+      "import sys,hometrace,cv2,numpy; print(sys.version); print(hometrace.__file__); print('opencv',cv2.__version__,'numpy',numpy.__version__)"
+    ],
+    "exit_code": 0,
+    "output": "installed-package.txt"
+  }
+]

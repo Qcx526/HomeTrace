@@ -1,0 +1,14 @@
+HomeTrace P1 | register | simulated_navigation | data_source=recorded_image
+Actual photo matching; no live camera or real robot. Demo-sequence times are not photo capture dates.
+HISTORY 0
+[02] PLAN A reason=unvisited_fallback
+[05] MATCH FOUND reason=verified_planar_reference_match inliers=1589 elapsed_ms=24.222
+[07] VIEW A -> FOUND reason=observation_result
+RESULT FOUND location=A
+ATTEMPTED A
+ARRIVED A
+OBSERVED A
+CONFIRMED_EVIDENCE opencv-history-A
+REPORT <REPO>/artifacts/p1-validation/moved/register/report.json
+EVENTS <REPO>/artifacts/p1-validation/moved/register/events.jsonl
+DATABASE <REPO>/artifacts/p1-validation/moved/memory.sqlite3
