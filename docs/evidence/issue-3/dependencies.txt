@@ -1,0 +1,9 @@
+colorama==0.4.6
+hometrace @ file:///F:/qcx/code/HomeTrace/artifacts/p2-wheels/hometrace-0.3.0-py3-none-any.whl#sha256=c29443e2a928e30b7f77b616081e3164ffacfaf4881fdfb91b5995ee4b8ae08b
+iniconfig==2.3.1
+numpy==2.4.6
+opencv-python-headless==4.14.0.94
+packaging==26.3
+pluggy==1.7.0
+Pygments==2.21.0
+pytest==9.1.1

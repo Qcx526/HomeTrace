@@ -1,0 +1,21 @@
+{
+  "argv": [
+    "F:\\qcx\\code\\HomeTrace\\artifacts\\p2-clean-env\\Scripts\\python.exe",
+    "-X",
+    "utf8",
+    "-m",
+    "hometrace",
+    "search",
+    "--db",
+    "<DEMO_OUTPUT>\\60940a21ac3648bbaaac3e530ae34dbe\\fixed_order\\memory.sqlite3",
+    "--object-id",
+    "sample-box",
+    "--scene",
+    "<DEMO_OUTPUT>\\60940a21ac3648bbaaac3e530ae34dbe\\inputs\\moved.json",
+    "--strategy",
+    "fixed_order",
+    "--output-dir",
+    "<DEMO_OUTPUT>\\60940a21ac3648bbaaac3e530ae34dbe\\fixed_order\\search"
+  ],
+  "exit_code": 0
+}

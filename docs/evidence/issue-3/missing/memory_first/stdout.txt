@@ -1,0 +1,21 @@
+HomeTrace P1 | search | simulated_navigation | data_source=recorded_image
+Actual photo matching; no live camera or real robot. Demo-sequence times are not photo capture dates.
+HISTORY 1
+STRATEGY memory_first
+[02] PLAN A reason=latest_memory_found
+[05] MATCH SUSPECTED reason=insufficient_distinct_matches inliers=0 elapsed_ms=16.649
+[07] VIEW A -> SUSPECTED reason=observation_result
+[08] PLAN B reason=unvisited_fallback
+[11] MATCH UNKNOWN reason=no_verified_match inliers=0 elapsed_ms=8.87
+[13] VIEW B -> UNKNOWN reason=observation_result
+[14] PLAN C reason=unvisited_fallback
+[17] MATCH SUSPECTED reason=insufficient_distinct_matches inliers=0 elapsed_ms=27.822
+[19] VIEW C -> SUSPECTED reason=observation_result
+RESULT SUSPECTED location=null
+ATTEMPTED A,B,C
+ARRIVED A,B,C
+OBSERVED A,B,C
+CONFIRMED_EVIDENCE none
+REPORT F:/qcx/code/HomeTrace/artifacts/p2-validation/runs/8e5c93e791364314805ddcafa415a95b/memory_first/search/report.json
+EVENTS F:/qcx/code/HomeTrace/artifacts/p2-validation/runs/8e5c93e791364314805ddcafa415a95b/memory_first/search/events.jsonl
+DATABASE F:/qcx/code/HomeTrace/artifacts/p2-validation/runs/8e5c93e791364314805ddcafa415a95b/memory_first/memory.sqlite3

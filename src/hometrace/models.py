@@ -29,6 +29,11 @@ class TimestampBasis(str, Enum):
     DEMO_SEQUENCE = "demo_sequence"
 
 
+class SearchStrategy(str, Enum):
+    MEMORY_FIRST = "memory_first"
+    FIXED_ORDER = "fixed_order"
+
+
 @dataclass(frozen=True)
 class RegisteredObject:
     object_id: str
@@ -136,6 +141,7 @@ class SearchReport:
     historical_evidence: list[MemoryRecord] = field(default_factory=list)
     confirmed_evidence_ids: list[str] = field(default_factory=list)
     operation: str = "search"
+    strategy: SearchStrategy = SearchStrategy.MEMORY_FIRST
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)

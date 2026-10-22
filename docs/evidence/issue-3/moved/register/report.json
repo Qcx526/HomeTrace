@@ -1,0 +1,307 @@
+{
+  "task_id": "b9c6e518-ba87-4d99-a3da-9f5f93ce1f3c",
+  "object_id": "sample-box",
+  "result_status": "FOUND",
+  "location": "A",
+  "evidence_ids": [
+    "opencv-history-A"
+  ],
+  "visited_viewpoints": [
+    "A"
+  ],
+  "evidence": [
+    {
+      "observation": {
+        "evidence_id": "opencv-history-A",
+        "viewpoint_id": "A",
+        "captured_at": "2026-10-21T08:00:00+08:00",
+        "data_source": "recorded_image",
+        "visibility_status": "clear",
+        "image_path": "box.png",
+        "image_hash": "1094629c1e2ebbc8a9ae2c9c63e18c1dff0f5f1481146e02f3b11a3d30feb20a",
+        "capture_source": "Public OpenCV 4.12.0 sample photographs at commit 49486f61fb25722cbcf586b7f4320921d46fb38e; see sources.json. Original capture dates are unknown. Locations and timestamps are staged demo sequence labels, not physical capture or robot records.",
+        "timestamp_basis": "demo_sequence",
+        "error": null
+      },
+      "detection": {
+        "target_id": "sample-box",
+        "evidence_id": "opencv-history-A",
+        "status": "FOUND",
+        "matcher": "opencv_orb_homography",
+        "score": 1.0,
+        "data_source": "recorded_image",
+        "verification_kind": "reference_instance_match",
+        "diagnostics": {
+          "image_decoded": true,
+          "reference_keypoints": 1589,
+          "scene_keypoints": 1589,
+          "good_matches": 1589,
+          "inliers": 1589,
+          "inlier_ratio": 1.0,
+          "reference_coverage": 0.456,
+          "opencv_version": "4.14.0",
+          "seed": 0,
+          "threads": 1,
+          "sharpness": 6466.052,
+          "projected_area_fraction": 0.9924,
+          "projected_visible_fraction": 1.0,
+          "projected_corners": [
+            [
+              -0.0,
+              -0.0
+            ],
+            [
+              323.0,
+              -0.0
+            ],
+            [
+              323.0,
+              222.0
+            ],
+            [
+              -0.0,
+              222.0
+            ]
+          ],
+          "reason": "verified_planar_reference_match",
+          "elapsed_ms": 22.471
+        },
+        "bbox": [
+          0.0,
+          0.0,
+          323.0,
+          222.0
+        ]
+      }
+    }
+  ],
+  "events": [
+    {
+      "seq": 1,
+      "action": "query_memory",
+      "input_ids": [
+        "sample-box"
+      ],
+      "result": {
+        "records": [],
+        "historical_only": true
+      },
+      "provenance": {
+        "adapter_kind": "recorded_image",
+        "simulated": true,
+        "navigation_mode": "simulated_navigation",
+        "data_source": "recorded_image"
+      }
+    },
+    {
+      "seq": 2,
+      "action": "plan_next",
+      "input_ids": [
+        "sample-box"
+      ],
+      "result": {
+        "viewpoint_id": "A",
+        "reason": "unvisited_fallback",
+        "score": 0
+      },
+      "provenance": {
+        "adapter_kind": "recorded_image",
+        "simulated": true,
+        "navigation_mode": "simulated_navigation",
+        "data_source": "recorded_image"
+      }
+    },
+    {
+      "seq": 3,
+      "action": "navigate",
+      "input_ids": [
+        "A"
+      ],
+      "result": {
+        "viewpoint_id": "A",
+        "status": "ARRIVED",
+        "adapter_kind": "recorded_image",
+        "simulated": true,
+        "navigation_mode": "simulated_navigation"
+      },
+      "provenance": {
+        "adapter_kind": "recorded_image",
+        "simulated": true,
+        "navigation_mode": "simulated_navigation",
+        "data_source": "recorded_image"
+      }
+    },
+    {
+      "seq": 4,
+      "action": "observe",
+      "input_ids": [
+        "A"
+      ],
+      "result": {
+        "observation": {
+          "evidence_id": "opencv-history-A",
+          "viewpoint_id": "A",
+          "captured_at": "2026-10-21T08:00:00+08:00",
+          "data_source": "recorded_image",
+          "visibility_status": "clear",
+          "image_path": "box.png",
+          "image_hash": "1094629c1e2ebbc8a9ae2c9c63e18c1dff0f5f1481146e02f3b11a3d30feb20a",
+          "capture_source": "Public OpenCV 4.12.0 sample photographs at commit 49486f61fb25722cbcf586b7f4320921d46fb38e; see sources.json. Original capture dates are unknown. Locations and timestamps are staged demo sequence labels, not physical capture or robot records.",
+          "timestamp_basis": "demo_sequence",
+          "error": null
+        }
+      },
+      "provenance": {
+        "adapter_kind": "recorded_image",
+        "simulated": true,
+        "navigation_mode": "simulated_navigation",
+        "data_source": "recorded_image"
+      }
+    },
+    {
+      "seq": 5,
+      "action": "detect_target",
+      "input_ids": [
+        "opencv-history-A",
+        "sample-box"
+      ],
+      "result": {
+        "target_id": "sample-box",
+        "evidence_id": "opencv-history-A",
+        "status": "FOUND",
+        "matcher": "opencv_orb_homography",
+        "score": 1.0,
+        "data_source": "recorded_image",
+        "verification_kind": "reference_instance_match",
+        "diagnostics": {
+          "image_decoded": true,
+          "reference_keypoints": 1589,
+          "scene_keypoints": 1589,
+          "good_matches": 1589,
+          "inliers": 1589,
+          "inlier_ratio": 1.0,
+          "reference_coverage": 0.456,
+          "opencv_version": "4.14.0",
+          "seed": 0,
+          "threads": 1,
+          "sharpness": 6466.052,
+          "projected_area_fraction": 0.9924,
+          "projected_visible_fraction": 1.0,
+          "projected_corners": [
+            [
+              -0.0,
+              -0.0
+            ],
+            [
+              323.0,
+              -0.0
+            ],
+            [
+              323.0,
+              222.0
+            ],
+            [
+              -0.0,
+              222.0
+            ]
+          ],
+          "reason": "verified_planar_reference_match",
+          "elapsed_ms": 22.471
+        },
+        "bbox": [
+          0.0,
+          0.0,
+          323.0,
+          222.0
+        ]
+      },
+      "provenance": {
+        "adapter_kind": "recorded_image",
+        "simulated": true,
+        "navigation_mode": "simulated_navigation",
+        "data_source": "recorded_image"
+      }
+    },
+    {
+      "seq": 6,
+      "action": "update_memory",
+      "input_ids": [
+        "opencv-history-A"
+      ],
+      "result": {
+        "inserted": true,
+        "status": "FOUND"
+      },
+      "provenance": {
+        "adapter_kind": "recorded_image",
+        "simulated": true,
+        "navigation_mode": "simulated_navigation",
+        "data_source": "recorded_image"
+      }
+    },
+    {
+      "seq": 7,
+      "action": "view_result",
+      "input_ids": [
+        "A"
+      ],
+      "result": {
+        "status": "FOUND"
+      },
+      "provenance": {
+        "adapter_kind": "recorded_image",
+        "simulated": true,
+        "navigation_mode": "simulated_navigation",
+        "data_source": "recorded_image"
+      }
+    },
+    {
+      "seq": 8,
+      "action": "complete",
+      "input_ids": [
+        "sample-box"
+      ],
+      "result": {
+        "result_status": "FOUND",
+        "location": "A"
+      },
+      "provenance": {
+        "adapter_kind": "recorded_image",
+        "simulated": true,
+        "navigation_mode": "simulated_navigation",
+        "data_source": "recorded_image"
+      }
+    }
+  ],
+  "limitations": [
+    "Navigation is simulated; images are recorded photographs, never real_robot observations.",
+    "FOUND is a geometric reference-appearance match in a recorded image, not live presence or category recognition.",
+    "Similar copies, low texture, severe occlusion, lighting and viewpoint changes can defeat this matcher.",
+    "No reliable match is UNKNOWN/SUSPECTED, not evidence that an object is absent.",
+    "declared_capture timestamps are supplied by the operator, not authenticated camera metadata.",
+    "demo_sequence timestamps order a replay only; original photo capture dates may be unknown.",
+    "SHA256 blocks byte-identical replay, but cannot prove capture time or detect every edited copy.",
+    "Reference-image enrollment is not independent confirmation; search must use different image content.",
+    "History guides planning but cannot confirm the current location.",
+    "visited_viewpoints is a legacy alias for attempted_viewpoints, including failed navigation.",
+    "No physical robot, ROS, cloud API or learned visual model is integrated."
+  ],
+  "navigation_mode": "simulated_navigation",
+  "data_source": "recorded_image",
+  "schema_version": 2,
+  "attempted_viewpoints": [
+    "A"
+  ],
+  "arrived_viewpoints": [
+    "A"
+  ],
+  "observed_viewpoints": [
+    "A"
+  ],
+  "historical_evidence": [],
+  "confirmed_evidence_ids": [
+    "opencv-history-A"
+  ],
+  "operation": "register",
+  "strategy": "memory_first"
+}

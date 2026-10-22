@@ -11,7 +11,7 @@ from pathlib import Path
 
 from .image_matcher import ImageMatcher
 from .memory import SQLiteMemory
-from .models import DataSource, NavigationMode
+from .models import DataSource, NavigationMode, SearchStrategy
 from .recorded import MAX_IMAGE_BYTES, RecordedImageAdapter, load_recorded_scene, resolve_image_path
 from .search_core import SearchCore
 
@@ -40,6 +40,12 @@ def main(argv: list[str]) -> int:
         if name == "register":
             command.add_argument("--reference", required=True, help="Reference image path relative to image-root")
             command.add_argument("--description", default="Registered textured planar object")
+        else:
+            command.add_argument(
+                "--strategy", choices=[strategy.value for strategy in SearchStrategy],
+                default=SearchStrategy.MEMORY_FIRST.value,
+                help="Memory-guided planning or viewpoint-ID order; neither reads future image results",
+            )
     args = parser.parse_args(argv)
     try:
         scene = load_recorded_scene(args.scene, args.image_root)
@@ -85,11 +91,13 @@ def main(argv: list[str]) -> int:
                 data_source=DataSource.RECORDED_IMAGE,
                 navigation_mode=NavigationMode.SIMULATED,
                 operation=args.operation,
+                strategy=SearchStrategy(getattr(args, "strategy", SearchStrategy.MEMORY_FIRST)),
             ).run(args.object_id)
             _write_report(report, args.output_dir)
         print(f"HomeTrace P1 | {args.operation} | simulated_navigation | data_source=recorded_image")
         print("Actual photo matching; no live camera or real robot. Demo-sequence times are not photo capture dates.")
         print(f"HISTORY {len(report.historical_evidence)}")
+        print(f"STRATEGY {report.strategy.value}")
         for event in report.events:
             if event.action == "plan_next":
                 print(f"[{event.seq:02}] PLAN {event.result['viewpoint_id']} reason={event.result['reason']}")

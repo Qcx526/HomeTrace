@@ -1,0 +1,216 @@
+{
+  "validated_at_utc": "2026-10-22T08:19:12.745490+00:00",
+  "platform": "Windows-10-10.0.19045-SP0",
+  "python": "3.11.4",
+  "installed_package": "<REPO>\\artifacts\\p2-clean-env\\Lib\\site-packages\\hometrace\\__init__.py",
+  "base": "b546fe72c21cefcda816074c4e9b423a350022d3",
+  "commands": [
+    {
+      "argv": [
+        "<REPO>\\artifacts\\p2-clean-env\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "-q",
+        "--junitxml",
+        "<REPO>\\artifacts\\p2-validation\\pytest.xml"
+      ],
+      "exit_code": 0,
+      "output": "pytest.txt"
+    },
+    {
+      "argv": [
+        "<REPO>\\artifacts\\p2-clean-env\\Scripts\\python.exe",
+        "-m",
+        "pip",
+        "check"
+      ],
+      "exit_code": 0,
+      "output": "pip-check.txt"
+    },
+    {
+      "argv": [
+        "<REPO>\\artifacts\\p2-clean-env\\Scripts\\python.exe",
+        "-m",
+        "pip",
+        "freeze"
+      ],
+      "exit_code": 0,
+      "output": "dependencies.txt"
+    }
+  ],
+  "tests": 148,
+  "p0_tests": 54,
+  "p1_tests": 68,
+  "skipped": 0,
+  "scenarios": [
+    {
+      "scenario": "moved",
+      "run_id": "b17c1883dd6d41a5bb3e610b02eff438",
+      "result_status": "FOUND",
+      "location": "B",
+      "comparison": [
+        {
+          "strategy": "memory_first",
+          "result_status": "FOUND",
+          "location": "B",
+          "attempted": 2,
+          "arrived": 2,
+          "observed": 2,
+          "observe_calls": 2,
+          "attempted_viewpoints": [
+            "A",
+            "B"
+          ],
+          "observed_viewpoints": [
+            "A",
+            "B"
+          ]
+        },
+        {
+          "strategy": "fixed_order",
+          "result_status": "FOUND",
+          "location": "B",
+          "attempted": 2,
+          "arrived": 2,
+          "observed": 2,
+          "observe_calls": 2,
+          "attempted_viewpoints": [
+            "A",
+            "B"
+          ],
+          "observed_viewpoints": [
+            "A",
+            "B"
+          ]
+        }
+      ]
+    },
+    {
+      "scenario": "missing",
+      "run_id": "8e5c93e791364314805ddcafa415a95b",
+      "result_status": "SUSPECTED",
+      "location": null,
+      "comparison": [
+        {
+          "strategy": "memory_first",
+          "result_status": "SUSPECTED",
+          "location": null,
+          "attempted": 3,
+          "arrived": 3,
+          "observed": 3,
+          "observe_calls": 3,
+          "attempted_viewpoints": [
+            "A",
+            "B",
+            "C"
+          ],
+          "observed_viewpoints": [
+            "A",
+            "B",
+            "C"
+          ]
+        },
+        {
+          "strategy": "fixed_order",
+          "result_status": "SUSPECTED",
+          "location": null,
+          "attempted": 3,
+          "arrived": 3,
+          "observed": 3,
+          "observe_calls": 3,
+          "attempted_viewpoints": [
+            "A",
+            "B",
+            "C"
+          ],
+          "observed_viewpoints": [
+            "A",
+            "B",
+            "C"
+          ]
+        }
+      ]
+    },
+    {
+      "scenario": "replay",
+      "run_id": "60940a21ac3648bbaaac3e530ae34dbe",
+      "result_status": "UNKNOWN",
+      "location": null,
+      "comparison": [
+        {
+          "strategy": "memory_first",
+          "result_status": "UNKNOWN",
+          "location": null,
+          "attempted": 3,
+          "arrived": 3,
+          "observed": 1,
+          "observe_calls": 3,
+          "attempted_viewpoints": [
+            "B",
+            "A",
+            "C"
+          ],
+          "observed_viewpoints": [
+            "C"
+          ]
+        },
+        {
+          "strategy": "fixed_order",
+          "result_status": "UNKNOWN",
+          "location": null,
+          "attempted": 3,
+          "arrived": 3,
+          "observed": 1,
+          "observe_calls": 3,
+          "attempted_viewpoints": [
+            "A",
+            "B",
+            "C"
+          ],
+          "observed_viewpoints": [
+            "C"
+          ]
+        }
+      ]
+    }
+  ],
+  "source_sha256": {
+    "pyproject.toml": "1a407a3c59cdcae8589ff729dc5d70c7633016cc51b0043b486f8e5678a8b83e",
+    "src/hometrace/__init__.py": "1485bd0a2fc69a1a03435cbf7246635db530a4e3c6c6ee5c00b7fae48199ecc7",
+    "src/hometrace/__main__.py": "482b8693e2fe6dbd732e3d7961e03827d3efa187bad11d29da188be580ebbeea",
+    "src/hometrace/cli.py": "e7b4ba4bf754ed3a137a8832e3f7f9119bf4ea0db3d8b0f3668a4a49de629658",
+    "src/hometrace/demo_server.py": "6ef7b2e2c91751dc114a6866f6a7865109520709ac51aa416676e4315a20d4f1",
+    "src/hometrace/demo_service.py": "14b028c17d18c94cbe1cb1c876826cfa943b6f5c97588b640214166fbc4d6360",
+    "src/hometrace/environment.py": "e0397adaed58fb77f543f5a0d6ef625b1aa9281ccc95d3b8531647e5b744b562",
+    "src/hometrace/fixtures.py": "97c78aa408315b60e159a6e91bf9c407178050b82c4d1b297abb80c7eeb38f12",
+    "src/hometrace/image_matcher.py": "7055d469f9525aa9c4d92c3b125adc8a68b627ed23cbc0cbcfa519078e7bf841",
+    "src/hometrace/memory.py": "e175db5280f4752a2968c585a8f742aff7c525cef2649d4c7b40e6af2c9e970c",
+    "src/hometrace/models.py": "58c6fb5a9067342a0f1d5bccf32b259a058171dec40d3d654d4fbfc5033cfe23",
+    "src/hometrace/perception.py": "dea36dc706333aa51993b9a7db3b4adb87164e9595fd63ffb699e59b09f50973",
+    "src/hometrace/recorded.py": "96af31efb6123f47453f827354342732240d7a213bfba71edd5392590e66f0b4",
+    "src/hometrace/recorded_cli.py": "a1424dcd544c966ecb3c2f7cdbba4fe7730c96349a3e008c878956afb7da72e0",
+    "src/hometrace/search_core.py": "63e73c711f8f66c230490a5db93583a05f343b0d8fda3e0ade87a64997925343",
+    "src/hometrace/web/app.js": "a0bfb1ef6bf064f80721ae8a0579e33d7d7f8533944f4899191f8d5f163e02a9",
+    "src/hometrace/web/index.html": "e9ae1f2e6c05b19fd4a3e2647d990f7ad512bc2b887dbeb493324953b84ea01e",
+    "src/hometrace/web/style.css": "489b20311378368de708899402de52993a023a1641d6f461b4c96b4ad8eef68e",
+    "tests/test_cli.py": "a7f3a3c56bdba4699c342d4dda0180e79a8e0bfb49f815eb7ffc2f16e6587bc9",
+    "tests/test_demo.py": "fa45898c30b0c993d1dfd9235c965946447bc83dc85317a49b63b6f03102fd41",
+    "tests/test_fixtures.py": "8eec43477de8fa9a667da09f30d471aa471ae20591dc2a04792f5b550f03c608",
+    "tests/test_image_matcher.py": "6e4a72285021bc6febbec3afaa53bcf0a4859228a4ac19bddea999aed2f5ae3b",
+    "tests/test_memory.py": "269570ce56082aeb3938d39ba7807ad0d698202517978fbafae4ce7eedb18fa4",
+    "tests/test_p1_integration.py": "4de89c009f0e3b172d054a996045fef8ee412b0a79cb5edb870e46a5a5740cbe",
+    "tests/test_recorded.py": "4cd4aef3dafc97e2cb21e78d07c44da60341c3ee9b71c834cb7b88a819670997",
+    "tests/test_search_core.py": "4db2a351a06e7de008c978eea3eb9a3627dd494814b8222cb6c2c6812af8772e",
+    "tests/test_search_integrity.py": "7eec5f3a3918ed83900f0948f4948a996f4b37ebf09d688b89e430fcad84ab66",
+    "tests/test_search_strategy.py": "bd941c262fbc0f97c78fb9ff8434062275414cf60389304dd34ccd25bf9a6bd8",
+    "tools/validate_p1.py": "6347cd416d4ed4a04b1b6d03bf8b6af040ee43dea8b272207b151f8b94c5bd4b",
+    "tools/validate_p2.py": "893328f382e92cd63d927d093f01fd42db3626678cc03b7f23a13c53bb48a6ee",
+    "tools/validate_p2_browser.cjs": "bb04cf97bfeeb3885a75a3669cdbc1141690bdb74aab2fa40ff294160b6322a6"
+  },
+  "post_validation_formatting": {
+    "path": "src/hometrace/demo_server.py",
+    "change": "Removed extra blank lines at EOF only; Python AST verified identical.",
+    "validated_sha256": "6ef7b2e2c91751dc114a6866f6a7865109520709ac51aa416676e4315a20d4f1",
+    "submitted_sha256": "b7a99020b9d859a668b2d5bd7b277bcb857bcad946d64644f7885c4e94c4e13b"
+  }
+}

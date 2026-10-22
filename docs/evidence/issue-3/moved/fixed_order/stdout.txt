@@ -1,0 +1,18 @@
+HomeTrace P1 | search | simulated_navigation | data_source=recorded_image
+Actual photo matching; no live camera or real robot. Demo-sequence times are not photo capture dates.
+HISTORY 1
+STRATEGY fixed_order
+[02] PLAN A reason=fixed_order
+[05] MATCH SUSPECTED reason=insufficient_distinct_matches inliers=0 elapsed_ms=7.933
+[07] VIEW A -> SUSPECTED reason=observation_result
+[08] PLAN B reason=fixed_order
+[11] MATCH FOUND reason=verified_planar_reference_match inliers=41 elapsed_ms=29.533
+[13] VIEW B -> FOUND reason=observation_result
+RESULT FOUND location=B
+ATTEMPTED A,B
+ARRIVED A,B
+OBSERVED A,B
+CONFIRMED_EVIDENCE opencv-moved-B
+REPORT F:/qcx/code/HomeTrace/artifacts/p2-validation/runs/b17c1883dd6d41a5bb3e610b02eff438/fixed_order/search/report.json
+EVENTS F:/qcx/code/HomeTrace/artifacts/p2-validation/runs/b17c1883dd6d41a5bb3e610b02eff438/fixed_order/search/events.jsonl
+DATABASE F:/qcx/code/HomeTrace/artifacts/p2-validation/runs/b17c1883dd6d41a5bb3e610b02eff438/fixed_order/memory.sqlite3

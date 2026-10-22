@@ -1,0 +1,33 @@
+{
+  "recording": "Continuous actual Edge browser session operated by tools/validate_p2_browser.cjs; no narration. Event playback pacing is not algorithm or robot motion timing. Browser viewport only, terminal startup not in video.",
+  "browser_command": "node tools/validate_p2_browser.cjs http://127.0.0.1:8765 artifacts/p2-browser-check-2",
+  "server_command": ".\\.venv\\Scripts\\python.exe -m hometrace demo --port 8765 --output-dir artifacts/p2-browser-final",
+  "transcode": "ffmpeg -hide_banner -y -i <recording.webm> -c:v libx264 -crf 23 -pix_fmt yuv420p -movflags +faststart demo-three-scenarios.mp4",
+  "original_webm_sha256": "3a04c0e8577a1eaab3c6932a9e4c73f1da94a1086a71eba6b4d4f910ba8199b7",
+  "mp4_sha256": "3fe0899551a57af73be96a948b1f605a0b56ba88a1c6732715534aa97e54d01b",
+  "probe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "width": 1440,
+        "height": 1080,
+        "r_frame_rate": "25/1"
+      }
+    ],
+    "format": {
+      "duration": "50.240000",
+      "size": "3117276"
+    }
+  },
+  "full_decode_exit_code": 0,
+  "browser_source_sha256": {
+    "src/hometrace/web/index.html": "e9ae1f2e6c05b19fd4a3e2647d990f7ad512bc2b887dbeb493324953b84ea01e",
+    "src/hometrace/web/app.js": "a0bfb1ef6bf064f80721ae8a0579e33d7d7f8533944f4899191f8d5f163e02a9",
+    "src/hometrace/web/style.css": "489b20311378368de708899402de52993a023a1641d6f461b4c96b4ad8eef68e",
+    "src/hometrace/demo_service.py": "14b028c17d18c94cbe1cb1c876826cfa943b6f5c97588b640214166fbc4d6360",
+    "src/hometrace/demo_server.py": "6ef7b2e2c91751dc114a6866f6a7865109520709ac51aa416676e4315a20d4f1",
+    "tools/validate_p2_browser.cjs": "bb04cf97bfeeb3885a75a3669cdbc1141690bdb74aab2fa40ff294160b6322a6"
+  }
+}

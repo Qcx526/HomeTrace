@@ -16,6 +16,10 @@ from .search_core import SearchCore
 
 def main(argv: list[str] | None = None) -> int:
     argv = list(sys.argv[1:] if argv is None else argv)
+    if argv and argv[0] == "demo":
+        from .demo_server import main as demo_main
+
+        return demo_main(argv[1:])
     if argv and argv[0] in ("register", "search"):
         from .recorded_cli import main as recorded_main
 

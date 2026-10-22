@@ -1,0 +1,66 @@
+[
+  {
+    "argv": [
+      "<REPO>\\.venv\\Scripts\\python.exe",
+      "-X",
+      "utf8",
+      "-m",
+      "pip",
+      "wheel",
+      ".",
+      "--no-deps",
+      "--wheel-dir",
+      "<REPO>\\artifacts\\p2-wheels"
+    ],
+    "exit_code": 0,
+    "output": "wheel-build.txt"
+  },
+  {
+    "argv": [
+      "<REPO>\\.venv\\Scripts\\python.exe",
+      "-X",
+      "utf8",
+      "-m",
+      "venv",
+      "<REPO>\\artifacts\\p2-clean-env"
+    ],
+    "exit_code": 0,
+    "output": "venv-create.txt"
+  },
+  {
+    "argv": [
+      "<REPO>\\artifacts\\p2-clean-env\\Scripts\\python.exe",
+      "-X",
+      "utf8",
+      "-m",
+      "pip",
+      "install",
+      "<REPO>\\artifacts\\p2-wheels\\hometrace-0.3.0-py3-none-any.whl[dev,vision]"
+    ],
+    "exit_code": 0,
+    "output": "clean-install.txt"
+  },
+  {
+    "argv": [
+      "<REPO>\\artifacts\\p2-clean-env\\Scripts\\python.exe",
+      "-X",
+      "utf8",
+      "-c",
+      "import hometrace; from importlib.metadata import version; from importlib.resources import files; print(hometrace.__file__); print(version(\"hometrace\")); print(\"packaged UI:\", files(\"hometrace\").joinpath(\"web/index.html\").is_file())"
+    ],
+    "exit_code": 0,
+    "output": "installed-package.txt"
+  },
+  {
+    "argv": [
+      "<REPO>\\artifacts\\p2-clean-env\\Scripts\\python.exe",
+      "-X",
+      "utf8",
+      "tools/validate_p2.py",
+      "--output-dir",
+      "artifacts/p2-validation"
+    ],
+    "exit_code": 0,
+    "output": "validation-console.txt"
+  }
+]
