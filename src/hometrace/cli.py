@@ -15,6 +15,11 @@ from .search_core import SearchCore
 
 
 def main(argv: list[str] | None = None) -> int:
+    argv = list(sys.argv[1:] if argv is None else argv)
+    if argv and argv[0] in ("register", "search"):
+        from .recorded_cli import main as recorded_main
+
+        return recorded_main(argv)
     parser = argparse.ArgumentParser(description="HomeTrace P0 — Mock navigation / fixture observations")
     source = parser.add_mutually_exclusive_group()
     source.add_argument("--scenario", choices=("moved", "missing"), default="moved")

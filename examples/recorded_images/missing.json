@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "data_source": "recorded_image",
+  "navigation_mode": "simulated_navigation",
+  "timestamp_basis": "demo_sequence",
+  "capture_source": "Public OpenCV 4.12.0 sample photographs at commit 49486f61fb25722cbcf586b7f4320921d46fb38e; see sources.json. Original capture dates are unknown. Locations and timestamps are staged demo sequence labels, not physical capture or robot records.",
+  "viewpoints": [
+    {"viewpoint_id": "A", "name": "Demo point A"},
+    {"viewpoint_id": "B", "name": "Demo point B"},
+    {"viewpoint_id": "C", "name": "Demo point C"}
+  ],
+  "observations": [
+    {"evidence_id": "opencv-missing-A", "viewpoint_id": "A", "captured_at": "2026-10-21T10:00:00+08:00", "image_path": "apple.jpg", "visibility_status": "clear"},
+    {"evidence_id": "opencv-missing-B", "viewpoint_id": "B", "captured_at": "2026-10-21T10:01:00+08:00", "image_path": "orange.jpg", "visibility_status": "clear"},
+    {"evidence_id": "opencv-missing-C", "viewpoint_id": "C", "captured_at": "2026-10-21T10:02:00+08:00", "image_path": "fruits.jpg", "visibility_status": "clear"}
+  ]
+}

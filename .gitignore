@@ -6,3 +6,6 @@ __pycache__/
 build/
 dist/
 artifacts/
+local_data/
+*.sqlite3
+*.sqlite3-*

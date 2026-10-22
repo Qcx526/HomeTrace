@@ -1,0 +1,194 @@
+{
+  "scope": "Four distinct public photographic test images; enrollment self-match excluded. Repetitions measure timing, not additional independent observations.",
+  "timing_scope": "Actual PC wall-clock per detect_target including file hash/decode/features/geometry; excludes interpreter startup and reference feature initialization. Cached file reads may apply.",
+  "platform": "Windows-10-10.0.19045-SP0",
+  "processor": "Intel64 Family 6 Model 151 Stepping 2, GenuineIntel",
+  "logical_cpu_count": 12,
+  "python": "3.11.4",
+  "opencv": "4.14.0.94",
+  "numpy": "2.4.6",
+  "opencv_threads": 1,
+  "seed": 0,
+  "positive_images": 1,
+  "negative_images": 3,
+  "false_found": 0,
+  "missed_found": 0,
+  "negative_suspected": 2,
+  "edge_device_latency": null,
+  "limitations": [
+    "Not an accuracy benchmark or family-scene validation.",
+    "No embedded board or robot was tested.",
+    "Similar printed instances are not distinguishable."
+  ],
+  "images": [
+    {
+      "image": "box_in_scene.png",
+      "sha256": "8b0225ff76244a42bd1400c0904f8b7afea7d97b7d8115495e42e98ad347bd51",
+      "expected_target_visible": true,
+      "detection": {
+        "target_id": "sample-box",
+        "evidence_id": "benchmark-box_in_scene.png",
+        "status": "FOUND",
+        "matcher": "opencv_orb_homography",
+        "score": 0.9111,
+        "data_source": "recorded_image",
+        "verification_kind": "reference_instance_match",
+        "diagnostics": {
+          "image_decoded": true,
+          "reference_keypoints": 1589,
+          "scene_keypoints": 1999,
+          "good_matches": 45,
+          "inliers": 41,
+          "inlier_ratio": 0.9111,
+          "reference_coverage": 0.1397,
+          "opencv_version": "4.14.0",
+          "seed": 0,
+          "threads": 1,
+          "sharpness": 2599.088,
+          "projected_area_fraction": 0.1034,
+          "projected_visible_fraction": 1.0,
+          "projected_corners": [
+            [
+              116.48,
+              159.53
+            ],
+            [
+              285.45,
+              176.55
+            ],
+            [
+              265.57,
+              296.16
+            ],
+            [
+              90.4,
+              270.49
+            ]
+          ],
+          "reason": "verified_planar_reference_match",
+          "elapsed_ms": 32.09
+        },
+        "bbox": [
+          90.4,
+          159.53,
+          285.45,
+          296.16
+        ]
+      },
+      "repetitions": 10,
+      "elapsed_ms": {
+        "min": 30.504,
+        "median": 32.6045,
+        "max": 36.835
+      }
+    },
+    {
+      "image": "apple.jpg",
+      "sha256": "e86879de3d9a807dedc742a8f464f39e6b74bbb531a1fba3583155d94997d1cd",
+      "expected_target_visible": false,
+      "detection": {
+        "target_id": "sample-box",
+        "evidence_id": "benchmark-apple.jpg",
+        "status": "SUSPECTED",
+        "matcher": "opencv_orb_homography",
+        "score": 0.0,
+        "data_source": "recorded_image",
+        "verification_kind": "reference_instance_match",
+        "diagnostics": {
+          "image_decoded": true,
+          "reference_keypoints": 1589,
+          "scene_keypoints": 89,
+          "good_matches": 9,
+          "inliers": 0,
+          "inlier_ratio": 0.0,
+          "reference_coverage": 0.0,
+          "opencv_version": "4.14.0",
+          "seed": 0,
+          "threads": 1,
+          "sharpness": 233.286,
+          "reason": "insufficient_distinct_matches",
+          "elapsed_ms": 9.948
+        },
+        "bbox": null
+      },
+      "repetitions": 10,
+      "elapsed_ms": {
+        "min": 8.07,
+        "median": 10.2255,
+        "max": 13.358
+      }
+    },
+    {
+      "image": "orange.jpg",
+      "sha256": "152c20d2f380ac985de25e474e1a5f06ed34b932191342099b8272a63a15a079",
+      "expected_target_visible": false,
+      "detection": {
+        "target_id": "sample-box",
+        "evidence_id": "benchmark-orange.jpg",
+        "status": "UNKNOWN",
+        "matcher": "opencv_orb_homography",
+        "score": 0.0,
+        "data_source": "recorded_image",
+        "verification_kind": "reference_instance_match",
+        "diagnostics": {
+          "image_decoded": true,
+          "reference_keypoints": 1589,
+          "scene_keypoints": 214,
+          "good_matches": 3,
+          "inliers": 0,
+          "inlier_ratio": 0.0,
+          "reference_coverage": 0.0,
+          "opencv_version": "4.14.0",
+          "seed": 0,
+          "threads": 1,
+          "sharpness": 188.407,
+          "reason": "no_verified_match",
+          "elapsed_ms": 13.06
+        },
+        "bbox": null
+      },
+      "repetitions": 10,
+      "elapsed_ms": {
+        "min": 9.341,
+        "median": 11.73,
+        "max": 13.06
+      }
+    },
+    {
+      "image": "fruits.jpg",
+      "sha256": "9c031d80a1c52da5eca790db896baffec6a7e52bf786cdb7bbfca5c7f880e6a1",
+      "expected_target_visible": false,
+      "detection": {
+        "target_id": "sample-box",
+        "evidence_id": "benchmark-fruits.jpg",
+        "status": "SUSPECTED",
+        "matcher": "opencv_orb_homography",
+        "score": 0.0,
+        "data_source": "recorded_image",
+        "verification_kind": "reference_instance_match",
+        "diagnostics": {
+          "image_decoded": true,
+          "reference_keypoints": 1589,
+          "scene_keypoints": 1817,
+          "good_matches": 4,
+          "inliers": 0,
+          "inlier_ratio": 0.0,
+          "reference_coverage": 0.0,
+          "opencv_version": "4.14.0",
+          "seed": 0,
+          "threads": 1,
+          "sharpness": 196.562,
+          "reason": "insufficient_distinct_matches",
+          "elapsed_ms": 33.424
+        },
+        "bbox": null
+      },
+      "repetitions": 10,
+      "elapsed_ms": {
+        "min": 27.285,
+        "median": 30.5595,
+        "max": 33.424
+      }
+    }
+  ]
+}
