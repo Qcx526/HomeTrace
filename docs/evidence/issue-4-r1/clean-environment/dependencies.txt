@@ -1,0 +1,9 @@
+colorama==0.4.6
+hometrace @ file:///<REPO>/artifacts/issue-4-r1/wheel/hometrace-0.4.1-py3-none-any.whl#sha256=4c6f1cb7cf07b8a8e7023aa73a4ab6f00d4bf196a785d429a7aabfd3b7174623
+iniconfig==2.3.1
+numpy==2.4.6
+opencv-python-headless==4.14.0.94
+packaging==26.3
+pluggy==1.7.0
+Pygments==2.21.0
+pytest==9.1.1

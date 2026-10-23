@@ -34,6 +34,24 @@ class SearchStrategy(str, Enum):
     FIXED_ORDER = "fixed_order"
 
 
+def validate_reference_roi(value, image_size: tuple[int, int] | None = None) -> tuple[int, int, int, int] | None:
+    """Validate original-reference xyxy pixels (right/bottom exclusive).
+
+    The 32-pixel minimum is the existing supported-image minimum, not a
+    relaxed matching threshold. Scene images never receive a manual ROI.
+    """
+    if value is None:
+        return None
+    if not isinstance(value, (list, tuple)) or len(value) != 4 or any(type(v) is not int for v in value):
+        raise ValueError("reference_roi requires four integer xyxy coordinates")
+    x1, y1, x2, y2 = value
+    if x1 < 0 or y1 < 0 or x2 - x1 < 32 or y2 - y1 < 32:
+        raise ValueError("reference_roi must be nonnegative with width and height at least 32 pixels")
+    if image_size is not None and (x2 > image_size[0] or y2 > image_size[1]):
+        raise ValueError("reference_roi is outside the original reference image")
+    return x1, y1, x2, y2
+
+
 @dataclass(frozen=True)
 class RegisteredObject:
     object_id: str
@@ -41,6 +59,7 @@ class RegisteredObject:
     sample_image_path: str | None = None
     sample_image_hash: str | None = None
     data_source: DataSource = DataSource.FIXTURE
+    reference_roi: tuple[int, int, int, int] | None = None
 
 
 @dataclass(frozen=True)

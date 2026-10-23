@@ -1,0 +1,12 @@
+{
+  "module": "<REPO>\\artifacts\\issue-4-r1\\clean-env\\Lib\\site-packages\\hometrace\\__init__.py",
+  "version": "0.4.1",
+  "outside_repository_fixture": {
+    "exit_code": 0,
+    "result_status": "FOUND",
+    "navigation": "simulated_navigation"
+  },
+  "install_command": "python -m pip install \"artifacts/issue-4-r1/wheel/hometrace-0.4.1-py3-none-any.whl[dev,vision]\"",
+  "is_fresh_venv": true,
+  "is_fresh_os_install": false
+}
