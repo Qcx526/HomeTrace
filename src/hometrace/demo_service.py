@@ -14,10 +14,11 @@ import threading
 from uuid import uuid4
 
 from .recorded import MAX_IMAGE_BYTES, load_recorded_scene, resolve_image_path
+from .demo_cases import DemoCase, default_case, load_case, validate_case_inputs
 
 
 SCENARIOS = [
-    {"id": "moved", "label": "找到目标", "description": "历史 A → 当前图像不足以确认 → 继续搜索 B"},
+    {"id": "moved", "label": "寻找目标", "description": "从历史证据出发，逐点读取当前图像并验证"},
     {"id": "missing", "label": "未确认负例", "description": "检查全部候选点，保留 SUSPECTED / UNKNOWN"},
     {"id": "replay", "label": "旧图重放保护", "description": "在已搜索的数据库中重放，旧证据不能成为新发现"},
 ]
@@ -40,36 +41,54 @@ class DemoBusyError(ValueError):
 
 
 class DemoService:
-    def __init__(self, samples_dir: Path, output_dir: Path):
+    def __init__(self, samples_dir: Path, output_dir: Path, *, case_configs: list[Path] | None = None):
         self.samples_dir = Path(samples_dir).resolve()
         self.output_dir = Path(output_dir).resolve()
         self.output_dir.mkdir(parents=True, exist_ok=True)
         self._lock = threading.Lock()
         self._assets: dict[str, dict[str, tuple[Path, str]]] = {}
         self._downloads: dict[str, dict[str, Path]] = {}
+        self.cases = {"public": default_case(self.samples_dir)}
+        self.unavailable_cases = []
+        for path in case_configs or []:
+            try:
+                case = load_case(path)
+                if case.case_id in self.cases:
+                    raise ValueError("Duplicate case_id")
+                self.cases[case.case_id] = case
+            except (OSError, ValueError, UnicodeError) as exc:
+                # File-read errors may include usernames and absolute private paths.
+                message = str(exc) if isinstance(exc, ValueError) and not isinstance(exc, UnicodeError) else "Local configuration cannot be read"
+                if str(Path(path).resolve().parent) in message:
+                    message = "Local case manifest cannot be read; check the configured files"
+                self.unavailable_cases.append({"label": Path(path).stem, "error": message})
 
     def config(self) -> dict:
         return {
             "scenarios": SCENARIOS, "strategies": STRATEGIES,
+            "cases": [case.public_metadata() for case in self.cases.values()],
+            "unavailable_cases": self.unavailable_cases,
             "source_notice": "离线照片驱动的软件验证 · simulated_navigation · 内置为公开实拍样例；具体来源与时间依据见证据。非现场机器人运行。",
         }
 
-    def _snapshot(self, directory: Path, scenario: str) -> tuple[Path, dict]:
+    def _snapshot(self, directory: Path, scenario: str, case: DemoCase) -> tuple[Path, dict]:
         root = directory / "inputs"
         root.mkdir()
         manifests = ["history.json", "missing.json" if scenario == "missing" else "moved.json"]
-        images = {"box.png"}
+        images = {case.reference}
         for name in manifests:
-            scene = load_recorded_scene(self.samples_dir / name)
+            scene = load_recorded_scene(case.root / name)
             images.update(o.image_path for o in scene.observations.values())
-            (root / name).write_bytes((self.samples_dir / name).read_bytes())
+            (root / name).write_bytes((case.root / name).read_bytes())
         for name in sorted(images):
-            source = resolve_image_path(self.samples_dir, name)
+            source = resolve_image_path(case.root, name)
             if source.stat().st_size > MAX_IMAGE_BYTES:
                 raise ValueError("Demo input image exceeds 25 MiB")
             target = resolve_image_path(root, name)
             target.parent.mkdir(parents=True, exist_ok=True)
             target.write_bytes(source.read_bytes())
+        if case.private:
+            validate_case_inputs(root, case.reference, tuple(Path(name).stem for name in manifests))
         hashes = {name: digest(root / name) for name in sorted(images | set(manifests))}
         write_json(root / "input-hashes.json", hashes)
         return root, hashes
@@ -88,21 +107,41 @@ class DemoService:
             raise ValueError("Photo command failed; inspect this run's stdout.txt")
         return json.loads((directory / "report.json").read_text(encoding="utf-8"))
 
-    def run(self, scenario: str, strategy: str) -> dict:
+    def run(self, scenario: str, strategy: str, case_id: str = "public") -> dict:
         if scenario not in {x["id"] for x in SCENARIOS} or strategy not in {x["id"] for x in STRATEGIES}:
             raise ValueError("Unknown scenario or strategy")
+        if case_id not in self.cases:
+            raise ValueError("Unknown or unavailable case")
+        if self.cases[case_id].private:
+            self._check_private_output()
         if not self._lock.acquire(blocking=False):
             raise DemoBusyError("Another demonstration is running; wait for it to finish")
         try:
-            return self._run(scenario, strategy)
+            return self._run(scenario, strategy, self.cases[case_id])
         finally:
             self._lock.release()
 
-    def _run(self, scenario: str, selected_strategy: str) -> dict:
+    def _check_private_output(self) -> None:
+        """Private snapshots inside a Git checkout must be in an ignored directory."""
+        try:
+            found = subprocess.run(["git", "-C", str(self.output_dir), "rev-parse", "--show-toplevel"],
+                                   capture_output=True, text=True, encoding="utf-8", timeout=10)
+            if found.returncode:
+                return  # A local output directory outside a checkout is allowed.
+            repository = Path(found.stdout.strip()).resolve()
+            relative = self.output_dir.relative_to(repository).as_posix() + "/"
+            ignored = subprocess.run(["git", "-C", str(repository), "check-ignore", "--no-index", "-q", "--", relative],
+                                     capture_output=True, timeout=10)
+            if ignored.returncode:
+                raise ValueError("Private case output inside a Git repository must use an ignored directory, e.g. artifacts/")
+        except FileNotFoundError as exc:
+            raise ValueError("Git is required to check private output safety") from exc
+
+    def _run(self, scenario: str, selected_strategy: str, case: DemoCase) -> dict:
         run_id = uuid4().hex
         directory = self.output_dir / run_id
         directory.mkdir()
-        image_root, hashes = self._snapshot(directory, scenario)
+        image_root, hashes = self._snapshot(directory, scenario, case)
         manifest = image_root / ("missing.json" if scenario == "missing" else "moved.json")
         scene = load_recorded_scene(manifest)
         reports, registrations, previous = {}, {}, {}
@@ -110,9 +149,9 @@ class DemoService:
         for strategy in ("memory_first", "fixed_order"):
             base = directory / strategy
             db = base / "memory.sqlite3"
-            common = ["--db", str(db), "--object-id", "sample-box"]
+            common = ["--db", str(db), "--object-id", case.object_id]
             registrations[strategy] = self._cli([
-                "register", *common, "--reference", "box.png",
+                "register", *common, "--reference", case.reference,
                 "--scene", str(image_root / "history.json"),
             ], base / "register")
             # Both replay comparisons start from the same memory-first search,
@@ -154,7 +193,7 @@ class DemoService:
         write_json(directory / "comparison.json", comparison)
         report = reports[selected_strategy]
         # Serve only images referenced in the selected report, never arbitrary files.
-        image_names = set()
+        image_names = {case.reference}
         for record in report["historical_evidence"] + report["evidence"]:
             if record["observation"]["image_path"]:
                 image_names.add(record["observation"]["image_path"])
@@ -178,6 +217,7 @@ class DemoService:
         }
         payload = {
             "run_id": run_id, "scenario": scenario, "strategy": selected_strategy,
+            "case": case.public_metadata(),
             "report": report, "registration": registrations[selected_strategy],
             "prior_search": previous[selected_strategy],
             "viewpoints": [asdict(v) for v in scene.viewpoints], "images": images,

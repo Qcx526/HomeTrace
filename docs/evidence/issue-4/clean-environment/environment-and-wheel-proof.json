@@ -1,0 +1,103 @@
+{
+  "checked_at_utc": "2026-10-23T01:31:54.830643+00:00",
+  "platform": "Windows-10-10.0.19045-SP0",
+  "python": "3.11.4",
+  "outside_repository": true,
+  "installed_package": "<REPO>\\artifacts\\p3-clean-env\\Lib\\site-packages\\hometrace",
+  "opencv": "4.14.0",
+  "numpy": "2.4.6",
+  "distributions": {
+    "hometrace": "0.4.0",
+    "opencv-python-headless": "4.14.0.94",
+    "numpy": "2.4.6",
+    "pytest": "9.1.1",
+    "pip": "23.1.2"
+  },
+  "installed_source_sha256": {
+    "__init__.py": "1485bd0a2fc69a1a03435cbf7246635db530a4e3c6c6ee5c00b7fae48199ecc7",
+    "__main__.py": "482b8693e2fe6dbd732e3d7961e03827d3efa187bad11d29da188be580ebbeea",
+    "cli.py": "e7b4ba4bf754ed3a137a8832e3f7f9119bf4ea0db3d8b0f3668a4a49de629658",
+    "demo_cases.py": "3f520b87484a9954d40e4348418bc4c6885cdb036e234ebf601414b2cfcd8650",
+    "demo_server.py": "7c9b98ccb0faa7a93153315188539e3b945ddb51c50026a5a42364a73850139c",
+    "demo_service.py": "d29341183224c934fbf2cbf679719ee93ad3bfc6fb00d8a5d93552809ccdaace",
+    "environment.py": "e0397adaed58fb77f543f5a0d6ef625b1aa9281ccc95d3b8531647e5b744b562",
+    "fixture_data/missing.json": "7eb1e01f6aabc28dd0b0b187cebb0a0431b5090b25be8512b36e0071c5628435",
+    "fixture_data/moved.json": "36ad10008a9037b1d8cb9591369ce53f5e63900a119cbacbf9a56bf784168c4d",
+    "fixtures.py": "97c78aa408315b60e159a6e91bf9c407178050b82c4d1b297abb80c7eeb38f12",
+    "image_matcher.py": "7055d469f9525aa9c4d92c3b125adc8a68b627ed23cbc0cbcfa519078e7bf841",
+    "memory.py": "e175db5280f4752a2968c585a8f742aff7c525cef2649d4c7b40e6af2c9e970c",
+    "models.py": "58c6fb5a9067342a0f1d5bccf32b259a058171dec40d3d654d4fbfc5033cfe23",
+    "perception.py": "dea36dc706333aa51993b9a7db3b4adb87164e9595fd63ffb699e59b09f50973",
+    "recorded.py": "96af31efb6123f47453f827354342732240d7a213bfba71edd5392590e66f0b4",
+    "recorded_cli.py": "a1424dcd544c966ecb3c2f7cdbba4fe7730c96349a3e008c878956afb7da72e0",
+    "search_core.py": "63e73c711f8f66c230490a5db93583a05f343b0d8fda3e0ade87a64997925343",
+    "submission.py": "f73dbad3d5776cfc5df2608f3b41cfcabe952ca9d399c8f40e859506caa61e22",
+    "web/app.js": "e1401fbc9d4ed9e25766d2c43617e2e60a1b58ea4716f1e560f534798993ef6d",
+    "web/index.html": "aa9bccb1f15873f530bbc47ee072ee7c853c85558cc93d1bf67413d1a479f7df",
+    "web/style.css": "db5f8c2ab8a9c4761b98cd089ef0a9babc7df8c138c9d0825bfe4ee084825ee5"
+  },
+  "outside_p0": {
+    "exit_code": 0,
+    "result": "FOUND",
+    "location": "B",
+    "data_source": "fixture"
+  },
+  "outside_photo_demo": {
+    "run_id": "f1c1cdb825484bd1b2ccb36a4238e395",
+    "result": "FOUND",
+    "location": "B",
+    "data_source": "recorded_image",
+    "navigation_mode": "simulated_navigation"
+  },
+  "http_resources": [
+    {
+      "path": "/",
+      "status": 200,
+      "bytes": 8676,
+      "sha256": "aa9bccb1f15873f530bbc47ee072ee7c853c85558cc93d1bf67413d1a479f7df"
+    },
+    {
+      "path": "/app.js",
+      "status": 200,
+      "bytes": 22293,
+      "sha256": "e1401fbc9d4ed9e25766d2c43617e2e60a1b58ea4716f1e560f534798993ef6d"
+    },
+    {
+      "path": "/style.css",
+      "status": 200,
+      "bytes": 16374,
+      "sha256": "db5f8c2ab8a9c4761b98cd089ef0a9babc7df8c138c9d0825bfe4ee084825ee5"
+    },
+    {
+      "path": "/api/config",
+      "status": 200,
+      "bytes": 1097,
+      "sha256": "852828345f9801d98a410b90b21269363aa588211b4116ce87f3a62f052eb378"
+    }
+  ],
+  "wheel_sha256": "2a8a84a4fcf1d9ba1dc121315fd37f29e48bd7b8d1a4d5bd7dd66466bf187f73",
+  "pytest": {
+    "tests": 226,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "summary": "226 passed in 61.55s (0:01:01)",
+    "module_counts": {
+      "tests.test_cli": 3,
+      "tests.test_demo": 19,
+      "tests.test_demo_cases": 19,
+      "tests.test_fixtures": 36,
+      "tests.test_image_matcher": 16,
+      "tests.test_memory": 2,
+      "tests.test_p1_integration": 13,
+      "tests.test_recorded": 34,
+      "tests.test_search_core": 13,
+      "tests.test_search_integrity": 5,
+      "tests.test_search_strategy": 7,
+      "tests.test_submission": 41,
+      "tests.test_team_photo_inputs": 18
+    },
+    "baseline_148_preserved": true
+  },
+  "environment_scope": "New Windows Python virtual environment on existing Windows 10 host; not a fresh operating-system install"
+}

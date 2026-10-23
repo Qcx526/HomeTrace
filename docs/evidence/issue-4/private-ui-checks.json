@@ -1,0 +1,35 @@
+{
+  "data": "team photographs; local only",
+  "navigation": "simulated_navigation",
+  "results": [
+    {
+      "scenario": "moved",
+      "status": "SUSPECTED",
+      "location": null,
+      "object_id": "tissue-pack",
+      "historical_evidence": 1,
+      "observed": 3,
+      "image_box_hidden": true
+    },
+    {
+      "scenario": "missing",
+      "status": "SUSPECTED",
+      "location": null,
+      "object_id": "tissue-pack",
+      "historical_evidence": 1,
+      "observed": 3,
+      "image_box_hidden": true
+    },
+    {
+      "scenario": "replay",
+      "status": "UNKNOWN",
+      "location": null,
+      "object_id": "tissue-pack",
+      "historical_evidence": 4,
+      "observed": 0,
+      "image_box_hidden": true
+    }
+  ],
+  "errors": [],
+  "passed": true
+}

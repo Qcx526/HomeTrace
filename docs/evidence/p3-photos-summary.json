@@ -1,0 +1,1643 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-10-22T13:38:43.912233+00:00",
+  "data_source": "private_team_photographs",
+  "navigation_mode": "simulated_navigation",
+  "timestamp_basis": "demo_sequence",
+  "capture_dates_authenticated": false,
+  "detections": [
+    {
+      "object_id": "tissue-pack",
+      "case": "history_A",
+      "method": "ORB",
+      "expected_presence": true,
+      "status": "SUSPECTED",
+      "diagnostics": {
+        "good_matches": 21,
+        "inliers": 7,
+        "inlier_ratio": 0.3333,
+        "reference_coverage": 0.0524,
+        "elapsed_ms": 65.035,
+        "total_elapsed_ms": 383.934,
+        "reason": "insufficient_geometric_inliers",
+        "reference_keypoints": 2000,
+        "scene_keypoints": 793,
+        "reference_sharpness": 102.53,
+        "sharpness": 39.926,
+        "timing_scope": "scene_processing_only"
+      }
+    },
+    {
+      "object_id": "tissue-pack",
+      "case": "history_A",
+      "method": "SIFT",
+      "expected_presence": true,
+      "status": "SUSPECTED",
+      "diagnostics": {
+        "good_matches": 30,
+        "inliers": 9,
+        "inlier_ratio": 0.3,
+        "reference_coverage": 0.0599,
+        "elapsed_ms": 1013.662,
+        "reason": "insufficient_geometric_inliers",
+        "reference_keypoints": 1200,
+        "scene_keypoints": 590,
+        "reference_sharpness": 102.53,
+        "sharpness": 39.926,
+        "timing_scope": "reference_and_scene_processing"
+      }
+    },
+    {
+      "object_id": "tissue-pack",
+      "case": "history_A",
+      "method": "AKAZE",
+      "expected_presence": true,
+      "status": "SUSPECTED",
+      "diagnostics": {
+        "good_matches": 4,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 746.183,
+        "reason": "insufficient_distinct_matches",
+        "reference_keypoints": 691,
+        "scene_keypoints": 311,
+        "reference_sharpness": 102.53,
+        "sharpness": 39.926,
+        "timing_scope": "reference_and_scene_processing"
+      }
+    },
+    {
+      "object_id": "tissue-pack",
+      "case": "current_A",
+      "method": "ORB",
+      "expected_presence": false,
+      "status": "SUSPECTED",
+      "diagnostics": {
+        "good_matches": 18,
+        "inliers": 6,
+        "inlier_ratio": 0.3333,
+        "reference_coverage": 0.0778,
+        "elapsed_ms": 60.513,
+        "total_elapsed_ms": 158.554,
+        "reason": "insufficient_geometric_inliers",
+        "reference_keypoints": 2000,
+        "scene_keypoints": 611,
+        "reference_sharpness": 102.53,
+        "sharpness": 45.228,
+        "timing_scope": "scene_processing_only"
+      }
+    },
+    {
+      "object_id": "tissue-pack",
+      "case": "current_A",
+      "method": "SIFT",
+      "expected_presence": false,
+      "status": "SUSPECTED",
+      "diagnostics": {
+        "good_matches": 29,
+        "inliers": 8,
+        "inlier_ratio": 0.2759,
+        "reference_coverage": 0.0364,
+        "elapsed_ms": 908.567,
+        "reason": "insufficient_geometric_inliers",
+        "reference_keypoints": 1200,
+        "scene_keypoints": 542,
+        "reference_sharpness": 102.53,
+        "sharpness": 45.228,
+        "timing_scope": "reference_and_scene_processing"
+      }
+    },
+    {
+      "object_id": "tissue-pack",
+      "case": "current_A",
+      "method": "AKAZE",
+      "expected_presence": false,
+      "status": "UNKNOWN",
+      "diagnostics": {
+        "good_matches": 3,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 899.693,
+        "reason": "no_verified_match",
+        "reference_keypoints": 691,
+        "scene_keypoints": 270,
+        "reference_sharpness": 102.53,
+        "sharpness": 45.228,
+        "timing_scope": "reference_and_scene_processing"
+      }
+    },
+    {
+      "object_id": "tissue-pack",
+      "case": "current_B",
+      "method": "ORB",
+      "expected_presence": true,
+      "status": "SUSPECTED",
+      "diagnostics": {
+        "good_matches": 15,
+        "inliers": 3,
+        "inlier_ratio": 0.2,
+        "reference_coverage": 0.0012,
+        "elapsed_ms": 104.368,
+        "total_elapsed_ms": 236.109,
+        "reason": "insufficient_geometric_inliers",
+        "reference_keypoints": 2000,
+        "scene_keypoints": 2000,
+        "reference_sharpness": 102.53,
+        "sharpness": 110.174,
+        "timing_scope": "scene_processing_only"
+      }
+    },
+    {
+      "object_id": "tissue-pack",
+      "case": "current_B",
+      "method": "SIFT",
+      "expected_presence": true,
+      "status": "SUSPECTED",
+      "diagnostics": {
+        "good_matches": 74,
+        "inliers": 23,
+        "inlier_ratio": 0.3108,
+        "reference_coverage": 0.0391,
+        "elapsed_ms": 1266.93,
+        "reason": "insufficient_geometric_inliers",
+        "reference_keypoints": 1200,
+        "scene_keypoints": 2001,
+        "reference_sharpness": 102.53,
+        "sharpness": 110.174,
+        "timing_scope": "reference_and_scene_processing"
+      }
+    },
+    {
+      "object_id": "tissue-pack",
+      "case": "current_B",
+      "method": "AKAZE",
+      "expected_presence": true,
+      "status": "SUSPECTED",
+      "diagnostics": {
+        "good_matches": 14,
+        "inliers": 5,
+        "inlier_ratio": 0.3571,
+        "reference_coverage": 0.0111,
+        "elapsed_ms": 749.228,
+        "reason": "insufficient_geometric_inliers",
+        "reference_keypoints": 691,
+        "scene_keypoints": 1612,
+        "reference_sharpness": 102.53,
+        "sharpness": 110.174,
+        "timing_scope": "reference_and_scene_processing"
+      }
+    },
+    {
+      "object_id": "tissue-pack",
+      "case": "missing_B",
+      "method": "ORB",
+      "expected_presence": false,
+      "status": "SUSPECTED",
+      "diagnostics": {
+        "good_matches": 13,
+        "inliers": 4,
+        "inlier_ratio": 0.3077,
+        "reference_coverage": 0.0534,
+        "elapsed_ms": 93.539,
+        "total_elapsed_ms": 201.006,
+        "reason": "insufficient_geometric_inliers",
+        "reference_keypoints": 2000,
+        "scene_keypoints": 2000,
+        "reference_sharpness": 102.53,
+        "sharpness": 276.553,
+        "timing_scope": "scene_processing_only"
+      }
+    },
+    {
+      "object_id": "tissue-pack",
+      "case": "missing_B",
+      "method": "SIFT",
+      "expected_presence": false,
+      "status": "SUSPECTED",
+      "diagnostics": {
+        "good_matches": 22,
+        "inliers": 6,
+        "inlier_ratio": 0.2727,
+        "reference_coverage": 0.01,
+        "elapsed_ms": 1054.537,
+        "reason": "insufficient_geometric_inliers",
+        "reference_keypoints": 1200,
+        "scene_keypoints": 2001,
+        "reference_sharpness": 102.53,
+        "sharpness": 276.553,
+        "timing_scope": "reference_and_scene_processing"
+      }
+    },
+    {
+      "object_id": "tissue-pack",
+      "case": "missing_B",
+      "method": "AKAZE",
+      "expected_presence": false,
+      "status": "UNKNOWN",
+      "diagnostics": {
+        "good_matches": 3,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 708.443,
+        "reason": "no_verified_match",
+        "reference_keypoints": 691,
+        "scene_keypoints": 3058,
+        "reference_sharpness": 102.53,
+        "sharpness": 276.553,
+        "timing_scope": "reference_and_scene_processing"
+      }
+    },
+    {
+      "object_id": "tissue-pack",
+      "case": "current_C",
+      "method": "ORB",
+      "expected_presence": false,
+      "status": "SUSPECTED",
+      "diagnostics": {
+        "good_matches": 11,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 70.046,
+        "total_elapsed_ms": 166.785,
+        "reason": "insufficient_distinct_matches",
+        "reference_keypoints": 2000,
+        "scene_keypoints": 2000,
+        "reference_sharpness": 102.53,
+        "sharpness": 115.012,
+        "timing_scope": "scene_processing_only"
+      }
+    },
+    {
+      "object_id": "tissue-pack",
+      "case": "current_C",
+      "method": "SIFT",
+      "expected_presence": false,
+      "status": "SUSPECTED",
+      "diagnostics": {
+        "good_matches": 25,
+        "inliers": 7,
+        "inlier_ratio": 0.28,
+        "reference_coverage": 0.0321,
+        "elapsed_ms": 944.475,
+        "reason": "insufficient_geometric_inliers",
+        "reference_keypoints": 1200,
+        "scene_keypoints": 2000,
+        "reference_sharpness": 102.53,
+        "sharpness": 115.012,
+        "timing_scope": "reference_and_scene_processing"
+      }
+    },
+    {
+      "object_id": "tissue-pack",
+      "case": "current_C",
+      "method": "AKAZE",
+      "expected_presence": false,
+      "status": "SUSPECTED",
+      "diagnostics": {
+        "good_matches": 4,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 723.25,
+        "reason": "insufficient_distinct_matches",
+        "reference_keypoints": 691,
+        "scene_keypoints": 1585,
+        "reference_sharpness": 102.53,
+        "sharpness": 115.012,
+        "timing_scope": "reference_and_scene_processing"
+      }
+    },
+    {
+      "object_id": "dino-earbud-case",
+      "case": "independent_scene_1",
+      "method": "ORB",
+      "expected_presence": false,
+      "status": "UNKNOWN",
+      "diagnostics": {
+        "good_matches": 0,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 48.071,
+        "reason": "reference_rejected",
+        "timing_scope": "reference_validation"
+      }
+    },
+    {
+      "object_id": "dino-earbud-case",
+      "case": "independent_scene_1",
+      "method": "SIFT",
+      "expected_presence": false,
+      "status": "UNKNOWN",
+      "diagnostics": {
+        "good_matches": 0,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 49.243,
+        "reason": "reference_low_sharpness_or_texture",
+        "reference_keypoints": 0,
+        "scene_keypoints": 0,
+        "reference_sharpness": 21.265,
+        "sharpness": 114.925,
+        "timing_scope": "reference_and_scene_processing"
+      }
+    },
+    {
+      "object_id": "dino-earbud-case",
+      "case": "independent_scene_1",
+      "method": "AKAZE",
+      "expected_presence": false,
+      "status": "UNKNOWN",
+      "diagnostics": {
+        "good_matches": 0,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 42.029,
+        "reason": "reference_low_sharpness_or_texture",
+        "reference_keypoints": 0,
+        "scene_keypoints": 0,
+        "reference_sharpness": 21.265,
+        "sharpness": 114.925,
+        "timing_scope": "reference_and_scene_processing"
+      }
+    },
+    {
+      "object_id": "dino-earbud-case",
+      "case": "independent_scene_2",
+      "method": "ORB",
+      "expected_presence": true,
+      "status": "UNKNOWN",
+      "diagnostics": {
+        "good_matches": 0,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 42.233,
+        "reason": "reference_rejected",
+        "timing_scope": "reference_validation"
+      }
+    },
+    {
+      "object_id": "dino-earbud-case",
+      "case": "independent_scene_2",
+      "method": "SIFT",
+      "expected_presence": true,
+      "status": "UNKNOWN",
+      "diagnostics": {
+        "good_matches": 0,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 53.157,
+        "reason": "reference_low_sharpness_or_texture",
+        "reference_keypoints": 0,
+        "scene_keypoints": 0,
+        "reference_sharpness": 21.265,
+        "sharpness": 110.174,
+        "timing_scope": "reference_and_scene_processing"
+      }
+    },
+    {
+      "object_id": "dino-earbud-case",
+      "case": "independent_scene_2",
+      "method": "AKAZE",
+      "expected_presence": true,
+      "status": "UNKNOWN",
+      "diagnostics": {
+        "good_matches": 0,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 45.354,
+        "reason": "reference_low_sharpness_or_texture",
+        "reference_keypoints": 0,
+        "scene_keypoints": 0,
+        "reference_sharpness": 21.265,
+        "sharpness": 110.174,
+        "timing_scope": "reference_and_scene_processing"
+      }
+    },
+    {
+      "object_id": "dino-earbud-case",
+      "case": "independent_scene_3",
+      "method": "ORB",
+      "expected_presence": true,
+      "status": "UNKNOWN",
+      "diagnostics": {
+        "good_matches": 0,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 50.993,
+        "reason": "reference_rejected",
+        "timing_scope": "reference_validation"
+      }
+    },
+    {
+      "object_id": "dino-earbud-case",
+      "case": "independent_scene_3",
+      "method": "SIFT",
+      "expected_presence": true,
+      "status": "UNKNOWN",
+      "diagnostics": {
+        "good_matches": 0,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 51.847,
+        "reason": "reference_low_sharpness_or_texture",
+        "reference_keypoints": 0,
+        "scene_keypoints": 0,
+        "reference_sharpness": 21.265,
+        "sharpness": 276.553,
+        "timing_scope": "reference_and_scene_processing"
+      }
+    },
+    {
+      "object_id": "dino-earbud-case",
+      "case": "independent_scene_3",
+      "method": "AKAZE",
+      "expected_presence": true,
+      "status": "UNKNOWN",
+      "diagnostics": {
+        "good_matches": 0,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 48.884,
+        "reason": "reference_low_sharpness_or_texture",
+        "reference_keypoints": 0,
+        "scene_keypoints": 0,
+        "reference_sharpness": 21.265,
+        "sharpness": 276.553,
+        "timing_scope": "reference_and_scene_processing"
+      }
+    },
+    {
+      "object_id": "dino-earbud-case",
+      "case": "independent_scene_4",
+      "method": "ORB",
+      "expected_presence": false,
+      "status": "UNKNOWN",
+      "diagnostics": {
+        "good_matches": 0,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 41.601,
+        "reason": "reference_rejected",
+        "timing_scope": "reference_validation"
+      }
+    },
+    {
+      "object_id": "dino-earbud-case",
+      "case": "independent_scene_4",
+      "method": "SIFT",
+      "expected_presence": false,
+      "status": "UNKNOWN",
+      "diagnostics": {
+        "good_matches": 0,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 38.88,
+        "reason": "reference_low_sharpness_or_texture",
+        "reference_keypoints": 0,
+        "scene_keypoints": 0,
+        "reference_sharpness": 21.265,
+        "sharpness": 115.012,
+        "timing_scope": "reference_and_scene_processing"
+      }
+    },
+    {
+      "object_id": "dino-earbud-case",
+      "case": "independent_scene_4",
+      "method": "AKAZE",
+      "expected_presence": false,
+      "status": "UNKNOWN",
+      "diagnostics": {
+        "good_matches": 0,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 42.936,
+        "reason": "reference_low_sharpness_or_texture",
+        "reference_keypoints": 0,
+        "scene_keypoints": 0,
+        "reference_sharpness": 21.265,
+        "sharpness": 115.012,
+        "timing_scope": "reference_and_scene_processing"
+      }
+    },
+    {
+      "object_id": "keys",
+      "case": "independent_scene_1",
+      "method": "ORB",
+      "expected_presence": true,
+      "status": "SUSPECTED",
+      "diagnostics": {
+        "good_matches": 18,
+        "inliers": 4,
+        "inlier_ratio": 0.2222,
+        "reference_coverage": 0.0078,
+        "elapsed_ms": 105.398,
+        "total_elapsed_ms": 168.858,
+        "reason": "insufficient_geometric_inliers",
+        "reference_keypoints": 2000,
+        "scene_keypoints": 2000,
+        "reference_sharpness": 135.421,
+        "sharpness": 114.925,
+        "timing_scope": "scene_processing_only"
+      }
+    },
+    {
+      "object_id": "keys",
+      "case": "independent_scene_1",
+      "method": "SIFT",
+      "expected_presence": true,
+      "status": "SUSPECTED",
+      "diagnostics": {
+        "good_matches": 40,
+        "inliers": 6,
+        "inlier_ratio": 0.15,
+        "reference_coverage": 0.0132,
+        "elapsed_ms": 810.361,
+        "reason": "insufficient_geometric_inliers",
+        "reference_keypoints": 2001,
+        "scene_keypoints": 2000,
+        "reference_sharpness": 135.421,
+        "sharpness": 114.925,
+        "timing_scope": "reference_and_scene_processing"
+      }
+    },
+    {
+      "object_id": "keys",
+      "case": "independent_scene_1",
+      "method": "AKAZE",
+      "expected_presence": true,
+      "status": "SUSPECTED",
+      "diagnostics": {
+        "good_matches": 4,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 595.731,
+        "reason": "insufficient_distinct_matches",
+        "reference_keypoints": 2338,
+        "scene_keypoints": 1894,
+        "reference_sharpness": 135.421,
+        "sharpness": 114.925,
+        "timing_scope": "reference_and_scene_processing"
+      }
+    },
+    {
+      "object_id": "keys",
+      "case": "independent_scene_2",
+      "method": "ORB",
+      "expected_presence": false,
+      "status": "SUSPECTED",
+      "diagnostics": {
+        "good_matches": 14,
+        "inliers": 4,
+        "inlier_ratio": 0.2857,
+        "reference_coverage": 0.0192,
+        "elapsed_ms": 75.818,
+        "total_elapsed_ms": 140.644,
+        "reason": "insufficient_geometric_inliers",
+        "reference_keypoints": 2000,
+        "scene_keypoints": 2000,
+        "reference_sharpness": 135.421,
+        "sharpness": 110.174,
+        "timing_scope": "scene_processing_only"
+      }
+    },
+    {
+      "object_id": "keys",
+      "case": "independent_scene_2",
+      "method": "SIFT",
+      "expected_presence": false,
+      "status": "SUSPECTED",
+      "diagnostics": {
+        "good_matches": 25,
+        "inliers": 6,
+        "inlier_ratio": 0.24,
+        "reference_coverage": 0.0055,
+        "elapsed_ms": 802.467,
+        "reason": "insufficient_geometric_inliers",
+        "reference_keypoints": 2001,
+        "scene_keypoints": 2001,
+        "reference_sharpness": 135.421,
+        "sharpness": 110.174,
+        "timing_scope": "reference_and_scene_processing"
+      }
+    },
+    {
+      "object_id": "keys",
+      "case": "independent_scene_2",
+      "method": "AKAZE",
+      "expected_presence": false,
+      "status": "UNKNOWN",
+      "diagnostics": {
+        "good_matches": 3,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 622.455,
+        "reason": "no_verified_match",
+        "reference_keypoints": 2338,
+        "scene_keypoints": 1612,
+        "reference_sharpness": 135.421,
+        "sharpness": 110.174,
+        "timing_scope": "reference_and_scene_processing"
+      }
+    },
+    {
+      "object_id": "keys",
+      "case": "independent_scene_3",
+      "method": "ORB",
+      "expected_presence": false,
+      "status": "SUSPECTED",
+      "diagnostics": {
+        "good_matches": 15,
+        "inliers": 4,
+        "inlier_ratio": 0.2667,
+        "reference_coverage": 0.0039,
+        "elapsed_ms": 90.674,
+        "total_elapsed_ms": 155.146,
+        "reason": "insufficient_geometric_inliers",
+        "reference_keypoints": 2000,
+        "scene_keypoints": 2000,
+        "reference_sharpness": 135.421,
+        "sharpness": 276.553,
+        "timing_scope": "scene_processing_only"
+      }
+    },
+    {
+      "object_id": "keys",
+      "case": "independent_scene_3",
+      "method": "SIFT",
+      "expected_presence": false,
+      "status": "SUSPECTED",
+      "diagnostics": {
+        "good_matches": 22,
+        "inliers": 4,
+        "inlier_ratio": 0.1818,
+        "reference_coverage": 0.0697,
+        "elapsed_ms": 809.942,
+        "reason": "insufficient_geometric_inliers",
+        "reference_keypoints": 2001,
+        "scene_keypoints": 2001,
+        "reference_sharpness": 135.421,
+        "sharpness": 276.553,
+        "timing_scope": "reference_and_scene_processing"
+      }
+    },
+    {
+      "object_id": "keys",
+      "case": "independent_scene_3",
+      "method": "AKAZE",
+      "expected_presence": false,
+      "status": "UNKNOWN",
+      "diagnostics": {
+        "good_matches": 3,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 667.037,
+        "reason": "no_verified_match",
+        "reference_keypoints": 2338,
+        "scene_keypoints": 3058,
+        "reference_sharpness": 135.421,
+        "sharpness": 276.553,
+        "timing_scope": "reference_and_scene_processing"
+      }
+    },
+    {
+      "object_id": "keys",
+      "case": "independent_scene_4",
+      "method": "ORB",
+      "expected_presence": false,
+      "status": "SUSPECTED",
+      "diagnostics": {
+        "good_matches": 15,
+        "inliers": 4,
+        "inlier_ratio": 0.2667,
+        "reference_coverage": 0.0027,
+        "elapsed_ms": 74.859,
+        "total_elapsed_ms": 133.898,
+        "reason": "insufficient_geometric_inliers",
+        "reference_keypoints": 2000,
+        "scene_keypoints": 2000,
+        "reference_sharpness": 135.421,
+        "sharpness": 115.012,
+        "timing_scope": "scene_processing_only"
+      }
+    },
+    {
+      "object_id": "keys",
+      "case": "independent_scene_4",
+      "method": "SIFT",
+      "expected_presence": false,
+      "status": "SUSPECTED",
+      "diagnostics": {
+        "good_matches": 29,
+        "inliers": 6,
+        "inlier_ratio": 0.2069,
+        "reference_coverage": 0.0173,
+        "elapsed_ms": 831.444,
+        "reason": "insufficient_geometric_inliers",
+        "reference_keypoints": 2001,
+        "scene_keypoints": 2000,
+        "reference_sharpness": 135.421,
+        "sharpness": 115.012,
+        "timing_scope": "reference_and_scene_processing"
+      }
+    },
+    {
+      "object_id": "keys",
+      "case": "independent_scene_4",
+      "method": "AKAZE",
+      "expected_presence": false,
+      "status": "UNKNOWN",
+      "diagnostics": {
+        "good_matches": 1,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 619.107,
+        "reason": "no_verified_match",
+        "reference_keypoints": 2338,
+        "scene_keypoints": 1585,
+        "reference_sharpness": 135.421,
+        "sharpness": 115.012,
+        "timing_scope": "reference_and_scene_processing"
+      }
+    },
+    {
+      "object_id": "pen",
+      "case": "independent_scene_1",
+      "method": "ORB",
+      "expected_presence": false,
+      "status": "SUSPECTED",
+      "diagnostics": {
+        "good_matches": 5,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 63.091,
+        "total_elapsed_ms": 123.594,
+        "reason": "insufficient_distinct_matches",
+        "reference_keypoints": 1474,
+        "scene_keypoints": 2000,
+        "reference_sharpness": 197.64,
+        "sharpness": 114.925,
+        "timing_scope": "scene_processing_only"
+      }
+    },
+    {
+      "object_id": "pen",
+      "case": "independent_scene_1",
+      "method": "SIFT",
+      "expected_presence": false,
+      "status": "SUSPECTED",
+      "diagnostics": {
+        "good_matches": 8,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 1098.439,
+        "reason": "insufficient_distinct_matches",
+        "reference_keypoints": 2000,
+        "scene_keypoints": 2000,
+        "reference_sharpness": 197.64,
+        "sharpness": 114.925,
+        "timing_scope": "reference_and_scene_processing"
+      }
+    },
+    {
+      "object_id": "pen",
+      "case": "independent_scene_1",
+      "method": "AKAZE",
+      "expected_presence": false,
+      "status": "UNKNOWN",
+      "diagnostics": {
+        "good_matches": 0,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 589.315,
+        "reason": "no_verified_match",
+        "reference_keypoints": 342,
+        "scene_keypoints": 1894,
+        "reference_sharpness": 197.64,
+        "sharpness": 114.925,
+        "timing_scope": "reference_and_scene_processing"
+      }
+    },
+    {
+      "object_id": "pen",
+      "case": "independent_scene_2",
+      "method": "ORB",
+      "expected_presence": true,
+      "status": "UNKNOWN",
+      "diagnostics": {
+        "good_matches": 3,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 69.955,
+        "total_elapsed_ms": 137.888,
+        "reason": "no_verified_match",
+        "reference_keypoints": 1474,
+        "scene_keypoints": 2000,
+        "reference_sharpness": 197.64,
+        "sharpness": 110.174,
+        "timing_scope": "scene_processing_only"
+      }
+    },
+    {
+      "object_id": "pen",
+      "case": "independent_scene_2",
+      "method": "SIFT",
+      "expected_presence": true,
+      "status": "SUSPECTED",
+      "diagnostics": {
+        "good_matches": 4,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 914.139,
+        "reason": "insufficient_distinct_matches",
+        "reference_keypoints": 2000,
+        "scene_keypoints": 2001,
+        "reference_sharpness": 197.64,
+        "sharpness": 110.174,
+        "timing_scope": "reference_and_scene_processing"
+      }
+    },
+    {
+      "object_id": "pen",
+      "case": "independent_scene_2",
+      "method": "AKAZE",
+      "expected_presence": true,
+      "status": "UNKNOWN",
+      "diagnostics": {
+        "good_matches": 0,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 616.251,
+        "reason": "no_verified_match",
+        "reference_keypoints": 342,
+        "scene_keypoints": 1612,
+        "reference_sharpness": 197.64,
+        "sharpness": 110.174,
+        "timing_scope": "reference_and_scene_processing"
+      }
+    },
+    {
+      "object_id": "pen",
+      "case": "independent_scene_3",
+      "method": "ORB",
+      "expected_presence": true,
+      "status": "SUSPECTED",
+      "diagnostics": {
+        "good_matches": 7,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 63.822,
+        "total_elapsed_ms": 132.846,
+        "reason": "insufficient_distinct_matches",
+        "reference_keypoints": 1474,
+        "scene_keypoints": 2000,
+        "reference_sharpness": 197.64,
+        "sharpness": 276.553,
+        "timing_scope": "scene_processing_only"
+      }
+    },
+    {
+      "object_id": "pen",
+      "case": "independent_scene_3",
+      "method": "SIFT",
+      "expected_presence": true,
+      "status": "SUSPECTED",
+      "diagnostics": {
+        "good_matches": 6,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 1076.708,
+        "reason": "insufficient_distinct_matches",
+        "reference_keypoints": 2000,
+        "scene_keypoints": 2001,
+        "reference_sharpness": 197.64,
+        "sharpness": 276.553,
+        "timing_scope": "reference_and_scene_processing"
+      }
+    },
+    {
+      "object_id": "pen",
+      "case": "independent_scene_3",
+      "method": "AKAZE",
+      "expected_presence": true,
+      "status": "UNKNOWN",
+      "diagnostics": {
+        "good_matches": 2,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 680.856,
+        "reason": "no_verified_match",
+        "reference_keypoints": 342,
+        "scene_keypoints": 3058,
+        "reference_sharpness": 197.64,
+        "sharpness": 276.553,
+        "timing_scope": "reference_and_scene_processing"
+      }
+    },
+    {
+      "object_id": "pen",
+      "case": "independent_scene_4",
+      "method": "ORB",
+      "expected_presence": false,
+      "status": "UNKNOWN",
+      "diagnostics": {
+        "good_matches": 3,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 74.161,
+        "total_elapsed_ms": 140.846,
+        "reason": "no_verified_match",
+        "reference_keypoints": 1474,
+        "scene_keypoints": 2000,
+        "reference_sharpness": 197.64,
+        "sharpness": 115.012,
+        "timing_scope": "scene_processing_only"
+      }
+    },
+    {
+      "object_id": "pen",
+      "case": "independent_scene_4",
+      "method": "SIFT",
+      "expected_presence": false,
+      "status": "SUSPECTED",
+      "diagnostics": {
+        "good_matches": 8,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 846.72,
+        "reason": "insufficient_distinct_matches",
+        "reference_keypoints": 2000,
+        "scene_keypoints": 2000,
+        "reference_sharpness": 197.64,
+        "sharpness": 115.012,
+        "timing_scope": "reference_and_scene_processing"
+      }
+    },
+    {
+      "object_id": "pen",
+      "case": "independent_scene_4",
+      "method": "AKAZE",
+      "expected_presence": false,
+      "status": "SUSPECTED",
+      "diagnostics": {
+        "good_matches": 4,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 644.288,
+        "reason": "insufficient_distinct_matches",
+        "reference_keypoints": 342,
+        "scene_keypoints": 1585,
+        "reference_sharpness": 197.64,
+        "sharpness": 115.012,
+        "timing_scope": "reference_and_scene_processing"
+      }
+    },
+    {
+      "object_id": "ginkgo-thermos",
+      "case": "independent_scene_1",
+      "method": "ORB",
+      "expected_presence": false,
+      "status": "SUSPECTED",
+      "diagnostics": {
+        "good_matches": 7,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 72.451,
+        "total_elapsed_ms": 142.352,
+        "reason": "insufficient_distinct_matches",
+        "reference_keypoints": 2000,
+        "scene_keypoints": 2000,
+        "reference_sharpness": 39.642,
+        "sharpness": 114.925,
+        "timing_scope": "scene_processing_only"
+      }
+    },
+    {
+      "object_id": "ginkgo-thermos",
+      "case": "independent_scene_1",
+      "method": "SIFT",
+      "expected_presence": false,
+      "status": "SUSPECTED",
+      "diagnostics": {
+        "good_matches": 25,
+        "inliers": 4,
+        "inlier_ratio": 0.16,
+        "reference_coverage": 0.059,
+        "elapsed_ms": 809.871,
+        "reason": "insufficient_geometric_inliers",
+        "reference_keypoints": 1406,
+        "scene_keypoints": 2000,
+        "reference_sharpness": 39.642,
+        "sharpness": 114.925,
+        "timing_scope": "reference_and_scene_processing"
+      }
+    },
+    {
+      "object_id": "ginkgo-thermos",
+      "case": "independent_scene_1",
+      "method": "AKAZE",
+      "expected_presence": false,
+      "status": "UNKNOWN",
+      "diagnostics": {
+        "good_matches": 0,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 602.259,
+        "reason": "no_verified_match",
+        "reference_keypoints": 1303,
+        "scene_keypoints": 1894,
+        "reference_sharpness": 39.642,
+        "sharpness": 114.925,
+        "timing_scope": "reference_and_scene_processing"
+      }
+    },
+    {
+      "object_id": "ginkgo-thermos",
+      "case": "independent_scene_2",
+      "method": "ORB",
+      "expected_presence": false,
+      "status": "SUSPECTED",
+      "diagnostics": {
+        "good_matches": 4,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 72.283,
+        "total_elapsed_ms": 138.864,
+        "reason": "insufficient_distinct_matches",
+        "reference_keypoints": 2000,
+        "scene_keypoints": 2000,
+        "reference_sharpness": 39.642,
+        "sharpness": 110.174,
+        "timing_scope": "scene_processing_only"
+      }
+    },
+    {
+      "object_id": "ginkgo-thermos",
+      "case": "independent_scene_2",
+      "method": "SIFT",
+      "expected_presence": false,
+      "status": "SUSPECTED",
+      "diagnostics": {
+        "good_matches": 23,
+        "inliers": 6,
+        "inlier_ratio": 0.2609,
+        "reference_coverage": 0.0193,
+        "elapsed_ms": 878.83,
+        "reason": "insufficient_geometric_inliers",
+        "reference_keypoints": 1406,
+        "scene_keypoints": 2001,
+        "reference_sharpness": 39.642,
+        "sharpness": 110.174,
+        "timing_scope": "reference_and_scene_processing"
+      }
+    },
+    {
+      "object_id": "ginkgo-thermos",
+      "case": "independent_scene_2",
+      "method": "AKAZE",
+      "expected_presence": false,
+      "status": "UNKNOWN",
+      "diagnostics": {
+        "good_matches": 1,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 682.779,
+        "reason": "no_verified_match",
+        "reference_keypoints": 1303,
+        "scene_keypoints": 1612,
+        "reference_sharpness": 39.642,
+        "sharpness": 110.174,
+        "timing_scope": "reference_and_scene_processing"
+      }
+    },
+    {
+      "object_id": "ginkgo-thermos",
+      "case": "independent_scene_3",
+      "method": "ORB",
+      "expected_presence": true,
+      "status": "SUSPECTED",
+      "diagnostics": {
+        "good_matches": 7,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 72.159,
+        "total_elapsed_ms": 136.127,
+        "reason": "insufficient_distinct_matches",
+        "reference_keypoints": 2000,
+        "scene_keypoints": 2000,
+        "reference_sharpness": 39.642,
+        "sharpness": 276.553,
+        "timing_scope": "scene_processing_only"
+      }
+    },
+    {
+      "object_id": "ginkgo-thermos",
+      "case": "independent_scene_3",
+      "method": "SIFT",
+      "expected_presence": true,
+      "status": "SUSPECTED",
+      "diagnostics": {
+        "good_matches": 68,
+        "inliers": 37,
+        "inlier_ratio": 0.5441,
+        "reference_coverage": 0.0171,
+        "elapsed_ms": 848.335,
+        "reason": "insufficient_geometric_inliers",
+        "reference_keypoints": 1406,
+        "scene_keypoints": 2001,
+        "reference_sharpness": 39.642,
+        "sharpness": 276.553,
+        "timing_scope": "reference_and_scene_processing"
+      }
+    },
+    {
+      "object_id": "ginkgo-thermos",
+      "case": "independent_scene_3",
+      "method": "AKAZE",
+      "expected_presence": true,
+      "status": "SUSPECTED",
+      "diagnostics": {
+        "good_matches": 36,
+        "inliers": 33,
+        "inlier_ratio": 0.9167,
+        "reference_coverage": 0.0342,
+        "elapsed_ms": 597.292,
+        "reason": "reference_support_too_local",
+        "reference_keypoints": 1303,
+        "scene_keypoints": 3058,
+        "reference_sharpness": 39.642,
+        "sharpness": 276.553,
+        "timing_scope": "reference_and_scene_processing"
+      }
+    },
+    {
+      "object_id": "ginkgo-thermos",
+      "case": "independent_scene_4",
+      "method": "ORB",
+      "expected_presence": false,
+      "status": "SUSPECTED",
+      "diagnostics": {
+        "good_matches": 6,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 67.449,
+        "total_elapsed_ms": 127.038,
+        "reason": "insufficient_distinct_matches",
+        "reference_keypoints": 2000,
+        "scene_keypoints": 2000,
+        "reference_sharpness": 39.642,
+        "sharpness": 115.012,
+        "timing_scope": "scene_processing_only"
+      }
+    },
+    {
+      "object_id": "ginkgo-thermos",
+      "case": "independent_scene_4",
+      "method": "SIFT",
+      "expected_presence": false,
+      "status": "SUSPECTED",
+      "diagnostics": {
+        "good_matches": 25,
+        "inliers": 5,
+        "inlier_ratio": 0.2,
+        "reference_coverage": 0.0045,
+        "elapsed_ms": 839.826,
+        "reason": "insufficient_geometric_inliers",
+        "reference_keypoints": 1406,
+        "scene_keypoints": 2000,
+        "reference_sharpness": 39.642,
+        "sharpness": 115.012,
+        "timing_scope": "reference_and_scene_processing"
+      }
+    },
+    {
+      "object_id": "ginkgo-thermos",
+      "case": "independent_scene_4",
+      "method": "AKAZE",
+      "expected_presence": false,
+      "status": "UNKNOWN",
+      "diagnostics": {
+        "good_matches": 1,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 573.292,
+        "reason": "no_verified_match",
+        "reference_keypoints": 1303,
+        "scene_keypoints": 1585,
+        "reference_sharpness": 39.642,
+        "sharpness": 115.012,
+        "timing_scope": "reference_and_scene_processing"
+      }
+    },
+    {
+      "object_id": "green-sleeve-glass",
+      "case": "independent_scene_1",
+      "method": "ORB",
+      "expected_presence": false,
+      "status": "SUSPECTED",
+      "diagnostics": {
+        "good_matches": 7,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 66.682,
+        "total_elapsed_ms": 127.201,
+        "reason": "insufficient_distinct_matches",
+        "reference_keypoints": 1746,
+        "scene_keypoints": 2000,
+        "reference_sharpness": 38.05,
+        "sharpness": 114.925,
+        "timing_scope": "scene_processing_only"
+      }
+    },
+    {
+      "object_id": "green-sleeve-glass",
+      "case": "independent_scene_1",
+      "method": "SIFT",
+      "expected_presence": false,
+      "status": "SUSPECTED",
+      "diagnostics": {
+        "good_matches": 14,
+        "inliers": 4,
+        "inlier_ratio": 0.2857,
+        "reference_coverage": 0.0471,
+        "elapsed_ms": 890.322,
+        "reason": "insufficient_geometric_inliers",
+        "reference_keypoints": 964,
+        "scene_keypoints": 2000,
+        "reference_sharpness": 38.05,
+        "sharpness": 114.925,
+        "timing_scope": "reference_and_scene_processing"
+      }
+    },
+    {
+      "object_id": "green-sleeve-glass",
+      "case": "independent_scene_1",
+      "method": "AKAZE",
+      "expected_presence": false,
+      "status": "UNKNOWN",
+      "diagnostics": {
+        "good_matches": 2,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 543.396,
+        "reason": "no_verified_match",
+        "reference_keypoints": 640,
+        "scene_keypoints": 1894,
+        "reference_sharpness": 38.05,
+        "sharpness": 114.925,
+        "timing_scope": "reference_and_scene_processing"
+      }
+    },
+    {
+      "object_id": "green-sleeve-glass",
+      "case": "independent_scene_2",
+      "method": "ORB",
+      "expected_presence": false,
+      "status": "SUSPECTED",
+      "diagnostics": {
+        "good_matches": 9,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 65.245,
+        "total_elapsed_ms": 128.318,
+        "reason": "insufficient_distinct_matches",
+        "reference_keypoints": 1746,
+        "scene_keypoints": 2000,
+        "reference_sharpness": 38.05,
+        "sharpness": 110.174,
+        "timing_scope": "scene_processing_only"
+      }
+    },
+    {
+      "object_id": "green-sleeve-glass",
+      "case": "independent_scene_2",
+      "method": "SIFT",
+      "expected_presence": false,
+      "status": "SUSPECTED",
+      "diagnostics": {
+        "good_matches": 13,
+        "inliers": 4,
+        "inlier_ratio": 0.3077,
+        "reference_coverage": 0.0443,
+        "elapsed_ms": 1030.913,
+        "reason": "insufficient_geometric_inliers",
+        "reference_keypoints": 964,
+        "scene_keypoints": 2001,
+        "reference_sharpness": 38.05,
+        "sharpness": 110.174,
+        "timing_scope": "reference_and_scene_processing"
+      }
+    },
+    {
+      "object_id": "green-sleeve-glass",
+      "case": "independent_scene_2",
+      "method": "AKAZE",
+      "expected_presence": false,
+      "status": "UNKNOWN",
+      "diagnostics": {
+        "good_matches": 3,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 588.58,
+        "reason": "no_verified_match",
+        "reference_keypoints": 640,
+        "scene_keypoints": 1612,
+        "reference_sharpness": 38.05,
+        "sharpness": 110.174,
+        "timing_scope": "reference_and_scene_processing"
+      }
+    },
+    {
+      "object_id": "green-sleeve-glass",
+      "case": "independent_scene_3",
+      "method": "ORB",
+      "expected_presence": false,
+      "status": "SUSPECTED",
+      "diagnostics": {
+        "good_matches": 8,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 67.657,
+        "total_elapsed_ms": 134.03,
+        "reason": "insufficient_distinct_matches",
+        "reference_keypoints": 1746,
+        "scene_keypoints": 2000,
+        "reference_sharpness": 38.05,
+        "sharpness": 276.553,
+        "timing_scope": "scene_processing_only"
+      }
+    },
+    {
+      "object_id": "green-sleeve-glass",
+      "case": "independent_scene_3",
+      "method": "SIFT",
+      "expected_presence": false,
+      "status": "SUSPECTED",
+      "diagnostics": {
+        "good_matches": 8,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 860.786,
+        "reason": "insufficient_distinct_matches",
+        "reference_keypoints": 964,
+        "scene_keypoints": 2001,
+        "reference_sharpness": 38.05,
+        "sharpness": 276.553,
+        "timing_scope": "reference_and_scene_processing"
+      }
+    },
+    {
+      "object_id": "green-sleeve-glass",
+      "case": "independent_scene_3",
+      "method": "AKAZE",
+      "expected_presence": false,
+      "status": "UNKNOWN",
+      "diagnostics": {
+        "good_matches": 1,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 611.801,
+        "reason": "no_verified_match",
+        "reference_keypoints": 640,
+        "scene_keypoints": 3058,
+        "reference_sharpness": 38.05,
+        "sharpness": 276.553,
+        "timing_scope": "reference_and_scene_processing"
+      }
+    },
+    {
+      "object_id": "green-sleeve-glass",
+      "case": "independent_scene_4",
+      "method": "ORB",
+      "expected_presence": false,
+      "status": "SUSPECTED",
+      "diagnostics": {
+        "good_matches": 18,
+        "inliers": 5,
+        "inlier_ratio": 0.2778,
+        "reference_coverage": 0.0138,
+        "elapsed_ms": 84.699,
+        "total_elapsed_ms": 146.79,
+        "reason": "insufficient_geometric_inliers",
+        "reference_keypoints": 1746,
+        "scene_keypoints": 2000,
+        "reference_sharpness": 38.05,
+        "sharpness": 115.012,
+        "timing_scope": "scene_processing_only"
+      }
+    },
+    {
+      "object_id": "green-sleeve-glass",
+      "case": "independent_scene_4",
+      "method": "SIFT",
+      "expected_presence": false,
+      "status": "SUSPECTED",
+      "diagnostics": {
+        "good_matches": 12,
+        "inliers": 5,
+        "inlier_ratio": 0.4167,
+        "reference_coverage": 0.0058,
+        "elapsed_ms": 831.066,
+        "reason": "insufficient_geometric_inliers",
+        "reference_keypoints": 964,
+        "scene_keypoints": 2000,
+        "reference_sharpness": 38.05,
+        "sharpness": 115.012,
+        "timing_scope": "reference_and_scene_processing"
+      }
+    },
+    {
+      "object_id": "green-sleeve-glass",
+      "case": "independent_scene_4",
+      "method": "AKAZE",
+      "expected_presence": false,
+      "status": "UNKNOWN",
+      "diagnostics": {
+        "good_matches": 2,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 767.393,
+        "reason": "no_verified_match",
+        "reference_keypoints": 640,
+        "scene_keypoints": 1585,
+        "reference_sharpness": 38.05,
+        "sharpness": 115.012,
+        "timing_scope": "reference_and_scene_processing"
+      }
+    }
+  ],
+  "cli_runs": [
+    {
+      "scenario": "moved",
+      "stage": "register",
+      "returncode": 0,
+      "result_status": "SUSPECTED",
+      "location": null,
+      "confirmed_evidence_count": 0,
+      "historical_evidence_count": 0,
+      "replay_rejections": 0,
+      "replay_reasons": []
+    },
+    {
+      "scenario": "moved",
+      "stage": "search",
+      "returncode": 0,
+      "result_status": "SUSPECTED",
+      "location": null,
+      "confirmed_evidence_count": 0,
+      "historical_evidence_count": 1,
+      "replay_rejections": 0,
+      "replay_reasons": []
+    },
+    {
+      "scenario": "moved",
+      "stage": "replay",
+      "returncode": 0,
+      "result_status": "UNKNOWN",
+      "location": null,
+      "confirmed_evidence_count": 0,
+      "historical_evidence_count": 4,
+      "replay_rejections": 3,
+      "replay_reasons": [
+        "replayed_evidence"
+      ]
+    },
+    {
+      "scenario": "moved",
+      "stage": "hash_replay",
+      "returncode": 0,
+      "result_status": "UNKNOWN",
+      "location": null,
+      "confirmed_evidence_count": 0,
+      "historical_evidence_count": 4,
+      "replay_rejections": 3,
+      "replay_reasons": [
+        "replayed_image_content"
+      ]
+    },
+    {
+      "scenario": "missing",
+      "stage": "register",
+      "returncode": 0,
+      "result_status": "SUSPECTED",
+      "location": null,
+      "confirmed_evidence_count": 0,
+      "historical_evidence_count": 0,
+      "replay_rejections": 0,
+      "replay_reasons": []
+    },
+    {
+      "scenario": "missing",
+      "stage": "search",
+      "returncode": 0,
+      "result_status": "SUSPECTED",
+      "location": null,
+      "confirmed_evidence_count": 0,
+      "historical_evidence_count": 1,
+      "replay_rejections": 0,
+      "replay_reasons": []
+    },
+    {
+      "scenario": "missing",
+      "stage": "replay",
+      "returncode": 0,
+      "result_status": "UNKNOWN",
+      "location": null,
+      "confirmed_evidence_count": 0,
+      "historical_evidence_count": 4,
+      "replay_rejections": 3,
+      "replay_reasons": [
+        "replayed_evidence"
+      ]
+    },
+    {
+      "scenario": "missing",
+      "stage": "hash_replay",
+      "returncode": 0,
+      "result_status": "UNKNOWN",
+      "location": null,
+      "confirmed_evidence_count": 0,
+      "historical_evidence_count": 4,
+      "replay_rejections": 3,
+      "replay_reasons": [
+        "replayed_image_content"
+      ]
+    }
+  ],
+  "validation": {
+    "tissue_images": 7,
+    "other_images": 9,
+    "hashes": "passed",
+    "paths": "passed",
+    "demo_sequence_order": "passed",
+    "originals_unchanged_after_run": true
+  },
+  "configuration": {
+    "opencv_version": "4.14.0",
+    "seed": 0,
+    "threads": 1,
+    "ratio_threshold": 0.75,
+    "min_good_matches": 12,
+    "min_inliers": 10,
+    "min_inlier_ratio": 0.55,
+    "min_reference_coverage": 0.1,
+    "min_sharpness": 30.0,
+    "orb": "Production implementation, Hamming <=64, up to 2000 features",
+    "sift": "Experimental, L2 ratio only, up to 2000 features; distance units are not Hamming",
+    "akaze": "Experimental, default extractor, Hamming <=64",
+    "geometry": "RANSAC 3px, 2000 iterations, confidence .995; unchanged area/convexity/visibility gates"
+  },
+  "bbox_coordinate_check": "NOT_APPLICABLE_NO_FOUND",
+  "note": "A bounded private sample evaluation, not accuracy or latency benchmark; no robot runs. Labels only score outcomes.",
+  "sources": [
+    "https://docs.opencv.org/4.13.0/d1/de0/tutorial_py_feature_homography.html",
+    "https://docs.opencv.org/4.13.0/dc/dc3/tutorial_py_matcher.html",
+    "https://docs.opencv.org/4.13.0/db/d70/tutorial_akaze_matching.html"
+  ]
+}
