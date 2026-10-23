@@ -1,0 +1,26 @@
+{
+  "archive_sha256": "081546dbde846c04078b416ec20c90a37c8fee0e64fcde61cc551dde962b0512",
+  "bytes": 5081580,
+  "entries": 81,
+  "source": {
+    "commit": "db5e44e2a3152ba6e47f160509249747279604a5",
+    "dirty": false,
+    "snapshot": "working_tree",
+    "snapshot_sha256": "8deeab6f4f6f0b92965902bed8fdef63550f7824eef2a15555b3e973712705bb",
+    "untracked_allowlisted_files": 0,
+    "file_count": 72,
+    "source_policy": "Git tracked and nonignored working files, filtered through the source allowlist; private data, databases, caches, logs and repository metadata are excluded. File hashes describe the actual snapshot, which may differ from HEAD."
+  },
+  "material_paths": [
+    "02_HomeTrace技术展示.pptx",
+    "03_HomeTrace演示视频.mp4",
+    "05_运行说明与测试报告.md",
+    "06_开源技术与原创性说明.md",
+    "HomeTrace_作品设计与技术说明书.docx",
+    "PRE_UPLOAD_REVIEW.json",
+    "README_提交材料清单.txt",
+    "SOURCE_INFO.json",
+    "manifest.sha256"
+  ],
+  "verified": true
+}

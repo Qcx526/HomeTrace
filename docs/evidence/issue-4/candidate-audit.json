@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "status": "VERIFIED_CANDIDATE_REQUIRES_OWNER_REVIEW",
+  "ready_to_submit": false,
+  "officially_verified": false,
+  "uploaded": false,
+  "created_at_utc": "2026-10-23T07:11:39.493353+00:00",
+  "issues": [],
+  "warnings": [
+    {
+      "field": "team",
+      "reason": "Identity missing, placeholder or unconfirmed: neutral candidate filename used; complete and verify locally before uploading"
+    },
+    {
+      "field": "privacy_reviewed",
+      "reason": "Content review pending; candidate may be built, but review is required before uploading"
+    },
+    {
+      "field": "media_truthful",
+      "reason": "Content review pending; candidate may be built, but review is required before uploading"
+    },
+    {
+      "field": "materials_consistent",
+      "reason": "Content review pending; candidate may be built, but review is required before uploading"
+    }
+  ],
+  "checks": {
+    "application": {
+      "readable": true,
+      "bytes": 584207,
+      "sha256": "51d939950aa2c0123b577e22a7ad3ff5439c22c91943d5d4e60716dcb89bda87"
+    },
+    "presentation": {
+      "readable": true,
+      "bytes": 970230,
+      "sha256": "33632b46d28c5444ffeac81e7c424bda15af6276f0c3f9f4006b53269280e63e"
+    },
+    "video": {
+      "validation": "ffprobe and full ffmpeg decode",
+      "duration_seconds": 72.28,
+      "readable": true,
+      "bytes": 3058082,
+      "sha256": "4b66e270db2c897b953c7aa1b66c0932b4f6ac4303159ad33a4392228c439f9d"
+    },
+    "run_report": {
+      "readable": true,
+      "bytes": 6477,
+      "sha256": "c31e54eefce174ee3fe8d63f4c628344a505ae5a1ef475ddbf9af0c303297ece"
+    },
+    "originality": {
+      "readable": true,
+      "bytes": 3322,
+      "sha256": "3e4c3baeeedc7d5698665f1fda56a654b8f89b66c833d5a2e79f53e0038064d0"
+    },
+    "source": {
+      "commit": "db5e44e2a3152ba6e47f160509249747279604a5",
+      "dirty": false,
+      "snapshot": "working_tree",
+      "snapshot_sha256": "8deeab6f4f6f0b92965902bed8fdef63550f7824eef2a15555b3e973712705bb",
+      "untracked_allowlisted_files": 0,
+      "file_count": 72,
+      "source_policy": "Git tracked and nonignored working files, filtered through the source allowlist; private data, databases, caches, logs and repository metadata are excluded. File hashes describe the actual snapshot, which may differ from HEAD."
+    },
+    "entry_count": 77
+  },
+  "limitations": [
+    "Team-authored DOCX is accepted under the current PM contract. Official formats, naming, size, attachments and deadline still require submission-page review.",
+    "Structural parsing and media decoding cannot determine whether narrative claims or screenshots are true.",
+    "Privacy checks exclude private paths and recognizable secret formats; they cannot recognize every private photograph, QR code or personal datum embedded in documents/video.",
+    "A verified ZIP is a local candidate, not proof of successful upload. The project owner must extract, open and check it before uploading.",
+    "No official archive size limit is assumed; actual bytes are reported."
+  ],
+  "test_only": false,
+  "document_source": "team_authored",
+  "manual_checks": {
+    "submission_formats": "PENDING",
+    "archive_naming": "PENDING",
+    "size_limit": "PENDING",
+    "required_attachments": "PENDING",
+    "deadline": "PENDING",
+    "team_identity": "PENDING",
+    "extracted_files_opened": "PENDING"
+  },
+  "content_review": {
+    "privacy_reviewed": "PENDING",
+    "media_truthful": "PENDING",
+    "materials_consistent": "PENDING"
+  },
+  "archive_created": true,
+  "archive_bytes": 5081580,
+  "archive_sha256": "081546dbde846c04078b416ec20c90a37c8fee0e64fcde61cc551dde962b0512",
+  "verified_entries": 81,
+  "crc_and_sha256_verified": true
+}

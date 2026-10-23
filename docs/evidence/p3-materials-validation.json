@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "validated_local_date": "2026-10-23",
+  "purpose": "Actual artifact structural and visual validation, not competition submission or PM approval",
+  "docx": {
+    "path": "docs/submission/HomeTrace_作品设计与技术说明书.docx",
+    "document_kind": "team_authored",
+    "sha256": "51d939950aa2c0123b577e22a7ad3ff5439c22c91943d5d4e60716dcb89bda87",
+    "canonical_renderer": "render_docx.py",
+    "canonical_renderer_status": "UNAVAILABLE_LIBREOFFICE_NOT_INSTALLED",
+    "canonical_renderer_error": "LibreOffice soffice.exe was not found on PATH",
+    "actual_renderer": "Microsoft Word COM ExportAsFixedFormat PDF, then bundled Poppler pdftoppm PNG",
+    "word_version": "16.0.14334.20974",
+    "page_count": 7,
+    "visually_reviewed_pages": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "visual_review": "PASS after correcting inherited title border, pagination and image paragraph line height",
+    "private_render_directory": "artifacts/p3-materials/docx-render-r4",
+    "contains_private_photos": false,
+    "team_fields": "EXPLICITLY_PENDING_LOCAL_COMPLETION"
+  },
+  "pptx": {
+    "path": "docs/submission/HomeTrace_技术展示.pptx",
+    "sha256": "33632b46d28c5444ffeac81e7c424bda15af6276f0c3f9f4006b53269280e63e",
+    "authoring_tool": "@oai/artifact-tool 2.8.99",
+    "slide_count": 10,
+    "editable_table_slides": [
+      3,
+      4,
+      8,
+      9
+    ],
+    "package_integrity_findings": 0,
+    "layout_findings": 0,
+    "font_policy": "Microsoft YaHei",
+    "first_party_import": "PASS",
+    "visually_reviewed_slides": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "visual_review": "PASS",
+    "native_powerpoint_execution": "NOT_TESTED",
+    "private_render_directory": "artifacts/p3-materials/r2",
+    "contains_private_photos": false
+  },
+  "evidence_scope": {
+    "screenshots": "Previously reviewed P2 actual public-sample browser screenshots, not new P3 screenshots",
+    "p2_tests": 148,
+    "p3_tests": 226,
+    "household_pairs": 25,
+    "household_method_evaluations": 75,
+    "household_found": 0,
+    "navigation": "simulated_navigation",
+    "real_robot_run": false,
+    "p3_test_log": "docs/evidence/issue-4/pytest.txt"
+  },
+  "final_visual_review": "Parent agent inspected all 7 DOCX pages and all 10 PPT slides after test-count update; no overflow or missing glyphs."
+}

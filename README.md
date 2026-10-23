@@ -2,7 +2,7 @@
 
 > Huawei Embedded AI Challenge 2026 / 开放创新赛道
 
-**项目状态：** P1 已经 PM 审查并随 [PR #6](https://github.com/Qcx526/HomeTrace/pull/6) 合并；本分支实现 [Issue #3](https://github.com/Qcx526/HomeTrace/issues/3) 的可视化寻物 Demo，等待 PM 审查。P0/P1 全部 122 项回归测试保留；当前为公开实拍照片、OpenCV 参考外观匹配与模拟导航，没有真实机器人运行结果。
+**项目状态：** P0/P1/P2 已通过 PM 审查并合并；本分支交付 [Issue #4](https://github.com/Qcx526/HomeTrace/issues/4) 的团队实拍适配、作品材料与候选 ZIP 工具，等待 PM 审查。原有 148 项回归测试完整保留，当前完整回归 226 项通过。导航始终为模拟，没有真实机器人运行数据；家庭照片尚未可靠确认目标。
 
 ## 一句话产品定义
 
@@ -24,13 +24,26 @@ python -m venv .venv
 .\.venv\Scripts\python.exe -m hometrace demo --port 8765 --output-dir artifacts/p2-demo
 ```
 
-打开 [本地 Demo](http://127.0.0.1:8765)，依次选择“找到目标”“未确认负例”“旧图重放保护”，点击“运行并回放”。每次点击都会在独立进程中实际登记和搜索，冻结同一份图片给两种策略使用，并保存独立 SQLite 和报告。随后页面按真实事件回放历史位置、逐步决策、模拟导航、实拍图及匹配框、证据和最终结果；可暂停、单步或下载报告。
+打开 [本地 Demo](http://127.0.0.1:8765)，依次选择“寻找目标”“未确认负例”“旧图重放保护”，点击“运行并回放”。每次点击都会在独立进程中实际登记和搜索，冻结同一份图片给两种策略使用，并保存独立 SQLite 和报告。随后页面按真实事件回放历史位置、逐步决策、模拟导航、实拍图及匹配框、证据和最终结果；可暂停、单步或下载报告。
 
-本轮 [148 项测试通过、0 跳过](docs/evidence/issue-3/pytest.txt)，包含未改动的 54 项 P0 和 68 项 P1；已在全新环境安装 0.3.0 wheel 验证。实际结果为 `moved: FOUND/B`、`missing: SUSPECTED/null`、`replay: UNKNOWN/null`。三组固定顺序与记忆优先对照的步数均打平，不声称取得效率提升。详见 [运行与验收](docs/P2_DEMO.md)、[连续实际录屏 MP4](docs/evidence/issue-3/browser/demo-three-scenarios.mp4) 和 [浏览器逐步检查](docs/evidence/issue-3/browser/browser-checks.json)。
+P2 留存 [148 项测试通过、0 跳过](docs/evidence/issue-3/pytest.txt)，包含未改动的 54 项 P0 和 68 项 P1；已在全新环境安装 0.3.0 wheel 验证。实际结果为 `moved: FOUND/B`、`missing: SUSPECTED/null`、`replay: UNKNOWN/null`。三组固定顺序与记忆优先对照的步数均打平，不声称取得效率提升。详见 [运行与验收](docs/P2_DEMO.md)、[连续实际录屏 MP4](docs/evidence/issue-3/browser/demo-three-scenarios.mp4) 和 [浏览器逐步检查](docs/evidence/issue-3/browser/browser-checks.json)。
 
 ![实际运行：本轮 B 图片匹配与检测框](docs/evidence/issue-3/browser/moved-matched.png)
 
-录屏是自动操作浏览器的实际软件运行，非效果动画；播放节奏不代表机器人移动耗时。团队家庭场景仍待实测，最终比赛 Word/PPT/视频和 ZIP 尚未完成，准备情况见 [初赛交付准备表](docs/SUBMISSION_READINESS.md)。服务只监听本机 `127.0.0.1`；停止用 `Ctrl+C`。macOS/Linux 可替换解释器路径，但本轮未实测这两个系统。
+录屏是自动操作浏览器的实际软件运行，非效果动画；播放节奏不代表机器人移动耗时。P3 已完成家庭实拍评估：25 图对 × 3 方法共 75 次评价，无 FOUND，保留未确认与失败原因。自编 Word、PPT 与中文字幕视频见 [交付材料](docs/submission/README.md)，候选包及人工门槛见 [初赛交付准备表](docs/SUBMISSION_READINESS.md)。服务只监听本机 `127.0.0.1`；停止用 `Ctrl+C`。macOS/Linux 可替换解释器路径，但本轮未实测这两个系统。
+
+## P3 材料与本地候选 ZIP
+
+[实施与命令](docs/P3_DELIVERY.md) · [226 项回归及实际证据](docs/evidence/issue-4/README.md) · [家庭照片实测](docs/TEAM_PHOTO_EVALUATION.md) · [打包工具](docs/SUBMISSION_TOOL.md)
+
+采用团队自编《HomeTrace 作品设计与技术说明书》，官方模板未知不阻断候选包。公开材料不含团队私人照片或真实姓名/手机号；最终身份字段由负责人在本地填写。把实际 DOCX、PPTX、MP4 和报告放入私有材料目录，复制并编辑配置后运行：
+
+```powershell
+.\.venv\Scripts\python.exe tools/build_submission.py --config local_data/submission/config.json --check
+.\.venv\Scripts\python.exe tools/build_submission.py --config local_data/submission/config.json
+```
+
+配置示例为 `examples/submission_config.example.json`。ZIP 输出在 Git 忽略的 `dist_submission/`，成功状态仍是待人工核验的 candidate，不能自动标记官方格式通过或已上传。提交前负责人须打开本届赛事提交页面检查格式、命名、大小、附件与截止时间。
 
 ## 运行 P1 真实图片 CLI
 

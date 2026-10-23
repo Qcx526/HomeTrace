@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "test_only": false,
+  "document_source": "team_authored",
+  "team": {
+    "name": "",
+    "work_name": "HomeTrace",
+    "captain_name": "",
+    "captain_phone": ""
+  },
+  "identity_confirmed": false,
+  "use_private_submission_name": false,
+  "application_filename": "HomeTrace_作品设计与技术说明书.docx",
+  "expected_source_commit": "",
+  "materials": {
+    "application": "final/HomeTrace_作品设计与技术说明书.docx",
+    "presentation": "final/HomeTrace.pptx",
+    "video": "final/HomeTrace.mp4",
+    "run_report": "final/run-report.md",
+    "originality": "final/originality.md"
+  },
+  "confirmations": {
+    "privacy_reviewed": false,
+    "media_truthful": false,
+    "materials_consistent": false
+  },
+  "submission_page_checks": {
+    "submission_formats": false,
+    "archive_naming": false,
+    "size_limit": false,
+    "required_attachments": false,
+    "deadline": false,
+    "team_identity": false,
+    "extracted_files_opened": false
+  }
+}

@@ -1,0 +1,58 @@
+# 本地候选提交包工具
+
+以 [Issue #4 最新 PM 评论](https://github.com/Qcx526/HomeTrace/issues/4#issuecomment-6341286246) 为准：当前使用团队自编作品说明书，`document_source=team_authored`，不要求尚未取得的官方 Word 模板。工具生成本地候选包并校验；不上传，不自动认定官方格式、内容或参赛资格通过。
+
+## 输入与运行
+
+先按 README 安装项目。打包入口只有一个；实际 MP4 校验需要 PATH 中的 `ffprobe` 和 `ffmpeg`，PDF 报告需要可选 `pypdf`，使用 Markdown 报告则无需 PDF 依赖。
+
+```powershell
+New-Item -ItemType Directory -Force local_data/submission
+Copy-Item examples/submission_config.example.json local_data/submission/config.json
+.venv/Scripts/python.exe tools/build_submission.py --config local_data/submission/config.json --check
+.venv/Scripts/python.exe tools/build_submission.py --config local_data/submission/config.json
+```
+
+配置内材料路径相对于配置文件所在目录，使用 `/`，禁止绝对路径、`..`、符号链接和 Windows reparse point。例如 `final/HomeTrace.mp4` 对应 `local_data/submission/final/HomeTrace.mp4`。以下材料必须存在、非空且通过结构检查：
+
+| 配置字段 | 内容 |
+| --- | --- |
+| `materials.application` | 团队自编 DOCX，默认包内名 `HomeTrace_作品设计与技术说明书.docx` |
+| `materials.presentation` | PPTX 技术展示 |
+| `materials.video` | 实际运行录制的 MP4 |
+| `materials.run_report` | UTF-8 Markdown 或 PDF 运行说明与测试报告 |
+| `materials.originality` | UTF-8 Markdown 或 PDF 开源算法与原创性说明 |
+
+团队字段保留为空或待填写时，仍可生成 `candidate-HomeTrace.zip`，报告提示本地补齐。不会自动构造姓名和手机号。若团队信息已真实填写、`identity_confirmed=true` 且 `use_private_submission_name=true`，使用本地私有名称 `实物组-团队名-作品名-队长姓名-手机号.zip`；它仍然是待人工核验的候选包。工具不在控制台或审计 JSON 中打印这些身份值或私有文件路径。不要把真实配置、正式材料、ZIP 或包含个人信息的截图提交到公共 GitHub。
+
+三个内容确认项 `privacy_reviewed`、`media_truthful`、`materials_consistent` 应在实际检查材料后设为 `true`；未确认时记录 `PENDING`，不阻断候选包，但最终上传前必须复核。这些是本地人工/团队确认记录，程序不会自动替人断言内容真实。图像证据与视频必须保持实际照片、公开样例、模拟导航和真机数据的区分。实际检测到的越界、链接、可识别密钥等仍会阻断生成。
+
+`submission_page_checks` 记录格式、名称、大小、附件、截止时间、团队信息和解压打开情况。未确认项为 `PENDING`，**不会阻断完整候选包**。DOCX/PPTX/Markdown 中可检测到的 `TODO`、`待填写` 等占位内容产生待复核提醒；并不代表所有占位内容已被检测出来。最终上传前需逐项核验实际提交页面，不硬编码未知的官方大小限制。
+
+如果后续真的取得官方模板，可选择 `document_source=official_template`，额外提供 `materials.official_template`、本地来源说明 `official_source` 和 `official_template_sha256`。程序只核验文件与校验值，不认证其官方身份；此分支不改变当前自编 Word 的验收合同。
+
+## 输出和校验
+
+输出固定到 Git 忽略的 `dist_submission/`：
+
+- `candidate-HomeTrace.zip`（或本地真实身份命名）：材料与核心源码。
+- `submission-audit.json`：状态、缺失/损坏原因、待核验项、媒体校验方式、源码来源及 ZIP 大小、SHA256；失败也会生成报告。
+- `archive.sha256`：整个成功归档的 SHA256。
+
+ZIP 内包含材料清单、`SOURCE_INFO.json`、`PRE_UPLOAD_REVIEW.json` 和逐文件 `manifest.sha256`。每个输入在写入前再次比对哈希；写入后重新打开 ZIP，检查 CRC、精确条目集合及每个条目的 SHA256。清单不包含自身哈希（避免循环依赖）；程序仍验证清单本身的内存预期哈希，外部归档哈希覆盖整个 ZIP。
+
+源码从 Git 的已跟踪及未忽略工作文件清单中筛选，使用限定的路径和扩展名 allowlist：核心 `src/`、测试、工具、README、构建配置、选定技术文档及 OpenCV 公开回归样例/许可。允许开发候选包包含尚未提交的合法源码，记录 HEAD、工作区脏状态、纳入的未跟踪文件数、实际源码快照 SHA256；不能将它描述为完全等同于 HEAD。`expected_source_commit` 可设置为当前完整提交号，设置后不一致会失败。交付最终版应优先从已提交的可追溯版本生成。
+
+排除 `.git`、`.venv`、隐藏文件、缓存、数据库、`local_data`、私密原图、旧 ZIP、历史运行日志和非 allowlist 文件。公开的记录图像只允许列出的 OpenCV 稳定样例。可识别的私钥/部分 token 格式会阻断；这不是完备的密钥或隐私扫描，文档与视频中的个人信息、二维码、屏幕内容必须人工检查。为防止静默覆盖，已有同名 ZIP 时拒绝生成新包；先在本地归档旧包再重试。
+
+Office 验证包括 ZIP CRC、必需 OOXML 部件、XML 可解析性、可读取文本、重复/越界条目、宏及嵌入对象检查；不保证排版或内容完整，须在 Word/PowerPoint 中打开。MP4 验证包括容器基本结构、`ffprobe` 视频流/时长、`ffmpeg` 全片解码；不证明视频中的内容是实拍或执行结果。PDF 通过 `pypdf` 读取页面；Markdown 检查 UTF-8 和非空内容。
+
+退出码 `0` 表示本次预检/候选归档校验完成；`2` 为 `BLOCKED`。成功状态为 `CANDIDATE_PREFLIGHT_PASSED` 或 `VERIFIED_CANDIDATE_REQUIRES_OWNER_REVIEW`，始终 `ready_to_submit=false`、`officially_verified=false`、`uploaded=false`。必须人工解压打开、完成提交页核验后，才能由团队决定上传。
+
+## 自动化测试边界
+
+```powershell
+.venv/Scripts/python.exe -m pytest tests/test_submission.py -q
+```
+
+合成资料仅用于 `test_only=true`，输出恒为 `TEST_ONLY-candidate-HomeTrace.zip`，清单和状态均明确非正式提交。测试 MP4 仅有伪造的结构盒，用于校验异常输入逻辑，不是可播放视频。真实候选视频不会使用该旁路，必须完成解码。测试覆盖材料缺失/为空、损坏 Office/MP4、路径越界/链接、工作区源码与隐私排除、密钥阻断、重复配置、打包期间文件改变、已有 ZIP、防止身份泄漏、完整性和清单复核。

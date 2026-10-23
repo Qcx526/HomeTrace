@@ -3,7 +3,7 @@
 // Render only the prefix of acquired core events selected by the viewer.
 // The page never supplies detections, navigation outcomes, or plan decisions.
 const $ = (id) => document.getElementById(id);
-const state = {scenario: "moved", data: null, cursor: -1, timer: null, busy: false};
+const state = {scenario: "moved", data: null, cursor: -1, timer: null, busy: false, cases: []};
 const strategies = {memory_first: "记忆优先", fixed_order: "固定顺序"};
 const statusNames = {FOUND: "已确认参考外观", SUSPECTED: "疑似 · 尚未确认", UNKNOWN: "未知 · 尚未确认", UNREACHABLE: "未能到达", NOT_FOUND_IN_VIEW: "本视野未发现"};
 const reasons = {
@@ -73,6 +73,7 @@ function setBusy(busy) {
   state.busy = busy;
   $("run").disabled = busy;
   $("strategy").disabled = busy;
+  $("case-select").disabled = busy;
   document.querySelectorAll("[data-scenario]").forEach((button) => {button.disabled = busy;});
   text("run", busy ? "正在实际计算…" : "运行并回放 ↗");
 }
@@ -87,11 +88,12 @@ async function run() {
   render();
   text("session-status", "正在独立数据库中登记、搜索并运行公平对照；真正读取照片执行 OpenCV 匹配…");
   try {
-    const response = await fetch("/api/run", {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({scenario: state.scenario, strategy: $("strategy").value})});
+    const response = await fetch("/api/run", {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({scenario: state.scenario, strategy: $("strategy").value, case_id: $("case-select").value})});
     const data = await response.json();
     if (!response.ok) throw new Error(data.error || "运行失败，请检查本地服务日志。");
     if (!Array.isArray(data.report?.events) || !data.report.events.length) throw new Error("服务未返回有效的搜索事件。");
     state.data = data;
+    showCaseNotice();
     state.cursor = 0;
     text("session-status", "计算已完成 · 下方按真实事件顺序回放；可暂停、逐步查看或跳至结果。");
     text("session-id", "RUN " + String(data.run_id).slice(0, 12));
@@ -147,9 +149,9 @@ function renderHistory(view) {
   text("history-count", view.history.length + " 条历史");
   const confirmed = view.history.filter((record) => record.detection?.status === "FOUND");
   const latest = confirmed[confirmed.length - 1];
-  text("history-location", latest ? "历史确认位置 " + latest.observation.viewpoint_id + " · 非当前确认" : "等待读取 SQLite 记忆");
+  text("history-location", latest ? "历史确认位置 " + latest.observation.viewpoint_id + " · 非当前确认" : view.history.length ? "历史图像尚未确认目标位置" : "等待读取 SQLite 记忆");
   const reference = state.data?.registration?.evidence?.[0]?.observation;
-  const url = reference && imageURL(reference.image_path);
+  const url = imageURL(state.data?.case?.reference || reference?.image_path);
   const image = $("reference-image");
   image.hidden = !url || !view.history.length;
   if (url && image.getAttribute("src") !== url) image.src = url;
@@ -357,6 +359,17 @@ function render() {
 }
 
 $("run").addEventListener("click", run);
+function showCaseNotice() {
+  const current = state.data?.case || state.cases.find(c => c.case_id === $("case-select").value);
+  if (!current) return;
+  text("source-notice", current.source_notice);
+  text("history-note", current.history_note);
+  text("case-privacy", current.private ? "本地私有照片 · 请勿公开截图或原图" : "公开回归样例");
+}
+$("case-select").addEventListener("change", () => {
+  stop(); state.data = null; state.cursor = -1; render(); showCaseNotice();
+  text("session-status", "已选择数据集；运行结果以本轮实际图像验证为准，不预设 FOUND。");
+});
 document.querySelectorAll("[data-scenario]").forEach((button) => button.addEventListener("click", () => selectScenario(button.dataset.scenario)));
 $("strategy").addEventListener("change", () => {if (!state.data) text("strategy-label", strategies[$("strategy").value]);});
 $("previous").addEventListener("click", () => {stop(); setCursor(state.cursor - 1);});
@@ -379,7 +392,18 @@ render();
 fetch("/api/config").then(async (response) => {
   if (!response.ok) throw new Error("本地服务配置读取失败。");
   const config = await response.json();
+  state.cases = config.cases || [];
+  if (state.cases.length) {
+    $("case-select").replaceChildren(...state.cases.map(c => {
+      const option = element("option", null, c.label); option.value = c.case_id; return option;
+    }));
+  }
   if (config.source_notice) text("source-notice", config.source_notice);
+  showCaseNotice();
+  if (config.unavailable_cases?.length) {
+    text("error", "部分本地案例不可用：" + config.unavailable_cases.map(c => c.label + " — " + c.error).join("；"));
+    $("error").hidden = false;
+  }
 }).catch((error) => {
   text("error", error.message + " 请确认通过 HomeTrace 本地服务打开页面。");
   $("error").hidden = false;

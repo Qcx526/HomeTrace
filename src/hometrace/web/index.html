@@ -19,9 +19,10 @@
       <p class="source-note" id="source-notice">公开照片驱动的软件验证 · 地点与时间为演示编排<br>不代表家庭现场或真实机器人运行</p>
     </section>
 
+    <div class="case-picker"><label for="case-select">登记物品 / 数据集</label><select id="case-select"><option value="public">OpenCV 公开样例</option></select><span id="case-privacy">公开回归样例</span></div>
     <section class="controls panel" aria-label="运行场景">
       <div class="scenario-group" role="group" aria-label="选择演示场景">
-        <button class="scenario selected" data-scenario="moved" aria-pressed="true"><span class="scenario-number">01</span><span><strong>找到目标</strong><small>历史 A → 继续核验</small></span></button>
+        <button class="scenario selected" data-scenario="moved" aria-pressed="true"><span class="scenario-number">01</span><span><strong>寻找目标</strong><small>历史 A → 继续核验</small></span></button>
         <button class="scenario" data-scenario="missing" aria-pressed="false"><span class="scenario-number">02</span><span><strong>未确认负例</strong><small>保留不确定性</small></span></button>
         <button class="scenario" data-scenario="replay" aria-pressed="false"><span class="scenario-number">03</span><span><strong>旧图重放保护</strong><small>历史不等于新发现</small></span></button>
       </div>
@@ -35,7 +36,7 @@
         <section class="panel history-panel">
           <div class="panel-heading"><h2><span class="section-index">01</span>历史记忆</h2><span class="mini-tag">仅供规划</span></div>
           <div class="reference"><img id="reference-image" alt="登记目标的参考照片" hidden><div><strong id="object-name">待登记目标</strong><p id="history-location">等待读取 SQLite 记忆</p><span class="badge neutral" id="history-count">0 条历史</span></div></div>
-          <p class="small-note">样例历史 A 使用参考图自匹配建立，不能计作独立识别成绩。</p>
+          <p class="small-note" id="history-note">样例历史 A 使用参考图自匹配建立，不能计作独立识别成绩。</p>
           <details class="history-details"><summary>查看本轮开始前的历史</summary><div id="history-records" class="history-records"></div></details>
         </section>
         <section class="panel map-panel">
@@ -83,7 +84,7 @@
       <div class="table-scroll"><table><thead><tr><th>策略</th><th>搜索顺序</th><th>尝试步数</th><th>模拟到达</th><th>有效解码</th><th>结果</th></tr></thead><tbody id="comparison-body"></tbody></table></div>
       <p class="small-note" id="comparison-note"></p><details><summary>查看对照输入与边界</summary><pre id="fairness"></pre></details>
     </section>
-    <footer><strong>验证现在，不把记忆当答案。</strong><p>OpenCV 参考外观匹配 · SQLite 持久记忆 · 本地离线运行<br>低纹理、遮挡、相同外观实体仍有局限；团队家庭场景与真实机器人尚未验证。</p></footer>
+    <footer><strong>验证现在，不把记忆当答案。</strong><p>OpenCV 参考外观匹配 · SQLite 持久记忆 · 本地离线运行<br>低纹理、遮挡、相同外观实体仍有局限；照片软件实验不等于真实机器人运行。</p></footer>
   </main>
 </body>
 </html>

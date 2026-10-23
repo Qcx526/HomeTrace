@@ -87,11 +87,11 @@ def make_server(service: DemoService, port: int = 8765) -> ThreadingHTTPServer:
                 if not 0 < length <= 1024:
                     raise ValueError("Invalid request length")
                 value = json.loads(self.rfile.read(length))
-                if not isinstance(value, dict) or set(value) != {"scenario", "strategy"}:
-                    raise ValueError("Expected scenario and strategy only")
+                if not isinstance(value, dict) or set(value) not in ({"scenario", "strategy"}, {"scenario", "strategy", "case_id"}):
+                    raise ValueError("Expected scenario, strategy and optional case_id only")
                 if not all(isinstance(v, str) for v in value.values()):
                     raise ValueError("Scenario and strategy must be strings")
-                self._json(service.run(value["scenario"], value["strategy"]))
+                self._json(service.run(value["scenario"], value["strategy"], value.get("case_id", "public")))
             except DemoBusyError as exc:
                 self._json({"error": str(exc)}, 409)
             except (ValueError, UnicodeError) as exc:
@@ -107,13 +107,14 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--port", type=int, default=8765)
     parser.add_argument("--output-dir", type=Path, default=Path("artifacts/p2-demo"))
     parser.add_argument("--samples-dir", type=Path, default=Path("examples/recorded_images"))
+    parser.add_argument("--case-config", type=Path, action="append", default=[], help="Optional private local object configuration; repeat to add cases")
     args = parser.parse_args(argv)
     try:
         if not 0 <= args.port <= 65535:
             raise ValueError("Port must be between 0 and 65535")
         for name in ("history.json", "moved.json", "missing.json"):
             load_recorded_scene(args.samples_dir / name)
-        service = DemoService(args.samples_dir, args.output_dir)
+        service = DemoService(args.samples_dir, args.output_dir, case_configs=args.case_config)
         with make_server(service, args.port) as server:
             print(f"HomeTrace demo: http://127.0.0.1:{server.server_port}", flush=True)
             print("Recorded photographs + simulated navigation. Real execution followed by event playback.", flush=True)

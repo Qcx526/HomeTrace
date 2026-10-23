@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "case_id": "team-tissue",
+  "label": "团队纸巾实拍适配 待图像验证",
+  "object_id": "tissue-pack",
+  "reference": "images/ref_tissue.jpg",
+  "image_root": ".",
+  "source_notice": "团队实拍 · 本地私有 · 模拟导航 · 时间为演示顺序，原始拍摄时间未认证。",
+  "history_note": "独立历史照片；只有实际检测确认才显示历史位置，不预设 A 已确认。"
+}

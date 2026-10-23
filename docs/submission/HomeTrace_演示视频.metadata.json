@@ -1,0 +1,20 @@
+{
+  "programs": [],
+  "stream_groups": [],
+  "streams": [
+    {
+      "codec_name": "h264",
+      "width": 1440,
+      "height": 1080
+    }
+  ],
+  "format": {
+    "duration": "72.280000",
+    "size": "3058082"
+  },
+  "source_sha256": "3ff4367c48613a0efb472bc8f6bf5369ea337665fbfbc8ef794c5c99c3cb7112",
+  "output_sha256": "4b66e270db2c897b953c7aa1b66c0932b4f6ac4303159ad33a4392228c439f9d",
+  "source": "Actual public browser validation recording; captions and title cards added; no synthetic detection events",
+  "audio": "No audio; Chinese explanatory captions",
+  "full_decode_passed": true
+}
