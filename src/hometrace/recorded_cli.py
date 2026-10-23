@@ -39,6 +39,10 @@ def main(argv: list[str]) -> int:
         command.add_argument("--output-dir", type=Path, required=True)
         if name == "register":
             command.add_argument("--reference", required=True, help="Reference image path relative to image-root")
+            command.add_argument(
+                "--reference-roi", type=int, nargs=4, metavar=("X1", "Y1", "X2", "Y2"),
+                help="Object-only rectangle in original reference pixels; right/bottom exclusive, never applied to scene images",
+            )
             command.add_argument("--description", default="Registered textured planar object")
         else:
             command.add_argument(
@@ -64,7 +68,7 @@ def main(argv: list[str]) -> int:
             if reference_path.stat().st_size > MAX_IMAGE_BYTES:
                 raise ValueError("Reference image exceeds 25 MiB")
             reference_hash = hashlib.sha256(reference_path.read_bytes()).hexdigest()
-            matcher = ImageMatcher(reference_path, reference_hash, args.object_id, scene.image_root)
+            matcher = ImageMatcher(reference_path, reference_hash, args.object_id, scene.image_root, reference_roi=args.reference_roi)
             args.db.parent.mkdir(parents=True, exist_ok=True)
         elif not args.db.is_file():
             raise ValueError("Database does not exist; run register first")
@@ -75,6 +79,7 @@ def main(argv: list[str]) -> int:
                 memory.register_object(
                     args.object_id, args.reference, args.description,
                     reference_hash, DataSource.RECORDED_IMAGE,
+                    reference_roi=matcher.reference_roi,
                 )
             else:
                 registered = memory.get_object(args.object_id)
@@ -85,6 +90,7 @@ def main(argv: list[str]) -> int:
                 reference_path = resolve_image_path(scene.image_root, registered.sample_image_path)
                 matcher = ImageMatcher(
                     reference_path, registered.sample_image_hash, args.object_id, scene.image_root,
+                    reference_roi=registered.reference_roi,
                 )
             report = SearchCore(
                 memory, RecordedImageAdapter(scene), matcher,

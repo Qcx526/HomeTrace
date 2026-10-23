@@ -2,7 +2,7 @@
 
 > Huawei Embedded AI Challenge 2026 / 开放创新赛道
 
-**项目状态：** P0/P1/P2 已通过 PM 审查并合并；本分支交付 [Issue #4](https://github.com/Qcx526/HomeTrace/issues/4) 的团队实拍适配、作品材料与候选 ZIP 工具，等待 PM 审查。原有 148 项回归测试完整保留，当前完整回归 226 项通过。导航始终为模拟，没有真实机器人运行数据；家庭照片尚未可靠确认目标。
+**项目状态：** P0/P1/P2 与 P3 候选交付（PR #8）已合并；本分支处理 [Issue #4 最新 PM 要求](https://github.com/Qcx526/HomeTrace/issues/4#issuecomment-6360118290) 的背景误报与登记 ROI，等待 PM 审查。原有 226 项测试保持不变，新增回归与实测见 [R1 验证](docs/evidence/issue-4-r1/README.md)。导航始终为模拟，没有真实机器人运行数据；家庭照片尚未可靠确认目标。
 
 ## 一句话产品定义
 
@@ -33,6 +33,8 @@ P2 留存 [148 项测试通过、0 跳过](docs/evidence/issue-3/pytest.txt)，�
 录屏是自动操作浏览器的实际软件运行，非效果动画；播放节奏不代表机器人移动耗时。P3 已完成家庭实拍评估：25 图对 × 3 方法共 75 次评价，无 FOUND，保留未确认与失败原因。自编 Word、PPT 与中文字幕视频见 [交付材料](docs/submission/README.md)，候选包及人工门槛见 [初赛交付准备表](docs/SUBMISSION_READINESS.md)。服务只监听本机 `127.0.0.1`；停止用 `Ctrl+C`。macOS/Linux 可替换解释器路径，但本轮未实测这两个系统。
 
 ## P3 材料与本地候选 ZIP
+
+2026-10-23 新增四组家庭实拍的正式对照已复现耳机壳参考图中的木纹背景误报。仅在登记时固定物体 ROI 可消除本次空桌面误确认，但仍没有可靠家庭正例；不要将耳机壳加入“家庭已找到”展示。新增 40 项评价与此前 75 项评价分开统计，见 [登记 ROI 实验与运行方法](docs/REGISTRATION_ROI_EVALUATION.md)。公共 OpenCV 三场景保持稳定回归。现有 Word/PPT/视频是 PR #8 历史材料，最新边界以 R1 报告为准；旧 candidate 不包含本次代码，不能作为 R1 提交包。
 
 [实施与命令](docs/P3_DELIVERY.md) · [226 项回归及实际证据](docs/evidence/issue-4/README.md) · [家庭照片实测](docs/TEAM_PHOTO_EVALUATION.md) · [打包工具](docs/SUBMISSION_TOOL.md)
 

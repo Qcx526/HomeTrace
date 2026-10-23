@@ -8,7 +8,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Protocol
 
-from .models import DataSource, DetectionResult, MemoryRecord, Observation, RegisteredObject, Status, TimestampBasis
+from .models import DataSource, DetectionResult, MemoryRecord, Observation, RegisteredObject, Status, TimestampBasis, validate_reference_roi
 
 
 class MemoryStore(Protocol):
@@ -56,6 +56,8 @@ class SQLiteMemory:
                 self.connection.execute("ALTER TABLE objects ADD COLUMN sample_image_hash TEXT")
             if "data_source" not in columns:
                 self.connection.execute("ALTER TABLE objects ADD COLUMN data_source TEXT NOT NULL DEFAULT 'fixture'")
+            if "reference_roi" not in columns:
+                self.connection.execute("ALTER TABLE objects ADD COLUMN reference_roi TEXT")
 
     @contextmanager
     def transaction(self):
@@ -78,34 +80,38 @@ class SQLiteMemory:
     def register_object(
         self, object_id: str, sample_image_path: str | None, description: str,
         sample_image_hash: str | None = None, data_source: DataSource = DataSource.FIXTURE,
+        *, reference_roi: tuple[int, int, int, int] | list[int] | None = None,
     ) -> RegisteredObject:
         if not object_id.strip():
             raise ValueError("object_id must not be empty")
         source = DataSource(data_source)
+        roi = validate_reference_roi(reference_roi)
+        if roi is not None and source != DataSource.RECORDED_IMAGE:
+            raise ValueError("reference_roi requires recorded-image registration")
         if source == DataSource.RECORDED_IMAGE and (not sample_image_path or not sample_image_hash):
             raise ValueError("Recorded-image registration requires a reference path and SHA256")
-        obj = RegisteredObject(object_id, description, sample_image_path, sample_image_hash, source)
+        obj = RegisteredObject(object_id, description, sample_image_path, sample_image_hash, source, roi)
         previous = self.get_object(object_id)
-        if previous and (previous.sample_image_path, previous.sample_image_hash, previous.data_source) != (
-            sample_image_path, sample_image_hash, source
+        if previous and (previous.sample_image_path, previous.sample_image_hash, previous.data_source, previous.reference_roi) != (
+            sample_image_path, sample_image_hash, source, roi
         ):
             raise ValueError("Existing object reference/source is immutable; register a new object_id")
         with self.transaction():
             self.connection.execute(
-                """INSERT INTO objects (object_id, description, sample_image_path, sample_image_hash, data_source)
-                VALUES (?, ?, ?, ?, ?)
+                """INSERT INTO objects (object_id, description, sample_image_path, sample_image_hash, data_source, reference_roi)
+                VALUES (?, ?, ?, ?, ?, ?)
                 ON CONFLICT(object_id) DO UPDATE SET
                     description=excluded.description""",
-                (object_id, description, sample_image_path, sample_image_hash, source.value),
+                (object_id, description, sample_image_path, sample_image_hash, source.value, json.dumps(roi) if roi else None),
             )
         return obj
 
     def get_object(self, object_id: str) -> RegisteredObject | None:
         row = self.connection.execute(
-            "SELECT object_id, description, sample_image_path, sample_image_hash, data_source FROM objects WHERE object_id=?",
+            "SELECT object_id, description, sample_image_path, sample_image_hash, data_source, reference_roi FROM objects WHERE object_id=?",
             (object_id,),
         ).fetchone()
-        return RegisteredObject(*row[:4], DataSource(row[4])) if row else None
+        return RegisteredObject(*row[:4], DataSource(row[4]), validate_reference_roi(json.loads(row[5])) if row[5] else None) if row else None
 
     def query_memory(self, object_id: str) -> list[MemoryRecord]:
         rows = self.connection.execute(

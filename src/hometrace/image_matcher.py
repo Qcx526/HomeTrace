@@ -8,7 +8,7 @@ import hashlib
 from pathlib import Path
 from time import perf_counter
 
-from .models import DataSource, DetectionResult, Observation, Status
+from .models import DataSource, DetectionResult, Observation, Status, validate_reference_roi
 
 
 class ImageMatcher:
@@ -33,6 +33,7 @@ class ImageMatcher:
         object_id: str,
         image_root: Path,
         *,
+        reference_roi: tuple[int, int, int, int] | list[int] | None = None,
         seed: int = 0,
         threads: int = 1,
     ) -> None:
@@ -58,8 +59,14 @@ class ImageMatcher:
         image, error = self._read_image(self.reference_path, reference_hash)
         if error:
             raise ValueError(f"Reference image is unusable: {error}")
+        self.reference_original_size = (int(image.shape[1]), int(image.shape[0]))
+        self.reference_roi = validate_reference_roi(reference_roi, self.reference_original_size)
+        if self.reference_roi is not None:
+            x1, y1, x2, y2 = self.reference_roi
+            image = image[y1:y2, x1:x2].copy()
         self.reference_image = image
         sharpness = float(cv2.Laplacian(image, cv2.CV_64F).var())
+        self.reference_sharpness = sharpness
         self.reference_keypoints, self.reference_descriptors = self.orb.detectAndCompute(image, None)
         if (
             sharpness < self.MIN_SHARPNESS
@@ -100,6 +107,13 @@ class ImageMatcher:
         metrics = {
             "image_decoded": False,
             "reference_keypoints": len(self.reference_keypoints),
+            "reference_sharpness": round(self.reference_sharpness, 3),
+            "reference_image_hash": self.reference_hash,
+            "reference_preprocessing": "registration_roi" if self.reference_roi else "full_image",
+            "reference_roi": list(self.reference_roi) if self.reference_roi else None,
+            "reference_original_size": list(self.reference_original_size),
+            "reference_size": [int(self.reference_image.shape[1]), int(self.reference_image.shape[0])],
+            "scene_preprocessing": "full_image",
             "scene_keypoints": 0,
             "good_matches": 0,
             "inliers": 0,
@@ -149,6 +163,7 @@ class ImageMatcher:
         if error:
             return finish(Status.UNKNOWN, error)
         metrics["image_decoded"] = True
+        metrics["scene_size"] = [int(image.shape[1]), int(image.shape[0])]
         if observation.visibility_status != "clear":
             return finish(Status.UNKNOWN, "visibility_not_clear")
         try:

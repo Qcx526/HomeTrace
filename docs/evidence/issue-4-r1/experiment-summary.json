@@ -1,0 +1,841 @@
+{
+  "schema_version": 1,
+  "experiment": "fixed_registration_roi_production_matcher",
+  "generated_at": "2026-10-23T08:07:03.118384+00:00",
+  "environment": {
+    "python": "3.11.4",
+    "os": "Windows",
+    "machine": "AMD64",
+    "opencv": "4.14.0",
+    "numpy": "2.4.6",
+    "seed": 0,
+    "threads": 1
+  },
+  "baseline": "Archived production ImageMatcher from Git; original source retained privately",
+  "baseline_code_commit": "e3adca7ebde7317546a70506514d65c39fe1a62f",
+  "input_images_validated": 24,
+  "originals_unchanged": true,
+  "thresholds_unchanged": true,
+  "scene_preprocessing": "full_image",
+  "roi_selection": "Provided registration suggestions fixed before evaluation; no per-scene tuning",
+  "capture_times": "unknown; no historical location claims",
+  "navigation": "none in pair experiment; any separate CLI navigation is simulated",
+  "evaluation_labels": "Human review only; uncertain and auxiliary excluded from positive/negative counts",
+  "precheck_results_used_as_detections": false,
+  "counts": {
+    "baseline_full_image": {
+      "planned_evaluations": 20,
+      "detect_calls": 15,
+      "enrollment_rejected_cases": 5,
+      "statuses": {
+        "SUSPECTED": 13,
+        "FOUND": 1,
+        "UNKNOWN": 1
+      },
+      "labels": {
+        "positive": {
+          "planned": 6,
+          "detect_calls": 4,
+          "found": 0
+        },
+        "negative": {
+          "planned": 8,
+          "detect_calls": 6,
+          "found": 1
+        },
+        "uncertain": {
+          "planned": 5,
+          "detect_calls": 4,
+          "found": 0
+        },
+        "auxiliary": {
+          "planned": 1,
+          "detect_calls": 1,
+          "found": 0
+        }
+      }
+    },
+    "registration_roi": {
+      "planned_evaluations": 20,
+      "detect_calls": 20,
+      "enrollment_rejected_cases": 0,
+      "statuses": {
+        "SUSPECTED": 16,
+        "UNKNOWN": 4
+      },
+      "labels": {
+        "positive": {
+          "planned": 6,
+          "detect_calls": 6,
+          "found": 0
+        },
+        "negative": {
+          "planned": 8,
+          "detect_calls": 8,
+          "found": 0
+        },
+        "uncertain": {
+          "planned": 5,
+          "detect_calls": 5,
+          "found": 0
+        },
+        "auxiliary": {
+          "planned": 1,
+          "detect_calls": 1,
+          "found": 0
+        }
+      }
+    }
+  },
+  "evaluations": [
+    {
+      "group": "earbud",
+      "mode": "baseline_full_image",
+      "case": "scene_01",
+      "evaluation_label": "uncertain",
+      "detect_called": true,
+      "outcome": "detected",
+      "status": "SUSPECTED",
+      "reason": "insufficient_distinct_matches",
+      "metrics": {
+        "reference_keypoints": 1404,
+        "scene_keypoints": 2000,
+        "good_matches": 8,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 69.632
+      }
+    },
+    {
+      "group": "earbud",
+      "mode": "baseline_full_image",
+      "case": "scene_02",
+      "evaluation_label": "uncertain",
+      "detect_called": true,
+      "outcome": "detected",
+      "status": "SUSPECTED",
+      "reason": "insufficient_distinct_matches",
+      "metrics": {
+        "reference_keypoints": 1404,
+        "scene_keypoints": 2000,
+        "good_matches": 6,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 67.28
+      }
+    },
+    {
+      "group": "earbud",
+      "mode": "baseline_full_image",
+      "case": "scene_03",
+      "evaluation_label": "negative",
+      "detect_called": true,
+      "outcome": "detected",
+      "status": "SUSPECTED",
+      "reason": "insufficient_distinct_matches",
+      "metrics": {
+        "reference_keypoints": 1404,
+        "scene_keypoints": 2000,
+        "good_matches": 5,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 68.234
+      }
+    },
+    {
+      "group": "earbud",
+      "mode": "baseline_full_image",
+      "case": "scene_04",
+      "evaluation_label": "positive",
+      "detect_called": true,
+      "outcome": "detected",
+      "status": "SUSPECTED",
+      "reason": "insufficient_distinct_matches",
+      "metrics": {
+        "reference_keypoints": 1404,
+        "scene_keypoints": 2000,
+        "good_matches": 7,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 68.745
+      }
+    },
+    {
+      "group": "earbud",
+      "mode": "baseline_full_image",
+      "case": "scene_05",
+      "evaluation_label": "negative",
+      "detect_called": true,
+      "outcome": "detected",
+      "status": "FOUND",
+      "reason": "verified_planar_reference_match",
+      "metrics": {
+        "reference_keypoints": 1404,
+        "scene_keypoints": 775,
+        "good_matches": 55,
+        "inliers": 44,
+        "inlier_ratio": 0.8,
+        "reference_coverage": 0.4012,
+        "projected_area_fraction": 0.9897,
+        "projected_visible_fraction": 0.9284,
+        "elapsed_ms": 55.972
+      }
+    },
+    {
+      "group": "panda",
+      "mode": "baseline_full_image",
+      "case": "scene_01",
+      "evaluation_label": "uncertain",
+      "detect_called": false,
+      "outcome": "enrollment_rejected",
+      "status": null,
+      "reason": "reference_quality_gate_rejected",
+      "metrics": {}
+    },
+    {
+      "group": "panda",
+      "mode": "baseline_full_image",
+      "case": "scene_02",
+      "evaluation_label": "positive",
+      "detect_called": false,
+      "outcome": "enrollment_rejected",
+      "status": null,
+      "reason": "reference_quality_gate_rejected",
+      "metrics": {}
+    },
+    {
+      "group": "panda",
+      "mode": "baseline_full_image",
+      "case": "scene_03",
+      "evaluation_label": "negative",
+      "detect_called": false,
+      "outcome": "enrollment_rejected",
+      "status": null,
+      "reason": "reference_quality_gate_rejected",
+      "metrics": {}
+    },
+    {
+      "group": "panda",
+      "mode": "baseline_full_image",
+      "case": "scene_04",
+      "evaluation_label": "negative",
+      "detect_called": false,
+      "outcome": "enrollment_rejected",
+      "status": null,
+      "reason": "reference_quality_gate_rejected",
+      "metrics": {}
+    },
+    {
+      "group": "panda",
+      "mode": "baseline_full_image",
+      "case": "scene_05",
+      "evaluation_label": "positive",
+      "detect_called": false,
+      "outcome": "enrollment_rejected",
+      "status": null,
+      "reason": "reference_quality_gate_rejected",
+      "metrics": {}
+    },
+    {
+      "group": "keys",
+      "mode": "baseline_full_image",
+      "case": "scene_01",
+      "evaluation_label": "uncertain",
+      "detect_called": true,
+      "outcome": "detected",
+      "status": "SUSPECTED",
+      "reason": "insufficient_distinct_matches",
+      "metrics": {
+        "reference_keypoints": 2000,
+        "scene_keypoints": 2000,
+        "good_matches": 11,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 109.182
+      }
+    },
+    {
+      "group": "keys",
+      "mode": "baseline_full_image",
+      "case": "scene_02",
+      "evaluation_label": "uncertain",
+      "detect_called": true,
+      "outcome": "detected",
+      "status": "SUSPECTED",
+      "reason": "insufficient_distinct_matches",
+      "metrics": {
+        "reference_keypoints": 2000,
+        "scene_keypoints": 2000,
+        "good_matches": 8,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 97.653
+      }
+    },
+    {
+      "group": "keys",
+      "mode": "baseline_full_image",
+      "case": "scene_03",
+      "evaluation_label": "positive",
+      "detect_called": true,
+      "outcome": "detected",
+      "status": "SUSPECTED",
+      "reason": "insufficient_geometric_inliers",
+      "metrics": {
+        "reference_keypoints": 2000,
+        "scene_keypoints": 2000,
+        "good_matches": 12,
+        "inliers": 4,
+        "inlier_ratio": 0.3333,
+        "reference_coverage": 0.0098,
+        "elapsed_ms": 105.835
+      }
+    },
+    {
+      "group": "keys",
+      "mode": "baseline_full_image",
+      "case": "scene_04",
+      "evaluation_label": "negative",
+      "detect_called": true,
+      "outcome": "detected",
+      "status": "SUSPECTED",
+      "reason": "insufficient_distinct_matches",
+      "metrics": {
+        "reference_keypoints": 2000,
+        "scene_keypoints": 2000,
+        "good_matches": 7,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 89.113
+      }
+    },
+    {
+      "group": "keys",
+      "mode": "baseline_full_image",
+      "case": "scene_05",
+      "evaluation_label": "negative",
+      "detect_called": true,
+      "outcome": "detected",
+      "status": "SUSPECTED",
+      "reason": "insufficient_distinct_matches",
+      "metrics": {
+        "reference_keypoints": 2000,
+        "scene_keypoints": 1091,
+        "good_matches": 8,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 68.328
+      }
+    },
+    {
+      "group": "tissue",
+      "mode": "baseline_full_image",
+      "case": "scene_01",
+      "evaluation_label": "positive",
+      "detect_called": true,
+      "outcome": "detected",
+      "status": "SUSPECTED",
+      "reason": "insufficient_geometric_inliers",
+      "metrics": {
+        "reference_keypoints": 2000,
+        "scene_keypoints": 2000,
+        "good_matches": 12,
+        "inliers": 5,
+        "inlier_ratio": 0.4167,
+        "reference_coverage": 0.0327,
+        "elapsed_ms": 95.959
+      }
+    },
+    {
+      "group": "tissue",
+      "mode": "baseline_full_image",
+      "case": "scene_02",
+      "evaluation_label": "auxiliary",
+      "detect_called": true,
+      "outcome": "detected",
+      "status": "UNKNOWN",
+      "reason": "low_sharpness_or_texture",
+      "metrics": {
+        "reference_keypoints": 2000,
+        "scene_keypoints": 0,
+        "good_matches": 0,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 36.05
+      }
+    },
+    {
+      "group": "tissue",
+      "mode": "baseline_full_image",
+      "case": "scene_03",
+      "evaluation_label": "negative",
+      "detect_called": true,
+      "outcome": "detected",
+      "status": "SUSPECTED",
+      "reason": "insufficient_distinct_matches",
+      "metrics": {
+        "reference_keypoints": 2000,
+        "scene_keypoints": 2000,
+        "good_matches": 10,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 90.502
+      }
+    },
+    {
+      "group": "tissue",
+      "mode": "baseline_full_image",
+      "case": "scene_04",
+      "evaluation_label": "positive",
+      "detect_called": true,
+      "outcome": "detected",
+      "status": "SUSPECTED",
+      "reason": "insufficient_distinct_matches",
+      "metrics": {
+        "reference_keypoints": 2000,
+        "scene_keypoints": 793,
+        "good_matches": 10,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 70.863
+      }
+    },
+    {
+      "group": "tissue",
+      "mode": "baseline_full_image",
+      "case": "scene_05",
+      "evaluation_label": "negative",
+      "detect_called": true,
+      "outcome": "detected",
+      "status": "SUSPECTED",
+      "reason": "insufficient_geometric_inliers",
+      "metrics": {
+        "reference_keypoints": 2000,
+        "scene_keypoints": 611,
+        "good_matches": 15,
+        "inliers": 5,
+        "inlier_ratio": 0.3333,
+        "reference_coverage": 0.0075,
+        "elapsed_ms": 75.966
+      }
+    },
+    {
+      "group": "earbud",
+      "mode": "registration_roi",
+      "case": "scene_01",
+      "evaluation_label": "uncertain",
+      "detect_called": true,
+      "outcome": "detected",
+      "status": "SUSPECTED",
+      "reason": "insufficient_distinct_matches",
+      "metrics": {
+        "reference_keypoints": 552,
+        "scene_keypoints": 2000,
+        "good_matches": 6,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 75.098
+      }
+    },
+    {
+      "group": "earbud",
+      "mode": "registration_roi",
+      "case": "scene_02",
+      "evaluation_label": "uncertain",
+      "detect_called": true,
+      "outcome": "detected",
+      "status": "UNKNOWN",
+      "reason": "no_verified_match",
+      "metrics": {
+        "reference_keypoints": 552,
+        "scene_keypoints": 2000,
+        "good_matches": 3,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 80.995
+      }
+    },
+    {
+      "group": "earbud",
+      "mode": "registration_roi",
+      "case": "scene_03",
+      "evaluation_label": "negative",
+      "detect_called": true,
+      "outcome": "detected",
+      "status": "SUSPECTED",
+      "reason": "insufficient_distinct_matches",
+      "metrics": {
+        "reference_keypoints": 552,
+        "scene_keypoints": 2000,
+        "good_matches": 6,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 70.138
+      }
+    },
+    {
+      "group": "earbud",
+      "mode": "registration_roi",
+      "case": "scene_04",
+      "evaluation_label": "positive",
+      "detect_called": true,
+      "outcome": "detected",
+      "status": "SUSPECTED",
+      "reason": "insufficient_distinct_matches",
+      "metrics": {
+        "reference_keypoints": 552,
+        "scene_keypoints": 2000,
+        "good_matches": 4,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 72.105
+      }
+    },
+    {
+      "group": "earbud",
+      "mode": "registration_roi",
+      "case": "scene_05",
+      "evaluation_label": "negative",
+      "detect_called": true,
+      "outcome": "detected",
+      "status": "UNKNOWN",
+      "reason": "no_verified_match",
+      "metrics": {
+        "reference_keypoints": 552,
+        "scene_keypoints": 775,
+        "good_matches": 2,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 52.128
+      }
+    },
+    {
+      "group": "panda",
+      "mode": "registration_roi",
+      "case": "scene_01",
+      "evaluation_label": "uncertain",
+      "detect_called": true,
+      "outcome": "detected",
+      "status": "SUSPECTED",
+      "reason": "insufficient_distinct_matches",
+      "metrics": {
+        "reference_keypoints": 2000,
+        "scene_keypoints": 2000,
+        "good_matches": 10,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 338.134
+      }
+    },
+    {
+      "group": "panda",
+      "mode": "registration_roi",
+      "case": "scene_02",
+      "evaluation_label": "positive",
+      "detect_called": true,
+      "outcome": "detected",
+      "status": "SUSPECTED",
+      "reason": "insufficient_distinct_matches",
+      "metrics": {
+        "reference_keypoints": 2000,
+        "scene_keypoints": 2000,
+        "good_matches": 8,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 340.3
+      }
+    },
+    {
+      "group": "panda",
+      "mode": "registration_roi",
+      "case": "scene_03",
+      "evaluation_label": "negative",
+      "detect_called": true,
+      "outcome": "detected",
+      "status": "SUSPECTED",
+      "reason": "insufficient_distinct_matches",
+      "metrics": {
+        "reference_keypoints": 2000,
+        "scene_keypoints": 2000,
+        "good_matches": 4,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 351.109
+      }
+    },
+    {
+      "group": "panda",
+      "mode": "registration_roi",
+      "case": "scene_04",
+      "evaluation_label": "negative",
+      "detect_called": true,
+      "outcome": "detected",
+      "status": "UNKNOWN",
+      "reason": "no_verified_match",
+      "metrics": {
+        "reference_keypoints": 2000,
+        "scene_keypoints": 2000,
+        "good_matches": 3,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 358.52
+      }
+    },
+    {
+      "group": "panda",
+      "mode": "registration_roi",
+      "case": "scene_05",
+      "evaluation_label": "positive",
+      "detect_called": true,
+      "outcome": "detected",
+      "status": "SUSPECTED",
+      "reason": "insufficient_geometric_inliers",
+      "metrics": {
+        "reference_keypoints": 2000,
+        "scene_keypoints": 2000,
+        "good_matches": 12,
+        "inliers": 4,
+        "inlier_ratio": 0.3333,
+        "reference_coverage": 0.0507,
+        "elapsed_ms": 394.097
+      }
+    },
+    {
+      "group": "keys",
+      "mode": "registration_roi",
+      "case": "scene_01",
+      "evaluation_label": "uncertain",
+      "detect_called": true,
+      "outcome": "detected",
+      "status": "SUSPECTED",
+      "reason": "insufficient_geometric_inliers",
+      "metrics": {
+        "reference_keypoints": 2000,
+        "scene_keypoints": 2000,
+        "good_matches": 12,
+        "inliers": 4,
+        "inlier_ratio": 0.3333,
+        "reference_coverage": 0.027,
+        "elapsed_ms": 101.495
+      }
+    },
+    {
+      "group": "keys",
+      "mode": "registration_roi",
+      "case": "scene_02",
+      "evaluation_label": "uncertain",
+      "detect_called": true,
+      "outcome": "detected",
+      "status": "SUSPECTED",
+      "reason": "insufficient_distinct_matches",
+      "metrics": {
+        "reference_keypoints": 2000,
+        "scene_keypoints": 2000,
+        "good_matches": 11,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 93.314
+      }
+    },
+    {
+      "group": "keys",
+      "mode": "registration_roi",
+      "case": "scene_03",
+      "evaluation_label": "positive",
+      "detect_called": true,
+      "outcome": "detected",
+      "status": "SUSPECTED",
+      "reason": "insufficient_distinct_matches",
+      "metrics": {
+        "reference_keypoints": 2000,
+        "scene_keypoints": 2000,
+        "good_matches": 10,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 76.824
+      }
+    },
+    {
+      "group": "keys",
+      "mode": "registration_roi",
+      "case": "scene_04",
+      "evaluation_label": "negative",
+      "detect_called": true,
+      "outcome": "detected",
+      "status": "SUSPECTED",
+      "reason": "insufficient_distinct_matches",
+      "metrics": {
+        "reference_keypoints": 2000,
+        "scene_keypoints": 2000,
+        "good_matches": 8,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 74.72
+      }
+    },
+    {
+      "group": "keys",
+      "mode": "registration_roi",
+      "case": "scene_05",
+      "evaluation_label": "negative",
+      "detect_called": true,
+      "outcome": "detected",
+      "status": "SUSPECTED",
+      "reason": "insufficient_distinct_matches",
+      "metrics": {
+        "reference_keypoints": 2000,
+        "scene_keypoints": 1091,
+        "good_matches": 8,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 62.347
+      }
+    },
+    {
+      "group": "tissue",
+      "mode": "registration_roi",
+      "case": "scene_01",
+      "evaluation_label": "positive",
+      "detect_called": true,
+      "outcome": "detected",
+      "status": "SUSPECTED",
+      "reason": "insufficient_distinct_matches",
+      "metrics": {
+        "reference_keypoints": 2000,
+        "scene_keypoints": 2000,
+        "good_matches": 6,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 80.606
+      }
+    },
+    {
+      "group": "tissue",
+      "mode": "registration_roi",
+      "case": "scene_02",
+      "evaluation_label": "auxiliary",
+      "detect_called": true,
+      "outcome": "detected",
+      "status": "UNKNOWN",
+      "reason": "low_sharpness_or_texture",
+      "metrics": {
+        "reference_keypoints": 2000,
+        "scene_keypoints": 0,
+        "good_matches": 0,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 32.279
+      }
+    },
+    {
+      "group": "tissue",
+      "mode": "registration_roi",
+      "case": "scene_03",
+      "evaluation_label": "negative",
+      "detect_called": true,
+      "outcome": "detected",
+      "status": "SUSPECTED",
+      "reason": "insufficient_distinct_matches",
+      "metrics": {
+        "reference_keypoints": 2000,
+        "scene_keypoints": 2000,
+        "good_matches": 10,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 79.215
+      }
+    },
+    {
+      "group": "tissue",
+      "mode": "registration_roi",
+      "case": "scene_04",
+      "evaluation_label": "positive",
+      "detect_called": true,
+      "outcome": "detected",
+      "status": "SUSPECTED",
+      "reason": "insufficient_distinct_matches",
+      "metrics": {
+        "reference_keypoints": 2000,
+        "scene_keypoints": 793,
+        "good_matches": 9,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 58.862
+      }
+    },
+    {
+      "group": "tissue",
+      "mode": "registration_roi",
+      "case": "scene_05",
+      "evaluation_label": "negative",
+      "detect_called": true,
+      "outcome": "detected",
+      "status": "SUSPECTED",
+      "reason": "insufficient_geometric_inliers",
+      "metrics": {
+        "reference_keypoints": 2000,
+        "scene_keypoints": 611,
+        "good_matches": 14,
+        "inliers": 4,
+        "inlier_ratio": 0.2857,
+        "reference_coverage": 0.2118,
+        "elapsed_ms": 70.163
+      }
+    }
+  ],
+  "cli_smoke": [
+    {
+      "mode": "full_image_current_api",
+      "stage": "register",
+      "returncode": 0,
+      "result_status": "UNKNOWN"
+    },
+    {
+      "mode": "full_image_current_api",
+      "stage": "search",
+      "returncode": 0,
+      "result_status": "FOUND"
+    },
+    {
+      "mode": "registration_roi",
+      "stage": "register",
+      "returncode": 0,
+      "result_status": "UNKNOWN"
+    },
+    {
+      "mode": "registration_roi",
+      "stage": "search",
+      "returncode": 0,
+      "result_status": "UNKNOWN"
+    }
+  ],
+  "cli_history": "Empty; staged demo_sequence timestamps, never asserted as actual capture times"
+}

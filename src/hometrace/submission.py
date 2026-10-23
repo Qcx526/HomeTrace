@@ -29,7 +29,7 @@ SOURCE_DOCS = {
     "PRODUCT_BRIEF.md", "ARCHITECTURE.md", "DEMO_ACCEPTANCE.md",
     "P0_IMPLEMENTATION.md", "P1_IMPLEMENTATION.md", "P1_VISION_CHOICE.md",
     "P2_DEMO.md", "P3_DELIVERY.md", "SUBMISSION_TOOL.md", "SUBMISSION_PLAN.md",
-    "TEAM_PHOTO_EVALUATION.md", "SUBMISSION_READINESS.md",
+    "TEAM_PHOTO_EVALUATION.md", "SUBMISSION_READINESS.md", "REGISTRATION_ROI_EVALUATION.md",
 }
 CONFIRMATIONS = ("privacy_reviewed", "media_truthful", "materials_consistent")
 MATERIALS = ("application", "presentation", "video", "run_report", "originality")
@@ -42,6 +42,7 @@ LIMITATIONS = [
     "No official archive size limit is assumed; actual bytes are reported.",
 ]
 SECRET = re.compile(rb"-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----|gh[pousr]_[A-Za-z0-9]{36,}|github_pat_[A-Za-z0-9_]{60,}|AKIA[0-9A-Z]{16}")
+PLACEHOLDER = re.compile(r"TODO|待\s*(?:团队\s*)?(?:在\s*本地\s*)?(?:填写|补齐|补充)|PLACEHOLDER", re.I)
 
 
 class SubmissionError(ValueError):
@@ -304,7 +305,7 @@ def prepare(config_path: Path, repo_root: Path) -> tuple[dict, list[Entry], str 
         values = [safe_name(team.get(key)) for key in ("name", "work_name", "captain_name", "captain_phone")]
         if not re.fullmatch(r"1[3-9][0-9]{9}", values[-1]):
             raise SubmissionError("Captain phone must contain 11 mainland mobile digits")
-        if any(re.search(r"TODO|待填写|示例|测试|假队长|PLACEHOLDER", v, re.I) for v in values) or values[-1] == "13800000000" or config.get("identity_confirmed") is not True:
+        if any(PLACEHOLDER.search(v) or re.search(r"示例|测试|假队长", v) for v in values) or values[-1] == "13800000000" or config.get("identity_confirmed") is not True:
             raise SubmissionError("Identity is incomplete or not locally confirmed")
         if config.get("use_private_submission_name") is True and not test_only:
             basename = "实物组-" + "-".join(values) + ".zip"
@@ -341,7 +342,7 @@ def prepare(config_path: Path, repo_root: Path) -> tuple[dict, list[Entry], str 
                 check_report(path)
             if role != "official_template" and path.suffix.lower() in {".md", ".docx", ".pptx"}:
                 content = texts.get(role, path.read_text(encoding="utf-8") if path.suffix.lower() == ".md" else "")
-                if re.search(r"TODO|待填写|待补齐|PLACEHOLDER", content, re.I):
+                if PLACEHOLDER.search(content):
                     report["warnings"].append({"field": role, "reason": "Placeholder text detected; permitted in a candidate, requires local content review before upload"})
             report["checks"].setdefault(role, {}).update({"readable": True, "bytes": path.stat().st_size, "sha256": sha256(path)})
         except (SubmissionError, OSError, UnicodeError, AttributeError) as exc:
