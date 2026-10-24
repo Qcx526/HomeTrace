@@ -1,6 +1,6 @@
 # 本地候选提交包工具
 
-以 [Issue #4 最新 PM 评论](https://github.com/Qcx526/HomeTrace/issues/4#issuecomment-6341286246) 为准：当前使用团队自编作品说明书，`document_source=team_authored`，不要求尚未取得的官方 Word 模板。工具生成本地候选包并校验；不上传，不自动认定官方格式、内容或参赛资格通过。
+以 [Issue #12](https://github.com/Qcx526/HomeTrace/issues/12) 为准：`document_source=official_template`，主办方原件与填写稿必须分离，七页自编说明书仅作补充。填表字段、DRAFT 模式、原件 SHA256 与版式验证见 [官方材料接口](OFFICIAL_SUBMISSION.md)。工具不上传，不自动认定官方格式、内容或参赛资格通过。
 
 ## 输入与运行
 
@@ -17,19 +17,19 @@ Copy-Item examples/submission_config.example.json local_data/submission/config.j
 
 | 配置字段 | 内容 |
 | --- | --- |
-| `materials.application` | 团队自编 DOCX，默认包内名 `HomeTrace_作品设计与技术说明书.docx` |
+| `materials.application` | 填写后的官方 DOCX，默认包内名 `01_HomeTrace官方初赛作品文档.docx` |
 | `materials.presentation` | PPTX 技术展示 |
 | `materials.video` | 实际运行录制的 MP4 |
 | `materials.run_report` | UTF-8 Markdown 或 PDF 运行说明与测试报告 |
 | `materials.originality` | UTF-8 Markdown 或 PDF 开源算法与原创性说明 |
 
-团队字段保留为空或待填写时，仍可生成 `candidate-HomeTrace.zip`，报告提示本地补齐。不会自动构造姓名和手机号。若团队信息已真实填写、`identity_confirmed=true` 且 `use_private_submission_name=true`，使用本地私有名称 `实物组-团队名-作品名-队长姓名-手机号.zip`；它仍然是待人工核验的候选包。工具不在控制台或审计 JSON 中打印这些身份值或私有文件路径。不要把真实配置、正式材料、ZIP 或包含个人信息的截图提交到公共 GitHub。
+官方表要求本地真实身份完整、确认且与 `team` 配置一致。缺失身份会 BLOCKED；可用 `fill_official_submission.py --draft` 准备讨论稿，但该稿不能进入正式候选包。旧 `team_authored` 接口仅保留历史技术候选兼容，报告明确 `official_application=BLOCKED`、包内名含“缺少官方主表”，不符合当前提交合同。配置和实名材料只留本地。
 
 三个内容确认项 `privacy_reviewed`、`media_truthful`、`materials_consistent` 应在实际检查材料后设为 `true`；未确认时记录 `PENDING`，不阻断候选包，但最终上传前必须复核。这些是本地人工/团队确认记录，程序不会自动替人断言内容真实。图像证据与视频必须保持实际照片、公开样例、模拟导航和真机数据的区分。实际检测到的越界、链接、可识别密钥等仍会阻断生成。
 
 `submission_page_checks` 记录格式、名称、大小、附件、截止时间、团队信息和解压打开情况。未确认项为 `PENDING`，**不会阻断完整候选包**。DOCX/PPTX/Markdown 中可检测到的 `TODO`、`待填写` 等占位内容产生待复核提醒；并不代表所有占位内容已被检测出来。最终上传前需逐项核验实际提交页面，不硬编码未知的官方大小限制。
 
-如果后续真的取得官方模板，可选择 `document_source=official_template`，额外提供 `materials.official_template`、本地来源说明 `official_source` 和 `official_template_sha256`。程序只核验文件与校验值，不认证其官方身份；此分支不改变当前自编 Word 的验收合同。
+必须提供 `materials.official_template`、`official_source`、`official_template_sha256` 和 `official_fields`；`materials.technical_supplement` 为可选补充。工具不会将原件或规则说明 PDF 压入包。自动检查无法判断来源陈述的真伪，负责人仍须核对官方来源及实际页面。
 
 ## 输出和校验
 

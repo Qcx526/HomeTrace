@@ -8,7 +8,7 @@
 
 HomeTrace 让家庭机器人记住物品曾经在哪里，通过历史位置与实时观察，自主搜索被移动的物品，并给出附有观测证据的搜索结果。
 
-## 初赛目标（2026-10-28 12:00 前）
+## 初赛目标（当前计划 2026-11-04，具体截止时刻待平台核验）
 
 在不依赖官方底盘的条件下完成可互动的小 Demo：用户指定已注册物品 → 查询历史记忆 → 选择搜索地点 → 在**真实采集**的场景图片中识别 → 找不到时更新判断并重规划 → 输出结果与证据。模拟导航和真实图像观察必须清晰区分。
 
@@ -38,7 +38,7 @@ P2 留存 [148 项测试通过、0 跳过](docs/evidence/issue-3/pytest.txt)，�
 
 [实施与命令](docs/P3_DELIVERY.md) · [226 项回归及实际证据](docs/evidence/issue-4/README.md) · [家庭照片实测](docs/TEAM_PHOTO_EVALUATION.md) · [打包工具](docs/SUBMISSION_TOOL.md)
 
-采用团队自编《HomeTrace 作品设计与技术说明书》，官方模板未知不阻断候选包。公开材料不含团队私人照片或真实姓名/手机号；最终身份字段由负责人在本地填写。把实际 DOCX、PPTX、MP4 和报告放入私有材料目录，复制并编辑配置后运行：
+以 [Issue #12 官方材料接口](docs/OFFICIAL_SUBMISSION.md) 为当前交付合同：主办方 DOCX 是必填主表，团队自编说明书仅作补充。公开材料不含团队私人照片或真实姓名/手机号；最终身份字段由负责人在本地填写。把实际 DOCX、PPTX、MP4 和报告放入私有材料目录，复制并编辑配置后运行：
 
 ```powershell
 .\.venv\Scripts\python.exe tools/build_submission.py --config local_data/submission/config.json --check
