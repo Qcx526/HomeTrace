@@ -1,0 +1,149 @@
+{
+  "method": "Visual inspection of all three candidate overlays after inference; fixed original labels unchanged. No scene truth boxes supplied to model; no numeric IoU benchmark available.",
+  "candidate_localization_support": 1,
+  "positive_scenes_without_supported_target_candidate": 5,
+  "definite_negative_candidate_cases": 1,
+  "instance_confirmations": 0,
+  "rows": [
+    {
+      "group": "earbud",
+      "case": "scene_01",
+      "evaluation_label": "uncertain",
+      "candidate_count": 0,
+      "review": "no_candidate"
+    },
+    {
+      "group": "earbud",
+      "case": "scene_02",
+      "evaluation_label": "uncertain",
+      "candidate_count": 0,
+      "review": "no_candidate"
+    },
+    {
+      "group": "earbud",
+      "case": "scene_03",
+      "evaluation_label": "negative",
+      "candidate_count": 0,
+      "review": "no_candidate"
+    },
+    {
+      "group": "earbud",
+      "case": "scene_04",
+      "evaluation_label": "positive",
+      "candidate_count": 0,
+      "review": "no_candidate"
+    },
+    {
+      "group": "earbud",
+      "case": "scene_05",
+      "evaluation_label": "negative",
+      "candidate_count": 0,
+      "review": "no_candidate"
+    },
+    {
+      "group": "panda",
+      "case": "scene_01",
+      "evaluation_label": "uncertain",
+      "candidate_count": 0,
+      "review": "no_candidate"
+    },
+    {
+      "group": "panda",
+      "case": "scene_02",
+      "evaluation_label": "positive",
+      "candidate_count": 1,
+      "review": "wrong_instance_large_panda"
+    },
+    {
+      "group": "panda",
+      "case": "scene_03",
+      "evaluation_label": "negative",
+      "candidate_count": 1,
+      "review": "false_positive_large_panda_negative"
+    },
+    {
+      "group": "panda",
+      "case": "scene_04",
+      "evaluation_label": "negative",
+      "candidate_count": 0,
+      "review": "no_candidate"
+    },
+    {
+      "group": "panda",
+      "case": "scene_05",
+      "evaluation_label": "positive",
+      "candidate_count": 1,
+      "review": "target_localization_supported_by_visual_review"
+    },
+    {
+      "group": "keys",
+      "case": "scene_01",
+      "evaluation_label": "uncertain",
+      "candidate_count": 0,
+      "review": "no_candidate"
+    },
+    {
+      "group": "keys",
+      "case": "scene_02",
+      "evaluation_label": "uncertain",
+      "candidate_count": 0,
+      "review": "no_candidate"
+    },
+    {
+      "group": "keys",
+      "case": "scene_03",
+      "evaluation_label": "positive",
+      "candidate_count": 0,
+      "review": "no_candidate"
+    },
+    {
+      "group": "keys",
+      "case": "scene_04",
+      "evaluation_label": "negative",
+      "candidate_count": 0,
+      "review": "no_candidate"
+    },
+    {
+      "group": "keys",
+      "case": "scene_05",
+      "evaluation_label": "negative",
+      "candidate_count": 0,
+      "review": "no_candidate"
+    },
+    {
+      "group": "tissue",
+      "case": "scene_01",
+      "evaluation_label": "positive",
+      "candidate_count": 0,
+      "review": "no_candidate"
+    },
+    {
+      "group": "tissue",
+      "case": "scene_02",
+      "evaluation_label": "auxiliary",
+      "candidate_count": 0,
+      "review": "no_candidate"
+    },
+    {
+      "group": "tissue",
+      "case": "scene_03",
+      "evaluation_label": "negative",
+      "candidate_count": 0,
+      "review": "no_candidate"
+    },
+    {
+      "group": "tissue",
+      "case": "scene_04",
+      "evaluation_label": "positive",
+      "candidate_count": 0,
+      "review": "no_candidate"
+    },
+    {
+      "group": "tissue",
+      "case": "scene_05",
+      "evaluation_label": "negative",
+      "candidate_count": 0,
+      "review": "no_candidate"
+    }
+  ]
+}

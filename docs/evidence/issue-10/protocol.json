@@ -1,0 +1,26 @@
+{
+  "created_at_utc": "2026-10-23T12:11:03.999170+00:00",
+  "base_commit": "e5732b4024d90cc190aedb77f98f626b11e982cd",
+  "ultralytics": "8.3.221",
+  "torch": "2.6.0+cu124",
+  "torchvision": "0.21.0+cu124",
+  "model": "yoloe-11s-seg.pt",
+  "weight_url": "https://github.com/ultralytics/assets/releases/download/v8.3.0/yoloe-11s-seg.pt",
+  "weight_sha256": "8e439445c87338b79d9ce21dec109f4621e26df67e94d26ea1a98c1e64dce3e3",
+  "parameters": {
+    "conf": 0.25,
+    "iou": 0.7,
+    "imgsz": 640,
+    "max_det": 100,
+    "half": false,
+    "seed": 0,
+    "device": "cuda:0"
+  },
+  "data": "four groups; 24 verified private photos; 20 evaluation scenes",
+  "prompt": "full reference with original fixed registration ROI; cls 0; no scene box",
+  "labels": "6 positive / 8 negative / 5 uncertain / 1 auxiliary, evaluation only",
+  "identity_confirmation": "never; candidates SUSPECTED, empty UNKNOWN",
+  "go_rule": "Exploratory only. Production adapter requires useful correctly localized positive candidates and zero candidate-bearing definite negatives, particularly empty wood and large-only panda. Any such negative candidate -> NO_GO for integration; no retuning. No held-out generalization claim.",
+  "timing": "per-scene process wall time and predict including prompt encoding; device sync; max VRAM allocated/reserved",
+  "timeout_seconds_per_scene": 180
+}

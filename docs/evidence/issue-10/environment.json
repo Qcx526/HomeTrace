@@ -1,0 +1,10 @@
+{
+  "platform": "Windows-10-10.0.19045-SP0",
+  "python": "3.11.4",
+  "gpu": "NVIDIA GeForce GTX 1660, 551.61, 6144 MiB",
+  "weight_sha256": "8e439445c87338b79d9ce21dec109f4621e26df67e94d26ea1a98c1e64dce3e3",
+  "weight_bytes": 27803986,
+  "base_environment_torch_installed": false,
+  "license": "Ultralytics package AGPL-3.0; no blanket authorization for model redistribution; no repository-wide license change",
+  "weight_url": "https://github.com/ultralytics/assets/releases/download/v8.3.0/yoloe-11s-seg.pt"
+}
