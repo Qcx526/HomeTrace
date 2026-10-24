@@ -1,0 +1,517 @@
+{
+  "status": "BUDGET_EXCEEDED",
+  "trace": [
+    {
+      "seq": 1,
+      "kind": "model",
+      "latency_ms": 3029.827,
+      "usage": {
+        "input_tokens": 845,
+        "output_tokens": 125,
+        "total_tokens": 970,
+        "input_token_details": {
+          "cache_read": 512
+        },
+        "output_token_details": {
+          "reasoning": 83
+        }
+      },
+      "model": "deepseek-v4.1-flash-1017",
+      "finish_reason": "tool_calls",
+      "request_id": null,
+      "response_id": "lc_run--01a16ba8-3192-7538-80f2-0476001b277e-0",
+      "tool_calls": [
+        {
+          "name": "query_memory",
+          "args": {
+            "object_id": "O3"
+          },
+          "id": "call_50b8061dd44e4bb8ac20483f"
+        }
+      ]
+    },
+    {
+      "seq": 2,
+      "kind": "tool",
+      "name": "query_memory",
+      "args": {
+        "object_id": "O3"
+      },
+      "tool_call_id": "call_50b8061dd44e4bb8ac20483f",
+      "result": {
+        "object_id": "O3",
+        "history": [
+          {
+            "ref": "H1",
+            "viewpoint_id": "V1",
+            "status": "FOUND",
+            "historical_only": true
+          }
+        ],
+        "eligible_viewpoints": [
+          "V1",
+          "V2",
+          "V3"
+        ],
+        "phase": "ready",
+        "current_result": {
+          "result_status": "UNKNOWN",
+          "location": null,
+          "attempted_viewpoints": [],
+          "confirmed_evidence_ids": []
+        }
+      },
+      "latency_ms": 271.719
+    },
+    {
+      "seq": 3,
+      "kind": "model",
+      "latency_ms": 1424.624,
+      "usage": {
+        "input_tokens": 994,
+        "output_tokens": 73,
+        "total_tokens": 1067,
+        "input_token_details": {
+          "cache_read": 512
+        },
+        "output_token_details": {
+          "reasoning": 27
+        }
+      },
+      "model": "deepseek-v4.1-flash-1017",
+      "finish_reason": "tool_calls",
+      "request_id": null,
+      "response_id": "lc_run--01a16ba8-3e7d-7229-8b1f-f62477ddc173-0",
+      "tool_calls": [
+        {
+          "name": "navigate_and_observe",
+          "args": {
+            "viewpoint_id": "V1"
+          },
+          "id": "call_12f813090a754b2eb889b6be"
+        }
+      ]
+    },
+    {
+      "seq": 4,
+      "kind": "tool",
+      "name": "navigate_and_observe",
+      "args": {
+        "viewpoint_id": "V1"
+      },
+      "tool_call_id": "call_12f813090a754b2eb889b6be",
+      "result": {
+        "phase": "observed",
+        "navigation_mode": "simulated_navigation",
+        "eligible_viewpoints": [
+          "V2",
+          "V3"
+        ],
+        "verified_result": {
+          "result_status": "UNKNOWN",
+          "location": null,
+          "attempted_viewpoints": [
+            "V1"
+          ],
+          "confirmed_evidence_ids": []
+        }
+      },
+      "latency_ms": 6.301
+    },
+    {
+      "seq": 5,
+      "kind": "model",
+      "latency_ms": 5738.885,
+      "usage": {
+        "input_tokens": 1114,
+        "output_tokens": 24,
+        "total_tokens": 1138,
+        "input_token_details": {
+          "cache_read": 512
+        },
+        "output_token_details": {}
+      },
+      "model": "deepseek-v4.1-flash-1017",
+      "finish_reason": "tool_calls",
+      "request_id": null,
+      "response_id": "lc_run--01a16ba8-441b-7004-abcf-1554b6ede3aa-0",
+      "tool_calls": [
+        {
+          "name": "verify_visual",
+          "args": {},
+          "id": "call_53c1f337af484f83964143a4"
+        }
+      ]
+    },
+    {
+      "seq": 6,
+      "kind": "tool",
+      "name": "verify_visual",
+      "args": {},
+      "tool_call_id": "call_53c1f337af484f83964143a4",
+      "result": {
+        "phase": "ready",
+        "navigation_mode": "simulated_navigation",
+        "eligible_viewpoints": [
+          "V2",
+          "V3"
+        ],
+        "verified_result": {
+          "result_status": "SUSPECTED",
+          "location": null,
+          "attempted_viewpoints": [
+            "V1"
+          ],
+          "confirmed_evidence_ids": []
+        },
+        "last_view_status": "SUSPECTED",
+        "reason": "visual_verification",
+        "last_detection": {
+          "ref": "E1",
+          "status": "SUSPECTED",
+          "bbox": null,
+          "matcher": "opencv_orb_homography",
+          "diagnostics": {
+            "reason": "insufficient_distinct_matches",
+            "inliers": 0,
+            "good_matches": 9,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 7.738
+          }
+        }
+      },
+      "latency_ms": 123.696
+    },
+    {
+      "seq": 7,
+      "kind": "model",
+      "latency_ms": 1181.313,
+      "usage": {
+        "input_tokens": 1340,
+        "output_tokens": 58,
+        "total_tokens": 1398,
+        "input_token_details": {
+          "cache_read": 1024
+        },
+        "output_token_details": {
+          "reasoning": 12
+        }
+      },
+      "model": "deepseek-v4.1-flash-1017",
+      "finish_reason": "tool_calls",
+      "request_id": null,
+      "response_id": "lc_run--01a16ba8-5b09-70f7-871c-8c06c0282b29-0",
+      "tool_calls": [
+        {
+          "name": "navigate_and_observe",
+          "args": {
+            "viewpoint_id": "V2"
+          },
+          "id": "call_201ed99373a44d29ae01a875"
+        }
+      ]
+    },
+    {
+      "seq": 8,
+      "kind": "tool",
+      "name": "navigate_and_observe",
+      "args": {
+        "viewpoint_id": "V2"
+      },
+      "tool_call_id": "call_201ed99373a44d29ae01a875",
+      "result": {
+        "phase": "observed",
+        "navigation_mode": "simulated_navigation",
+        "eligible_viewpoints": [
+          "V3"
+        ],
+        "verified_result": {
+          "result_status": "SUSPECTED",
+          "location": null,
+          "attempted_viewpoints": [
+            "V1",
+            "V2"
+          ],
+          "confirmed_evidence_ids": []
+        },
+        "last_view_status": "SUSPECTED",
+        "reason": "visual_verification"
+      },
+      "latency_ms": 6.737
+    },
+    {
+      "seq": 9,
+      "kind": "model",
+      "latency_ms": 1792.925,
+      "usage": {
+        "input_tokens": 1485,
+        "output_tokens": 24,
+        "total_tokens": 1509,
+        "input_token_details": {
+          "cache_read": 1024
+        },
+        "output_token_details": {}
+      },
+      "model": "deepseek-v4.1-flash-1017",
+      "finish_reason": "tool_calls",
+      "request_id": null,
+      "response_id": "lc_run--01a16ba8-5fb6-7436-9f3b-6c8564a0ac5a-0",
+      "tool_calls": [
+        {
+          "name": "verify_visual",
+          "args": {},
+          "id": "call_929786efa0774339a1cbe79c"
+        }
+      ]
+    },
+    {
+      "seq": 10,
+      "kind": "tool",
+      "name": "verify_visual",
+      "args": {},
+      "tool_call_id": "call_929786efa0774339a1cbe79c",
+      "result": {
+        "phase": "ready",
+        "navigation_mode": "simulated_navigation",
+        "eligible_viewpoints": [
+          "V3"
+        ],
+        "verified_result": {
+          "result_status": "SUSPECTED",
+          "location": null,
+          "attempted_viewpoints": [
+            "V1",
+            "V2"
+          ],
+          "confirmed_evidence_ids": []
+        },
+        "last_view_status": "UNKNOWN",
+        "reason": "visual_verification",
+        "last_detection": {
+          "ref": "E2",
+          "status": "UNKNOWN",
+          "bbox": null,
+          "matcher": "opencv_orb_homography",
+          "diagnostics": {
+            "reason": "no_verified_match",
+            "inliers": 0,
+            "good_matches": 3,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 9.553
+          }
+        }
+      },
+      "latency_ms": 118.565
+    },
+    {
+      "seq": 11,
+      "kind": "model",
+      "latency_ms": 1644.859,
+      "usage": {
+        "input_tokens": 1703,
+        "output_tokens": 46,
+        "total_tokens": 1749,
+        "input_token_details": {
+          "cache_read": 1024
+        },
+        "output_token_details": {}
+      },
+      "model": "deepseek-v4.1-flash-1017",
+      "finish_reason": "tool_calls",
+      "request_id": null,
+      "response_id": "lc_run--01a16ba8-6737-7682-9d43-f95bd6b5a5c8-0",
+      "tool_calls": [
+        {
+          "name": "navigate_and_observe",
+          "args": {
+            "viewpoint_id": "V3"
+          },
+          "id": "call_5e7e9714d52f4f2cbbd322ff"
+        }
+      ]
+    },
+    {
+      "seq": 12,
+      "kind": "tool",
+      "name": "navigate_and_observe",
+      "args": {
+        "viewpoint_id": "V3"
+      },
+      "tool_call_id": "call_5e7e9714d52f4f2cbbd322ff",
+      "result": {
+        "phase": "observed",
+        "navigation_mode": "simulated_navigation",
+        "eligible_viewpoints": [],
+        "verified_result": {
+          "result_status": "SUSPECTED",
+          "location": null,
+          "attempted_viewpoints": [
+            "V1",
+            "V2",
+            "V3"
+          ],
+          "confirmed_evidence_ids": []
+        },
+        "last_view_status": "UNKNOWN",
+        "reason": "visual_verification"
+      },
+      "latency_ms": 6.67
+    },
+    {
+      "seq": 13,
+      "kind": "model",
+      "latency_ms": 1190.49,
+      "usage": {
+        "input_tokens": 1846,
+        "output_tokens": 24,
+        "total_tokens": 1870,
+        "input_token_details": {
+          "cache_read": 1536
+        },
+        "output_token_details": {}
+      },
+      "model": "deepseek-v4.1-flash-1017",
+      "finish_reason": "tool_calls",
+      "request_id": null,
+      "response_id": "lc_run--01a16ba8-6db4-73ab-b36f-bac4a79d508a-0",
+      "tool_calls": [
+        {
+          "name": "verify_visual",
+          "args": {},
+          "id": "call_15ef5dee34984e1aa1231659"
+        }
+      ]
+    },
+    {
+      "seq": 14,
+      "kind": "tool",
+      "name": "verify_visual",
+      "args": {},
+      "tool_call_id": "call_15ef5dee34984e1aa1231659",
+      "result": {
+        "phase": "ready",
+        "navigation_mode": "simulated_navigation",
+        "eligible_viewpoints": [],
+        "verified_result": {
+          "result_status": "SUSPECTED",
+          "location": null,
+          "attempted_viewpoints": [
+            "V1",
+            "V2",
+            "V3"
+          ],
+          "confirmed_evidence_ids": []
+        },
+        "last_view_status": "SUSPECTED",
+        "reason": "visual_verification",
+        "last_detection": {
+          "ref": "E3",
+          "status": "SUSPECTED",
+          "bbox": null,
+          "matcher": "opencv_orb_homography",
+          "diagnostics": {
+            "reason": "insufficient_distinct_matches",
+            "inliers": 0,
+            "good_matches": 4,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 33.876
+          }
+        }
+      },
+      "latency_ms": 159.732
+    },
+    {
+      "seq": 15,
+      "kind": "model",
+      "latency_ms": 1109.106,
+      "usage": {
+        "input_tokens": 2073,
+        "output_tokens": 23,
+        "total_tokens": 2096,
+        "input_token_details": {
+          "cache_read": 1536
+        },
+        "output_token_details": {}
+      },
+      "model": "deepseek-v4.1-flash-1017",
+      "finish_reason": "tool_calls",
+      "request_id": null,
+      "response_id": "lc_run--01a16ba8-7306-7703-b87f-bd931ea1d88a-0",
+      "tool_calls": [
+        {
+          "name": "render_report",
+          "args": {},
+          "id": "call_33eddd1eadd941dab285f0c2"
+        }
+      ]
+    },
+    {
+      "seq": 16,
+      "kind": "tool",
+      "name": "render_report",
+      "args": {},
+      "tool_call_id": "call_33eddd1eadd941dab285f0c2",
+      "result": {
+        "phase": "finished",
+        "verified_result": {
+          "result_status": "SUSPECTED",
+          "location": null,
+          "attempted_viewpoints": [
+            "V1",
+            "V2",
+            "V3"
+          ],
+          "confirmed_evidence_ids": []
+        }
+      },
+      "latency_ms": 0.83
+    },
+    {
+      "seq": 17,
+      "kind": "state",
+      "status": "BUDGET_EXCEEDED",
+      "verified_result": {
+        "result_status": "SUSPECTED",
+        "location": null,
+        "attempted_viewpoints": [
+          "V1",
+          "V2",
+          "V3"
+        ],
+        "confirmed_evidence_ids": []
+      }
+    }
+  ],
+  "model_calls": 8,
+  "tool_calls": 8,
+  "total_tokens": 11797,
+  "verified_result": {
+    "result_status": "SUSPECTED",
+    "location": null,
+    "attempted_viewpoints": [
+      "V1",
+      "V2",
+      "V3"
+    ],
+    "confirmed_evidence_ids": []
+  },
+  "explanation": "",
+  "history": [
+    {
+      "ref": "H1",
+      "viewpoint_id": "V1",
+      "status": "FOUND",
+      "historical_only": true
+    }
+  ],
+  "model": "deepseek-v4.1-flash-1017",
+  "provider": "千问AI平台兼容网关",
+  "raw_images_sent": false,
+  "run_id": "e92ce867f186443d889a57a55a28bc44",
+  "scenario": "missing",
+  "public_test_goal": "请帮我找公开样例盒子",
+  "experiment_group": "runs-02"
+}

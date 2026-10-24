@@ -1,0 +1,18 @@
+llm:
+  provider: openai_compatible
+  model: deepseek-v4.1-flash-1017
+  base_url: https://token-plan.maas.qianwenaiapi.com/compatible-mode/v1
+  timeout_seconds: 60
+  max_retries: 1
+  use_responses_api: false
+agent:
+  max_model_calls: 10
+  max_tool_calls: 12
+  max_viewpoints: 5
+  max_total_tokens: 24000
+  show_tool_trace: true
+vision:
+  backend: orb
+privacy:
+  send_raw_images_to_llm: false
+  external_tracing_enabled: false

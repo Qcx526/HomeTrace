@@ -1,0 +1,32 @@
+{
+  "browser": "155.0.4283.62",
+  "status": "PASSED",
+  "poll_count": 17,
+  "live_poll_count": 16,
+  "image": {
+    "width": 512,
+    "height": 384,
+    "url": "http://127.0.0.1:8766/api/agent/runs/3889b36cbf5b497e8b0d39bcfe56f932/images/current-2"
+  },
+  "canvas": {
+    "width": 512,
+    "height": 384,
+    "nonzero": true
+  },
+  "errors": [],
+  "run_id": "3889b36cbf5b497e8b0d39bcfe56f932",
+  "model_calls": 7,
+  "tool_calls": 6,
+  "tokens": 9743,
+  "result": {
+    "result_status": "FOUND",
+    "location": "V2",
+    "attempted_viewpoints": [
+      "V1",
+      "V2"
+    ],
+    "confirmed_evidence_ids": [
+      "E2"
+    ]
+  }
+}
