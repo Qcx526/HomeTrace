@@ -30,12 +30,13 @@ SOURCE_DOCS = {
     "P0_IMPLEMENTATION.md", "P1_IMPLEMENTATION.md", "P1_VISION_CHOICE.md",
     "P2_DEMO.md", "P3_DELIVERY.md", "SUBMISSION_TOOL.md", "SUBMISSION_PLAN.md",
     "TEAM_PHOTO_EVALUATION.md", "SUBMISSION_READINESS.md", "REGISTRATION_ROI_EVALUATION.md",
+    "OFFICIAL_SUBMISSION.md",
 }
 CONFIRMATIONS = ("privacy_reviewed", "media_truthful", "materials_consistent")
 MATERIALS = ("application", "presentation", "video", "run_report", "originality")
 MANUAL_CHECKS = ("submission_formats", "archive_naming", "size_limit", "required_attachments", "deadline", "team_identity", "extracted_files_opened")
 LIMITATIONS = [
-    "Team-authored DOCX is accepted under the current PM contract. Official formats, naming, size, attachments and deadline still require submission-page review.",
+    "The supplied official DOCX is required for submission. Team-authored documents are supplemental; legacy technical candidates do not satisfy the application requirement.",
     "Structural parsing and media decoding cannot determine whether narrative claims or screenshots are true.",
     "Privacy checks exclude private paths and recognizable secret formats; they cannot recognize every private photograph, QR code or personal datum embedded in documents/video.",
     "A verified ZIP is a local candidate, not proof of successful upload. The project owner must extract, open and check it before uploading.",
@@ -312,10 +313,13 @@ def prepare(config_path: Path, repo_root: Path) -> tuple[dict, list[Entry], str 
         report["checks"]["identity"] = "Locally confirmed; values redacted"
     except (SubmissionError, AttributeError) as exc:
         report["warnings"].append({"field": "team", "reason": "Identity missing, placeholder or unconfirmed: neutral candidate filename used; complete and verify locally before uploading"})
-    document_source = config.get("document_source")
+    document_source = config.get("document_source", "official_template")
     if not isinstance(document_source, str) or document_source not in {"team_authored", "official_template"}:
         report["issues"].append({"field": "document_source", "reason": "Choose team_authored or official_template"})
     report["document_source"] = document_source
+    report["official_application"] = "BLOCKED"
+    if document_source == "team_authored":
+        report["warnings"].append({"field": "official_application", "reason": "Legacy technical candidate only: team-authored DOCX is supplemental and cannot replace the mandatory official form"})
     manual = config.get("submission_page_checks", {})
     report["manual_checks"] = {key: "locally_confirmed_not_automatically_verified" if isinstance(manual, dict) and manual.get(key) is True else "PENDING" for key in MANUAL_CHECKS}
     confirmations = config.get("confirmations", {})
@@ -331,6 +335,8 @@ def prepare(config_path: Path, repo_root: Path) -> tuple[dict, list[Entry], str 
     for role in MATERIALS + (("official_template",) if document_source == "official_template" else ()):
         try:
             path = local_file(config_path.resolve().parent, materials.get(role))
+            if path.suffix.lower() == ".pdf" and re.search(r"规则|赛事说明|比赛说明|赛题说明|rules", path.name, re.I):
+                raise SubmissionError("Competition rules PDF must not be included in the submission archive")
             paths[role] = path
             if role in {"official_template", "application"}:
                 texts[role] = ooxml_text(path, "word")
@@ -353,8 +359,27 @@ def prepare(config_path: Path, repo_root: Path) -> tuple[dict, list[Entry], str 
             report["issues"].append({"field": "official_template_sha256", "reason": "Expected official-template SHA256 is missing or differs"})
     if texts.get("application") and texts.get("application") == texts.get("official_template"):
         report["issues"].append({"field": "application", "reason": "Application text is identical to the original template; filling has not been demonstrated"})
+    if document_source == "official_template" and {"official_template", "application"} <= paths.keys():
+        try:
+            from .official_submission import verify_filled, OfficialFormError
+            report["checks"]["official_form"] = verify_filled(paths["official_template"], paths["application"], config.get("official_template_sha256"), config.get("official_fields"))
+            fields = config["official_fields"]
+            if not isinstance(team, dict) or any(team.get(k) != v for k, v in {"name": fields["team_name"], "work_name": fields["project_name"], "captain_name": fields["members"][0]["name"], "captain_phone": fields["members"][0]["phone"]}.items()) or config.get("identity_confirmed") is not True:
+                raise OfficialFormError("Package identity and confirmed official-form fields differ")
+            report["official_application"] = "CONTENT_VERIFIED_VISUAL_REVIEW_PENDING"
+        except (OfficialFormError, TypeError, KeyError, IndexError) as exc:
+            report["issues"].append({"field": "official_application", "reason": str(exc) if isinstance(exc, OfficialFormError) else "Official fields are missing or malformed"})
+    if isinstance(materials, dict) and materials.get("technical_supplement"):
+        try:
+            supplement = local_file(config_path.resolve().parent, materials["technical_supplement"])
+            ooxml_text(supplement, "word")
+            if supplement in (paths.get("application"), paths.get("official_template")):
+                raise SubmissionError("Technical supplement must be separate from original and filled official forms")
+            paths["technical_supplement"] = supplement
+        except (SubmissionError, OSError) as exc:
+            report["issues"].append({"field": "technical_supplement", "reason": str(exc) if isinstance(exc, SubmissionError) else "Supplement cannot be read"})
     try:
-        application_name = safe_name(config.get("application_filename", "HomeTrace_作品设计与技术说明书.docx"))
+        application_name = safe_name(config.get("application_filename", "01_HomeTrace官方初赛作品文档.docx"))
         if not application_name.lower().endswith(".docx"):
             raise SubmissionError("Application filename must end in .docx")
         archive_names = {
@@ -362,6 +387,12 @@ def prepare(config_path: Path, repo_root: Path) -> tuple[dict, list[Entry], str 
             "video": "03_HomeTrace演示视频.mp4", "originality": "06_开源技术与原创性说明" + paths.get("originality", Path("x.md")).suffix.lower(),
             "run_report": "05_运行说明与测试报告" + paths.get("run_report", Path("x.md")).suffix.lower(),
         }
+        if document_source == "team_authored":
+            archive_names["application"] = "07_补充技术说明书_缺少官方主表.docx"
+        if "technical_supplement" in paths:
+            archive_names["technical_supplement"] = "07_补充_HomeTrace作品设计与技术说明书.docx"
+        if "official_template" in paths and any(paths.get(role) == paths["official_template"] or (paths.get(role) and sha256(paths[role]) == sha256(paths["official_template"])) for role in archive_names):
+            raise SubmissionError("The unfilled official original cannot be packaged as any material")
         entries.extend(_entry(name, paths[role]) for role, name in archive_names.items() if role in paths)
     except SubmissionError as exc:
         report["issues"].append({"field": "application_filename", "reason": str(exc)})
@@ -399,7 +430,7 @@ def build(config_path: Path, repo_root: Path, *, check_only: bool = False) -> di
             try:
                 generated = {
                     "SOURCE_INFO.json": json_bytes(report["checks"]["source"]),
-                    "PRE_UPLOAD_REVIEW.json": json_bytes({"candidate_only": True, "test_only": report["test_only"], "officially_verified": False, "uploaded": False, "document_source": report["document_source"], "manual_checks": report["manual_checks"], "content_review": report["content_review"], "warnings": report["warnings"], "limitations": LIMITATIONS}),
+                    "PRE_UPLOAD_REVIEW.json": json_bytes({"candidate_only": True, "test_only": report["test_only"], "officially_verified": False, "uploaded": False, "document_source": report["document_source"], "official_application": report["official_application"], "manual_checks": report["manual_checks"], "content_review": report["content_review"], "warnings": report["warnings"], "limitations": LIMITATIONS}),
                     "README_提交材料清单.txt": ("TEST_ONLY — synthetic test archive, NOT a competition submission.\n" if report["test_only"] else "Local candidate archive. Extract, open and manually review before uploading.\n") .encode("utf-8") + "\n".join(entry.name for entry in entries).encode("utf-8") + b"\n",
                 }
                 expected = {entry.name: entry.sha256 for entry in entries}

@@ -1,0 +1,45 @@
+{
+  "date": "2026-10-24",
+  "base_commit": "e5732b4024d90cc190aedb77f98f626b11e982cd",
+  "tests_passed": 318,
+  "original_tests": 289,
+  "new_tests": 29,
+  "original_test_files_unchanged": true,
+  "frozen_reports_unchanged": true,
+  "official_template_available": true,
+  "original_hash_unchanged": true,
+  "draft_status": "DRAFT_IDENTITY_MISSING",
+  "description_characters": 219,
+  "draft_table_rows": 8,
+  "identity_values_published": false,
+  "render": {
+    "renderer": "Microsoft Word COM ExportAsFixedFormat, read-only input",
+    "pages": 3,
+    "all_pages_inspected": true,
+    "status": "REQUIRES_OWNER_LAYOUT_REVIEW",
+    "observations": [
+      "Draft main table readable; identity placeholders remain explicit.",
+      "Supplied original and filled draft show some overlapping paragraphs/bullets below the form under this installed Word renderer. Noneditable original content was preserved; visual acceptance is not claimed.",
+      "Bundled LibreOffice unavailable; Word PDF was rasterized using bundled Poppler. Poppler reported Symbol/ArialUnicode font warnings."
+    ]
+  },
+  "official_form_status": "BLOCKED_IDENTITY_MISSING",
+  "new_real_zip_created": false,
+  "old_candidate_unchanged": true,
+  "officially_verified": false,
+  "uploaded": false,
+  "commands": [
+    {
+      "tool": "fill_official_submission.py",
+      "mode": "check",
+      "exit_code": 2,
+      "stdout": "BLOCKED: official input, identity, original hash or output validation failed; inspect local config."
+    },
+    {
+      "tool": "build_submission.py",
+      "mode": "check",
+      "exit_code": 2,
+      "stdout": "BLOCKED\n- official_application: Missing, placeholder or oversized field: team_name\n- Pending team: Identity missing, placeholder or unconfirmed: neutral candidate filename used; complete and verify locally before uploading\n- Pending privacy_reviewed: Content review pending; candidate may be built, but review is required before uploading\n- Pending media_truthful: Content review pending; candidate may be built, but review is required before uploading\n- Pending materials_consistent: Content review pending; candidate may be built, but review is required before uploading\n- Pending application: Placeholder text detected; permitted in a candidate, requires local content review before upload\nSubmission-page review remains manual; officially_verified=false, uploaded=false.\nLocal audit: dist_submission/submission-audit.json\nOwner must extract/open and verify the candidate; no upload was performed."
+    }
+  ]
+}
