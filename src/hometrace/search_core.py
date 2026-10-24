@@ -1,5 +1,6 @@
 """Deterministic search decisions using memory and observations already acquired."""
 
+from copy import deepcopy
 from dataclasses import asdict
 from datetime import datetime
 import math
@@ -48,6 +49,25 @@ class SearchCore:
         self.strategy = SearchStrategy(strategy)
         self.adapter_kind = "mock" if self.data_source == DataSource.FIXTURE else "recorded_image"
         self._state: TaskState | None = None
+        self._phase = "idle"
+        self._current_viewpoint: str | None = None
+        self._observation = None
+
+    @property
+    def current_phase(self) -> str:
+        return self._phase
+
+    @property
+    def state(self) -> TaskState | None:
+        """A snapshot for controllers; mutation cannot change trusted state."""
+        return deepcopy(self._state)
+
+    def _require_phase(self, phase: str) -> TaskState:
+        if self._state is None or self._phase != phase:
+            raise ValueError(f"Search operation requires phase {phase}; current phase is {self._phase}")
+        if self._state.result_status == Status.FOUND:
+            raise ValueError("Search already confirmed a finding; finish the search")
+        return self._state
 
     def plan_next(self, task_state: TaskState) -> PlanDecision | None:
         # This method sees only public viewpoint metadata and acquired memory.
@@ -96,14 +116,16 @@ class SearchCore:
             )
         )
 
-    def run(self, object_id: str, task_id: str | None = None) -> SearchReport:
+    def start_search(self, object_id: str, task_id: str | None = None) -> TaskState:
+        """Initialize one session without navigating or reading future images."""
+        if self._phase not in ("idle", "finished"):
+            raise ValueError("A search session is already active; finish it before starting another")
         registered = self.memory.get_object(object_id)
         if registered is None:
             raise ValueError(f"Unregistered object: {object_id}")
         if registered.data_source != self.data_source:
             raise ValueError("Registered object and search evidence sources differ")
         state = TaskState(task_id or str(uuid4()), object_id)
-        self._state = state
         history = self.memory.query_memory(object_id)
         state.history = history
         seen_ids = {record.observation.evidence_id for record in history}
@@ -114,128 +136,203 @@ class SearchCore:
         if len(bases) > 1:
             raise ValueError("Historical evidence mixes incompatible timestamp bases")
         latest_time = max((datetime.fromisoformat(r.observation.captured_at) for r in history), default=None)
+        self._state = state
+        self._seen_ids, self._seen_hashes = seen_ids, seen_hashes
+        self._bases, self._latest_time = bases, latest_time
+        self._current_viewpoint, self._observation = None, None
+        self._phase = "ready"
         self._event(
             state, "query_memory", [object_id],
             {"records": [asdict(record) for record in history], "historical_only": True},
         )
-        while decision := self.plan_next(state):
-            view_id = decision.viewpoint_id
-            self._event(state, "plan_next", [object_id], asdict(decision))
-            state.visited_viewpoints.append(view_id)
-            navigation = self.environment.navigate_to(view_id)
-            self._event(state, "navigate", [view_id], asdict(navigation))
-            if (
-                navigation.status != "ARRIVED"
-                or navigation.viewpoint_id != view_id
-                or navigation.adapter_kind != self.adapter_kind
-                or navigation.simulated is not True
-                or navigation.navigation_mode != self.navigation_mode
-            ):
-                self._event(state, "view_result", [view_id], {"status": Status.UNREACHABLE})
-                continue
-            state.arrived_viewpoints.append(view_id)
-            observation = self.environment.observe(view_id)
-            self._event(
-                state, "observe", [view_id],
-                {"observation": asdict(observation) if observation else None},
-            )
-            if observation is None:
-                self._event(state, "view_result", [view_id], {"status": Status.UNKNOWN, "reason": "no_observation"})
-                continue
-            rejection = None
-            observed_time = None
-            try:
-                observed_time = datetime.fromisoformat(observation.captured_at)
-                if observed_time.utcoffset() is None:
-                    raise ValueError("Missing timezone")
-                source = DataSource(observation.data_source)
-                basis = TimestampBasis(observation.timestamp_basis)
-            except (ValueError, TypeError):
-                rejection = "invalid_source_or_timestamp"
-            if observation.viewpoint_id != view_id:
-                rejection = "wrong_viewpoint"
-            elif rejection:
-                pass
-            elif source != self.data_source:
-                rejection = "unsupported_evidence_source"
-            elif source == DataSource.FIXTURE and (
-                observation.image_path is not None or observation.image_hash is not None
-                or basis != TimestampBasis.FIXTURE
-            ):
-                rejection = "unsupported_evidence_source"
-            elif source == DataSource.RECORDED_IMAGE and (
-                not observation.image_path or not observation.capture_source
-                or basis not in (TimestampBasis.DECLARED_CAPTURE, TimestampBasis.DEMO_SEQUENCE)
-                or (not observation.error and not re.fullmatch(r"[0-9a-f]{64}", observation.image_hash or ""))
-            ):
-                rejection = "incomplete_image_provenance"
-            elif bases and basis not in bases:
-                rejection = "timestamp_basis_changed"
-            elif observation.evidence_id in seen_ids:
-                rejection = "replayed_evidence"
-            elif observation.image_hash and observation.image_hash in seen_hashes:
-                rejection = "replayed_image_content"
-            elif latest_time is not None and observed_time <= latest_time:
-                rejection = "observation_not_newer_than_memory"
-            if rejection:
-                self._event(
-                    state, "view_result", [view_id, observation.evidence_id],
-                    {"status": Status.UNKNOWN, "reason": rejection},
-                )
-                continue
-            seen_ids.add(observation.evidence_id)
-            if observation.image_hash:
-                seen_hashes.add(observation.image_hash)
-            bases.add(basis)
-            latest_time = observed_time
-            detection = self.detector.detect_target(observation, object_id)
-            if self.data_source == DataSource.FIXTURE or detection.diagnostics.get("image_decoded") is True:
-                state.observed_viewpoints.append(view_id)
-            if (
-                detection.target_id != object_id
-                or detection.evidence_id != observation.evidence_id
-                or observation.visibility_status != "clear"
-                or detection.status not in (Status.FOUND, Status.SUSPECTED, Status.NOT_FOUND_IN_VIEW, Status.UNKNOWN)
-                or observation.error
-                or (detection.data_source is not None and detection.data_source != self.data_source)
-                or (self.data_source == DataSource.RECORDED_IMAGE and (
-                    detection.data_source != DataSource.RECORDED_IMAGE
-                    or not detection.matcher or detection.matcher == "fixture_annotation"
-                    or detection.verification_kind != "reference_instance_match"
-                    or detection.status == Status.NOT_FOUND_IN_VIEW
-                    or (detection.status == Status.FOUND and (
-                        detection.diagnostics.get("image_decoded") is not True
-                        or not detection.bbox or len(detection.bbox) != 4
-                        or not all(isinstance(x, (int, float)) and math.isfinite(x) for x in detection.bbox)
-                        or detection.bbox[0] >= detection.bbox[2]
-                        or detection.bbox[1] >= detection.bbox[3]
-                    ))
-                ))
-            ):
-                detection = DetectionResult(
-                    object_id, observation.evidence_id, Status.UNKNOWN,
-                    matcher=detection.matcher, data_source=self.data_source,
-                    verification_kind=detection.verification_kind,
-                    diagnostics={**detection.diagnostics, "rejection": observation.error or "unusable_detection"},
-                )
-            state.evidence.append(MemoryRecord(observation, detection))
-            self._event(state, "detect_target", [observation.evidence_id, object_id], asdict(detection))
-            inserted = self.memory.update_memory(observation, detection)
-            self._event(
-                state, "update_memory", [observation.evidence_id],
-                {"inserted": inserted, "status": detection.status},
-            )
-            self._event(state, "view_result", [view_id], {"status": detection.status})
-            if detection.status == Status.FOUND:
-                state.result_status, state.location = Status.FOUND, view_id
-                break
-            if detection.status == Status.SUSPECTED:
-                state.result_status = Status.SUSPECTED
+        return self.state
+
+    def navigate_viewpoint(self, viewpoint_id: str, reason: str = "agent_tool_choice", *, score: int = 0) -> dict:
+        """Attempt one legal viewpoint; reason/score describe a plan, never facts."""
+        state = self._require_phase("ready")
+        known = {view.viewpoint_id for view in self.environment.list_viewpoints()}
+        if not isinstance(viewpoint_id, str) or viewpoint_id not in known:
+            raise ValueError("Unknown viewpoint")
+        if viewpoint_id in state.visited_viewpoints:
+            raise ValueError("Viewpoint was already attempted in this search")
+        if not isinstance(reason, str) or not reason.strip() or len(reason) > 500 or type(score) is not int:
+            raise ValueError("Invalid plan metadata")
+        self._current_viewpoint, self._observation = viewpoint_id, None
+        self._event(state, "plan_next", [state.object_id], asdict(PlanDecision(viewpoint_id, reason, score)))
+        state.visited_viewpoints.append(viewpoint_id)
+        navigation = self.environment.navigate_to(viewpoint_id)
+        self._event(state, "navigate", [viewpoint_id], asdict(navigation))
+        if (
+            navigation.status != "ARRIVED"
+            or navigation.viewpoint_id != viewpoint_id
+            or navigation.adapter_kind != self.adapter_kind
+            or navigation.simulated is not True
+            or navigation.navigation_mode != self.navigation_mode
+        ):
+            self._event(state, "view_result", [viewpoint_id], {"status": Status.UNREACHABLE})
+            return {"viewpoint_id": viewpoint_id, "status": Status.UNREACHABLE,
+                    "phase": self._phase, "navigation_mode": self.navigation_mode, "simulated": True}
+        state.arrived_viewpoints.append(viewpoint_id)
+        self._phase = "arrived"
+        return {"viewpoint_id": viewpoint_id, "status": "ARRIVED",
+                "phase": self._phase, "navigation_mode": self.navigation_mode, "simulated": True}
+
+    def observe_current(self) -> dict:
+        """Acquire one observation and apply the shared provenance/replay guards."""
+        state = self._require_phase("arrived")
+        view_id = self._current_viewpoint
+        observation = self.environment.observe(view_id)
         self._event(
-            state, "complete", [object_id],
+            state, "observe", [view_id],
+            {"observation": asdict(observation) if observation else None},
+        )
+        if observation is None:
+            self._event(state, "view_result", [view_id], {"status": Status.UNKNOWN, "reason": "no_observation"})
+            self._phase = "ready"
+            return {"viewpoint_id": view_id, "status": Status.UNKNOWN, "reason": "no_observation", "phase": self._phase}
+        rejection = None
+        observed_time = None
+        try:
+            observed_time = datetime.fromisoformat(observation.captured_at)
+            if observed_time.utcoffset() is None:
+                raise ValueError("Missing timezone")
+            source = DataSource(observation.data_source)
+            basis = TimestampBasis(observation.timestamp_basis)
+        except (ValueError, TypeError):
+            rejection = "invalid_source_or_timestamp"
+        if observation.viewpoint_id != view_id:
+            rejection = "wrong_viewpoint"
+        elif rejection:
+            pass
+        elif source != self.data_source:
+            rejection = "unsupported_evidence_source"
+        elif source == DataSource.FIXTURE and (
+            observation.image_path is not None or observation.image_hash is not None
+            or basis != TimestampBasis.FIXTURE
+        ):
+            rejection = "unsupported_evidence_source"
+        elif source == DataSource.RECORDED_IMAGE and (
+            not observation.image_path or not observation.capture_source
+            or basis not in (TimestampBasis.DECLARED_CAPTURE, TimestampBasis.DEMO_SEQUENCE)
+            or (not observation.error and not re.fullmatch(r"[0-9a-f]{64}", observation.image_hash or ""))
+        ):
+            rejection = "incomplete_image_provenance"
+        elif self._bases and basis not in self._bases:
+            rejection = "timestamp_basis_changed"
+        elif observation.evidence_id in self._seen_ids:
+            rejection = "replayed_evidence"
+        elif observation.image_hash and observation.image_hash in self._seen_hashes:
+            rejection = "replayed_image_content"
+        elif self._latest_time is not None and observed_time <= self._latest_time:
+            rejection = "observation_not_newer_than_memory"
+        if rejection:
+            self._event(
+                state, "view_result", [view_id, observation.evidence_id],
+                {"status": Status.UNKNOWN, "reason": rejection},
+            )
+            self._phase = "ready"
+            return {"viewpoint_id": view_id, "evidence_id": observation.evidence_id,
+                    "status": Status.UNKNOWN, "reason": rejection, "phase": self._phase}
+        self._seen_ids.add(observation.evidence_id)
+        if observation.image_hash:
+            self._seen_hashes.add(observation.image_hash)
+        self._bases.add(basis)
+        self._latest_time = observed_time
+        self._observation = observation
+        self._phase = "observed"
+        # Paths, hashes, capture-source text and image bytes stay in local evidence.
+        return {"viewpoint_id": view_id, "evidence_id": observation.evidence_id,
+                "status": "PENDING_VERIFICATION", "data_source": self.data_source,
+                "phase": self._phase}
+
+    def verify_current(self) -> dict:
+        """Run the detector and the single authoritative FOUND/memory-write path."""
+        state = self._require_phase("observed")
+        view_id, observation, object_id = self._current_viewpoint, self._observation, state.object_id
+        detection = self.detector.detect_target(observation, object_id)
+        if self.data_source == DataSource.FIXTURE or detection.diagnostics.get("image_decoded") is True:
+            state.observed_viewpoints.append(view_id)
+        if (
+            detection.target_id != object_id
+            or detection.evidence_id != observation.evidence_id
+            or observation.visibility_status != "clear"
+            or detection.status not in (Status.FOUND, Status.SUSPECTED, Status.NOT_FOUND_IN_VIEW, Status.UNKNOWN)
+            or observation.error
+            or (detection.data_source is not None and detection.data_source != self.data_source)
+            or (self.data_source == DataSource.RECORDED_IMAGE and (
+                detection.data_source != DataSource.RECORDED_IMAGE
+                or not detection.matcher or detection.matcher == "fixture_annotation"
+                or detection.verification_kind != "reference_instance_match"
+                or detection.status == Status.NOT_FOUND_IN_VIEW
+                or (detection.status == Status.FOUND and (
+                    detection.diagnostics.get("image_decoded") is not True
+                    or not detection.bbox or len(detection.bbox) != 4
+                    or not all(isinstance(x, (int, float)) and math.isfinite(x) for x in detection.bbox)
+                    or detection.bbox[0] >= detection.bbox[2]
+                    or detection.bbox[1] >= detection.bbox[3]
+                ))
+            ))
+        ):
+            detection = DetectionResult(
+                object_id, observation.evidence_id, Status.UNKNOWN,
+                matcher=detection.matcher, data_source=self.data_source,
+                verification_kind=detection.verification_kind,
+                diagnostics={**detection.diagnostics, "rejection": observation.error or "unusable_detection"},
+            )
+        state.evidence.append(MemoryRecord(observation, detection))
+        self._event(state, "detect_target", [observation.evidence_id, object_id], asdict(detection))
+        inserted = self.memory.update_memory(observation, detection)
+        self._event(
+            state, "update_memory", [observation.evidence_id],
+            {"inserted": inserted, "status": detection.status},
+        )
+        self._event(state, "view_result", [view_id], {"status": detection.status})
+        if detection.status == Status.FOUND:
+            state.result_status, state.location = Status.FOUND, view_id
+        elif detection.status == Status.SUSPECTED:
+            state.result_status = Status.SUSPECTED
+        self._phase, self._observation = "ready", None
+        diagnostics = {}
+        for key in ("good_matches", "inliers", "inlier_ratio", "reference_coverage", "elapsed_ms", "image_decoded"):
+            value = detection.diagnostics.get(key)
+            if isinstance(value, (int, float)) and math.isfinite(value):
+                diagnostics[key] = value
+        for key in ("reason", "rejection"):
+            value = detection.diagnostics.get(key)
+            if isinstance(value, str) and re.fullmatch(r"[a-z][a-z0-9_]{0,100}", value):
+                diagnostics[key] = value
+        return {"object_id": object_id, "viewpoint_id": view_id, "evidence_id": observation.evidence_id,
+                "status": detection.status, "result_status": state.result_status, "location": state.location,
+                "bbox": deepcopy(detection.bbox) if detection.status == Status.FOUND else None,
+                "diagnostics": diagnostics, "memory_inserted": inserted, "phase": self._phase}
+
+    def finish_search(self) -> SearchReport:
+        """End explicitly, without silently observing or verifying pending work."""
+        state = self._state
+        if state is None or self._phase == "idle":
+            raise ValueError("No active search session")
+        if self._phase == "finished":
+            return self.build_report(state.task_id)
+        if self._phase in ("arrived", "observed"):
+            self._event(state, "view_result", [self._current_viewpoint],
+                        {"status": Status.UNKNOWN, "reason": "incomplete_viewpoint"})
+        self._phase, self._observation = "finished", None
+        self._event(
+            state, "complete", [state.object_id],
             {"result_status": state.result_status, "location": state.location},
         )
         return self.build_report(state.task_id)
+
+    def run(self, object_id: str, task_id: str | None = None) -> SearchReport:
+        """The original deterministic controller over the same trusted session."""
+        self.start_search(object_id, task_id)
+        while self._state.result_status != Status.FOUND and (decision := self.plan_next(self._state)):
+            self.navigate_viewpoint(decision.viewpoint_id, decision.reason, score=decision.score)
+            if self._phase == "arrived":
+                self.observe_current()
+            if self._phase == "observed":
+                self.verify_current()
+        return self.finish_search()
 
     def build_report(self, task_id: str) -> SearchReport:
         state = self._state
@@ -261,7 +358,7 @@ class SearchCore:
         limitations.extend([
             "History guides planning but cannot confirm the current location.",
             "visited_viewpoints is a legacy alias for attempted_viewpoints, including failed navigation.",
-            "No physical robot, ROS, cloud API or learned visual model is integrated.",
+            "The Search Core itself does not call cloud APIs; navigation remains simulated with no physical robot or ROS integration.",
         ])
         return SearchReport(
             task_id=task_id,

@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>HomeTrace · 实时寻物 Agent</title>
+  <link rel="stylesheet" href="/agent.css">
+  <script defer src="/agent.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/">H<span>·</span> <strong>HomeTrace</strong></a>
+    <nav aria-label="演示入口"><a href="/">经典三个场景</a><span class="tag">实时 Agent</span><span class="tag amber">模拟导航</span></nav>
+  </header>
+  <main>
+    <section class="intro">
+      <div><p class="eyebrow">MEMORY → TOOL CALL → EVIDENCE</p><h1>描述要找什么，看它如何行动。</h1><p>模型选择下一步，工具执行并返回反馈。最终确认由 Search Core 的证据规则决定。</p></div>
+      <p class="notice">公开 OpenCV 样例盒子 · 记录实拍图片<br>地点与时间为演示编排 · 无真实机器人运动<br>此入口不代表家庭耳机壳识别能力</p>
+    </section>
+    <div id="config-notice" class="config-notice" role="status">正在读取 Agent 配置…</div>
+    <div id="error" class="error" role="alert" hidden></div>
+
+    <section class="panel request-panel" aria-labelledby="request-title">
+      <form id="request-form">
+        <div class="request-heading"><h2 id="request-title">提出寻物请求</h2><button id="example" type="button" class="text-button">填入公开盒子示例</button></div>
+        <label for="goal">自然语言目标</label>
+        <textarea id="goal" rows="2" maxlength="500" placeholder="例如：请帮我找到已登记的公开样例盒子。" required></textarea>
+        <div class="request-actions"><label for="scenario">观察数据场景<select id="scenario" disabled><option value="">正在加载…</option></select></label><button id="run" class="primary" type="submit" disabled>启动实时 Agent ↗</button></div>
+        <p class="note">场景决定工具可读取的数据。模型不会收到未来照片的答案；陌生或不明确的目标不会被自动替换为样例目标。</p>
+      </form>
+    </section>
+
+    <section class="session-bar" aria-label="运行状态">
+      <div><span id="run-status" class="status" role="status">待启动</span><span id="run-id" class="run-id"></span></div>
+      <dl class="counters"><div><dt>模型调用</dt><dd id="model-count">0</dd></div><div><dt>工具调用</dt><dd id="tool-count">0</dd></div><div><dt>已报告 Token</dt><dd id="token-count">0</dd></div></dl>
+    </section>
+
+    <div class="workspace">
+      <div class="evidence-column">
+        <section class="panel" aria-labelledby="memory-title">
+          <div class="panel-heading"><h2 id="memory-title">历史记忆与登记</h2><span class="tag">仅供规划</span></div>
+          <div class="reference"><img id="reference" alt="已登记的公开样例盒子参考照片" hidden><p>参考图用于匹配；历史位置不构成本轮已找到的证据。</p></div>
+          <ul id="history" class="history-list"><li>尚未读取历史记忆。</li></ul>
+        </section>
+        <section class="panel observation" aria-labelledby="observation-title">
+          <div class="panel-heading"><h2 id="observation-title">当前照片与工具验证</h2><span id="visual-status" class="tag">等待观察</span></div>
+          <div id="image-placeholder" class="placeholder"><strong>等待实际观察工具</strong><p>照片与检测框来自本轮程序执行。</p></div>
+          <div id="image-frame" class="image-frame" hidden><img id="current" alt="本轮观察工具读取的公开实拍图片"><canvas id="bbox" aria-label="视觉工具返回的原图坐标检测框"></canvas></div>
+          <p class="note">框按原图坐标绘制。无框不表示画面一定无目标；未通过确认规则时保持未确认。</p>
+          <dl class="facts"><div><dt>权威结果</dt><dd id="result-status">尚无搜索结果</dd></div><div><dt>确认位置</dt><dd id="result-location">—</dd></div><div><dt>实际尝试顺序</dt><dd id="result-route">—</dd></div><div><dt>当前确认证据</dt><dd id="result-evidence">—</dd></div></dl>
+        </section>
+        <section class="panel" aria-labelledby="explanation-title"><div class="panel-heading"><h2 id="explanation-title">模型说明</h2><span class="tag amber">非事实来源</span></div><p id="explanation" class="explanation">尚无模型说明。位置、到达与检测事实以工具验证结果为准。</p></section>
+        <section class="panel"><details><summary>Search Core 实际事件</summary><p class="note">导航事件始终表示软件模拟；图像匹配由本地程序真实执行。</p><pre id="core-events">尚无事件。</pre></details></section>
+      </div>
+      <section class="panel trace-panel" aria-labelledby="trace-title">
+        <div class="panel-heading"><h2 id="trace-title">实际状态与工具轨迹</h2><span id="live-label" class="tag">待运行</span></div>
+        <p class="note">每秒读取本轮已执行记录。展示实际调用及反馈，不预填推理或工具结果。</p>
+        <p id="trace-empty" class="empty">启动后在这里查看模型决策、工具调用和状态变化。</p>
+        <ol id="trace" class="trace" aria-label="实际执行记录"></ol>
+      </section>
+    </div>
+    <footer>记忆帮助选择地点，当前证据决定是否确认。真实模型 API 不可用时明确停止；经典离线 Demo 可从顶部入口使用。</footer>
+  </main>
+</body>
+</html>

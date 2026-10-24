@@ -1,0 +1,164 @@
+[
+  {
+    "run_id": "d8571329676f4bf282090a70a31de342",
+    "scenario": "moved",
+    "public_test_goal": "帮我找公开样例盒子",
+    "experiment_group": "runs-01",
+    "status": "BUDGET_EXCEEDED",
+    "model_calls": 5,
+    "tool_calls": 5,
+    "total_tokens": 6026,
+    "verified_result": {
+      "result_status": "FOUND",
+      "location": "V2",
+      "attempted_viewpoints": [
+        "V1",
+        "V2"
+      ],
+      "confirmed_evidence_ids": [
+        "E2"
+      ]
+    },
+    "file": "runs-01-d8571329.json"
+  },
+  {
+    "run_id": "013de2f0592846489ef2f5966834b8e3",
+    "scenario": "moved",
+    "public_test_goal": "找杯子",
+    "experiment_group": "runs-02",
+    "status": "CLARIFY",
+    "model_calls": 2,
+    "tool_calls": 1,
+    "total_tokens": 2210,
+    "verified_result": {
+      "result_status": "UNKNOWN",
+      "location": null,
+      "attempted_viewpoints": [],
+      "confirmed_evidence_ids": []
+    },
+    "file": "runs-02-013de2f0.json"
+  },
+  {
+    "run_id": "aa37459c5ca848869ee8c3f2247ee744",
+    "scenario": "moved",
+    "public_test_goal": "找耳机壳",
+    "experiment_group": "runs-02",
+    "status": "UNKNOWN_OBJECT",
+    "model_calls": 2,
+    "tool_calls": 1,
+    "total_tokens": 2043,
+    "verified_result": {
+      "result_status": "UNKNOWN",
+      "location": null,
+      "attempted_viewpoints": [],
+      "confirmed_evidence_ids": []
+    },
+    "file": "runs-02-aa37459c.json"
+  },
+  {
+    "run_id": "c890ef7bbfc3423ba36adfe02b7a9016",
+    "scenario": "moved",
+    "public_test_goal": "帮我找公开样例盒子",
+    "experiment_group": "runs-02",
+    "status": "COMPLETED",
+    "model_calls": 7,
+    "tool_calls": 6,
+    "total_tokens": 10533,
+    "verified_result": {
+      "result_status": "FOUND",
+      "location": "V2",
+      "attempted_viewpoints": [
+        "V1",
+        "V2"
+      ],
+      "confirmed_evidence_ids": [
+        "E2"
+      ]
+    },
+    "file": "runs-02-c890ef7b.json"
+  },
+  {
+    "run_id": "df3c2cda6d544e35bd1494a895724777",
+    "scenario": "fair",
+    "public_test_goal": "请帮我找公开样例盒子",
+    "experiment_group": "runs-02",
+    "status": "COMPLETED",
+    "model_calls": 5,
+    "tool_calls": 4,
+    "total_tokens": 6145,
+    "verified_result": {
+      "result_status": "FOUND",
+      "location": "V3",
+      "attempted_viewpoints": [
+        "V3"
+      ],
+      "confirmed_evidence_ids": [
+        "E1"
+      ]
+    },
+    "file": "runs-02-df3c2cda.json"
+  },
+  {
+    "run_id": "e92ce867f186443d889a57a55a28bc44",
+    "scenario": "missing",
+    "public_test_goal": "请帮我找公开样例盒子",
+    "experiment_group": "runs-02",
+    "status": "BUDGET_EXCEEDED",
+    "model_calls": 8,
+    "tool_calls": 8,
+    "total_tokens": 11797,
+    "verified_result": {
+      "result_status": "SUSPECTED",
+      "location": null,
+      "attempted_viewpoints": [
+        "V1",
+        "V2",
+        "V3"
+      ],
+      "confirmed_evidence_ids": []
+    },
+    "file": "runs-02-e92ce867.json"
+  },
+  {
+    "run_id": "f4d91e58070a4c27b1c4816f54322815",
+    "scenario": "replay",
+    "public_test_goal": "请帮我找公开样例盒子",
+    "experiment_group": "runs-02",
+    "status": "COMPLETED",
+    "model_calls": 7,
+    "tool_calls": 6,
+    "total_tokens": 10074,
+    "verified_result": {
+      "result_status": "UNKNOWN",
+      "location": null,
+      "attempted_viewpoints": [
+        "V2",
+        "V1",
+        "V3"
+      ],
+      "confirmed_evidence_ids": []
+    },
+    "file": "runs-02-f4d91e58.json"
+  },
+  {
+    "run_id": "bb2ce86dcc884f66af1ea563f8b7b1ca",
+    "scenario": "missing",
+    "public_test_goal": "请帮我找公开样例盒子",
+    "experiment_group": "runs-03",
+    "status": "COMPLETED",
+    "model_calls": 9,
+    "tool_calls": 8,
+    "total_tokens": 14037,
+    "verified_result": {
+      "result_status": "SUSPECTED",
+      "location": null,
+      "attempted_viewpoints": [
+        "V1",
+        "V2",
+        "V3"
+      ],
+      "confirmed_evidence_ids": []
+    },
+    "file": "runs-03-bb2ce86d.json"
+  }
+]

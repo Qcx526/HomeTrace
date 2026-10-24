@@ -1,0 +1,112 @@
+{
+  "gate": 0,
+  "status": "PASSED",
+  "provider": "Qianwen AI compatible gateway",
+  "model": "deepseek-v4.1-flash-1017",
+  "raw_images_sent": false,
+  "external_tracing": false,
+  "fixture_notice": "API probe catalog only; no image, navigation or detection evidence",
+  "calls": [
+    {
+      "latency_ms": 2098.338,
+      "usage": {
+        "input_tokens": 36,
+        "output_tokens": 21,
+        "total_tokens": 57,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 15
+        }
+      },
+      "model": "deepseek-v4.1-flash-1017",
+      "finish_reason": "stop",
+      "request_id": null,
+      "response_id": "lc_run--01a16b9f-bd81-753a-a199-9f5e567aa3e3-0"
+    },
+    {
+      "latency_ms": 1445.381,
+      "usage": {
+        "input_tokens": 407,
+        "output_tokens": 54,
+        "total_tokens": 461,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 22
+        }
+      },
+      "model": "deepseek-v4.1-flash-1017",
+      "finish_reason": "tool_calls",
+      "request_id": null,
+      "response_id": "lc_run--01a16b9f-c872-7199-9d75-261bfb19564a-0"
+    },
+    {
+      "latency_ms": 1363.814,
+      "usage": {
+        "input_tokens": 481,
+        "output_tokens": 62,
+        "total_tokens": 543,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 9
+        }
+      },
+      "model": "deepseek-v4.1-flash-1017",
+      "finish_reason": "tool_calls",
+      "request_id": null,
+      "response_id": "lc_run--01a16b9f-ce18-7468-95bc-f57f75420120-0"
+    },
+    {
+      "latency_ms": 3431.875,
+      "usage": {
+        "input_tokens": 569,
+        "output_tokens": 283,
+        "total_tokens": 852,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 8
+        }
+      },
+      "model": "deepseek-v4.1-flash-1017",
+      "finish_reason": "stop",
+      "request_id": null,
+      "response_id": "lc_run--01a16b9f-d36d-772f-ac25-541000aa7314-0"
+    }
+  ],
+  "tools": [
+    {
+      "name": "list_registered_objects",
+      "args": {},
+      "tool_call_id": "call_dc8ab3dd41284e5b81050c0d",
+      "result": {
+        "objects": [
+          {
+            "object_id": "api-probe",
+            "alias": "协议验证专用登记条目（无图像、无历史）"
+          }
+        ]
+      }
+    },
+    {
+      "name": "query_memory",
+      "args": {
+        "object_id": "api-probe"
+      },
+      "tool_call_id": "call_5798d011708049118dc30a4e",
+      "result": {
+        "object_id": "api-probe",
+        "history_count": 0,
+        "current_status": "UNKNOWN"
+      }
+    }
+  ],
+  "plain_text_returned": true,
+  "feedback_decision": "检查完成，结果如下：\n\n**1. 登记目录（list_registered_objects）**\n\n目录中只有 1 个条目：\n\n| object_id | alias |\n|---|---|\n| `api-probe` | 协议验证专用登记条目（无图像、无历史） |\n\n**2. 记忆查询（query_memory）**\n\n- object_id：`api-probe`\n- history_count：**0**\n- current_status：**UNKNOWN**\n\n**结论与下一步**\n\n- 这次检查只验证了接口可用性和调用链路：目录读取成功，记忆查询也已按目录返回的真实 object_id 成功执行。\n- 该条目**没有任何历史记录**，其状态为 `UNKNOWN`。因此，我**没有获得任何视觉证据，也无法确认任何物品的位置**；我不会声称“找到了”任何东西。\n- 由于这条登记条目本来就是协议验证用的占位项，并且没有图像、也没有历史，所以建议下一步：\n  - 如果目标只是确认 API 工作正常，那么当前已经完成，无需继续。\n  - 如果要查找真实物品，需要先由登记端（采集端）用真实 object_id 登记物品并写入历史记录；之后我再依据目录中实际返回的 object_id 重新查询。\n\n需要我在有新的真实登记条目后再次执行检查吗？"
+}
