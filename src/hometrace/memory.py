@@ -113,6 +113,11 @@ class SQLiteMemory:
         ).fetchone()
         return RegisteredObject(*row[:4], DataSource(row[4]), validate_reference_roi(json.loads(row[5])) if row[5] else None) if row else None
 
+    def list_objects(self) -> list[RegisteredObject]:
+        """Read the registered catalog; callers must redact reference metadata."""
+        ids = [row[0] for row in self.connection.execute("SELECT object_id FROM objects ORDER BY object_id")]
+        return [self.get_object(object_id) for object_id in ids]
+
     def query_memory(self, object_id: str) -> list[MemoryRecord]:
         rows = self.connection.execute(
             "SELECT payload FROM records WHERE object_id=?", (object_id,)

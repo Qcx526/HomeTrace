@@ -2,7 +2,7 @@
 
 > Huawei Embedded AI Challenge 2026 / 开放创新赛道
 
-**项目状态：** P0/P1/P2/P3/R1 已验收，稳定基线 v0.4.1 / main `e5732b4`，原有 289 项测试保留。本分支完成 [Issue #10](https://github.com/Qcx526/HomeTrace/issues/10) 的 YOLOE 真实 GPU 可行性实验：存在相似熊猫误候选，生产接入结论 **NO_GO**，详见 [P4 视觉报告](docs/P4_VISION_EVALUATION.md)。原公开 Demo 继续使用 ORB；导航始终为模拟，没有真实机器人运行数据。
+**项目状态：** [PR #14](https://github.com/Qcx526/HomeTrace/pull/14) 已通过 PM 审查并合并，当前 main 基线为 `708d8b2`；[真实 LLM Agent](docs/P4_AGENT.md) 与 P0–P3/R1 功能均保留。本分支将 [PR #13](https://github.com/Qcx526/HomeTrace/pull/13) 的 YOLOE 真实 GPU 实验集成到该基线，等待 PM 复核。相似熊猫存在误候选，生产接入结论仍为 **NO_GO**，详见 [P4 视觉报告](docs/P4_VISION_EVALUATION.md)。默认视觉仍为 ORB；家庭照片尚未可靠确认目标。导航始终为模拟，没有真实机器人运行数据。
 
 ## 一句话产品定义
 
@@ -15,6 +15,8 @@ HomeTrace 让家庭机器人记住物品曾经在哪里，通过历史位置与�
 比赛评分关注创新性、实现完整性与可实用性。优先使用成熟开源视觉方法，产品创新与执行闭环优先于从零发明算法。
 
 ## 单命令启动可视化 Demo
+
+真实模型 Agent 是可选模块：安装 `.[agent,dev,vision]`，在本地 `.env` 填写 `HOMETRACE_LLM_API_KEY`，模型及预算统一编辑 `config.yaml`。运行 `python -m hometrace demo --agent --port 8765 --output-dir artifacts/p4-demo` 后打开 `/agent.html`。使用千问AI平台托管的指定模型；无 Key、服务失败明确停止，不能切换为假 Agent。完整命令、实际正负例、工具轨迹与限制见 [P4 Agent](docs/P4_AGENT.md)。以下经典三场景继续独立可用。
 
 Python 3.11+，在仓库根目录安装后启动；界面使用 Python 标准库 HTTP 服务与本地 HTML/JS，无额外 UI 框架或 CDN：
 
@@ -40,7 +42,7 @@ P4 更新：主办方官方 DOCX 已取得，Issue #12 将保留原表结构填�
 
 [实施与命令](docs/P3_DELIVERY.md) · [226 项回归及实际证据](docs/evidence/issue-4/README.md) · [家庭照片实测](docs/TEAM_PHOTO_EVALUATION.md) · [打包工具](docs/SUBMISSION_TOOL.md)
 
-采用团队自编《HomeTrace 作品设计与技术说明书》，官方模板未知不阻断候选包。公开材料不含团队私人照片或真实姓名/手机号；最终身份字段由负责人在本地填写。把实际 DOCX、PPTX、MP4 和报告放入私有材料目录，复制并编辑配置后运行：
+官方初赛 DOCX 已取得，由 Issue #12 独立填写并保持原表结构；团队自编《HomeTrace 作品设计与技术说明书》仅作补充。公开材料不含团队私人照片或真实姓名/手机号；最终身份字段由负责人在本地填写。P4 审查合并后再更新正式媒体及 ZIP，旧包不能冒充当前成果。把实际 DOCX、PPTX、MP4 和报告放入私有材料目录，复制并编辑配置后运行：
 
 ```powershell
 .\.venv\Scripts\python.exe tools/build_submission.py --config local_data/submission/config.json --check

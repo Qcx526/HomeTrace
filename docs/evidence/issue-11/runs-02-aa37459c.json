@@ -1,0 +1,112 @@
+{
+  "status": "UNKNOWN_OBJECT",
+  "trace": [
+    {
+      "seq": 1,
+      "kind": "model",
+      "latency_ms": 3323.465,
+      "usage": {
+        "input_tokens": 842,
+        "output_tokens": 171,
+        "total_tokens": 1013,
+        "input_token_details": {
+          "cache_read": 512
+        },
+        "output_token_details": {
+          "reasoning": 112
+        }
+      },
+      "model": "deepseek-v4.1-flash-1017",
+      "finish_reason": "tool_calls",
+      "request_id": null,
+      "response_id": "lc_run--01a16ba9-17b2-751a-a962-8b41a8c1b463-0",
+      "tool_calls": [
+        {
+          "name": "unresolved_target",
+          "args": {
+            "reason": "unknown",
+            "candidate_ids": []
+          },
+          "id": "call_040679a6dcc64990b7360fe7"
+        }
+      ]
+    },
+    {
+      "seq": 2,
+      "kind": "tool",
+      "name": "unresolved_target",
+      "args": {
+        "reason": "unknown",
+        "candidate_ids": []
+      },
+      "tool_call_id": "call_040679a6dcc64990b7360fe7",
+      "result": {
+        "status": "UNKNOWN_OBJECT",
+        "candidates": [],
+        "verified_result": {
+          "result_status": "UNKNOWN",
+          "location": null,
+          "attempted_viewpoints": [],
+          "confirmed_evidence_ids": []
+        }
+      },
+      "latency_ms": 0.418
+    },
+    {
+      "seq": 3,
+      "kind": "model",
+      "latency_ms": 2044.579,
+      "usage": {
+        "input_tokens": 957,
+        "output_tokens": 73,
+        "total_tokens": 1030,
+        "input_token_details": {
+          "cache_read": 512
+        },
+        "output_token_details": {
+          "reasoning": 50
+        }
+      },
+      "model": "deepseek-v4.1-flash-1017",
+      "finish_reason": "tool_calls",
+      "request_id": null,
+      "response_id": "lc_run--01a16ba9-24b1-716e-a939-44e862f54253-0",
+      "tool_calls": [
+        {
+          "name": "render_report",
+          "args": {},
+          "id": "call_d007147c7d974633b40e10f8"
+        }
+      ]
+    },
+    {
+      "seq": 4,
+      "kind": "state",
+      "status": "UNKNOWN_OBJECT",
+      "verified_result": {
+        "result_status": "UNKNOWN",
+        "location": null,
+        "attempted_viewpoints": [],
+        "confirmed_evidence_ids": []
+      }
+    }
+  ],
+  "model_calls": 2,
+  "tool_calls": 1,
+  "total_tokens": 2043,
+  "verified_result": {
+    "result_status": "UNKNOWN",
+    "location": null,
+    "attempted_viewpoints": [],
+    "confirmed_evidence_ids": []
+  },
+  "explanation": "",
+  "history": [],
+  "model": "deepseek-v4.1-flash-1017",
+  "provider": "千问AI平台兼容网关",
+  "raw_images_sent": false,
+  "run_id": "aa37459c5ca848869ee8c3f2247ee744",
+  "scenario": "moved",
+  "public_test_goal": "找耳机壳",
+  "experiment_group": "runs-02"
+}
