@@ -1,0 +1,44 @@
+{
+  "same_inputs_sha256": {
+    "apple.jpg": "e86879de3d9a807dedc742a8f464f39e6b74bbb531a1fba3583155d94997d1cd",
+    "box.png": "1094629c1e2ebbc8a9ae2c9c63e18c1dff0f5f1481146e02f3b11a3d30feb20a",
+    "box_in_scene.png": "8b0225ff76244a42bd1400c0904f8b7afea7d97b7d8115495e42e98ad347bd51",
+    "history.json": "59feb51c8336ad7837fb7d52dec63ed1f0878c0a67613cc777eea6d6d6f8d2f2",
+    "moved.json": "b390e2c49d1a99d00cb515b29a1bce4ce358fafed3caecd7e97c61e85a68fafe",
+    "orange.jpg": "152c20d2f380ac985de25e474e1a5f06ed34b932191342099b8272a63a15a079"
+  },
+  "separate_databases": true,
+  "fixed": {
+    "result_status": "FOUND",
+    "location": "C",
+    "attempted_viewpoints": [
+      "A",
+      "B",
+      "C"
+    ],
+    "observed_viewpoints": [
+      "A",
+      "B",
+      "C"
+    ],
+    "confirmed_evidence_ids": [
+      "opencv-moved-C"
+    ]
+  },
+  "agent": {
+    "result_status": "FOUND",
+    "location": "V3",
+    "attempted_viewpoints": [
+      "V3"
+    ],
+    "confirmed_evidence_ids": [
+      "E1"
+    ]
+  },
+  "alias_mapping": {
+    "V1": "A",
+    "V2": "B",
+    "V3": "C"
+  },
+  "scope": "Controlled public replay, not physical efficiency or generalization evidence"
+}

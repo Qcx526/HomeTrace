@@ -1,0 +1,1006 @@
+{
+  "schema_version": 1,
+  "experiment": "unconfirmed_neural_candidates",
+  "candidate_semantics": "Candidate presence only; no instance confirmation or scene localization ground truth",
+  "confirmed_instances": 0,
+  "counts": {
+    "positive": {
+      "samples": 6,
+      "candidate_cases": 2,
+      "no_candidate_cases": 4,
+      "failed_or_unavailable_cases": 0
+    },
+    "negative": {
+      "samples": 8,
+      "candidate_cases": 1,
+      "no_candidate_cases": 7,
+      "failed_or_unavailable_cases": 0
+    },
+    "uncertain": {
+      "samples": 5,
+      "candidate_cases": 0,
+      "no_candidate_cases": 5,
+      "failed_or_unavailable_cases": 0
+    },
+    "auxiliary": {
+      "samples": 1,
+      "candidate_cases": 0,
+      "no_candidate_cases": 1,
+      "failed_or_unavailable_cases": 0
+    }
+  },
+  "groups": {
+    "earbud": {
+      "positive": {
+        "samples": 1,
+        "candidate_cases": 0,
+        "no_candidate_cases": 1,
+        "failed_or_unavailable_cases": 0
+      },
+      "negative": {
+        "samples": 2,
+        "candidate_cases": 0,
+        "no_candidate_cases": 2,
+        "failed_or_unavailable_cases": 0
+      },
+      "uncertain": {
+        "samples": 2,
+        "candidate_cases": 0,
+        "no_candidate_cases": 2,
+        "failed_or_unavailable_cases": 0
+      },
+      "auxiliary": {
+        "samples": 0,
+        "candidate_cases": 0,
+        "no_candidate_cases": 0,
+        "failed_or_unavailable_cases": 0
+      }
+    },
+    "panda": {
+      "positive": {
+        "samples": 2,
+        "candidate_cases": 2,
+        "no_candidate_cases": 0,
+        "failed_or_unavailable_cases": 0
+      },
+      "negative": {
+        "samples": 2,
+        "candidate_cases": 1,
+        "no_candidate_cases": 1,
+        "failed_or_unavailable_cases": 0
+      },
+      "uncertain": {
+        "samples": 1,
+        "candidate_cases": 0,
+        "no_candidate_cases": 1,
+        "failed_or_unavailable_cases": 0
+      },
+      "auxiliary": {
+        "samples": 0,
+        "candidate_cases": 0,
+        "no_candidate_cases": 0,
+        "failed_or_unavailable_cases": 0
+      }
+    },
+    "keys": {
+      "positive": {
+        "samples": 1,
+        "candidate_cases": 0,
+        "no_candidate_cases": 1,
+        "failed_or_unavailable_cases": 0
+      },
+      "negative": {
+        "samples": 2,
+        "candidate_cases": 0,
+        "no_candidate_cases": 2,
+        "failed_or_unavailable_cases": 0
+      },
+      "uncertain": {
+        "samples": 2,
+        "candidate_cases": 0,
+        "no_candidate_cases": 2,
+        "failed_or_unavailable_cases": 0
+      },
+      "auxiliary": {
+        "samples": 0,
+        "candidate_cases": 0,
+        "no_candidate_cases": 0,
+        "failed_or_unavailable_cases": 0
+      }
+    },
+    "tissue": {
+      "positive": {
+        "samples": 2,
+        "candidate_cases": 0,
+        "no_candidate_cases": 2,
+        "failed_or_unavailable_cases": 0
+      },
+      "negative": {
+        "samples": 2,
+        "candidate_cases": 0,
+        "no_candidate_cases": 2,
+        "failed_or_unavailable_cases": 0
+      },
+      "uncertain": {
+        "samples": 0,
+        "candidate_cases": 0,
+        "no_candidate_cases": 0,
+        "failed_or_unavailable_cases": 0
+      },
+      "auxiliary": {
+        "samples": 1,
+        "candidate_cases": 0,
+        "no_candidate_cases": 1,
+        "failed_or_unavailable_cases": 0
+      }
+    }
+  },
+  "evaluations": [
+    {
+      "group": "earbud",
+      "case": "scene_01",
+      "evaluation_label": "uncertain",
+      "status": "UNKNOWN",
+      "reason": "no_candidates",
+      "candidate_count": 0,
+      "scores": [],
+      "elapsed_ms": 37929.18,
+      "provider_called": true,
+      "confirmed_identity": false,
+      "runtime": {
+        "predict_ms": 9069.857,
+        "model_load_ms": 670.739,
+        "process_wall_ms": 37927.979,
+        "speed_ms": {
+          "preprocess": 48.07910000090487,
+          "inference": 366.33530000108294,
+          "postprocess": 0.5127999902470037
+        },
+        "device": "cuda:0",
+        "gpu_name": "NVIDIA GeForce GTX 1660",
+        "cuda_runtime": "12.4",
+        "compute_capability": [
+          7,
+          5
+        ],
+        "peak_allocated_bytes": 192036352,
+        "peak_reserved_bytes": 249561088,
+        "versions": {
+          "ultralytics": "8.3.221",
+          "torch": "2.6.0+cu124",
+          "torchvision": "0.21.0+cu124",
+          "numpy": "2.4.6",
+          "opencv-python": "4.14.0.94"
+        },
+        "network_disabled": true
+      },
+      "prompt_class": "object0"
+    },
+    {
+      "group": "earbud",
+      "case": "scene_02",
+      "evaluation_label": "uncertain",
+      "status": "UNKNOWN",
+      "reason": "no_candidates",
+      "candidate_count": 0,
+      "scores": [],
+      "elapsed_ms": 3642.898,
+      "provider_called": true,
+      "confirmed_identity": false,
+      "runtime": {
+        "predict_ms": 989.375,
+        "model_load_ms": 59.482,
+        "process_wall_ms": 3642.207,
+        "speed_ms": {
+          "preprocess": 2.7350000018486753,
+          "inference": 56.63750000530854,
+          "postprocess": 0.520800007507205
+        },
+        "device": "cuda:0",
+        "gpu_name": "NVIDIA GeForce GTX 1660",
+        "cuda_runtime": "12.4",
+        "compute_capability": [
+          7,
+          5
+        ],
+        "peak_allocated_bytes": 192036352,
+        "peak_reserved_bytes": 249561088,
+        "versions": {
+          "ultralytics": "8.3.221",
+          "torch": "2.6.0+cu124",
+          "torchvision": "0.21.0+cu124",
+          "numpy": "2.4.6",
+          "opencv-python": "4.14.0.94"
+        },
+        "network_disabled": true
+      },
+      "prompt_class": "object0"
+    },
+    {
+      "group": "earbud",
+      "case": "scene_03",
+      "evaluation_label": "negative",
+      "status": "UNKNOWN",
+      "reason": "no_candidates",
+      "candidate_count": 0,
+      "scores": [],
+      "elapsed_ms": 4227.933,
+      "provider_called": true,
+      "confirmed_identity": false,
+      "runtime": {
+        "predict_ms": 1127.647,
+        "model_load_ms": 69.798,
+        "process_wall_ms": 4227.209,
+        "speed_ms": {
+          "preprocess": 3.0393000051844865,
+          "inference": 64.54310000117403,
+          "postprocess": 0.5256000004010275
+        },
+        "device": "cuda:0",
+        "gpu_name": "NVIDIA GeForce GTX 1660",
+        "cuda_runtime": "12.4",
+        "compute_capability": [
+          7,
+          5
+        ],
+        "peak_allocated_bytes": 192036352,
+        "peak_reserved_bytes": 249561088,
+        "versions": {
+          "ultralytics": "8.3.221",
+          "torch": "2.6.0+cu124",
+          "torchvision": "0.21.0+cu124",
+          "numpy": "2.4.6",
+          "opencv-python": "4.14.0.94"
+        },
+        "network_disabled": true
+      },
+      "prompt_class": "object0"
+    },
+    {
+      "group": "earbud",
+      "case": "scene_04",
+      "evaluation_label": "positive",
+      "status": "UNKNOWN",
+      "reason": "no_candidates",
+      "candidate_count": 0,
+      "scores": [],
+      "elapsed_ms": 4036.55,
+      "provider_called": true,
+      "confirmed_identity": false,
+      "runtime": {
+        "predict_ms": 1013.702,
+        "model_load_ms": 66.232,
+        "process_wall_ms": 4035.705,
+        "speed_ms": {
+          "preprocess": 3.1162999948719516,
+          "inference": 58.266500011086464,
+          "postprocess": 0.7811999967088923
+        },
+        "device": "cuda:0",
+        "gpu_name": "NVIDIA GeForce GTX 1660",
+        "cuda_runtime": "12.4",
+        "compute_capability": [
+          7,
+          5
+        ],
+        "peak_allocated_bytes": 192036352,
+        "peak_reserved_bytes": 249561088,
+        "versions": {
+          "ultralytics": "8.3.221",
+          "torch": "2.6.0+cu124",
+          "torchvision": "0.21.0+cu124",
+          "numpy": "2.4.6",
+          "opencv-python": "4.14.0.94"
+        },
+        "network_disabled": true
+      },
+      "prompt_class": "object0"
+    },
+    {
+      "group": "earbud",
+      "case": "scene_05",
+      "evaluation_label": "negative",
+      "status": "UNKNOWN",
+      "reason": "no_candidates",
+      "candidate_count": 0,
+      "scores": [],
+      "elapsed_ms": 4067.969,
+      "provider_called": true,
+      "confirmed_identity": false,
+      "runtime": {
+        "predict_ms": 1348.872,
+        "model_load_ms": 59.831,
+        "process_wall_ms": 4067.25,
+        "speed_ms": {
+          "preprocess": 2.6095999928656965,
+          "inference": 61.28530000569299,
+          "postprocess": 0.5311000131769106
+        },
+        "device": "cuda:0",
+        "gpu_name": "NVIDIA GeForce GTX 1660",
+        "cuda_runtime": "12.4",
+        "compute_capability": [
+          7,
+          5
+        ],
+        "peak_allocated_bytes": 192036352,
+        "peak_reserved_bytes": 249561088,
+        "versions": {
+          "ultralytics": "8.3.221",
+          "torch": "2.6.0+cu124",
+          "torchvision": "0.21.0+cu124",
+          "numpy": "2.4.6",
+          "opencv-python": "4.14.0.94"
+        },
+        "network_disabled": true
+      },
+      "prompt_class": "object0"
+    },
+    {
+      "group": "panda",
+      "case": "scene_01",
+      "evaluation_label": "uncertain",
+      "status": "UNKNOWN",
+      "reason": "no_candidates",
+      "candidate_count": 0,
+      "scores": [],
+      "elapsed_ms": 4153.239,
+      "provider_called": true,
+      "confirmed_identity": false,
+      "runtime": {
+        "predict_ms": 1091.856,
+        "model_load_ms": 76.41,
+        "process_wall_ms": 4142.693,
+        "speed_ms": {
+          "preprocess": 4.047999987960793,
+          "inference": 54.87160000484437,
+          "postprocess": 0.47539999650325626
+        },
+        "device": "cuda:0",
+        "gpu_name": "NVIDIA GeForce GTX 1660",
+        "cuda_runtime": "12.4",
+        "compute_capability": [
+          7,
+          5
+        ],
+        "peak_allocated_bytes": 192036352,
+        "peak_reserved_bytes": 249561088,
+        "versions": {
+          "ultralytics": "8.3.221",
+          "torch": "2.6.0+cu124",
+          "torchvision": "0.21.0+cu124",
+          "numpy": "2.4.6",
+          "opencv-python": "4.14.0.94"
+        },
+        "network_disabled": true
+      },
+      "prompt_class": "object0"
+    },
+    {
+      "group": "panda",
+      "case": "scene_02",
+      "evaluation_label": "positive",
+      "status": "SUSPECTED",
+      "reason": "candidate_requires_instance_verification",
+      "candidate_count": 1,
+      "scores": [
+        0.4988085925579071
+      ],
+      "elapsed_ms": 4407.5,
+      "provider_called": true,
+      "confirmed_identity": false,
+      "runtime": {
+        "predict_ms": 1336.692,
+        "model_load_ms": 61.13,
+        "process_wall_ms": 4394.256,
+        "speed_ms": {
+          "preprocess": 2.982200006954372,
+          "inference": 60.047899998608045,
+          "postprocess": 375.49540000327397
+        },
+        "device": "cuda:0",
+        "gpu_name": "NVIDIA GeForce GTX 1660",
+        "cuda_runtime": "12.4",
+        "compute_capability": [
+          7,
+          5
+        ],
+        "peak_allocated_bytes": 192036352,
+        "peak_reserved_bytes": 249561088,
+        "versions": {
+          "ultralytics": "8.3.221",
+          "torch": "2.6.0+cu124",
+          "torchvision": "0.21.0+cu124",
+          "numpy": "2.4.6",
+          "opencv-python": "4.14.0.94"
+        },
+        "network_disabled": true
+      },
+      "prompt_class": "object0"
+    },
+    {
+      "group": "panda",
+      "case": "scene_03",
+      "evaluation_label": "negative",
+      "status": "SUSPECTED",
+      "reason": "candidate_requires_instance_verification",
+      "candidate_count": 1,
+      "scores": [
+        0.7963817119598389
+      ],
+      "elapsed_ms": 4134.095,
+      "provider_called": true,
+      "confirmed_identity": false,
+      "runtime": {
+        "predict_ms": 1028.306,
+        "model_load_ms": 61.26,
+        "process_wall_ms": 4121.21,
+        "speed_ms": {
+          "preprocess": 3.082199997152202,
+          "inference": 70.03360000089742,
+          "postprocess": 11.736300002667122
+        },
+        "device": "cuda:0",
+        "gpu_name": "NVIDIA GeForce GTX 1660",
+        "cuda_runtime": "12.4",
+        "compute_capability": [
+          7,
+          5
+        ],
+        "peak_allocated_bytes": 192036352,
+        "peak_reserved_bytes": 249561088,
+        "versions": {
+          "ultralytics": "8.3.221",
+          "torch": "2.6.0+cu124",
+          "torchvision": "0.21.0+cu124",
+          "numpy": "2.4.6",
+          "opencv-python": "4.14.0.94"
+        },
+        "network_disabled": true
+      },
+      "prompt_class": "object0"
+    },
+    {
+      "group": "panda",
+      "case": "scene_04",
+      "evaluation_label": "negative",
+      "status": "UNKNOWN",
+      "reason": "no_candidates",
+      "candidate_count": 0,
+      "scores": [],
+      "elapsed_ms": 3888.728,
+      "provider_called": true,
+      "confirmed_identity": false,
+      "runtime": {
+        "predict_ms": 860.219,
+        "model_load_ms": 55.957,
+        "process_wall_ms": 3871.175,
+        "speed_ms": {
+          "preprocess": 3.2269999937852845,
+          "inference": 49.442800009273924,
+          "postprocess": 0.45030000910628587
+        },
+        "device": "cuda:0",
+        "gpu_name": "NVIDIA GeForce GTX 1660",
+        "cuda_runtime": "12.4",
+        "compute_capability": [
+          7,
+          5
+        ],
+        "peak_allocated_bytes": 192036352,
+        "peak_reserved_bytes": 249561088,
+        "versions": {
+          "ultralytics": "8.3.221",
+          "torch": "2.6.0+cu124",
+          "torchvision": "0.21.0+cu124",
+          "numpy": "2.4.6",
+          "opencv-python": "4.14.0.94"
+        },
+        "network_disabled": true
+      },
+      "prompt_class": "object0"
+    },
+    {
+      "group": "panda",
+      "case": "scene_05",
+      "evaluation_label": "positive",
+      "status": "SUSPECTED",
+      "reason": "candidate_requires_instance_verification",
+      "candidate_count": 1,
+      "scores": [
+        0.5503116846084595
+      ],
+      "elapsed_ms": 4076.415,
+      "provider_called": true,
+      "confirmed_identity": false,
+      "runtime": {
+        "predict_ms": 1115.636,
+        "model_load_ms": 62.004,
+        "process_wall_ms": 4064.312,
+        "speed_ms": {
+          "preprocess": 2.359500009333715,
+          "inference": 48.88560000108555,
+          "postprocess": 9.682000003522262
+        },
+        "device": "cuda:0",
+        "gpu_name": "NVIDIA GeForce GTX 1660",
+        "cuda_runtime": "12.4",
+        "compute_capability": [
+          7,
+          5
+        ],
+        "peak_allocated_bytes": 192036352,
+        "peak_reserved_bytes": 249561088,
+        "versions": {
+          "ultralytics": "8.3.221",
+          "torch": "2.6.0+cu124",
+          "torchvision": "0.21.0+cu124",
+          "numpy": "2.4.6",
+          "opencv-python": "4.14.0.94"
+        },
+        "network_disabled": true
+      },
+      "prompt_class": "object0"
+    },
+    {
+      "group": "keys",
+      "case": "scene_01",
+      "evaluation_label": "uncertain",
+      "status": "UNKNOWN",
+      "reason": "no_candidates",
+      "candidate_count": 0,
+      "scores": [],
+      "elapsed_ms": 3470.395,
+      "provider_called": true,
+      "confirmed_identity": false,
+      "runtime": {
+        "predict_ms": 887.661,
+        "model_load_ms": 53.697,
+        "process_wall_ms": 3469.57,
+        "speed_ms": {
+          "preprocess": 2.711799999815412,
+          "inference": 49.25470000307541,
+          "postprocess": 0.4744000034406781
+        },
+        "device": "cuda:0",
+        "gpu_name": "NVIDIA GeForce GTX 1660",
+        "cuda_runtime": "12.4",
+        "compute_capability": [
+          7,
+          5
+        ],
+        "peak_allocated_bytes": 192036352,
+        "peak_reserved_bytes": 249561088,
+        "versions": {
+          "ultralytics": "8.3.221",
+          "torch": "2.6.0+cu124",
+          "torchvision": "0.21.0+cu124",
+          "numpy": "2.4.6",
+          "opencv-python": "4.14.0.94"
+        },
+        "network_disabled": true
+      },
+      "prompt_class": "object0"
+    },
+    {
+      "group": "keys",
+      "case": "scene_02",
+      "evaluation_label": "uncertain",
+      "status": "UNKNOWN",
+      "reason": "no_candidates",
+      "candidate_count": 0,
+      "scores": [],
+      "elapsed_ms": 3596.157,
+      "provider_called": true,
+      "confirmed_identity": false,
+      "runtime": {
+        "predict_ms": 903.276,
+        "model_load_ms": 54.785,
+        "process_wall_ms": 3595.211,
+        "speed_ms": {
+          "preprocess": 2.558300009695813,
+          "inference": 47.93780000181869,
+          "postprocess": 0.4706999898189679
+        },
+        "device": "cuda:0",
+        "gpu_name": "NVIDIA GeForce GTX 1660",
+        "cuda_runtime": "12.4",
+        "compute_capability": [
+          7,
+          5
+        ],
+        "peak_allocated_bytes": 192036352,
+        "peak_reserved_bytes": 249561088,
+        "versions": {
+          "ultralytics": "8.3.221",
+          "torch": "2.6.0+cu124",
+          "torchvision": "0.21.0+cu124",
+          "numpy": "2.4.6",
+          "opencv-python": "4.14.0.94"
+        },
+        "network_disabled": true
+      },
+      "prompt_class": "object0"
+    },
+    {
+      "group": "keys",
+      "case": "scene_03",
+      "evaluation_label": "positive",
+      "status": "UNKNOWN",
+      "reason": "no_candidates",
+      "candidate_count": 0,
+      "scores": [],
+      "elapsed_ms": 3455.168,
+      "provider_called": true,
+      "confirmed_identity": false,
+      "runtime": {
+        "predict_ms": 938.093,
+        "model_load_ms": 54.025,
+        "process_wall_ms": 3454.476,
+        "speed_ms": {
+          "preprocess": 2.010799988056533,
+          "inference": 54.239499993855134,
+          "postprocess": 0.5849000008311123
+        },
+        "device": "cuda:0",
+        "gpu_name": "NVIDIA GeForce GTX 1660",
+        "cuda_runtime": "12.4",
+        "compute_capability": [
+          7,
+          5
+        ],
+        "peak_allocated_bytes": 192036352,
+        "peak_reserved_bytes": 249561088,
+        "versions": {
+          "ultralytics": "8.3.221",
+          "torch": "2.6.0+cu124",
+          "torchvision": "0.21.0+cu124",
+          "numpy": "2.4.6",
+          "opencv-python": "4.14.0.94"
+        },
+        "network_disabled": true
+      },
+      "prompt_class": "object0"
+    },
+    {
+      "group": "keys",
+      "case": "scene_04",
+      "evaluation_label": "negative",
+      "status": "UNKNOWN",
+      "reason": "no_candidates",
+      "candidate_count": 0,
+      "scores": [],
+      "elapsed_ms": 3464.257,
+      "provider_called": true,
+      "confirmed_identity": false,
+      "runtime": {
+        "predict_ms": 934.98,
+        "model_load_ms": 56.303,
+        "process_wall_ms": 3463.333,
+        "speed_ms": {
+          "preprocess": 2.056299999821931,
+          "inference": 51.18599999696016,
+          "postprocess": 0.5352000007405877
+        },
+        "device": "cuda:0",
+        "gpu_name": "NVIDIA GeForce GTX 1660",
+        "cuda_runtime": "12.4",
+        "compute_capability": [
+          7,
+          5
+        ],
+        "peak_allocated_bytes": 192036352,
+        "peak_reserved_bytes": 249561088,
+        "versions": {
+          "ultralytics": "8.3.221",
+          "torch": "2.6.0+cu124",
+          "torchvision": "0.21.0+cu124",
+          "numpy": "2.4.6",
+          "opencv-python": "4.14.0.94"
+        },
+        "network_disabled": true
+      },
+      "prompt_class": "object0"
+    },
+    {
+      "group": "keys",
+      "case": "scene_05",
+      "evaluation_label": "negative",
+      "status": "UNKNOWN",
+      "reason": "no_candidates",
+      "candidate_count": 0,
+      "scores": [],
+      "elapsed_ms": 4078.165,
+      "provider_called": true,
+      "confirmed_identity": false,
+      "runtime": {
+        "predict_ms": 1219.472,
+        "model_load_ms": 56.488,
+        "process_wall_ms": 4077.088,
+        "speed_ms": {
+          "preprocess": 2.8138999914517626,
+          "inference": 56.96090000856202,
+          "postprocess": 0.782300005084835
+        },
+        "device": "cuda:0",
+        "gpu_name": "NVIDIA GeForce GTX 1660",
+        "cuda_runtime": "12.4",
+        "compute_capability": [
+          7,
+          5
+        ],
+        "peak_allocated_bytes": 192036352,
+        "peak_reserved_bytes": 249561088,
+        "versions": {
+          "ultralytics": "8.3.221",
+          "torch": "2.6.0+cu124",
+          "torchvision": "0.21.0+cu124",
+          "numpy": "2.4.6",
+          "opencv-python": "4.14.0.94"
+        },
+        "network_disabled": true
+      },
+      "prompt_class": "object0"
+    },
+    {
+      "group": "tissue",
+      "case": "scene_01",
+      "evaluation_label": "positive",
+      "status": "UNKNOWN",
+      "reason": "no_candidates",
+      "candidate_count": 0,
+      "scores": [],
+      "elapsed_ms": 3783.858,
+      "provider_called": true,
+      "confirmed_identity": false,
+      "runtime": {
+        "predict_ms": 997.952,
+        "model_load_ms": 55.763,
+        "process_wall_ms": 3783.206,
+        "speed_ms": {
+          "preprocess": 2.6005000108852983,
+          "inference": 63.3254999993369,
+          "postprocess": 0.5575000104727224
+        },
+        "device": "cuda:0",
+        "gpu_name": "NVIDIA GeForce GTX 1660",
+        "cuda_runtime": "12.4",
+        "compute_capability": [
+          7,
+          5
+        ],
+        "peak_allocated_bytes": 192036352,
+        "peak_reserved_bytes": 249561088,
+        "versions": {
+          "ultralytics": "8.3.221",
+          "torch": "2.6.0+cu124",
+          "torchvision": "0.21.0+cu124",
+          "numpy": "2.4.6",
+          "opencv-python": "4.14.0.94"
+        },
+        "network_disabled": true
+      },
+      "prompt_class": "object0"
+    },
+    {
+      "group": "tissue",
+      "case": "scene_02",
+      "evaluation_label": "auxiliary",
+      "status": "UNKNOWN",
+      "reason": "no_candidates",
+      "candidate_count": 0,
+      "scores": [],
+      "elapsed_ms": 3497.482,
+      "provider_called": true,
+      "confirmed_identity": false,
+      "runtime": {
+        "predict_ms": 882.087,
+        "model_load_ms": 56.926,
+        "process_wall_ms": 3496.683,
+        "speed_ms": {
+          "preprocess": 2.675900002941489,
+          "inference": 54.96039999707136,
+          "postprocess": 0.5155999970156699
+        },
+        "device": "cuda:0",
+        "gpu_name": "NVIDIA GeForce GTX 1660",
+        "cuda_runtime": "12.4",
+        "compute_capability": [
+          7,
+          5
+        ],
+        "peak_allocated_bytes": 192036352,
+        "peak_reserved_bytes": 249561088,
+        "versions": {
+          "ultralytics": "8.3.221",
+          "torch": "2.6.0+cu124",
+          "torchvision": "0.21.0+cu124",
+          "numpy": "2.4.6",
+          "opencv-python": "4.14.0.94"
+        },
+        "network_disabled": true
+      },
+      "prompt_class": "object0"
+    },
+    {
+      "group": "tissue",
+      "case": "scene_03",
+      "evaluation_label": "negative",
+      "status": "UNKNOWN",
+      "reason": "no_candidates",
+      "candidate_count": 0,
+      "scores": [],
+      "elapsed_ms": 3828.918,
+      "provider_called": true,
+      "confirmed_identity": false,
+      "runtime": {
+        "predict_ms": 894.136,
+        "model_load_ms": 64.726,
+        "process_wall_ms": 3828.093,
+        "speed_ms": {
+          "preprocess": 2.3613000084878877,
+          "inference": 50.57730000407901,
+          "postprocess": 0.49000000581145287
+        },
+        "device": "cuda:0",
+        "gpu_name": "NVIDIA GeForce GTX 1660",
+        "cuda_runtime": "12.4",
+        "compute_capability": [
+          7,
+          5
+        ],
+        "peak_allocated_bytes": 192036352,
+        "peak_reserved_bytes": 249561088,
+        "versions": {
+          "ultralytics": "8.3.221",
+          "torch": "2.6.0+cu124",
+          "torchvision": "0.21.0+cu124",
+          "numpy": "2.4.6",
+          "opencv-python": "4.14.0.94"
+        },
+        "network_disabled": true
+      },
+      "prompt_class": "object0"
+    },
+    {
+      "group": "tissue",
+      "case": "scene_04",
+      "evaluation_label": "positive",
+      "status": "UNKNOWN",
+      "reason": "no_candidates",
+      "candidate_count": 0,
+      "scores": [],
+      "elapsed_ms": 3664.88,
+      "provider_called": true,
+      "confirmed_identity": false,
+      "runtime": {
+        "predict_ms": 971.86,
+        "model_load_ms": 52.969,
+        "process_wall_ms": 3664.148,
+        "speed_ms": {
+          "preprocess": 2.0721000037156045,
+          "inference": 47.62339999433607,
+          "postprocess": 0.4985000123269856
+        },
+        "device": "cuda:0",
+        "gpu_name": "NVIDIA GeForce GTX 1660",
+        "cuda_runtime": "12.4",
+        "compute_capability": [
+          7,
+          5
+        ],
+        "peak_allocated_bytes": 192036352,
+        "peak_reserved_bytes": 249561088,
+        "versions": {
+          "ultralytics": "8.3.221",
+          "torch": "2.6.0+cu124",
+          "torchvision": "0.21.0+cu124",
+          "numpy": "2.4.6",
+          "opencv-python": "4.14.0.94"
+        },
+        "network_disabled": true
+      },
+      "prompt_class": "object0"
+    },
+    {
+      "group": "tissue",
+      "case": "scene_05",
+      "evaluation_label": "negative",
+      "status": "UNKNOWN",
+      "reason": "no_candidates",
+      "candidate_count": 0,
+      "scores": [],
+      "elapsed_ms": 3613.724,
+      "provider_called": true,
+      "confirmed_identity": false,
+      "runtime": {
+        "predict_ms": 967.107,
+        "model_load_ms": 58.03,
+        "process_wall_ms": 3612.986,
+        "speed_ms": {
+          "preprocess": 2.897900005336851,
+          "inference": 51.23250000178814,
+          "postprocess": 0.6090999959269539
+        },
+        "device": "cuda:0",
+        "gpu_name": "NVIDIA GeForce GTX 1660",
+        "cuda_runtime": "12.4",
+        "compute_capability": [
+          7,
+          5
+        ],
+        "peak_allocated_bytes": 192036352,
+        "peak_reserved_bytes": 249561088,
+        "versions": {
+          "ultralytics": "8.3.221",
+          "torch": "2.6.0+cu124",
+          "torchvision": "0.21.0+cu124",
+          "numpy": "2.4.6",
+          "opencv-python": "4.14.0.94"
+        },
+        "network_disabled": true
+      },
+      "prompt_class": "object0"
+    }
+  ],
+  "generated_at_utc": "2026-10-24T08:28:59.457339+00:00",
+  "baseline_commit": "e5732b4024d90cc190aedb77f98f626b11e982cd",
+  "original_images_verified": 24,
+  "originals_unchanged": true,
+  "scope": "gate_1_full_dataset",
+  "parameters": {
+    "conf": 0.25,
+    "iou": 0.7,
+    "imgsz": 640,
+    "max_det": 100,
+    "half": false,
+    "seed": 0,
+    "device": "cuda:0"
+  },
+  "model": "yoloe-11s-seg.pt",
+  "weight_sha256": "8e439445c87338b79d9ce21dec109f4621e26df67e94d26ea1a98c1e64dce3e3",
+  "weight_url": "https://github.com/ultralytics/assets/releases/download/v8.3.0/yoloe-11s-seg.pt",
+  "protocol_sha256": "9ec74f5b5e62c0dae35ac652ca1a57c26a14a2adc7c991647afc449b20344468",
+  "limitations": [
+    "Exploratory fixed-parameter evaluation on previously reviewed photos, no held-out set",
+    "Candidate class object0 is bound to registration, not a semantic or instance identity claim",
+    "No robot navigation or SearchCore/SQLite state writes in this experiment",
+    "No candidate on an image does not prove absence",
+    "Private original-coordinate boxes remain local"
+  ],
+  "gate": "NO_GO",
+  "integration_enabled": false,
+  "gate_reason": "Definite negative scenes produce unconfirmed candidates",
+  "integration_run": {
+    "source_merge_commit": "3c49bec9ae78b136d2bfe191b09a97355fc6a5fb",
+    "frozen_protocol_base_commit_retained": true,
+    "frozen_detection_status_reason_boxes_scores_equal": true,
+    "new_independent_samples": false,
+    "tuning_performed": false,
+    "previous_evidence_overwritten": false
+  },
+  "localization_review": {
+    "method": "Developer inspected all three new candidate overlays locally after this run; no private images published and no numeric IoU claim",
+    "positive_scenes_with_supported_target_candidate": 1,
+    "positive_scenes_without_supported_target_candidate": 5,
+    "negative_candidate_cases": 1,
+    "confirmed_instances": 0,
+    "candidate_cases": [
+      {
+        "group": "panda",
+        "case": "scene_02",
+        "review": "wrong_instance_large_panda"
+      },
+      {
+        "group": "panda",
+        "case": "scene_03",
+        "review": "false_candidate_large_panda_negative"
+      },
+      {
+        "group": "panda",
+        "case": "scene_05",
+        "review": "small_target_localization_supported_not_instance_confirmed"
+      }
+    ]
+  }
+}
