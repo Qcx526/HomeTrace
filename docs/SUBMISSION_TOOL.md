@@ -2,6 +2,8 @@
 
 以 [Issue #12](https://github.com/Qcx526/HomeTrace/issues/12) 为准：`document_source=official_template`，主办方原件与填写稿必须分离，七页自编说明书仅作补充。填表字段、DRAFT 模式、原件 SHA256 与版式验证见 [官方材料接口](OFFICIAL_SUBMISSION.md)。工具不上传，不自动认定官方格式、内容或参赛资格通过。
 
+2026-10-25 集成状态：PR #15 在 main `4429fcf21797d6af05d189effdd510918315acc4` 的同一合并工作树实际运行 **458 passed，0 failed，0 skipped，78.70 秒**，含新增 5 项官方表与 Agent 配置/动态 Key 联合测试，未修改旧断言。原独立分支报告保持不变，见 [本轮集成证据](evidence/pr-15-integration-20261025/README.md)。DRAFT 正式填表检查及包预检均为 exit 2 / BLOCKED。历史 DOCX 重叠本轮未复现，原件和非编辑部分未改，不宣称修复；正式实名版本仍需负责人 Word 全页复核。真实身份、最终 P4 媒体与 ZIP 尚未验收，正式参赛包仍 **BLOCKED**。
+
 ## 输入与运行
 
 先按 README 安装项目。打包入口只有一个；实际 MP4 校验需要 PATH 中的 `ffprobe` 和 `ffmpeg`，PDF 报告需要可选 `pypdf`，使用 Markdown 报告则无需 PDF 依赖。
@@ -43,7 +45,9 @@ ZIP 内包含材料清单、`SOURCE_INFO.json`、`PRE_UPLOAD_REVIEW.json` 和逐
 
 源码从 Git 的已跟踪及未忽略工作文件清单中筛选，使用限定的路径和扩展名 allowlist：核心 `src/`、测试、工具、README、构建配置、选定技术文档及 OpenCV 公开回归样例/许可。允许开发候选包包含尚未提交的合法源码，记录 HEAD、工作区脏状态、纳入的未跟踪文件数、实际源码快照 SHA256；不能将它描述为完全等同于 HEAD。`expected_source_commit` 可设置为当前完整提交号，设置后不一致会失败。交付最终版应优先从已提交的可追溯版本生成。
 
-排除 `.git`、`.venv`、隐藏文件、缓存、数据库、`local_data`、私密原图、旧 ZIP、历史运行日志和非 allowlist 文件。公开的记录图像只允许列出的 OpenCV 稳定样例。可识别的私钥/部分 token 格式会阻断；这不是完备的密钥或隐私扫描，文档与视频中的个人信息、二维码、屏幕内容必须人工检查。为防止静默覆盖，已有同名 ZIP 时拒绝生成新包；先在本地归档旧包再重试。
+源码白名单保留 `config.yaml` 和空 `.env.example`，用于复现已合并 Agent；真正的 `.env` 绝不导出。`.env.example` 只有空 Key 示例才可进入包；配置中的秘密字段、可识别的私钥/部分 token，以及本机已配置 Key 混入普通源码时会阻断。实际源码包必须验证这两项配置存在且敏感文件缺席，不能只检查文件名。
+
+排除 `.git`、`.venv`、除上述空示例外的隐藏文件、缓存、数据库、`local_data`、私密原图、模型权重、旧 ZIP、历史运行日志和非 allowlist 文件。公开的记录图像只允许列出的 OpenCV 稳定样例。这不是完备的密钥或隐私扫描，文档与视频中的个人信息、二维码、屏幕内容必须人工检查。为防止静默覆盖，已有同名 ZIP 时拒绝生成新包；先在本地归档旧包再重试。
 
 Office 验证包括 ZIP CRC、必需 OOXML 部件、XML 可解析性、可读取文本、重复/越界条目、宏及嵌入对象检查；不保证排版或内容完整，须在 Word/PowerPoint 中打开。MP4 验证包括容器基本结构、`ffprobe` 视频流/时长、`ffmpeg` 全片解码；不证明视频中的内容是实拍或执行结果。PDF 通过 `pypdf` 读取页面；Markdown 检查 UTF-8 和非空内容。
 
@@ -53,6 +57,12 @@ Office 验证包括 ZIP CRC、必需 OOXML 部件、XML 可解析性、可读取
 
 ```powershell
 .venv/Scripts/python.exe -m pytest tests/test_submission.py -q
+.venv/Scripts/python.exe -m pytest tests/test_official_submission.py tests/test_agent_submission.py -q
+# 集成验收先安装可选 Agent/视觉测试依赖，再在同一工作树运行完整测试
+.venv/Scripts/python.exe -m pip install -e ".[dev,vision,agent]"
+.venv/Scripts/python.exe -m pytest -q
 ```
 
 合成资料仅用于 `test_only=true`，输出恒为 `TEST_ONLY-candidate-HomeTrace.zip`，清单和状态均明确非正式提交。测试 MP4 仅有伪造的结构盒，用于校验异常输入逻辑，不是可播放视频。真实候选视频不会使用该旁路，必须完成解码。测试覆盖材料缺失/为空、损坏 Office/MP4、路径越界/链接、工作区源码与隐私排除、密钥阻断、重复配置、打包期间文件改变、已有 ZIP、防止身份泄漏、完整性和清单复核。
+
+正式集成还须用本地真实官方原件核对 SHA 与表结构，实际验证缺失身份的 DRAFT 被拒绝，并对源码 ZIP 重新打开核验 CRC、条目清单及 SHA256。源码 ZIP 或 TEST_ONLY 夹具通过不能表示官方参赛包通过；原件、规则说明 PDF、私人身份和含图结果仍只留在本地。全量测试和产物校验完成后提交 PR 供 PM 复核，不自行合并。

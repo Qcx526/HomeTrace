@@ -9,6 +9,7 @@ from dataclasses import dataclass
 from datetime import datetime, timezone
 import hashlib
 import json
+import os
 from pathlib import Path, PurePosixPath
 import re
 import shutil
@@ -30,7 +31,7 @@ SOURCE_DOCS = {
     "P0_IMPLEMENTATION.md", "P1_IMPLEMENTATION.md", "P1_VISION_CHOICE.md",
     "P2_DEMO.md", "P3_DELIVERY.md", "SUBMISSION_TOOL.md", "SUBMISSION_PLAN.md",
     "TEAM_PHOTO_EVALUATION.md", "SUBMISSION_READINESS.md", "REGISTRATION_ROI_EVALUATION.md",
-    "OFFICIAL_SUBMISSION.md",
+    "OFFICIAL_SUBMISSION.md", "P4_AGENT.md",
 }
 CONFIRMATIONS = ("privacy_reviewed", "media_truthful", "materials_consistent")
 MATERIALS = ("application", "presentation", "video", "run_report", "originality")
@@ -230,9 +231,11 @@ def check_report(path: Path) -> None:
 
 def source_allowed(name: str) -> bool:
     path = PurePosixPath(name)
+    if name == ".env.example":
+        return True
     if any(part.startswith(".") or part in {"__pycache__", "local_data", "artifacts", "dist_submission", "node_modules"} for part in path.parts):
         return False
-    if name in {"README.md", "AGENTS.md", "pyproject.toml", "LICENSE", "LICENSE.md"}:
+    if name in {"README.md", "AGENTS.md", "pyproject.toml", "LICENSE", "LICENSE.md", "config.yaml"}:
         return True
     if len(path.parts) == 2 and path.parts[0] == "docs" and path.name in SOURCE_DOCS:
         return True
@@ -246,6 +249,17 @@ def source_allowed(name: str) -> bool:
 
 
 def collect_source(root: Path, expected_commit: str | None = None) -> tuple[list[Entry], dict]:
+    local_keys = []
+    key = os.environ.get("HOMETRACE_LLM_API_KEY", "")
+    if len(key) >= 8:
+        local_keys.append(key.encode())
+    env_path = root / ".env"
+    if env_path.is_file() and not env_path.is_symlink():
+        for line in env_path.read_text(encoding="utf-8-sig").splitlines():
+            if line.strip().startswith("HOMETRACE_LLM_API_KEY="):
+                key = line.split("=",1)[1].strip().strip("\"'")
+                if len(key) >= 8:
+                    local_keys.append(key.encode())
     def git(*args):
         result = subprocess.run(["git", "-C", str(root), *args], capture_output=True, check=False)
         if result.returncode:
@@ -273,8 +287,16 @@ def collect_source(root: Path, expected_commit: str | None = None) -> tuple[list
         if not source_allowed(name):
             continue
         path = local_file(root, name)
+        if any(key in path.read_bytes() for key in local_keys):
+            raise SubmissionError("Source contains a configured private API key")
         untracked += origin == "untracked_working_tree"
-        if path.suffix in {".py", ".json", ".md", ".txt", ".toml", ".html", ".js", ".cjs", ".css"}:
+        if name == ".env.example" and path.read_text(encoding="utf-8-sig").strip() != "HOMETRACE_LLM_API_KEY=":
+            raise SubmissionError(".env.example must contain only the empty API key example")
+        if name == "config.yaml":
+            text = path.read_text(encoding="utf-8-sig")
+            if re.search(r"(?i)api[_-]?key|password|secret|token\s*:", text):
+                raise SubmissionError("config.yaml may not contain secret fields")
+        if path.suffix in {".py", ".json", ".md", ".txt", ".toml", ".html", ".js", ".cjs", ".css", ".yaml"}:
             _check_secret(path.read_bytes())
         entries.append(Entry("04_核心源代码/" + name, path, sha256(path), path.stat().st_size))
     names = {entry.name.removeprefix("04_核心源代码/") for entry in entries}

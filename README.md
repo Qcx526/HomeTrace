@@ -2,19 +2,21 @@
 
 > Huawei Embedded AI Challenge 2026 / 开放创新赛道
 
-**项目状态：** P0/P1/P2 与 P3 候选交付（PR #8）已合并；本分支处理 [Issue #4 最新 PM 要求](https://github.com/Qcx526/HomeTrace/issues/4#issuecomment-6360118290) 的背景误报与登记 ROI，等待 PM 审查。原有 226 项测试保持不变，新增回归与实测见 [R1 验证](docs/evidence/issue-4-r1/README.md)。导航始终为模拟，没有真实机器人运行数据；家庭照片尚未可靠确认目标。
+**项目状态：** [PR #14](https://github.com/Qcx526/HomeTrace/pull/14) 真实 LLM Agent 与 [PR #13](https://github.com/Qcx526/HomeTrace/pull/13) 视觉实验已通过 PM 审查并合并，当前 main 基线为 `4429fcf`。本分支将 [官方 DOCX 与提交包保护](docs/OFFICIAL_SUBMISSION.md) 集成到该基线，等待 PM 复核。相似熊猫存在误候选，YOLOE 生产接入结论仍为 **NO_GO**，详见 [P4 视觉报告](docs/P4_VISION_EVALUATION.md)。默认视觉仍为 ORB；家庭照片尚未可靠确认目标。导航始终为模拟，没有真实机器人运行数据。
 
 ## 一句话产品定义
 
 HomeTrace 让家庭机器人记住物品曾经在哪里，通过历史位置与实时观察，自主搜索被移动的物品，并给出附有观测证据的搜索结果。
 
-## 初赛目标（当前计划 2026-11-04，具体截止时刻待平台核验）
+## 当前初赛计划（2026-11-04，具体截止时刻待官方提交页面核验）
 
 在不依赖官方底盘的条件下完成可互动的小 Demo：用户指定已注册物品 → 查询历史记忆 → 选择搜索地点 → 在**真实采集**的场景图片中识别 → 找不到时更新判断并重规划 → 输出结果与证据。模拟导航和真实图像观察必须清晰区分。
 
 比赛评分关注创新性、实现完整性与可实用性。优先使用成熟开源视觉方法，产品创新与执行闭环优先于从零发明算法。
 
 ## 单命令启动可视化 Demo
+
+真实模型 Agent 是可选模块：安装 `.[agent,dev,vision]`，在本地 `.env` 填写 `HOMETRACE_LLM_API_KEY`，模型及预算统一编辑 `config.yaml`。运行 `python -m hometrace demo --agent --port 8765 --output-dir artifacts/p4-demo` 后打开 `/agent.html`。使用千问AI平台托管的指定模型；无 Key、服务失败明确停止，不能切换为假 Agent。完整命令、实际正负例、工具轨迹与限制见 [P4 Agent](docs/P4_AGENT.md)。以下经典三场景继续独立可用。
 
 Python 3.11+，在仓库根目录安装后启动；界面使用 Python 标准库 HTTP 服务与本地 HTML/JS，无额外 UI 框架或 CDN：
 
@@ -34,11 +36,13 @@ P2 留存 [148 项测试通过、0 跳过](docs/evidence/issue-3/pytest.txt)，�
 
 ## P3 材料与本地候选 ZIP
 
+P4 更新：主办方官方 DOCX 已取得，本分支提供保留原表结构的填写与校验工具；下述团队自编说明书和旧媒体属于历史补充材料，不能替代官方填报主表。Agent 已通过 PM 审查合并，但当前正式身份、主表版式、P4 媒体与最终 ZIP 仍待验收，参赛包保持 **BLOCKED**，旧 ZIP 不作为新版提交。真实 Agent 使用实际 LLM API，不以离线或 Mock Agent 验收。
+
 2026-10-23 新增四组家庭实拍的正式对照已复现耳机壳参考图中的木纹背景误报。仅在登记时固定物体 ROI 可消除本次空桌面误确认，但仍没有可靠家庭正例；不要将耳机壳加入“家庭已找到”展示。新增 40 项评价与此前 75 项评价分开统计，见 [登记 ROI 实验与运行方法](docs/REGISTRATION_ROI_EVALUATION.md)。公共 OpenCV 三场景保持稳定回归。现有 Word/PPT/视频是 PR #8 历史材料，最新边界以 R1 报告为准；旧 candidate 不包含本次代码，不能作为 R1 提交包。
 
 [实施与命令](docs/P3_DELIVERY.md) · [226 项回归及实际证据](docs/evidence/issue-4/README.md) · [家庭照片实测](docs/TEAM_PHOTO_EVALUATION.md) · [打包工具](docs/SUBMISSION_TOOL.md)
 
-以 [Issue #12 官方材料接口](docs/OFFICIAL_SUBMISSION.md) 为当前交付合同：主办方 DOCX 是必填主表，团队自编说明书仅作补充。公开材料不含团队私人照片或真实姓名/手机号；最终身份字段由负责人在本地填写。把实际 DOCX、PPTX、MP4 和报告放入私有材料目录，复制并编辑配置后运行：
+以 [Issue #12 官方材料接口](docs/OFFICIAL_SUBMISSION.md) 为当前交付合同：主办方 DOCX 是必填主表，团队自编说明书仅作补充。公开材料不含团队私人照片或真实姓名/手机号；最终身份字段由负责人在本地填写。旧媒体与 ZIP 不能冒充当前成果。把实际 DOCX、PPTX、MP4 和报告放入私有材料目录，复制并编辑配置后运行：
 
 ```powershell
 .\.venv\Scripts\python.exe tools/build_submission.py --config local_data/submission/config.json --check
@@ -142,7 +146,8 @@ Issue #1 的历史验证在 Windows / Python 3.11.4 的全新虚拟环境安装 
 1. P0 — 仓库/合同与可执行的假数据闭环
 2. P1 — 基于真实采集图片的物品观察与记忆
 3. P2 — 历史位置失效后的自主重新规划与演示界面
-4. P3 — 测试/录屏/参赛材料（10 月 28 日前）
-5. P4 — 如晋级，官方底盘适配与真机验证（11 月 21 日决赛前）
+4. P3/R1 — 已完成候选材料、登记 ROI 和真实失败分析，历史证据保留
+5. P4 — 神经网络可行性、真实 LLM Agent 与官方初赛材料（当前计划 11 月 4 日，时刻待核验）
+6. 后续如晋级 — 按官方资料推进底盘适配与真机验证
 
 > 机器人型号、RobotClaw 官方 API、摄像头位置、算力、联网限制均待组委会文件核实。系统先定义中立接口，避免提前锁定不存在的能力。

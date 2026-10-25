@@ -1,0 +1,208 @@
+{
+  "schema_version": 1,
+  "experiment": "unconfirmed_neural_candidates",
+  "candidate_semantics": "Candidate presence only; no instance confirmation or scene localization ground truth",
+  "confirmed_instances": 0,
+  "counts": {
+    "positive": {
+      "samples": 0,
+      "candidate_cases": 0,
+      "no_candidate_cases": 0,
+      "failed_or_unavailable_cases": 0
+    },
+    "negative": {
+      "samples": 1,
+      "candidate_cases": 0,
+      "no_candidate_cases": 1,
+      "failed_or_unavailable_cases": 0
+    },
+    "uncertain": {
+      "samples": 0,
+      "candidate_cases": 0,
+      "no_candidate_cases": 0,
+      "failed_or_unavailable_cases": 0
+    },
+    "auxiliary": {
+      "samples": 0,
+      "candidate_cases": 0,
+      "no_candidate_cases": 0,
+      "failed_or_unavailable_cases": 0
+    }
+  },
+  "groups": {
+    "earbud": {
+      "positive": {
+        "samples": 0,
+        "candidate_cases": 0,
+        "no_candidate_cases": 0,
+        "failed_or_unavailable_cases": 0
+      },
+      "negative": {
+        "samples": 1,
+        "candidate_cases": 0,
+        "no_candidate_cases": 1,
+        "failed_or_unavailable_cases": 0
+      },
+      "uncertain": {
+        "samples": 0,
+        "candidate_cases": 0,
+        "no_candidate_cases": 0,
+        "failed_or_unavailable_cases": 0
+      },
+      "auxiliary": {
+        "samples": 0,
+        "candidate_cases": 0,
+        "no_candidate_cases": 0,
+        "failed_or_unavailable_cases": 0
+      }
+    },
+    "panda": {
+      "positive": {
+        "samples": 0,
+        "candidate_cases": 0,
+        "no_candidate_cases": 0,
+        "failed_or_unavailable_cases": 0
+      },
+      "negative": {
+        "samples": 0,
+        "candidate_cases": 0,
+        "no_candidate_cases": 0,
+        "failed_or_unavailable_cases": 0
+      },
+      "uncertain": {
+        "samples": 0,
+        "candidate_cases": 0,
+        "no_candidate_cases": 0,
+        "failed_or_unavailable_cases": 0
+      },
+      "auxiliary": {
+        "samples": 0,
+        "candidate_cases": 0,
+        "no_candidate_cases": 0,
+        "failed_or_unavailable_cases": 0
+      }
+    },
+    "keys": {
+      "positive": {
+        "samples": 0,
+        "candidate_cases": 0,
+        "no_candidate_cases": 0,
+        "failed_or_unavailable_cases": 0
+      },
+      "negative": {
+        "samples": 0,
+        "candidate_cases": 0,
+        "no_candidate_cases": 0,
+        "failed_or_unavailable_cases": 0
+      },
+      "uncertain": {
+        "samples": 0,
+        "candidate_cases": 0,
+        "no_candidate_cases": 0,
+        "failed_or_unavailable_cases": 0
+      },
+      "auxiliary": {
+        "samples": 0,
+        "candidate_cases": 0,
+        "no_candidate_cases": 0,
+        "failed_or_unavailable_cases": 0
+      }
+    },
+    "tissue": {
+      "positive": {
+        "samples": 0,
+        "candidate_cases": 0,
+        "no_candidate_cases": 0,
+        "failed_or_unavailable_cases": 0
+      },
+      "negative": {
+        "samples": 0,
+        "candidate_cases": 0,
+        "no_candidate_cases": 0,
+        "failed_or_unavailable_cases": 0
+      },
+      "uncertain": {
+        "samples": 0,
+        "candidate_cases": 0,
+        "no_candidate_cases": 0,
+        "failed_or_unavailable_cases": 0
+      },
+      "auxiliary": {
+        "samples": 0,
+        "candidate_cases": 0,
+        "no_candidate_cases": 0,
+        "failed_or_unavailable_cases": 0
+      }
+    }
+  },
+  "evaluations": [
+    {
+      "group": "earbud",
+      "case": "scene_05",
+      "evaluation_label": "negative",
+      "status": "UNKNOWN",
+      "reason": "no_candidates",
+      "candidate_count": 0,
+      "scores": [],
+      "elapsed_ms": 3754.547,
+      "provider_called": true,
+      "confirmed_identity": false,
+      "runtime": {
+        "predict_ms": 1022.891,
+        "model_load_ms": 64.196,
+        "process_wall_ms": 3753.853,
+        "speed_ms": {
+          "preprocess": 2.2595000045839697,
+          "inference": 48.821599993971176,
+          "postprocess": 0.5203000036999583
+        },
+        "device": "cuda:0",
+        "gpu_name": "NVIDIA GeForce GTX 1660",
+        "cuda_runtime": "12.4",
+        "compute_capability": [
+          7,
+          5
+        ],
+        "peak_allocated_bytes": 192036352,
+        "peak_reserved_bytes": 249561088,
+        "versions": {
+          "ultralytics": "8.3.221",
+          "torch": "2.6.0+cu124",
+          "torchvision": "0.21.0+cu124",
+          "numpy": "2.4.6",
+          "opencv-python": "4.14.0.94"
+        },
+        "network_disabled": true
+      },
+      "prompt_class": "object0"
+    }
+  ],
+  "generated_at_utc": "2026-10-24T01:44:19.599789+00:00",
+  "baseline_commit": "e5732b4024d90cc190aedb77f98f626b11e982cd",
+  "original_images_verified": 24,
+  "originals_unchanged": true,
+  "scope": "gate_0_smoke",
+  "parameters": {
+    "conf": 0.25,
+    "iou": 0.7,
+    "imgsz": 640,
+    "max_det": 100,
+    "half": false,
+    "seed": 0,
+    "device": "cuda:0"
+  },
+  "model": "yoloe-11s-seg.pt",
+  "weight_sha256": "8e439445c87338b79d9ce21dec109f4621e26df67e94d26ea1a98c1e64dce3e3",
+  "weight_url": "https://github.com/ultralytics/assets/releases/download/v8.3.0/yoloe-11s-seg.pt",
+  "protocol_sha256": "9ec74f5b5e62c0dae35ac652ca1a57c26a14a2adc7c991647afc449b20344468",
+  "limitations": [
+    "Exploratory fixed-parameter evaluation on previously reviewed photos, no held-out set",
+    "Candidate class object0 is bound to registration, not a semantic or instance identity claim",
+    "No robot navigation or SearchCore/SQLite state writes in this experiment",
+    "No candidate on an image does not prove absence",
+    "Private original-coordinate boxes remain local"
+  ],
+  "gate": "SMOKE_COMPLETED",
+  "integration_enabled": false,
+  "gate_reason": "Full evaluation and/or manual localization review required; not proof of instance identity"
+}
