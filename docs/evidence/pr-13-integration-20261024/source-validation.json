@@ -1,0 +1,46 @@
+{
+  "merge_commit": "3c49bec9ae78b136d2bfe191b09a97355fc6a5fb",
+  "merge_parents": [
+    "e5b8aa74a6560fa5130ac07907f04bb6b32e9f2e",
+    "708d8b2ae78bcc488d0e126f5a9fdd27eb303cc1"
+  ],
+  "main_base": "708d8b2ae78bcc488d0e126f5a9fdd27eb303cc1",
+  "vision_original": "e5b8aa74a6560fa5130ac07907f04bb6b32e9f2e",
+  "main_files_compared": 54,
+  "main_files_changed": [],
+  "vision_files_compared": 17,
+  "vision_files_changed": [],
+  "source": {
+    "commit": "3c49bec9ae78b136d2bfe191b09a97355fc6a5fb",
+    "dirty": false,
+    "snapshot": "working_tree",
+    "snapshot_sha256": "68f5583105035460131a455ae5d3f3478bb467e865ebb2971f03550505502809",
+    "untracked_allowlisted_files": 0,
+    "file_count": 101,
+    "source_policy": "Git tracked and nonignored working files, filtered through the source allowlist; private data, databases, caches, logs and repository metadata are excluded. File hashes describe the actual snapshot, which may differ from HEAD."
+  },
+  "source_archive_sha256": "9ee5090792b677b9f87ca9409057060a40c491516e56f9f9bf21e93b2de107de",
+  "source_archive_bytes": 616998,
+  "zip_crc_and_all_sha256_verified": true,
+  "required_config_and_core_included": [
+    ".env.example",
+    "config.yaml",
+    "examples/recorded_images/box.png",
+    "src/hometrace/agent.py",
+    "src/hometrace/search_core.py",
+    "src/hometrace/web/agent.html"
+  ],
+  "private_or_unnecessary_entries": [],
+  "configured_local_key_scan": "passed via production collect_source; no key exported",
+  "synthetic_environment_key_leak": "rejected",
+  "package_type": "integration-test-core-source-only",
+  "audit_harness_note": "Initial local audit helper used Entry.source instead of Entry.path and stopped; corrected helper re-ran from a new archive. Product source unchanged.",
+  "not_included": [
+    "official DOCX",
+    "team identity",
+    "final media",
+    "full YOLOE reproduction dependencies or frozen reports"
+  ],
+  "ready_to_submit": false,
+  "uploaded": false
+}

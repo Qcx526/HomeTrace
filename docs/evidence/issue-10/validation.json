@@ -1,0 +1,19 @@
+{
+  "base_commit": "e5732b4024d90cc190aedb77f98f626b11e982cd",
+  "baseline_files_checked": 185,
+  "baseline_files_changed": [],
+  "baseline_test_count": 289,
+  "tests": 312,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "public_summary_matches_actual_run": true,
+  "source_sha256": {
+    "tools/evaluate_yoloe.py": "b7f5b78a305b58e4fce1b31a7bf5ee8fb018cf1684444df3751397335aebe21e",
+    "tools/yoloe_worker.py": "ee6e65a83a3e9ac4d5433fc6029e0a58074c0918e8b152bf4f27644001fd572f",
+    "tools/neural_contract.py": "3d91f792bb25a5666bfbd25c01d57951d60c5c21806be4bb53df2924723b01b9",
+    "tools/requirements-neural.txt": "c57f735c59a770f5d91e7d4113602ef9da81652d859747d88b11aad83f968de4",
+    "tests/test_neural_contract.py": "ee2ef52775551908ba67ac6adc2041cc1a9e95df0eaf605530334680de254f7a",
+    "tests/test_yoloe_runner.py": "459b0b59ab2661d21a6eb0e17e115cef8dac356265b90e0df7b055973b4a40c2"
+  }
+}

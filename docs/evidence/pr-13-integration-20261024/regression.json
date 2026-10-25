@@ -1,0 +1,12 @@
+{
+  "source_merge_commit": "3c49bec9ae78b136d2bfe191b09a97355fc6a5fb",
+  "tests": 424,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "pytest_elapsed_seconds": 77.58,
+  "warnings": 1,
+  "warning": "LangChainPendingDeprecationWarning about future serializer allowed_objects default",
+  "command": "artifacts/issue-11/agent-env/Scripts/python.exe -X utf8 -m pytest -q --junitxml=artifacts/pr-13-integration-20261024/pytest.xml",
+  "actual_single_full_suite": true
+}

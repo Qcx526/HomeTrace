@@ -1,0 +1,7 @@
+# Independent Windows CUDA 12.4 experiment; never install into the base Demo env.
+# Install torch/torchvision first from https://download.pytorch.org/whl/cu124 .
+torch==2.6.0+cu124
+torchvision==0.21.0+cu124
+ultralytics==8.3.221
+numpy==2.4.6
+opencv-python==4.14.0.94
