@@ -1,0 +1,17 @@
+{
+  "official_original_sha256": "44da6ca1ab0f3ad62c2588431e3a3c705b96e6a2638666ae826a2e37d29d69ec",
+  "original_sha_matches": true,
+  "original_rows": 8,
+  "draft_rows": 8,
+  "description_characters": 230,
+  "all_noneditable_content_and_other_package_parts_preserved": true,
+  "identity_confirmed": false,
+  "draft_status": "DRAFT_IDENTITY_MISSING",
+  "formal_check_exit": 2,
+  "package_check_exit": 2,
+  "formal_draft_rejected": true,
+  "new_real_submission_zip_created": false,
+  "ready_to_submit": false,
+  "officially_verified": false,
+  "uploaded": false
+}

@@ -1,0 +1,592 @@
+[
+  {
+    "name": "01_HomeTrace官方初赛作品文档.docx",
+    "bytes": 1122,
+    "sha256": "dd80beed92b5084378ee44ae7c18cf2923d63d9c66ac3ee22cb0bb111555c0f5"
+  },
+  {
+    "name": "02_HomeTrace技术展示.pptx",
+    "bytes": 597,
+    "sha256": "86cf75948752f4d77f71f6a58c17ccc32b503a95006b8289d616c600a8906a0e"
+  },
+  {
+    "name": "03_HomeTrace演示视频.mp4",
+    "bytes": 36,
+    "sha256": "ebb0152bcff1e0e66f69ed8cc394b2028d3a23e31096bb46b7b01084d3a719dc"
+  },
+  {
+    "name": "04_核心源代码/.env.example",
+    "bytes": 24,
+    "sha256": "ee79df71717010580759dd71d19bbec5707efea005003a17002ea768c03131a0"
+  },
+  {
+    "name": "04_核心源代码/AGENTS.md",
+    "bytes": 1142,
+    "sha256": "fd9695c02e555432465689ac4cee23e7bf56b6a63a55fe8d2e9f8db2b9e3d8a4"
+  },
+  {
+    "name": "04_核心源代码/README.md",
+    "bytes": 14845,
+    "sha256": "11f45e4de11e746ce22ae2a3f2f9409bcbf940e32aec00278b0a6a1aada9a307"
+  },
+  {
+    "name": "04_核心源代码/config.yaml",
+    "bytes": 443,
+    "sha256": "74208c626001ee0061656c82ef6b4b6fb3993d26634bbf94533e3886a3b19067"
+  },
+  {
+    "name": "04_核心源代码/docs/ARCHITECTURE.md",
+    "bytes": 2009,
+    "sha256": "11f50b7d67cc29da308baeb4ccf51197d121d8423e0052a3b2dddeb5f6a8d800"
+  },
+  {
+    "name": "04_核心源代码/docs/DEMO_ACCEPTANCE.md",
+    "bytes": 1577,
+    "sha256": "adf01c56a9daca6af4f175934c8ffd3c14126188ead045b7f33a3371e9481314"
+  },
+  {
+    "name": "04_核心源代码/docs/OFFICIAL_SUBMISSION.md",
+    "bytes": 7271,
+    "sha256": "3cf9b378a8a5fcbe837b62b8173ca0ebdf9466f237bf8d4aaae5675ff10c1aa3"
+  },
+  {
+    "name": "04_核心源代码/docs/P0_IMPLEMENTATION.md",
+    "bytes": 11161,
+    "sha256": "64b415eb9c1a270aeb15e104102d6e0be8ba726970e9e1de1c10f78df4df8fa3"
+  },
+  {
+    "name": "04_核心源代码/docs/P1_IMPLEMENTATION.md",
+    "bytes": 15886,
+    "sha256": "47ce7b4bc74e5c7aeae79c67a16e89c5f55b417a69ca97192994d7067127fb1d"
+  },
+  {
+    "name": "04_核心源代码/docs/P1_VISION_CHOICE.md",
+    "bytes": 4260,
+    "sha256": "a6beaa3f02a6a14a76b9769d247ee860da865339f44e9572b73c12d52dce6dbb"
+  },
+  {
+    "name": "04_核心源代码/docs/P2_DEMO.md",
+    "bytes": 11471,
+    "sha256": "a09a0731b06e48d64e5f0996fede35d616083387b236cfd1c814db261885e7dd"
+  },
+  {
+    "name": "04_核心源代码/docs/P3_DELIVERY.md",
+    "bytes": 5081,
+    "sha256": "24b7373bba82c4a8659a68451c77be25041b2f5b73d0b78700ebd48161d23aea"
+  },
+  {
+    "name": "04_核心源代码/docs/P4_AGENT.md",
+    "bytes": 8539,
+    "sha256": "333662305abdbeb939b760df62ffbc7fe06b9f3da9f1acf52f23e3ed5045b5f4"
+  },
+  {
+    "name": "04_核心源代码/docs/PRODUCT_BRIEF.md",
+    "bytes": 1645,
+    "sha256": "1e9b59333bbd16f91eba0654c11048b8a808b522d343b6e17d042547b0185c80"
+  },
+  {
+    "name": "04_核心源代码/docs/REGISTRATION_ROI_EVALUATION.md",
+    "bytes": 6736,
+    "sha256": "691eae72bb05e0bbed67dc90ae9749380c8d3cf722765e713a9b02f0634ed561"
+  },
+  {
+    "name": "04_核心源代码/docs/SUBMISSION_PLAN.md",
+    "bytes": 6897,
+    "sha256": "6b41ed526c37b14048b61b1c58201d455c2750646ab9cc9a5eff8e886dd2db75"
+  },
+  {
+    "name": "04_核心源代码/docs/SUBMISSION_READINESS.md",
+    "bytes": 4469,
+    "sha256": "7dc008e20de3c03401842aeb680980c1ee1f0c639a1c37cbd4754a2c47a01c82"
+  },
+  {
+    "name": "04_核心源代码/docs/SUBMISSION_TOOL.md",
+    "bytes": 8407,
+    "sha256": "8ff39a87bd58ae8c98e47b6113ee4a8abe15ebc9ffad2cc8c84f7a25a257cbd5"
+  },
+  {
+    "name": "04_核心源代码/docs/TEAM_PHOTO_EVALUATION.md",
+    "bytes": 9602,
+    "sha256": "15c4cbfc56794a2b4be90297ecf556749dcd9f28ea402bffca60bbc5a555674c"
+  },
+  {
+    "name": "04_核心源代码/examples/demo_case.example.json",
+    "bytes": 450,
+    "sha256": "46f62e35c90994645d33870d591e328e58745090ceb7fc2e33b1ae44a844160d"
+  },
+  {
+    "name": "04_核心源代码/examples/recorded_images/COPYRIGHT.opencv.txt",
+    "bytes": 744,
+    "sha256": "44d2b5ed8158293430bd0e022f4d7cd226401847c8225463d68fbf992769e5c9"
+  },
+  {
+    "name": "04_核心源代码/examples/recorded_images/LICENSE.opencv.txt",
+    "bytes": 11560,
+    "sha256": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5"
+  },
+  {
+    "name": "04_核心源代码/examples/recorded_images/LICENSE_CHANGE_NOTICE.opencv.txt",
+    "bytes": 2815,
+    "sha256": "b2de4c80ca1c514453507d2cb7fda865e8b957f4b482a4d7b246af7f4555a774"
+  },
+  {
+    "name": "04_核心源代码/examples/recorded_images/README.md",
+    "bytes": 5055,
+    "sha256": "52ea912815f1c3a62692d25f948c446799545d7f5ca9920295c9047002076d19"
+  },
+  {
+    "name": "04_核心源代码/examples/recorded_images/apple.jpg",
+    "bytes": 51705,
+    "sha256": "e86879de3d9a807dedc742a8f464f39e6b74bbb531a1fba3583155d94997d1cd"
+  },
+  {
+    "name": "04_核心源代码/examples/recorded_images/box.png",
+    "bytes": 50728,
+    "sha256": "1094629c1e2ebbc8a9ae2c9c63e18c1dff0f5f1481146e02f3b11a3d30feb20a"
+  },
+  {
+    "name": "04_核心源代码/examples/recorded_images/box_in_scene.png",
+    "bytes": 122490,
+    "sha256": "8b0225ff76244a42bd1400c0904f8b7afea7d97b7d8115495e42e98ad347bd51"
+  },
+  {
+    "name": "04_核心源代码/examples/recorded_images/fruits.jpg",
+    "bytes": 82429,
+    "sha256": "9c031d80a1c52da5eca790db896baffec6a7e52bf786cdb7bbfca5c7f880e6a1"
+  },
+  {
+    "name": "04_核心源代码/examples/recorded_images/history.json",
+    "bytes": 827,
+    "sha256": "53dfa7017ca312e3dd5690cfa76d97a2c3367f8b4d6024de299b9e633ac9c45a"
+  },
+  {
+    "name": "04_核心源代码/examples/recorded_images/missing.json",
+    "bytes": 1117,
+    "sha256": "1ee0a46d2fd44f7ae76e84e3744c11fe5aeb40e657d1bd1a488317a0607c9bf9"
+  },
+  {
+    "name": "04_核心源代码/examples/recorded_images/moved.json",
+    "bytes": 1117,
+    "sha256": "7dece96c3bbc979e496f831b28d25bbb79d3a4fe15e1fb206c906002b19f3bf7"
+  },
+  {
+    "name": "04_核心源代码/examples/recorded_images/orange.jpg",
+    "bytes": 50036,
+    "sha256": "152c20d2f380ac985de25e474e1a5f06ed34b932191342099b8272a63a15a079"
+  },
+  {
+    "name": "04_核心源代码/examples/recorded_images/sources.json",
+    "bytes": 2917,
+    "sha256": "2d5b134ca6b9c766fc1e0bf155795edab0767308caa501b210a1aca8f0c9f7a0"
+  },
+  {
+    "name": "04_核心源代码/examples/submission_config.example.json",
+    "bytes": 1753,
+    "sha256": "f359a6d5b64794390a592a25acb21cceca510e623b38c6765bc95aef1fc32795"
+  },
+  {
+    "name": "04_核心源代码/pyproject.toml",
+    "bytes": 799,
+    "sha256": "299118f0e644c6dffeb8e4698236d70dd4d28e45fcbec094006b8002c6a250b7"
+  },
+  {
+    "name": "04_核心源代码/src/hometrace/__init__.py",
+    "bytes": 71,
+    "sha256": "1485bd0a2fc69a1a03435cbf7246635db530a4e3c6c6ee5c00b7fae48199ecc7"
+  },
+  {
+    "name": "04_核心源代码/src/hometrace/__main__.py",
+    "bytes": 51,
+    "sha256": "482b8693e2fe6dbd732e3d7961e03827d3efa187bad11d29da188be580ebbeea"
+  },
+  {
+    "name": "04_核心源代码/src/hometrace/agent.py",
+    "bytes": 16644,
+    "sha256": "189b18ceded03684aa91f3de1f17a8817c843a9b165eb91111352b3cbca481a1"
+  },
+  {
+    "name": "04_核心源代码/src/hometrace/agent_config.py",
+    "bytes": 5623,
+    "sha256": "f91c7042f98d9b0c73085e446ee5358532e24c801994b1bb644f62bc5293c11e"
+  },
+  {
+    "name": "04_核心源代码/src/hometrace/agent_model.py",
+    "bytes": 1176,
+    "sha256": "6b2f78309326632178216f1c41b0a6d91907aea52644c6bfb9d690e1a0cbc2b3"
+  },
+  {
+    "name": "04_核心源代码/src/hometrace/agent_service.py",
+    "bytes": 9501,
+    "sha256": "1254755c2a4ba31b8e1ef687d72beb5ea268d5568b557caa0152ac6ce909a4cb"
+  },
+  {
+    "name": "04_核心源代码/src/hometrace/cli.py",
+    "bytes": 3693,
+    "sha256": "e7b4ba4bf754ed3a137a8832e3f7f9119bf4ea0db3d8b0f3668a4a49de629658"
+  },
+  {
+    "name": "04_核心源代码/src/hometrace/demo_cases.py",
+    "bytes": 4408,
+    "sha256": "2685e7077ac8509d1e6ed01e1598090d0a7871684a3f4ff711d65c8b26d1db96"
+  },
+  {
+    "name": "04_核心源代码/src/hometrace/demo_server.py",
+    "bytes": 8903,
+    "sha256": "457b641c070de72141f9d84b348181da9651d4856222e7d3161de27aed0ec71a"
+  },
+  {
+    "name": "04_核心源代码/src/hometrace/demo_service.py",
+    "bytes": 12747,
+    "sha256": "d29341183224c934fbf2cbf679719ee93ad3bfc6fb00d8a5d93552809ccdaace"
+  },
+  {
+    "name": "04_核心源代码/src/hometrace/environment.py",
+    "bytes": 2423,
+    "sha256": "e0397adaed58fb77f543f5a0d6ef625b1aa9281ccc95d3b8531647e5b744b562"
+  },
+  {
+    "name": "04_核心源代码/src/hometrace/fixture_data/missing.json",
+    "bytes": 2221,
+    "sha256": "7eb1e01f6aabc28dd0b0b187cebb0a0431b5090b25be8512b36e0071c5628435"
+  },
+  {
+    "name": "04_核心源代码/src/hometrace/fixture_data/moved.json",
+    "bytes": 2176,
+    "sha256": "36ad10008a9037b1d8cb9591369ce53f5e63900a119cbacbf9a56bf784168c4d"
+  },
+  {
+    "name": "04_核心源代码/src/hometrace/fixtures.py",
+    "bytes": 8986,
+    "sha256": "97c78aa408315b60e159a6e91bf9c407178050b82c4d1b297abb80c7eeb38f12"
+  },
+  {
+    "name": "04_核心源代码/src/hometrace/image_matcher.py",
+    "bytes": 12630,
+    "sha256": "8a33462d59c45fba28bbb02b6aaa135ab9528b1f627c9495fa05f862d5f66ea1"
+  },
+  {
+    "name": "04_核心源代码/src/hometrace/memory.py",
+    "bytes": 8538,
+    "sha256": "36f650afe00dde56edfc71ba9c72f5f642942d6a58c9c04a1baf8ddb515b5f15"
+  },
+  {
+    "name": "04_核心源代码/src/hometrace/models.py",
+    "bytes": 4949,
+    "sha256": "1c347373168f3f175cdc1e039188ffe027c00c5e2b360064b935eb8ae110f9cc"
+  },
+  {
+    "name": "04_核心源代码/src/hometrace/official_submission.py",
+    "bytes": 15132,
+    "sha256": "55c6324c0c352a0b64bcc2d1f196913c68c56b446f0ade596b617be35b41f998"
+  },
+  {
+    "name": "04_核心源代码/src/hometrace/perception.py",
+    "bytes": 1450,
+    "sha256": "dea36dc706333aa51993b9a7db3b4adb87164e9595fd63ffb699e59b09f50973"
+  },
+  {
+    "name": "04_核心源代码/src/hometrace/recorded.py",
+    "bytes": 10620,
+    "sha256": "96af31efb6123f47453f827354342732240d7a213bfba71edd5392590e66f0b4"
+  },
+  {
+    "name": "04_核心源代码/src/hometrace/recorded_cli.py",
+    "bytes": 7388,
+    "sha256": "003646a368a3f4af4cf2db8cfeb5cd5bb43496b630bea7823de2ae0957a3c569"
+  },
+  {
+    "name": "04_核心源代码/src/hometrace/search_core.py",
+    "bytes": 20591,
+    "sha256": "b6df11872635c28499050eb1b3f1549023ceb3b3c7a95c1cfe65dbd80eecda8e"
+  },
+  {
+    "name": "04_核心源代码/src/hometrace/submission.py",
+    "bytes": 32456,
+    "sha256": "e4d842ebf38e4d7bb93d8b045da4ed1214870686ca7ed72dc26c8417b7623258"
+  },
+  {
+    "name": "04_核心源代码/src/hometrace/web/agent.css",
+    "bytes": 6910,
+    "sha256": "41161d3406ce13b9277617f61e6b00b571477b60d4817d0f3a6034abf4e1aa70"
+  },
+  {
+    "name": "04_核心源代码/src/hometrace/web/agent.html",
+    "bytes": 5670,
+    "sha256": "fc5ed1d5173f6b3b9e0c1c469cf99a159dacb4283c4dac33c7f55fea644772e0"
+  },
+  {
+    "name": "04_核心源代码/src/hometrace/web/agent.js",
+    "bytes": 10871,
+    "sha256": "3a4b63f71b4cebb29bf93375fb3e2d78df59c299a089b70d1c1c2005991a59ca"
+  },
+  {
+    "name": "04_核心源代码/src/hometrace/web/app.js",
+    "bytes": 22293,
+    "sha256": "e1401fbc9d4ed9e25766d2c43617e2e60a1b58ea4716f1e560f534798993ef6d"
+  },
+  {
+    "name": "04_核心源代码/src/hometrace/web/index.html",
+    "bytes": 8736,
+    "sha256": "21b89e7b405db389cc3202ef93b9d6cedfeec0d5f8f291fa2580bcbdb8daab89"
+  },
+  {
+    "name": "04_核心源代码/src/hometrace/web/style.css",
+    "bytes": 16375,
+    "sha256": "d47b5f0523933e807403b3c58f31123690d250f2c6ce9158c7068273361829ff"
+  },
+  {
+    "name": "04_核心源代码/tests/test_agent_config.py",
+    "bytes": 10810,
+    "sha256": "c96ffde11405c4be65cc669bb397901b2a931e47626c9440d9fc1cc77c593d98"
+  },
+  {
+    "name": "04_核心源代码/tests/test_agent_http.py",
+    "bytes": 2549,
+    "sha256": "9df930a2e963e4644321df3c2d76c12a059f32a366501f41cc4d0c9da969ad7b"
+  },
+  {
+    "name": "04_核心源代码/tests/test_agent_loop.py",
+    "bytes": 7499,
+    "sha256": "e99bcfb2e91cbf367def15a31c61d02e8a96bf54de404903dc80a851563bff06"
+  },
+  {
+    "name": "04_核心源代码/tests/test_agent_submission.py",
+    "bytes": 2237,
+    "sha256": "ad0bfb7fb9de8f387fc5642d18cf7ce8675786521206226a2aee866d311dee3b"
+  },
+  {
+    "name": "04_核心源代码/tests/test_background_adversary.py",
+    "bytes": 7502,
+    "sha256": "19a63f80d6a1869a7951125386914d47a9b4db61d05fc5bddbd251440ecf35a5"
+  },
+  {
+    "name": "04_核心源代码/tests/test_cli.py",
+    "bytes": 1698,
+    "sha256": "a7f3a3c56bdba4699c342d4dda0180e79a8e0bfb49f815eb7ffc2f16e6587bc9"
+  },
+  {
+    "name": "04_核心源代码/tests/test_demo.py",
+    "bytes": 7005,
+    "sha256": "23e126ac23ab610e0d99fca12ccf3c97f6f4d7af3ebd5876740bd2fe1369f1bc"
+  },
+  {
+    "name": "04_核心源代码/tests/test_demo_cases.py",
+    "bytes": 5653,
+    "sha256": "2c06ffae6608545631a76bd8eb0954ff920e1ce8fc638722df90f640640a2537"
+  },
+  {
+    "name": "04_核心源代码/tests/test_fixtures.py",
+    "bytes": 6528,
+    "sha256": "8eec43477de8fa9a667da09f30d471aa471ae20591dc2a04792f5b550f03c608"
+  },
+  {
+    "name": "04_核心源代码/tests/test_image_matcher.py",
+    "bytes": 7637,
+    "sha256": "6e4a72285021bc6febbec3afaa53bcf0a4859228a4ac19bddea999aed2f5ae3b"
+  },
+  {
+    "name": "04_核心源代码/tests/test_memory.py",
+    "bytes": 2126,
+    "sha256": "269570ce56082aeb3938d39ba7807ad0d698202517978fbafae4ce7eedb18fa4"
+  },
+  {
+    "name": "04_核心源代码/tests/test_neural_contract.py",
+    "bytes": 4932,
+    "sha256": "e6db9c781f982a13325058ae421a39ba8112b06ebaff12750c18b37d0427484f"
+  },
+  {
+    "name": "04_核心源代码/tests/test_official_agent_integration.py",
+    "bytes": 4305,
+    "sha256": "98c7897b1ccd33ae9657c34293af5e592ea266140a4f6167e40cd347936942f4"
+  },
+  {
+    "name": "04_核心源代码/tests/test_official_attribute_whitespace.py",
+    "bytes": 2034,
+    "sha256": "95dcd2d8acaf982e97d58fa2d5240ff014dfe98fb30e43c89fa120d3a99c2077"
+  },
+  {
+    "name": "04_核心源代码/tests/test_official_paragraph_style.py",
+    "bytes": 2664,
+    "sha256": "676028bc4fbeb6fbbc974378e376932cb7ca17cf42007a28c235c4a081b5094d"
+  },
+  {
+    "name": "04_核心源代码/tests/test_official_submission.py",
+    "bytes": 10294,
+    "sha256": "940844a6fffcb287584874965c94d0ffe539238f117f1456e336df0565daad24"
+  },
+  {
+    "name": "04_核心源代码/tests/test_p1_integration.py",
+    "bytes": 9753,
+    "sha256": "4de89c009f0e3b172d054a996045fef8ee412b0a79cb5edb870e46a5a5740cbe"
+  },
+  {
+    "name": "04_核心源代码/tests/test_recorded.py",
+    "bytes": 7813,
+    "sha256": "4cd4aef3dafc97e2cb21e78d07c44da60341c3ee9b71c834cb7b88a819670997"
+  },
+  {
+    "name": "04_核心源代码/tests/test_registration_roi.py",
+    "bytes": 9234,
+    "sha256": "4e74fb5ec1bccef944a462ef7b93476ee1e88af5a4d6dc89c934b6956e477437"
+  },
+  {
+    "name": "04_核心源代码/tests/test_roi_experiment.py",
+    "bytes": 8327,
+    "sha256": "f6250d89deb6d1f7b3f18599921d3a140c87a6c952f4c2a1835a21e45e149ceb"
+  },
+  {
+    "name": "04_核心源代码/tests/test_search_core.py",
+    "bytes": 7300,
+    "sha256": "4db2a351a06e7de008c978eea3eb9a3627dd494814b8222cb6c2c6812af8772e"
+  },
+  {
+    "name": "04_核心源代码/tests/test_search_integrity.py",
+    "bytes": 3137,
+    "sha256": "7eec5f3a3918ed83900f0948f4948a996f4b37ebf09d688b89e430fcad84ab66"
+  },
+  {
+    "name": "04_核心源代码/tests/test_search_session.py",
+    "bytes": 12085,
+    "sha256": "98fd8aa99b0b4447411b36f0cf3accc640a43d5cff915fd9d9f96839487e9fb4"
+  },
+  {
+    "name": "04_核心源代码/tests/test_search_strategy.py",
+    "bytes": 7005,
+    "sha256": "2f0cedd37dcea81674311b203e1e597a7df03d7067aec8c7e95affb0fa18cd49"
+  },
+  {
+    "name": "04_核心源代码/tests/test_submission.py",
+    "bytes": 13145,
+    "sha256": "cdb5e33cec66d8131dd8c3d3536b33dc20c3b019f8d54195967ef9a64963d11d"
+  },
+  {
+    "name": "04_核心源代码/tests/test_submission_placeholders.py",
+    "bytes": 1813,
+    "sha256": "614e0d159ba24779e0549040f7a7ebab401d721fd43acc5b83cb185909e7a6a4"
+  },
+  {
+    "name": "04_核心源代码/tests/test_team_photo_inputs.py",
+    "bytes": 7568,
+    "sha256": "eeef754cd1f7fdc5fde4deac368b927c049ea156516826d350a6ee6b10631a79"
+  },
+  {
+    "name": "04_核心源代码/tests/test_yoloe_runner.py",
+    "bytes": 10508,
+    "sha256": "279035dde7fa4b7b9c2fea684c42655434864a16676d1368c4694b9ef46fa2ea"
+  },
+  {
+    "name": "04_核心源代码/tools/build_submission.py",
+    "bytes": 188,
+    "sha256": "2dafa3848c2fac1ae30180b88f34ba80051e4b0eaed033755143f0e98ddf2d27"
+  },
+  {
+    "name": "04_核心源代码/tools/check_agent_api.py",
+    "bytes": 5274,
+    "sha256": "b635e6173be51bb967c2d442e534f497263ef6a9de4dfce80dd94fff5e38a7e7"
+  },
+  {
+    "name": "04_核心源代码/tools/create_demo_video.py",
+    "bytes": 5805,
+    "sha256": "b2b75c17a677095359be0421addfa44dfab0e58f9b272b71dbe91965e4fe8c6c"
+  },
+  {
+    "name": "04_核心源代码/tools/create_submission_materials.py",
+    "bytes": 19754,
+    "sha256": "f226161eb7471fc549b7976df570d3ce86bace9a13729458396b2a53d46e152d"
+  },
+  {
+    "name": "04_核心源代码/tools/evaluate_registration_roi.py",
+    "bytes": 16992,
+    "sha256": "d3b8d438cdefa7bda976da2d2bc6ec527f8c3c8d4a1f68d0ed04a10832bbf46b"
+  },
+  {
+    "name": "04_核心源代码/tools/evaluate_team_photos.py",
+    "bytes": 25035,
+    "sha256": "c5a5e2b473e3889d35a11e770fef8646643b271fc03b2b0a3f85da7655b31140"
+  },
+  {
+    "name": "04_核心源代码/tools/evaluate_yoloe.py",
+    "bytes": 10397,
+    "sha256": "d9a1bbef1d4fac22b7dc6175a0392389f6cb250a711c2875a810174a05318ad8"
+  },
+  {
+    "name": "04_核心源代码/tools/fill_official_submission.py",
+    "bytes": 168,
+    "sha256": "61311bf95c75caeefa5e31d1deb2703d9f7a1a6f3b96b9ffb2815276c3433883"
+  },
+  {
+    "name": "04_核心源代码/tools/neural_contract.py",
+    "bytes": 8780,
+    "sha256": "a9f9c5e8d6629d7d5c38cc54b04ae754b12f6c014a1e041e52050376c641e759"
+  },
+  {
+    "name": "04_核心源代码/tools/run_agent_demo.py",
+    "bytes": 1321,
+    "sha256": "ca03e5f8e41a2dcb11fada4c54ca31c126fe8e7630643f42f311e27d22ffe6c5"
+  },
+  {
+    "name": "04_核心源代码/tools/validate_agent_browser.cjs",
+    "bytes": 3410,
+    "sha256": "4a6f4804a6c2f984d341f6e3e4efedd3455be349f9203c1f915ba4ad44c44d43"
+  },
+  {
+    "name": "04_核心源代码/tools/validate_p1.py",
+    "bytes": 7568,
+    "sha256": "6347cd416d4ed4a04b1b6d03bf8b6af040ee43dea8b272207b151f8b94c5bd4b"
+  },
+  {
+    "name": "04_核心源代码/tools/validate_p2.py",
+    "bytes": 3816,
+    "sha256": "7cd40ef81181a90347aace955141892e958506af1b6bfebf19023ec01975f9b6"
+  },
+  {
+    "name": "04_核心源代码/tools/validate_p2_browser.cjs",
+    "bytes": 6571,
+    "sha256": "af56cd4147b47d2e5d779ea65a35f0a315b4082528d2402037e3a3d2ed7b3cc3"
+  },
+  {
+    "name": "04_核心源代码/tools/validate_private_demo.cjs",
+    "bytes": 3120,
+    "sha256": "4ec1f595bebf41d414efd512de7e9b0794e57c2b45e5947a1eff861da0140e9e"
+  },
+  {
+    "name": "04_核心源代码/tools/yoloe_worker.py",
+    "bytes": 7756,
+    "sha256": "e48fc3ed2752931c14aa1a1db3ffe973cec26316b096023054f54fa58d56e06a"
+  },
+  {
+    "name": "05_运行说明与测试报告.md",
+    "bytes": 83,
+    "sha256": "1c3c29ad721e2ce57820347d6dcc57325eec031f809121d713c9560738e73f91"
+  },
+  {
+    "name": "06_开源技术与原创性说明.md",
+    "bytes": 83,
+    "sha256": "1c3c29ad721e2ce57820347d6dcc57325eec031f809121d713c9560738e73f91"
+  },
+  {
+    "name": "07_补充_HomeTrace作品设计与技术说明书.docx",
+    "bytes": 466,
+    "sha256": "e59ab3ffc947d3e283f0615e8cb5f076a85924690865b78f1c08e2d29c6a7b1a"
+  },
+  {
+    "name": "PRE_UPLOAD_REVIEW.json",
+    "bytes": 1450,
+    "sha256": "4479d6269fffffc764697990872021df86634fabfd1e2839b41bbf50b686c146"
+  },
+  {
+    "name": "README_提交材料清单.txt",
+    "bytes": 5452,
+    "sha256": "1c7761876214bf7c5198f889ae1f43f51d4ced79f90d6d7fd67901f6fb4cdc03"
+  },
+  {
+    "name": "SOURCE_INFO.json",
+    "bytes": 502,
+    "sha256": "3a6f55649b4358a27465693527562ea53b7be5471f92023a411a21e18028953b"
+  },
+  {
+    "name": "manifest.sha256",
+    "bytes": 13176,
+    "sha256": "3a7fbcbd319458b1a4a6640edf112de5086eeb210d8032822e9947e898b788b1"
+  }
+]

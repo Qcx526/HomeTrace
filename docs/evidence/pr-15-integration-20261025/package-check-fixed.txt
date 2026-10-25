@@ -1,0 +1,10 @@
+BLOCKED
+- official_application: Missing, placeholder or oversized field: team_name
+- Pending team: Identity missing, placeholder or unconfirmed: neutral candidate filename used; complete and verify locally before uploading
+- Pending privacy_reviewed: Content review pending; candidate may be built, but review is required before uploading
+- Pending media_truthful: Content review pending; candidate may be built, but review is required before uploading
+- Pending materials_consistent: Content review pending; candidate may be built, but review is required before uploading
+- Pending application: Placeholder text detected; permitted in a candidate, requires local content review before upload
+Submission-page review remains manual; officially_verified=false, uploaded=false.
+Local audit: dist_submission/submission-audit.json
+Owner must extract/open and verify the candidate; no upload was performed.

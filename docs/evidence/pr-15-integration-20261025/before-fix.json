@@ -1,0 +1,7 @@
+{
+  "real_template_with_synthetic_test_identity": true,
+  "expected_source_unchanged": true,
+  "before_fix_result": "REJECTED",
+  "reason": "Original table grid, fixed labels, layout or other content changed",
+  "not_submission": true
+}
