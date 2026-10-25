@@ -1,0 +1,19 @@
+{
+  "source": "Actual supplied official DOCX and new 230-character P4 identity-missing DRAFT",
+  "method": "Microsoft Word COM read-only export to PDF, Poppler rasterization, visual inspection of all pages",
+  "reference_pages": 3,
+  "draft_pages": 3,
+  "all_six_pages_inspected": true,
+  "original_and_draft_docx_unchanged_by_render": true,
+  "noneditable_content_preserved": true,
+  "historical_overlap_reproduced": false,
+  "historical_overlap_claimed_fixed": false,
+  "font_warnings": [
+    "Symbol",
+    "ArialUnicode"
+  ],
+  "bundled_renderer": "Unavailable LibreOffice; actual failed attempt recorded locally before Word fallback",
+  "owner_review": "PENDING",
+  "real_identity_version_verified": false,
+  "private_images_committed": false
+}

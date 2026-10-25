@@ -1,0 +1,10 @@
+{
+  "scope": "All tracked files plus new public evidence before evidence-only commit",
+  "files_scanned": 323,
+  "configured_key_exact_byte_scan_passed": true,
+  "new_pr_files_private_path_and_binary_extension_check_passed": true,
+  "new_pr_file_count_checked": 30,
+  "tested_src_and_tests_unchanged_since_0800afa": true,
+  "git_diff_check_passed": true,
+  "no_claim_of_universal_secret_detection": true
+}

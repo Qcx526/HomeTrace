@@ -2,7 +2,7 @@
 
 > Huawei Embedded AI Challenge 2026 / 开放创新赛道
 
-**项目状态：** [PR #14](https://github.com/Qcx526/HomeTrace/pull/14) 已通过 PM 审查并合并，当前 main 基线为 `708d8b2`；[真实 LLM Agent](docs/P4_AGENT.md) 与 P0–P3/R1 功能均保留。本分支将 [PR #13](https://github.com/Qcx526/HomeTrace/pull/13) 的 YOLOE 真实 GPU 实验集成到该基线，等待 PM 复核。相似熊猫存在误候选，生产接入结论仍为 **NO_GO**，详见 [P4 视觉报告](docs/P4_VISION_EVALUATION.md)。默认视觉仍为 ORB；家庭照片尚未可靠确认目标。导航始终为模拟，没有真实机器人运行数据。
+**项目状态：** [PR #14](https://github.com/Qcx526/HomeTrace/pull/14) 真实 LLM Agent 与 [PR #13](https://github.com/Qcx526/HomeTrace/pull/13) 视觉实验已通过 PM 审查并合并，当前 main 基线为 `4429fcf`。本分支将 [官方 DOCX 与提交包保护](docs/OFFICIAL_SUBMISSION.md) 集成到该基线，等待 PM 复核。相似熊猫存在误候选，YOLOE 生产接入结论仍为 **NO_GO**，详见 [P4 视觉报告](docs/P4_VISION_EVALUATION.md)。默认视觉仍为 ORB；家庭照片尚未可靠确认目标。导航始终为模拟，没有真实机器人运行数据。
 
 ## 一句话产品定义
 
@@ -36,13 +36,13 @@ P2 留存 [148 项测试通过、0 跳过](docs/evidence/issue-3/pytest.txt)，�
 
 ## P3 材料与本地候选 ZIP
 
-P4 更新：主办方官方 DOCX 已取得，Issue #12 将保留原表结构填写；下述团队自编说明书和旧媒体属于历史补充材料，不能替代官方填报主表。最终材料待实际 Agent/视觉结论通过 PM 审核后同步，旧 ZIP 不作为新版提交。Issue #11 按最终合同使用真实 LLM API，不以离线或 Mock Agent 验收。
+P4 更新：主办方官方 DOCX 已取得，本分支提供保留原表结构的填写与校验工具；下述团队自编说明书和旧媒体属于历史补充材料，不能替代官方填报主表。Agent 已通过 PM 审查合并，但当前正式身份、主表版式、P4 媒体与最终 ZIP 仍待验收，参赛包保持 **BLOCKED**，旧 ZIP 不作为新版提交。真实 Agent 使用实际 LLM API，不以离线或 Mock Agent 验收。
 
 2026-10-23 新增四组家庭实拍的正式对照已复现耳机壳参考图中的木纹背景误报。仅在登记时固定物体 ROI 可消除本次空桌面误确认，但仍没有可靠家庭正例；不要将耳机壳加入“家庭已找到”展示。新增 40 项评价与此前 75 项评价分开统计，见 [登记 ROI 实验与运行方法](docs/REGISTRATION_ROI_EVALUATION.md)。公共 OpenCV 三场景保持稳定回归。现有 Word/PPT/视频是 PR #8 历史材料，最新边界以 R1 报告为准；旧 candidate 不包含本次代码，不能作为 R1 提交包。
 
 [实施与命令](docs/P3_DELIVERY.md) · [226 项回归及实际证据](docs/evidence/issue-4/README.md) · [家庭照片实测](docs/TEAM_PHOTO_EVALUATION.md) · [打包工具](docs/SUBMISSION_TOOL.md)
 
-官方初赛 DOCX 已取得，由 Issue #12 独立填写并保持原表结构；团队自编《HomeTrace 作品设计与技术说明书》仅作补充。公开材料不含团队私人照片或真实姓名/手机号；最终身份字段由负责人在本地填写。P4 审查合并后再更新正式媒体及 ZIP，旧包不能冒充当前成果。把实际 DOCX、PPTX、MP4 和报告放入私有材料目录，复制并编辑配置后运行：
+以 [Issue #12 官方材料接口](docs/OFFICIAL_SUBMISSION.md) 为当前交付合同：主办方 DOCX 是必填主表，团队自编说明书仅作补充。公开材料不含团队私人照片或真实姓名/手机号；最终身份字段由负责人在本地填写。旧媒体与 ZIP 不能冒充当前成果。把实际 DOCX、PPTX、MP4 和报告放入私有材料目录，复制并编辑配置后运行：
 
 ```powershell
 .\.venv\Scripts\python.exe tools/build_submission.py --config local_data/submission/config.json --check

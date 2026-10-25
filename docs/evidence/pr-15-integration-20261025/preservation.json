@@ -1,0 +1,18 @@
+{
+  "main_base": "4429fcf21797d6af05d189effdd510918315acc4",
+  "original_pr15": "d260b68c859d9f6b74be69db270094142ba6767b",
+  "validated_commit": "0800afac09b0025c62dcc014feb3780444a9a345",
+  "main_files_verified_unchanged": 241,
+  "original_official_files_verified_unchanged": 4,
+  "official_module_changed_functions": [
+    "_fill_cell",
+    "fill_official",
+    "fill_draft"
+  ],
+  "official_module_added_functions": [
+    "_serialize_document"
+  ],
+  "verification_function_unchanged": true,
+  "source_allowlist_and_key_functions_ast_unchanged": true,
+  "existing_tests_and_frozen_reports_unchanged": true
+}

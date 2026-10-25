@@ -1,0 +1,24 @@
+{
+  "status": "TEST_ONLY_VERIFIED",
+  "type": "synthetic materials plus actual integrated source; NOT competition submission",
+  "source": {
+    "commit": "0800afac09b0025c62dcc014feb3780444a9a345",
+    "dirty": false,
+    "snapshot": "working_tree",
+    "snapshot_sha256": "92f181e6c160a5b8a8e9e0cad08475098ae4642f57c658504ec13d2b70aec05c",
+    "untracked_allowlisted_files": 0,
+    "file_count": 108,
+    "source_policy": "Git tracked and nonignored working files, filtered through the source allowlist; private data, databases, caches, logs and repository metadata are excluded. File hashes describe the actual snapshot, which may differ from HEAD."
+  },
+  "archive_bytes": 648078,
+  "archive_sha256": "e7a2e1a81145d78b7c71cc17e363d08f661974d5ab597c6104d924abebbe597d",
+  "verified_entries": 118,
+  "crc_and_every_manifest_sha256_verified": true,
+  "config_and_empty_env_example_present": true,
+  "configured_key_exact_scan_passed": true,
+  "original_template_rules_pdf_private_paths_absent": true,
+  "official_application": "CONTENT_VERIFIED_VISUAL_REVIEW_PENDING",
+  "media_scope": "Synthetic minimal container fixtures; NOT playable demo video or final presentation",
+  "ready_to_submit": false,
+  "uploaded": false
+}

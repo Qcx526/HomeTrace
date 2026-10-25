@@ -1,0 +1,45 @@
+{
+  "source_commit": "0800afac09b0025c62dcc014feb3780444a9a345",
+  "main_base": "4429fcf21797d6af05d189effdd510918315acc4",
+  "command": "python -X utf8 -m pytest -q --junitxml=artifacts/pr-15-integration-20261025/pytest-final-463.xml",
+  "source_resolution": "PYTHONPATH explicitly set to this integrated worktree/src",
+  "counts": {
+    "tests": 463,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "passed": 463,
+  "wall_seconds": 82.32,
+  "warnings": 1,
+  "warning": "LangChainPendingDeprecationWarning: future allowed_objects default",
+  "new_tests": {
+    "official_agent_export_and_key_joint": 5,
+    "paragraph_default_typography": 3,
+    "attribute_whitespace": 2
+  },
+  "earlier_runs": [
+    {
+      "passed": 458,
+      "seconds": 78.7,
+      "scope": "Before real-template defect fixes; NOT final acceptance"
+    },
+    {
+      "passed": 461,
+      "seconds": 75.7,
+      "scope": "After paragraph fix only; real-template attribute defect still unresolved"
+    }
+  ],
+  "real_template_failure_reproduced_before_fix": true,
+  "environment": {
+    "python": "3.11.4",
+    "os": "Windows-10-10.0.19045-SP0",
+    "cv2": "4.12.0",
+    "packages": {
+      "pytest": "8.4.2",
+      "langgraph": "1.0.2",
+      "langchain-core": "1.7.0",
+      "python-dotenv": "1.2.1"
+    }
+  }
+}
