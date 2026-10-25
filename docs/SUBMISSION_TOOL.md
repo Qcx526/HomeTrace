@@ -2,7 +2,7 @@
 
 以 [Issue #12](https://github.com/Qcx526/HomeTrace/issues/12) 为准：`document_source=official_template`，主办方原件与填写稿必须分离，七页自编说明书仅作补充。填表字段、DRAFT 模式、原件 SHA256 与版式验证见 [官方材料接口](OFFICIAL_SUBMISSION.md)。工具不上传，不自动认定官方格式、内容或参赛资格通过。
 
-2026-10-25 集成状态：PR #15 在 main `4429fcf21797d6af05d189effdd510918315acc4` 的同一合并工作树实际运行 **458 passed，0 failed，0 skipped，78.70 秒**，含新增 5 项官方表与 Agent 配置/动态 Key 联合测试，未修改旧断言。原独立分支报告保持不变，见 [本轮集成证据](evidence/pr-15-integration-20261025/README.md)。DRAFT 正式填表检查及包预检均为 exit 2 / BLOCKED。历史 DOCX 重叠本轮未复现，原件和非编辑部分未改，不宣称修复；正式实名版本仍需负责人 Word 全页复核。真实身份、最终 P4 媒体与 ZIP 尚未验收，正式参赛包仍 **BLOCKED**。
+2026-10-25 集成状态：PR #15 在 main `4429fcf21797d6af05d189effdd510918315acc4` 的同一合并工作树实际运行 **463 passed，0 failed，0 skipped，82.32 秒**，含 5 项官方表与 Agent 配置/动态 Key 联合测试及 5 项真实模板缺陷回归，未修改旧断言。原独立分支报告保持不变，见 [本轮集成证据](evidence/pr-15-integration-20261025/README.md)。DRAFT 正式填表检查及包预检均为 exit 2 / BLOCKED。历史 DOCX 重叠本轮未复现，原件和非编辑部分未改，不宣称修复；正式实名版本仍需负责人 Word 全页复核。真实身份、最终 P4 媒体与 ZIP 尚未验收，正式参赛包仍 **BLOCKED**。
 
 ## 输入与运行
 

@@ -153,14 +153,37 @@ def _fill_cell(doc, cell, value):
         for child in list(text.childNodes):
             text.removeChild(child)
     texts[0].appendChild(doc.createTextNode(value))
-    # Keep original typography and table geometry; replace placeholder styling only.
-    for props in cell.getElementsByTagNameNS(W, "rPr"):
+    # Only text runs are editable. Paragraph-mark defaults inside pPr must
+    # remain byte-equivalent under the preserve-only structural comparison.
+    for run in cell.getElementsByTagNameNS(W, "r"):
+        properties = _children(run, "rPr")
+        if properties:
+            props = properties[0]
+        else:
+            props = doc.createElementNS(W, "w:rPr")
+            run.insertBefore(props, run.firstChild)
         for item in list(props.childNodes):
             if item.nodeType == item.ELEMENT_NODE and item.namespaceURI == W and item.localName in {"i", "iCs", "color"}:
                 props.removeChild(item)
+        # Explicit false overrides italic paragraph defaults without changing
+        # those defaults, including when an originally empty cell gets a run.
+        for name in ("i", "iCs"):
+            italic = doc.createElementNS(W, "w:" + name)
+            italic.setAttributeNS(W, "w:val", "0")
+            props.appendChild(italic)
         color = doc.createElementNS(W, "w:color")
         color.setAttributeNS(W, "w:val", "000000")
         props.appendChild(color)
+
+
+def _serialize_document(doc):
+    # minidom writes literal whitespace in attribute values; XML parsers then
+    # normalize it to spaces. Preserve character references (e.g. VML gfxdata)
+    # rather than weakening the untouched-content comparison in verify_filled.
+    def attribute(match):
+        value = match.group(1).replace("\r", "&#13;").replace("\n", "&#10;").replace("\t", "&#9;")
+        return '="' + value + '"'
+    return re.sub(r'="([^"]*)"', attribute, doc.toxml(encoding="UTF-8").decode("utf-8")).encode("utf-8")
 
 
 def fill_official(original, output, expected_sha256, fields):
@@ -182,7 +205,7 @@ def fill_official(original, output, expected_sha256, fields):
             _fill_cell(doc, cell, person[key])
     for row in rows[4+len(fields["members"]):7]:
         table.removeChild(row)  # Original template explicitly says remove absent members.
-    parts["word/document.xml"] = doc.toxml(encoding="UTF-8")
+    parts["word/document.xml"] = _serialize_document(doc)
     output.parent.mkdir(parents=True, exist_ok=True)
     with zipfile.ZipFile(output, "x", compression=zipfile.ZIP_DEFLATED) as archive:
         for name, content in parts.items():
@@ -211,7 +234,7 @@ def fill_draft(original, output, expected_sha256, fields):
     for row in rows[4:7]:
         for cell in _children(row, "tc")[1:]:
             _fill_cell(doc, cell, "待填写")
-    parts["word/document.xml"] = doc.toxml(encoding="UTF-8")
+    parts["word/document.xml"] = _serialize_document(doc)
     output.parent.mkdir(parents=True, exist_ok=True)
     with zipfile.ZipFile(output, "x", compression=zipfile.ZIP_DEFLATED) as archive:
         for name, content in parts.items():

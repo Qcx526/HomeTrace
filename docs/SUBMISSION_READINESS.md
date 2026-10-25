@@ -10,7 +10,7 @@
 | 真实身份 | 待本地补齐并与平台核对；不虚构、不公开 |
 | 本地草稿 | 新 230 字 P4 DRAFT；原件/草稿各 3 页共 6 张已渲染查看，本轮未复现历史重叠，不能称已修复；字体警告保留，实名稿仍须负责人 Word 全页复核 |
 | PPT、说明书、MP4 | 现有 P3 历史材料保留；P4 已合并能力需另建媒体版本，尚未完成最终验收 |
-| 官方表与打包保护 | [本轮集成证据](evidence/pr-15-integration-20261025/README.md)：同一工作树 458 passed、0 failed/skip、78.70 秒，含新增 5 项官方表/Agent 配置及动态 Key 联合测试；DRAFT 正式检查和包预检均 exit 2 / BLOCKED，仍待 PM 复核 |
+| 官方表与打包保护 | [本轮集成证据](evidence/pr-15-integration-20261025/README.md)：同一工作树 463 passed、0 failed/skip、82.32 秒，含 5 项官方表/Agent 配置及动态 Key 联合测试和 5 项真实模板缺陷回归；DRAFT 正式检查和包预检均 exit 2 / BLOCKED，仍待 PM 复核 |
 | DataForge、语音 | 后续独立阶段；本轮不实现、不计入已有成果，也不宣称真实识别能力改善 |
 | 规则 PDF 与原件 | 不纳入候选 ZIP |
 | 最终候选包 | 需最新审核 main、真实身份、媒体同步、解压实看，旧 candidate 禁用 |

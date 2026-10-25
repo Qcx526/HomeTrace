@@ -1,6 +1,6 @@
 # HomeTrace 初赛材料
 
-**2026-10-25 当前状态：** main `4429fcf` 已包含真实 LangGraph Agent 和 YOLOE NO_GO 实验归档；PR #15 同一合并工作树已实跑 458 passed、0 failed/skip、78.70 秒，见 [集成证据](../evidence/pr-15-integration-20261025/README.md)，等待 PM 复核。本目录既有 DOCX/PPTX/MP4 仍是下述历史材料，尚未同步 P4 实际工具轨迹。新版本应独立生成和逐页/全片验收，不能覆盖冻结实验或把历史媒体改名冒充更新。官方主表历史重叠在本轮原件/新 P4 草稿共 6 页渲染中未复现，不宣称已修复；字体警告保留，正式实名版本仍需负责人 Word 全页复核。真实身份、P4 媒体和最终 ZIP 仍待完成；正式包 **BLOCKED**，未提交比赛。DataForge 与语音输入不属于当前已有成果。
+**2026-10-25 当前状态：** main `4429fcf` 已包含真实 LangGraph Agent 和 YOLOE NO_GO 实验归档；PR #15 同一合并工作树已实跑 463 passed、0 failed/skip、82.32 秒，见 [集成证据](../evidence/pr-15-integration-20261025/README.md)，等待 PM 复核。本目录既有 DOCX/PPTX/MP4 仍是下述历史材料，尚未同步 P4 实际工具轨迹。新版本应独立生成和逐页/全片验收，不能覆盖冻结实验或把历史媒体改名冒充更新。官方主表历史重叠在本轮原件/新 P4 草稿共 6 页渲染中未复现，不宣称已修复；字体警告保留，正式实名版本仍需负责人 Word 全页复核。真实身份、P4 媒体和最终 ZIP 仍待完成；正式包 **BLOCKED**，未提交比赛。DataForge 与语音输入不属于当前已有成果。
 
 **2026-10-23 R1 版本说明：** 本目录 DOCX/PPTX/MP4 是 PR #8 已审查的历史材料，记录此前 75 项家庭评价，不代表新增数据已经成功。新增四组照片的正式背景误报、登记 ROI 对照与未确认结论见 [R1 实验报告](../REGISTRATION_ROI_EVALUATION.md) 和 [最新回归](../evidence/issue-4-r1/README.md)。旧 candidate 不包含 R1 源码。最终上传前需依据 PM 审查后的版本同步材料与测试报告，重新打包；不要把背景误报计为家庭成功例。
 
