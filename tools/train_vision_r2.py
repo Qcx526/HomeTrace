@@ -71,13 +71,13 @@ def train(dataset, weights, expected_sha256, output_root, trial, repo, epochs=50
     dataset, weights, trial_dir, record = validate_inputs(dataset, weights, expected_sha256, output_root, trial, repo)
     arguments = build_train_args(dataset, trial_dir, trial, epochs)
     trial_dir.mkdir(parents=True, exist_ok=False)
-    (trial_dir / "settings").mkdir()
+    (trial_dir / "settings/Ultralytics").mkdir(parents=True)
     (trial_dir / "mpl").mkdir()
     # Reuse the installed Windows font locally; do not download during training.
     system_font = Path(os.environ.get("WINDIR", "C:/Windows")) / "Fonts/arial.ttf"
     if system_font.is_file():
         import shutil
-        shutil.copyfile(system_font, trial_dir / "settings/Arial.ttf")
+        shutil.copyfile(system_font, trial_dir / "settings/Ultralytics/Arial.ttf")
     os.environ.update(YOLO_OFFLINE="true", YOLO_AUTOINSTALL="false", WANDB_MODE="disabled",
                       COMET_MODE="DISABLED", YOLO_CONFIG_DIR=str(trial_dir / "settings"),
                       MPLCONFIGDIR=str(trial_dir / "mpl"))
@@ -110,6 +110,8 @@ def train(dataset, weights, expected_sha256, output_root, trial, repo, epochs=50
             raise Blocked("CUDA unavailable; no silent CPU training fallback")
         settings.update({key: False for key in ("sync", "hub", "clearml", "comet", "dvc", "mlflow", "neptune", "raytune", "tensorboard", "wandb")})
         settings.update({"api_key": "", "openai_api_key": ""})
+        torch.cuda.init()
+        torch.cuda.synchronize(0)
         torch.cuda.reset_peak_memory_stats(0)
         torch.set_num_threads(4)
         evidence.update(versions={name: importlib.metadata.version(name) for name in ("torch", "torchvision", "ultralytics", "numpy", "opencv-python")},
@@ -147,6 +149,8 @@ def train(dataset, weights, expected_sha256, output_root, trial, repo, epochs=50
         save()
         return evidence
     except Exception as exc:
+        import traceback
+        (trial_dir / "failure.private.log").write_text(traceback.format_exc(), encoding="utf-8")
         evidence.update(status="BLOCKED", failure_type=type(exc).__name__, reason=str(exc))
         save()
         raise
