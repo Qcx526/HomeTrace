@@ -5,6 +5,7 @@ import csv
 import importlib.metadata
 import json
 import os
+import shutil
 import socket
 import time
 from pathlib import Path
@@ -69,16 +70,25 @@ def deny_network(*args, **kwargs):
     raise RuntimeError("Network disabled for private local training")
 
 
+def stage_dataset(dataset, trial_dir):
+    """Ultralytics may repair JPEG copies; keep the audited export immutable."""
+    staged = trial_dir / "working-dataset"
+    shutil.copytree(dataset, staged)
+    (staged / "data.yaml").write_text("path: " + json.dumps(staged.as_posix()) +
+        "\ntrain: images/train\nval: images/val\nnames:\n  0: sony_mug\n", encoding="utf-8")
+    return staged
+
+
 def train(dataset, weights, expected_sha256, output_root, trial, repo, epochs=50):
     dataset, weights, trial_dir, record = validate_inputs(dataset, weights, expected_sha256, output_root, trial, repo)
-    arguments = build_train_args(dataset, trial_dir, trial, epochs)
     trial_dir.mkdir(parents=True, exist_ok=False)
+    staged = stage_dataset(dataset, trial_dir)
+    arguments = build_train_args(staged, trial_dir, trial, epochs)
     (trial_dir / "settings/Ultralytics").mkdir(parents=True)
     (trial_dir / "mpl").mkdir()
     # Reuse the installed Windows font locally; do not download during training.
     system_font = Path(os.environ.get("WINDIR", "C:/Windows")) / "Fonts/arial.ttf"
     if system_font.is_file():
-        import shutil
         shutil.copyfile(system_font, trial_dir / "settings/Ultralytics/Arial.ttf")
     os.environ.update(YOLO_OFFLINE="true", YOLO_AUTOINSTALL="false", WANDB_MODE="disabled",
                       COMET_MODE="DISABLED", YOLO_CONFIG_DIR=str(trial_dir / "settings"),
@@ -137,6 +147,20 @@ def train(dataset, weights, expected_sha256, output_root, trial, repo, epochs=50
         save()
         model.train(**arguments)
         torch.cuda.synchronize(0)
+        staged_changes = []
+        for relative, digest in record["files"].items():
+            if sha256(dataset / relative) != digest:
+                raise Blocked("Audited dataset changed during training")
+            current = sha256(staged / relative)
+            if current != digest and relative != "data.yaml":
+                if not relative.startswith("images/"):
+                    raise Blocked("Training altered reviewed labels")
+                staged_changes.append({"path": relative, "source_sha256": digest, "working_sha256": current,
+                                       "reason": "Ultralytics JPEG validation/repair; see exact training log"})
+        if any(sha256(s["path"]) != s["sha256"] for s in record["samples"]):
+            raise Blocked("Original photographs changed during training")
+        evidence.update(audited_dataset_unchanged=True, original_photos_unchanged=True,
+                        training_working_image_changes=staged_changes)
         generated = {}
         for name in ("training/weights/best.pt", "training/weights/last.pt", "training/args.yaml", "training/results.csv", "training/results.png"):
             path = trial_dir / name

@@ -148,3 +148,15 @@ def test_training_preflight_checks_weights_and_does_not_import_gpu(inputs):
     trial.mkdir(parents=True)
     with pytest.raises(data.Blocked, match="already exists"):
         driver.validate_inputs(repo / "private/dataset", weights, data.sha256(weights), trial.parent, "freeze-backbone", repo)
+
+
+def test_framework_working_copy_does_not_rewrite_reviewed_dataset(inputs):
+    repo, root, path, _ = inputs
+    dataset = repo / "private/dataset"
+    record = data.prepare_dataset(path, root, dataset, repo)
+    trial = repo / "private/trial"
+    trial.mkdir()
+    staged = driver.stage_dataset(dataset, trial)
+    (staged / "images/train/sample_0.png").write_bytes(b"simulated framework repair")
+    assert all(data.sha256(dataset / p) == h for p, h in record["files"].items())
+    assert str(staged).replace("\\", "/") in (staged / "data.yaml").read_text()
