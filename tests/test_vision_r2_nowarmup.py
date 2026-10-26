@@ -1,6 +1,7 @@
 """Controlled-training protections; no GPU or real photos used."""
 import copy
 import json
+import subprocess
 import sys
 from pathlib import Path
 
@@ -8,8 +9,8 @@ import pytest
 
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'tools'))
 from train_vision_r2 import build_train_args, TRIALS
-from train_vision_r2_nowarmup import claim_attempt, controlled_arguments
-from vision_r2_data import Blocked
+from train_vision_r2_nowarmup import claim_attempt, controlled_arguments, verify_gate
+from vision_r2_data import Blocked, sha256
 
 
 def test_only_warmup_changes_ignoring_storage_paths(tmp_path):
@@ -46,3 +47,13 @@ def test_one_attempt_cannot_be_reclaimed_by_changing_output(tmp_path):
 def test_original_two_trial_limit_unchanged():
     assert set(TRIALS)=={'freeze-backbone','low-lr-finetune'}
     assert TRIALS['low-lr-finetune']['warmup_epochs']==1.0
+
+
+@pytest.mark.parametrize('contents',[{}, {'status':'COMPLETED'}, {'schema_version':1,'total_executed_rows':539}])
+def test_incomplete_diagnostics_cannot_authorize_training(tmp_path,contents):
+    subprocess.run(['git','init','-q',str(tmp_path)],check=True)
+    (tmp_path/'.gitignore').write_text('private/\n')
+    directory=tmp_path/'private';directory.mkdir()
+    gate=directory/'gate.json';gate.write_text(json.dumps(contents))
+    with pytest.raises(Blocked,match='Incomplete'):
+        verify_gate(gate,sha256(gate),tmp_path,'synthetic-annotation-binding')

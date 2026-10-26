@@ -1,7 +1,6 @@
 """Generated images test software contracts only; these are not household results."""
 
 import copy
-import importlib.util
 import json
 import subprocess
 import sys
@@ -11,13 +10,11 @@ import pytest
 
 Image = pytest.importorskip("PIL.Image")
 TOOLS = Path(__file__).resolve().parents[1] / "tools"
-spec = importlib.util.spec_from_file_location("vision_r2_data", TOOLS / "vision_r2_data.py")
-data = importlib.util.module_from_spec(spec)
-sys.modules[spec.name] = data
-spec.loader.exec_module(data)
-spec = importlib.util.spec_from_file_location("train_vision_r2", TOOLS / "train_vision_r2.py")
-driver = importlib.util.module_from_spec(spec)
-spec.loader.exec_module(driver)
+sys.path.insert(0, str(TOOLS))
+# Share the canonical module with other tests; replacing sys.modules creates
+# two different Blocked classes and makes exception checks order-dependent.
+import vision_r2_data as data
+import train_vision_r2 as driver
 
 
 def review():

@@ -1,0 +1,167 @@
+{
+  "physical_images": 18,
+  "independent_images": 0,
+  "phase_a_calls": 540,
+  "phase_c_calls": 180,
+  "predictions_read_labels": false,
+  "posthoc_scoring_read_reviewed_labels": true,
+  "production_found": false,
+  "runs": [
+    {
+      "model_id": "pretrained",
+      "actual_calls": 180,
+      "all_executed": true,
+      "environment": {
+        "model_id": "pretrained",
+        "weight_sha256": "0ebbc80d4a7680d14987a577cd21342b65ecfd94632bd9a8da63ae6417644ee1",
+        "torch": "2.6.0+cu124",
+        "ultralytics": "8.3.221",
+        "cuda": "12.4",
+        "gpu": "NVIDIA GeForce GTX 1660",
+        "source_commit": "9c1c44e6e811629148b3cbf7109be1395066c467",
+        "script_sha256": "21af9286f6b3a425dc1f66688c47f7e6c2e4a73ba8997f2a051da81905a86122",
+        "thresholds": [
+          0.001,
+          0.01,
+          0.05,
+          0.1,
+          0.25
+        ],
+        "sizes": [
+          640,
+          960
+        ],
+        "business_confidence": 0.25,
+        "nms_iou": 0.7,
+        "max_det": 100,
+        "all_classes": true,
+        "full_frame": true,
+        "label_input": null,
+        "identity_confirmed": false,
+        "raw_coordinate_system": "xyxy original pixels clipped; source xywh in resized padded tensor also retained",
+        "raw_score_semantics": "YOLO11 decoded sigmoid class scores, not calibrated identity probabilities",
+        "timing": "CUDA synchronized predict with raw GPU clone, excludes disk/CPU raw serialization; not historical timing benchmark"
+      },
+      "originals_unchanged": true,
+      "private_raw_tensor_files": 180,
+      "post_nms_cap_calls": 4
+    },
+    {
+      "model_id": "freeze-backbone",
+      "actual_calls": 180,
+      "all_executed": true,
+      "environment": {
+        "model_id": "freeze-backbone",
+        "weight_sha256": "300df186b6fab35d5dee40f8ad7c48b06614f110cf1a04071389611fa3bc3bce",
+        "torch": "2.6.0+cu124",
+        "ultralytics": "8.3.221",
+        "cuda": "12.4",
+        "gpu": "NVIDIA GeForce GTX 1660",
+        "source_commit": "9c1c44e6e811629148b3cbf7109be1395066c467",
+        "script_sha256": "21af9286f6b3a425dc1f66688c47f7e6c2e4a73ba8997f2a051da81905a86122",
+        "thresholds": [
+          0.001,
+          0.01,
+          0.05,
+          0.1,
+          0.25
+        ],
+        "sizes": [
+          640,
+          960
+        ],
+        "business_confidence": 0.25,
+        "nms_iou": 0.7,
+        "max_det": 100,
+        "all_classes": true,
+        "full_frame": true,
+        "label_input": null,
+        "identity_confirmed": false,
+        "raw_coordinate_system": "xyxy original pixels clipped; source xywh in resized padded tensor also retained",
+        "raw_score_semantics": "YOLO11 decoded sigmoid class scores, not calibrated identity probabilities",
+        "timing": "CUDA synchronized predict with raw GPU clone, excludes disk/CPU raw serialization; not historical timing benchmark"
+      },
+      "originals_unchanged": true,
+      "private_raw_tensor_files": 180,
+      "post_nms_cap_calls": 36
+    },
+    {
+      "model_id": "low-lr-finetune",
+      "actual_calls": 180,
+      "all_executed": true,
+      "environment": {
+        "model_id": "low-lr-finetune",
+        "weight_sha256": "75b390f89068a9815c765fcf04566944c0ffb3cdcd53f48f77d2c52faa836591",
+        "torch": "2.6.0+cu124",
+        "ultralytics": "8.3.221",
+        "cuda": "12.4",
+        "gpu": "NVIDIA GeForce GTX 1660",
+        "source_commit": "9c1c44e6e811629148b3cbf7109be1395066c467",
+        "script_sha256": "21af9286f6b3a425dc1f66688c47f7e6c2e4a73ba8997f2a051da81905a86122",
+        "thresholds": [
+          0.001,
+          0.01,
+          0.05,
+          0.1,
+          0.25
+        ],
+        "sizes": [
+          640,
+          960
+        ],
+        "business_confidence": 0.25,
+        "nms_iou": 0.7,
+        "max_det": 100,
+        "all_classes": true,
+        "full_frame": true,
+        "label_input": null,
+        "identity_confirmed": false,
+        "raw_coordinate_system": "xyxy original pixels clipped; source xywh in resized padded tensor also retained",
+        "raw_score_semantics": "YOLO11 decoded sigmoid class scores, not calibrated identity probabilities",
+        "timing": "CUDA synchronized predict with raw GPU clone, excludes disk/CPU raw serialization; not historical timing benchmark"
+      },
+      "originals_unchanged": true,
+      "private_raw_tensor_files": 180,
+      "post_nms_cap_calls": 65
+    },
+    {
+      "model_id": "no-warmup",
+      "actual_calls": 180,
+      "all_executed": true,
+      "environment": {
+        "model_id": "no-warmup",
+        "weight_sha256": "1216bb5e89ce2a20f543a060696d7b1140916e10f848e2294ca5d134eda8d914",
+        "torch": "2.6.0+cu124",
+        "ultralytics": "8.3.221",
+        "cuda": "12.4",
+        "gpu": "NVIDIA GeForce GTX 1660",
+        "source_commit": "1bcc2aa3be11863b60333ea11391e2b515ecde73",
+        "script_sha256": "21af9286f6b3a425dc1f66688c47f7e6c2e4a73ba8997f2a051da81905a86122",
+        "thresholds": [
+          0.001,
+          0.01,
+          0.05,
+          0.1,
+          0.25
+        ],
+        "sizes": [
+          640,
+          960
+        ],
+        "business_confidence": 0.25,
+        "nms_iou": 0.7,
+        "max_det": 100,
+        "all_classes": true,
+        "full_frame": true,
+        "label_input": null,
+        "identity_confirmed": false,
+        "raw_coordinate_system": "xyxy original pixels clipped; source xywh in resized padded tensor also retained",
+        "raw_score_semantics": "YOLO11 decoded sigmoid class scores, not calibrated identity probabilities",
+        "timing": "CUDA synchronized predict with raw GPU clone, excludes disk/CPU raw serialization; not historical timing benchmark"
+      },
+      "originals_unchanged": true,
+      "private_raw_tensor_files": 180,
+      "post_nms_cap_calls": 91
+    }
+  ]
+}

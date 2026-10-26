@@ -1,0 +1,50 @@
+{
+  "base_commit": "bbe8d4a42d21d8fefccbc1c2688b089fa826e8b4",
+  "stacked_on_pr": 20,
+  "historical_experiment_files_unchanged": 393,
+  "original_photos_unchanged": 18,
+  "reviewed_dataset_unchanged": true,
+  "baseline_tracked_files": 323,
+  "modified_existing_files": [
+    "tests/test_vision_r2_data.py"
+  ],
+  "existing_test_change": "canonical imports only; no removed or relaxed assertions",
+  "production_code_unchanged": true,
+  "prior_reports_unchanged": true,
+  "prior_training_runner_unchanged": true,
+  "tests": {
+    "tests": 499,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "new_tests": 29,
+  "prior_tests_preserved": 470,
+  "test_environment": "Windows Python 3.11.4 agent-env",
+  "single_extra_training_attempt": true,
+  "observed_optimizer_steps": 66,
+  "only_training_factor_changed": "warmup_epochs 1.0 -> 0.0",
+  "phase_a_gate_unchanged": true,
+  "phase_a_inference_calls": 540,
+  "phase_c_inference_calls": 180,
+  "private_secret_value_scan": "PASS",
+  "private_photo_hash_scan": "PASS",
+  "forbidden_artifact_scan": "PASS",
+  "private_absolute_path_scan": "PASS",
+  "public_images": "one inspected loss curve only",
+  "git_diff_check": "PASS",
+  "private_original_boxes_published": false,
+  "pr15_unchanged": true,
+  "pr20_branch_head": "bbe8d4a42d21d8fefccbc1c2688b089fa826e8b4",
+  "production_status": "BLOCKED",
+  "independent_test_images": 0,
+  "merged": false,
+  "new_source_hashes": {
+    "tests/test_vision_r2_confidence.py": "c7955eb39381c36bb765f73eafd1664dd2491bb88583ed27117455f3e70d2a19",
+    "tests/test_vision_r2_data.py": "3aff1ae373a6a56a09f7885089fad49af276236be62bdf1f923ba880629bbbb2",
+    "tests/test_vision_r2_nowarmup.py": "48e8109978a54f822be1ed3465f024bf68367bcf9980d3d0b1c96a22d971b0ef",
+    "tools/diagnose_vision_r2_confidence.py": "21af9286f6b3a425dc1f66688c47f7e6c2e4a73ba8997f2a051da81905a86122",
+    "tools/score_vision_r2_confidence.py": "88c34ddbf9f02f347211cb1a896b413e1975d9fc6e12743ba8b18134b69d9028",
+    "tools/train_vision_r2_nowarmup.py": "237f8442c3ca792453216c430f534ec5f96d1c9376a304d96af3cdcca2288d2f"
+  }
+}

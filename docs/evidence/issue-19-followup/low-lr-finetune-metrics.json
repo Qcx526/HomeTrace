@@ -1,0 +1,2653 @@
+{
+  "status": "COMPLETED",
+  "model_id": "low-lr-finetune",
+  "weight_sha256": "75b390f89068a9815c765fcf04566944c0ffb3cdcd53f48f77d2c52faa836591",
+  "business_confidence": 0.25,
+  "diagnostic_thresholds": [
+    0.001,
+    0.01,
+    0.05,
+    0.1,
+    0.25
+  ],
+  "localization_iou": 0.5,
+  "independent_test": false,
+  "production_found": false,
+  "group_metrics": {
+    "640": {
+      "0.001": {
+        "train": {
+          "tp": 8,
+          "fp": 1092,
+          "fn": 0,
+          "images": 11,
+          "positive_images": 8,
+          "negative_images": 3,
+          "correctly_localized_positive_images": 8,
+          "negative_images_with_candidates": 3,
+          "precision": 0.007272727272727273,
+          "recall": 1.0,
+          "negative_image_false_acceptance_rate": 1.0,
+          "post_nms_cap_images": 11,
+          "positive_images_with_correct_raw_box_above_threshold": 8,
+          "positive_top_raw_scores": {
+            "count": 8,
+            "max": 0.06475861370563507,
+            "quantiles": {
+              "0": 0.01924825645983219,
+              "0.5": 0.03424712736159563,
+              "0.9": 0.0592994000762701,
+              "0.99": 0.06421269234269857,
+              "1": 0.06475861370563507
+            },
+            "above_threshold": {
+              "0.001": 8,
+              "0.01": 8,
+              "0.05": 3,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "negative_top_raw_scores": {
+            "count": 3,
+            "max": 0.017222847789525986,
+            "quantiles": {
+              "0": 0.012372196651995182,
+              "0.5": 0.01377938874065876,
+              "0.9": 0.01653415597975254,
+              "0.99": 0.017153978608548642,
+              "1": 0.017222847789525986
+            },
+            "above_threshold": {
+              "0.001": 3,
+              "0.01": 3,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "positive_best_correct_raw_scores": {
+            "count": 8,
+            "max": 0.06475861370563507,
+            "quantiles": {
+              "0": 0.01350098755210638,
+              "0.5": 0.03424712736159563,
+              "0.9": 0.0592994000762701,
+              "0.99": 0.06421269234269857,
+              "1": 0.06475861370563507
+            },
+            "above_threshold": {
+              "0.001": 8,
+              "0.01": 8,
+              "0.05": 3,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "negative_post_nms_candidate_scores": {
+            "count": 300,
+            "max": 0.017222847789525986,
+            "quantiles": {
+              "0": 0.011554167605936527,
+              "0.5": 0.0119513557292521,
+              "0.9": 0.012128344643861056,
+              "0.99": 0.012602523779496548,
+              "1": 0.017222847789525986
+            },
+            "above_threshold": {
+              "0.001": 300,
+              "0.01": 300,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          }
+        },
+        "val": {
+          "tp": 3,
+          "fp": 697,
+          "fn": 1,
+          "images": 7,
+          "positive_images": 4,
+          "negative_images": 3,
+          "correctly_localized_positive_images": 3,
+          "negative_images_with_candidates": 3,
+          "precision": 0.004285714285714286,
+          "recall": 0.75,
+          "negative_image_false_acceptance_rate": 1.0,
+          "post_nms_cap_images": 7,
+          "positive_images_with_correct_raw_box_above_threshold": 4,
+          "positive_top_raw_scores": {
+            "count": 4,
+            "max": 0.028930259868502617,
+            "quantiles": {
+              "0": 0.013368581421673298,
+              "0.5": 0.017704753670841455,
+              "0.9": 0.026681909896433355,
+              "0.99": 0.02870542487129569,
+              "1": 0.028930259868502617
+            },
+            "above_threshold": {
+              "0.001": 4,
+              "0.01": 4,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "negative_top_raw_scores": {
+            "count": 3,
+            "max": 0.06009889021515846,
+            "quantiles": {
+              "0": 0.012803765945136547,
+              "0.5": 0.01589827984571457,
+              "0.9": 0.05125876814126969,
+              "0.99": 0.05921487800776958,
+              "1": 0.06009889021515846
+            },
+            "above_threshold": {
+              "0.001": 3,
+              "0.01": 3,
+              "0.05": 1,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "positive_best_correct_raw_scores": {
+            "count": 4,
+            "max": 0.028930259868502617,
+            "quantiles": {
+              "0": 0.002925079083070159,
+              "0.5": 0.0031158311758190393,
+              "0.9": 0.02120505652856082,
+              "0.99": 0.02815773953450843,
+              "1": 0.028930259868502617
+            },
+            "above_threshold": {
+              "0.001": 4,
+              "0.01": 1,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "negative_post_nms_candidate_scores": {
+            "count": 300,
+            "max": 0.06009889021515846,
+            "quantiles": {
+              "0": 0.0029734941199421883,
+              "0.5": 0.011911738198250532,
+              "0.9": 0.012143565900623798,
+              "0.99": 0.012805220298469065,
+              "1": 0.06009889021515846
+            },
+            "above_threshold": {
+              "0.001": 300,
+              "0.01": 291,
+              "0.05": 1,
+              "0.1": 0,
+              "0.25": 0
+            }
+          }
+        },
+        "all": {
+          "tp": 11,
+          "fp": 1789,
+          "fn": 1,
+          "images": 18,
+          "positive_images": 12,
+          "negative_images": 6,
+          "correctly_localized_positive_images": 11,
+          "negative_images_with_candidates": 6,
+          "precision": 0.006111111111111111,
+          "recall": 0.9166666666666666,
+          "negative_image_false_acceptance_rate": 1.0,
+          "post_nms_cap_images": 18,
+          "positive_images_with_correct_raw_box_above_threshold": 12,
+          "positive_top_raw_scores": {
+            "count": 12,
+            "max": 0.06475861370563507,
+            "quantiles": {
+              "0": 0.013368581421673298,
+              "0.5": 0.028264980763196945,
+              "0.9": 0.05687198899686337,
+              "0.99": 0.06390073727816344,
+              "1": 0.06475861370563507
+            },
+            "above_threshold": {
+              "0.001": 12,
+              "0.01": 12,
+              "0.05": 3,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "negative_top_raw_scores": {
+            "count": 6,
+            "max": 0.06009889021515846,
+            "quantiles": {
+              "0": 0.012372196651995182,
+              "0.5": 0.014838834293186665,
+              "0.9": 0.038660869002342224,
+              "0.99": 0.057955088093876846,
+              "1": 0.06009889021515846
+            },
+            "above_threshold": {
+              "0.001": 6,
+              "0.01": 6,
+              "0.05": 1,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "positive_best_correct_raw_scores": {
+            "count": 12,
+            "max": 0.06475861370563507,
+            "quantiles": {
+              "0": 0.002925079083070159,
+              "0.5": 0.028264980763196945,
+              "0.9": 0.05687198899686337,
+              "0.99": 0.06390073727816344,
+              "1": 0.06475861370563507
+            },
+            "above_threshold": {
+              "0.001": 12,
+              "0.01": 9,
+              "0.05": 3,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "negative_post_nms_candidate_scores": {
+            "count": 600,
+            "max": 0.06009889021515846,
+            "quantiles": {
+              "0": 0.0029734941199421883,
+              "0.5": 0.011927970685064793,
+              "0.9": 0.012139046192169189,
+              "0.99": 0.012804243750870227,
+              "1": 0.06009889021515846
+            },
+            "above_threshold": {
+              "0.001": 600,
+              "0.01": 591,
+              "0.05": 1,
+              "0.1": 0,
+              "0.25": 0
+            }
+          }
+        }
+      },
+      "0.01": {
+        "train": {
+          "tp": 8,
+          "fp": 1080,
+          "fn": 0,
+          "images": 11,
+          "positive_images": 8,
+          "negative_images": 3,
+          "correctly_localized_positive_images": 8,
+          "negative_images_with_candidates": 3,
+          "precision": 0.007352941176470588,
+          "recall": 1.0,
+          "negative_image_false_acceptance_rate": 1.0,
+          "post_nms_cap_images": 8,
+          "positive_images_with_correct_raw_box_above_threshold": 8,
+          "positive_top_raw_scores": {
+            "count": 8,
+            "max": 0.06475861370563507,
+            "quantiles": {
+              "0": 0.01924825645983219,
+              "0.5": 0.03424712736159563,
+              "0.9": 0.0592994000762701,
+              "0.99": 0.06421269234269857,
+              "1": 0.06475861370563507
+            },
+            "above_threshold": {
+              "0.001": 8,
+              "0.01": 8,
+              "0.05": 3,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "negative_top_raw_scores": {
+            "count": 3,
+            "max": 0.017222847789525986,
+            "quantiles": {
+              "0": 0.012372196651995182,
+              "0.5": 0.01377938874065876,
+              "0.9": 0.01653415597975254,
+              "0.99": 0.017153978608548642,
+              "1": 0.017222847789525986
+            },
+            "above_threshold": {
+              "0.001": 3,
+              "0.01": 3,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "positive_best_correct_raw_scores": {
+            "count": 8,
+            "max": 0.06475861370563507,
+            "quantiles": {
+              "0": 0.01350098755210638,
+              "0.5": 0.03424712736159563,
+              "0.9": 0.0592994000762701,
+              "0.99": 0.06421269234269857,
+              "1": 0.06475861370563507
+            },
+            "above_threshold": {
+              "0.001": 8,
+              "0.01": 8,
+              "0.05": 3,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "negative_post_nms_candidate_scores": {
+            "count": 300,
+            "max": 0.017222847789525986,
+            "quantiles": {
+              "0": 0.011554167605936527,
+              "0.5": 0.0119513557292521,
+              "0.9": 0.012128344643861056,
+              "0.99": 0.012602523779496548,
+              "1": 0.017222847789525986
+            },
+            "above_threshold": {
+              "0.001": 300,
+              "0.01": 300,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          }
+        },
+        "val": {
+          "tp": 1,
+          "fp": 687,
+          "fn": 3,
+          "images": 7,
+          "positive_images": 4,
+          "negative_images": 3,
+          "correctly_localized_positive_images": 1,
+          "negative_images_with_candidates": 3,
+          "precision": 0.0014534883720930232,
+          "recall": 0.25,
+          "negative_image_false_acceptance_rate": 1.0,
+          "post_nms_cap_images": 3,
+          "positive_images_with_correct_raw_box_above_threshold": 1,
+          "positive_top_raw_scores": {
+            "count": 4,
+            "max": 0.028930259868502617,
+            "quantiles": {
+              "0": 0.013368581421673298,
+              "0.5": 0.017704753670841455,
+              "0.9": 0.026681909896433355,
+              "0.99": 0.02870542487129569,
+              "1": 0.028930259868502617
+            },
+            "above_threshold": {
+              "0.001": 4,
+              "0.01": 4,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "negative_top_raw_scores": {
+            "count": 3,
+            "max": 0.06009889021515846,
+            "quantiles": {
+              "0": 0.012803765945136547,
+              "0.5": 0.01589827984571457,
+              "0.9": 0.05125876814126969,
+              "0.99": 0.05921487800776958,
+              "1": 0.06009889021515846
+            },
+            "above_threshold": {
+              "0.001": 3,
+              "0.01": 3,
+              "0.05": 1,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "positive_best_correct_raw_scores": {
+            "count": 4,
+            "max": 0.028930259868502617,
+            "quantiles": {
+              "0": 0.002925079083070159,
+              "0.5": 0.0031158311758190393,
+              "0.9": 0.02120505652856082,
+              "0.99": 0.02815773953450843,
+              "1": 0.028930259868502617
+            },
+            "above_threshold": {
+              "0.001": 4,
+              "0.01": 1,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "negative_post_nms_candidate_scores": {
+            "count": 291,
+            "max": 0.06009889021515846,
+            "quantiles": {
+              "0": 0.011401369236409664,
+              "0.5": 0.011917660012841225,
+              "0.9": 0.012146856635808945,
+              "0.99": 0.012818309478461746,
+              "1": 0.06009889021515846
+            },
+            "above_threshold": {
+              "0.001": 291,
+              "0.01": 291,
+              "0.05": 1,
+              "0.1": 0,
+              "0.25": 0
+            }
+          }
+        },
+        "all": {
+          "tp": 9,
+          "fp": 1767,
+          "fn": 3,
+          "images": 18,
+          "positive_images": 12,
+          "negative_images": 6,
+          "correctly_localized_positive_images": 9,
+          "negative_images_with_candidates": 6,
+          "precision": 0.005067567567567568,
+          "recall": 0.75,
+          "negative_image_false_acceptance_rate": 1.0,
+          "post_nms_cap_images": 11,
+          "positive_images_with_correct_raw_box_above_threshold": 9,
+          "positive_top_raw_scores": {
+            "count": 12,
+            "max": 0.06475861370563507,
+            "quantiles": {
+              "0": 0.013368581421673298,
+              "0.5": 0.028264980763196945,
+              "0.9": 0.05687198899686337,
+              "0.99": 0.06390073727816344,
+              "1": 0.06475861370563507
+            },
+            "above_threshold": {
+              "0.001": 12,
+              "0.01": 12,
+              "0.05": 3,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "negative_top_raw_scores": {
+            "count": 6,
+            "max": 0.06009889021515846,
+            "quantiles": {
+              "0": 0.012372196651995182,
+              "0.5": 0.014838834293186665,
+              "0.9": 0.038660869002342224,
+              "0.99": 0.057955088093876846,
+              "1": 0.06009889021515846
+            },
+            "above_threshold": {
+              "0.001": 6,
+              "0.01": 6,
+              "0.05": 1,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "positive_best_correct_raw_scores": {
+            "count": 12,
+            "max": 0.06475861370563507,
+            "quantiles": {
+              "0": 0.002925079083070159,
+              "0.5": 0.028264980763196945,
+              "0.9": 0.05687198899686337,
+              "0.99": 0.06390073727816344,
+              "1": 0.06475861370563507
+            },
+            "above_threshold": {
+              "0.001": 12,
+              "0.01": 9,
+              "0.05": 3,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "negative_post_nms_candidate_scores": {
+            "count": 591,
+            "max": 0.06009889021515846,
+            "quantiles": {
+              "0": 0.011401369236409664,
+              "0.5": 0.011929575353860855,
+              "0.9": 0.012143200263381004,
+              "0.99": 0.012808544002473355,
+              "1": 0.06009889021515846
+            },
+            "above_threshold": {
+              "0.001": 591,
+              "0.01": 591,
+              "0.05": 1,
+              "0.1": 0,
+              "0.25": 0
+            }
+          }
+        }
+      },
+      "0.05": {
+        "train": {
+          "tp": 3,
+          "fp": 0,
+          "fn": 5,
+          "images": 11,
+          "positive_images": 8,
+          "negative_images": 3,
+          "correctly_localized_positive_images": 3,
+          "negative_images_with_candidates": 0,
+          "precision": 1.0,
+          "recall": 0.375,
+          "negative_image_false_acceptance_rate": 0.0,
+          "post_nms_cap_images": 0,
+          "positive_images_with_correct_raw_box_above_threshold": 3,
+          "positive_top_raw_scores": {
+            "count": 8,
+            "max": 0.06475861370563507,
+            "quantiles": {
+              "0": 0.01924825645983219,
+              "0.5": 0.03424712736159563,
+              "0.9": 0.0592994000762701,
+              "0.99": 0.06421269234269857,
+              "1": 0.06475861370563507
+            },
+            "above_threshold": {
+              "0.001": 8,
+              "0.01": 8,
+              "0.05": 3,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "negative_top_raw_scores": {
+            "count": 3,
+            "max": 0.017222847789525986,
+            "quantiles": {
+              "0": 0.012372196651995182,
+              "0.5": 0.01377938874065876,
+              "0.9": 0.01653415597975254,
+              "0.99": 0.017153978608548642,
+              "1": 0.017222847789525986
+            },
+            "above_threshold": {
+              "0.001": 3,
+              "0.01": 3,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "positive_best_correct_raw_scores": {
+            "count": 8,
+            "max": 0.06475861370563507,
+            "quantiles": {
+              "0": 0.01350098755210638,
+              "0.5": 0.03424712736159563,
+              "0.9": 0.0592994000762701,
+              "0.99": 0.06421269234269857,
+              "1": 0.06475861370563507
+            },
+            "above_threshold": {
+              "0.001": 8,
+              "0.01": 8,
+              "0.05": 3,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "negative_post_nms_candidate_scores": {
+            "count": 0,
+            "max": null,
+            "quantiles": {
+              "0": null,
+              "0.5": null,
+              "0.9": null,
+              "0.99": null,
+              "1": null
+            },
+            "above_threshold": {
+              "0.001": 0,
+              "0.01": 0,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          }
+        },
+        "val": {
+          "tp": 0,
+          "fp": 1,
+          "fn": 4,
+          "images": 7,
+          "positive_images": 4,
+          "negative_images": 3,
+          "correctly_localized_positive_images": 0,
+          "negative_images_with_candidates": 1,
+          "precision": 0.0,
+          "recall": 0.0,
+          "negative_image_false_acceptance_rate": 0.3333333333333333,
+          "post_nms_cap_images": 0,
+          "positive_images_with_correct_raw_box_above_threshold": 0,
+          "positive_top_raw_scores": {
+            "count": 4,
+            "max": 0.028930259868502617,
+            "quantiles": {
+              "0": 0.013368581421673298,
+              "0.5": 0.017704753670841455,
+              "0.9": 0.026681909896433355,
+              "0.99": 0.02870542487129569,
+              "1": 0.028930259868502617
+            },
+            "above_threshold": {
+              "0.001": 4,
+              "0.01": 4,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "negative_top_raw_scores": {
+            "count": 3,
+            "max": 0.06009889021515846,
+            "quantiles": {
+              "0": 0.012803765945136547,
+              "0.5": 0.01589827984571457,
+              "0.9": 0.05125876814126969,
+              "0.99": 0.05921487800776958,
+              "1": 0.06009889021515846
+            },
+            "above_threshold": {
+              "0.001": 3,
+              "0.01": 3,
+              "0.05": 1,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "positive_best_correct_raw_scores": {
+            "count": 4,
+            "max": 0.028930259868502617,
+            "quantiles": {
+              "0": 0.002925079083070159,
+              "0.5": 0.0031158311758190393,
+              "0.9": 0.02120505652856082,
+              "0.99": 0.02815773953450843,
+              "1": 0.028930259868502617
+            },
+            "above_threshold": {
+              "0.001": 4,
+              "0.01": 1,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "negative_post_nms_candidate_scores": {
+            "count": 1,
+            "max": 0.06009889021515846,
+            "quantiles": {
+              "0": 0.06009889021515846,
+              "0.5": 0.06009889021515846,
+              "0.9": 0.06009889021515846,
+              "0.99": 0.06009889021515846,
+              "1": 0.06009889021515846
+            },
+            "above_threshold": {
+              "0.001": 1,
+              "0.01": 1,
+              "0.05": 1,
+              "0.1": 0,
+              "0.25": 0
+            }
+          }
+        },
+        "all": {
+          "tp": 3,
+          "fp": 1,
+          "fn": 9,
+          "images": 18,
+          "positive_images": 12,
+          "negative_images": 6,
+          "correctly_localized_positive_images": 3,
+          "negative_images_with_candidates": 1,
+          "precision": 0.75,
+          "recall": 0.25,
+          "negative_image_false_acceptance_rate": 0.16666666666666666,
+          "post_nms_cap_images": 0,
+          "positive_images_with_correct_raw_box_above_threshold": 3,
+          "positive_top_raw_scores": {
+            "count": 12,
+            "max": 0.06475861370563507,
+            "quantiles": {
+              "0": 0.013368581421673298,
+              "0.5": 0.028264980763196945,
+              "0.9": 0.05687198899686337,
+              "0.99": 0.06390073727816344,
+              "1": 0.06475861370563507
+            },
+            "above_threshold": {
+              "0.001": 12,
+              "0.01": 12,
+              "0.05": 3,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "negative_top_raw_scores": {
+            "count": 6,
+            "max": 0.06009889021515846,
+            "quantiles": {
+              "0": 0.012372196651995182,
+              "0.5": 0.014838834293186665,
+              "0.9": 0.038660869002342224,
+              "0.99": 0.057955088093876846,
+              "1": 0.06009889021515846
+            },
+            "above_threshold": {
+              "0.001": 6,
+              "0.01": 6,
+              "0.05": 1,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "positive_best_correct_raw_scores": {
+            "count": 12,
+            "max": 0.06475861370563507,
+            "quantiles": {
+              "0": 0.002925079083070159,
+              "0.5": 0.028264980763196945,
+              "0.9": 0.05687198899686337,
+              "0.99": 0.06390073727816344,
+              "1": 0.06475861370563507
+            },
+            "above_threshold": {
+              "0.001": 12,
+              "0.01": 9,
+              "0.05": 3,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "negative_post_nms_candidate_scores": {
+            "count": 1,
+            "max": 0.06009889021515846,
+            "quantiles": {
+              "0": 0.06009889021515846,
+              "0.5": 0.06009889021515846,
+              "0.9": 0.06009889021515846,
+              "0.99": 0.06009889021515846,
+              "1": 0.06009889021515846
+            },
+            "above_threshold": {
+              "0.001": 1,
+              "0.01": 1,
+              "0.05": 1,
+              "0.1": 0,
+              "0.25": 0
+            }
+          }
+        }
+      },
+      "0.1": {
+        "train": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 8,
+          "images": 11,
+          "positive_images": 8,
+          "negative_images": 3,
+          "correctly_localized_positive_images": 0,
+          "negative_images_with_candidates": 0,
+          "precision": null,
+          "recall": 0.0,
+          "negative_image_false_acceptance_rate": 0.0,
+          "post_nms_cap_images": 0,
+          "positive_images_with_correct_raw_box_above_threshold": 0,
+          "positive_top_raw_scores": {
+            "count": 8,
+            "max": 0.06475861370563507,
+            "quantiles": {
+              "0": 0.01924825645983219,
+              "0.5": 0.03424712736159563,
+              "0.9": 0.0592994000762701,
+              "0.99": 0.06421269234269857,
+              "1": 0.06475861370563507
+            },
+            "above_threshold": {
+              "0.001": 8,
+              "0.01": 8,
+              "0.05": 3,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "negative_top_raw_scores": {
+            "count": 3,
+            "max": 0.017222847789525986,
+            "quantiles": {
+              "0": 0.012372196651995182,
+              "0.5": 0.01377938874065876,
+              "0.9": 0.01653415597975254,
+              "0.99": 0.017153978608548642,
+              "1": 0.017222847789525986
+            },
+            "above_threshold": {
+              "0.001": 3,
+              "0.01": 3,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "positive_best_correct_raw_scores": {
+            "count": 8,
+            "max": 0.06475861370563507,
+            "quantiles": {
+              "0": 0.01350098755210638,
+              "0.5": 0.03424712736159563,
+              "0.9": 0.0592994000762701,
+              "0.99": 0.06421269234269857,
+              "1": 0.06475861370563507
+            },
+            "above_threshold": {
+              "0.001": 8,
+              "0.01": 8,
+              "0.05": 3,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "negative_post_nms_candidate_scores": {
+            "count": 0,
+            "max": null,
+            "quantiles": {
+              "0": null,
+              "0.5": null,
+              "0.9": null,
+              "0.99": null,
+              "1": null
+            },
+            "above_threshold": {
+              "0.001": 0,
+              "0.01": 0,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          }
+        },
+        "val": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 4,
+          "images": 7,
+          "positive_images": 4,
+          "negative_images": 3,
+          "correctly_localized_positive_images": 0,
+          "negative_images_with_candidates": 0,
+          "precision": null,
+          "recall": 0.0,
+          "negative_image_false_acceptance_rate": 0.0,
+          "post_nms_cap_images": 0,
+          "positive_images_with_correct_raw_box_above_threshold": 0,
+          "positive_top_raw_scores": {
+            "count": 4,
+            "max": 0.028930259868502617,
+            "quantiles": {
+              "0": 0.013368581421673298,
+              "0.5": 0.017704753670841455,
+              "0.9": 0.026681909896433355,
+              "0.99": 0.02870542487129569,
+              "1": 0.028930259868502617
+            },
+            "above_threshold": {
+              "0.001": 4,
+              "0.01": 4,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "negative_top_raw_scores": {
+            "count": 3,
+            "max": 0.06009889021515846,
+            "quantiles": {
+              "0": 0.012803765945136547,
+              "0.5": 0.01589827984571457,
+              "0.9": 0.05125876814126969,
+              "0.99": 0.05921487800776958,
+              "1": 0.06009889021515846
+            },
+            "above_threshold": {
+              "0.001": 3,
+              "0.01": 3,
+              "0.05": 1,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "positive_best_correct_raw_scores": {
+            "count": 4,
+            "max": 0.028930259868502617,
+            "quantiles": {
+              "0": 0.002925079083070159,
+              "0.5": 0.0031158311758190393,
+              "0.9": 0.02120505652856082,
+              "0.99": 0.02815773953450843,
+              "1": 0.028930259868502617
+            },
+            "above_threshold": {
+              "0.001": 4,
+              "0.01": 1,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "negative_post_nms_candidate_scores": {
+            "count": 0,
+            "max": null,
+            "quantiles": {
+              "0": null,
+              "0.5": null,
+              "0.9": null,
+              "0.99": null,
+              "1": null
+            },
+            "above_threshold": {
+              "0.001": 0,
+              "0.01": 0,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          }
+        },
+        "all": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 12,
+          "images": 18,
+          "positive_images": 12,
+          "negative_images": 6,
+          "correctly_localized_positive_images": 0,
+          "negative_images_with_candidates": 0,
+          "precision": null,
+          "recall": 0.0,
+          "negative_image_false_acceptance_rate": 0.0,
+          "post_nms_cap_images": 0,
+          "positive_images_with_correct_raw_box_above_threshold": 0,
+          "positive_top_raw_scores": {
+            "count": 12,
+            "max": 0.06475861370563507,
+            "quantiles": {
+              "0": 0.013368581421673298,
+              "0.5": 0.028264980763196945,
+              "0.9": 0.05687198899686337,
+              "0.99": 0.06390073727816344,
+              "1": 0.06475861370563507
+            },
+            "above_threshold": {
+              "0.001": 12,
+              "0.01": 12,
+              "0.05": 3,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "negative_top_raw_scores": {
+            "count": 6,
+            "max": 0.06009889021515846,
+            "quantiles": {
+              "0": 0.012372196651995182,
+              "0.5": 0.014838834293186665,
+              "0.9": 0.038660869002342224,
+              "0.99": 0.057955088093876846,
+              "1": 0.06009889021515846
+            },
+            "above_threshold": {
+              "0.001": 6,
+              "0.01": 6,
+              "0.05": 1,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "positive_best_correct_raw_scores": {
+            "count": 12,
+            "max": 0.06475861370563507,
+            "quantiles": {
+              "0": 0.002925079083070159,
+              "0.5": 0.028264980763196945,
+              "0.9": 0.05687198899686337,
+              "0.99": 0.06390073727816344,
+              "1": 0.06475861370563507
+            },
+            "above_threshold": {
+              "0.001": 12,
+              "0.01": 9,
+              "0.05": 3,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "negative_post_nms_candidate_scores": {
+            "count": 0,
+            "max": null,
+            "quantiles": {
+              "0": null,
+              "0.5": null,
+              "0.9": null,
+              "0.99": null,
+              "1": null
+            },
+            "above_threshold": {
+              "0.001": 0,
+              "0.01": 0,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          }
+        }
+      },
+      "0.25": {
+        "train": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 8,
+          "images": 11,
+          "positive_images": 8,
+          "negative_images": 3,
+          "correctly_localized_positive_images": 0,
+          "negative_images_with_candidates": 0,
+          "precision": null,
+          "recall": 0.0,
+          "negative_image_false_acceptance_rate": 0.0,
+          "post_nms_cap_images": 0,
+          "positive_images_with_correct_raw_box_above_threshold": 0,
+          "positive_top_raw_scores": {
+            "count": 8,
+            "max": 0.06475861370563507,
+            "quantiles": {
+              "0": 0.01924825645983219,
+              "0.5": 0.03424712736159563,
+              "0.9": 0.0592994000762701,
+              "0.99": 0.06421269234269857,
+              "1": 0.06475861370563507
+            },
+            "above_threshold": {
+              "0.001": 8,
+              "0.01": 8,
+              "0.05": 3,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "negative_top_raw_scores": {
+            "count": 3,
+            "max": 0.017222847789525986,
+            "quantiles": {
+              "0": 0.012372196651995182,
+              "0.5": 0.01377938874065876,
+              "0.9": 0.01653415597975254,
+              "0.99": 0.017153978608548642,
+              "1": 0.017222847789525986
+            },
+            "above_threshold": {
+              "0.001": 3,
+              "0.01": 3,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "positive_best_correct_raw_scores": {
+            "count": 8,
+            "max": 0.06475861370563507,
+            "quantiles": {
+              "0": 0.01350098755210638,
+              "0.5": 0.03424712736159563,
+              "0.9": 0.0592994000762701,
+              "0.99": 0.06421269234269857,
+              "1": 0.06475861370563507
+            },
+            "above_threshold": {
+              "0.001": 8,
+              "0.01": 8,
+              "0.05": 3,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "negative_post_nms_candidate_scores": {
+            "count": 0,
+            "max": null,
+            "quantiles": {
+              "0": null,
+              "0.5": null,
+              "0.9": null,
+              "0.99": null,
+              "1": null
+            },
+            "above_threshold": {
+              "0.001": 0,
+              "0.01": 0,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          }
+        },
+        "val": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 4,
+          "images": 7,
+          "positive_images": 4,
+          "negative_images": 3,
+          "correctly_localized_positive_images": 0,
+          "negative_images_with_candidates": 0,
+          "precision": null,
+          "recall": 0.0,
+          "negative_image_false_acceptance_rate": 0.0,
+          "post_nms_cap_images": 0,
+          "positive_images_with_correct_raw_box_above_threshold": 0,
+          "positive_top_raw_scores": {
+            "count": 4,
+            "max": 0.028930259868502617,
+            "quantiles": {
+              "0": 0.013368581421673298,
+              "0.5": 0.017704753670841455,
+              "0.9": 0.026681909896433355,
+              "0.99": 0.02870542487129569,
+              "1": 0.028930259868502617
+            },
+            "above_threshold": {
+              "0.001": 4,
+              "0.01": 4,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "negative_top_raw_scores": {
+            "count": 3,
+            "max": 0.06009889021515846,
+            "quantiles": {
+              "0": 0.012803765945136547,
+              "0.5": 0.01589827984571457,
+              "0.9": 0.05125876814126969,
+              "0.99": 0.05921487800776958,
+              "1": 0.06009889021515846
+            },
+            "above_threshold": {
+              "0.001": 3,
+              "0.01": 3,
+              "0.05": 1,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "positive_best_correct_raw_scores": {
+            "count": 4,
+            "max": 0.028930259868502617,
+            "quantiles": {
+              "0": 0.002925079083070159,
+              "0.5": 0.0031158311758190393,
+              "0.9": 0.02120505652856082,
+              "0.99": 0.02815773953450843,
+              "1": 0.028930259868502617
+            },
+            "above_threshold": {
+              "0.001": 4,
+              "0.01": 1,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "negative_post_nms_candidate_scores": {
+            "count": 0,
+            "max": null,
+            "quantiles": {
+              "0": null,
+              "0.5": null,
+              "0.9": null,
+              "0.99": null,
+              "1": null
+            },
+            "above_threshold": {
+              "0.001": 0,
+              "0.01": 0,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          }
+        },
+        "all": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 12,
+          "images": 18,
+          "positive_images": 12,
+          "negative_images": 6,
+          "correctly_localized_positive_images": 0,
+          "negative_images_with_candidates": 0,
+          "precision": null,
+          "recall": 0.0,
+          "negative_image_false_acceptance_rate": 0.0,
+          "post_nms_cap_images": 0,
+          "positive_images_with_correct_raw_box_above_threshold": 0,
+          "positive_top_raw_scores": {
+            "count": 12,
+            "max": 0.06475861370563507,
+            "quantiles": {
+              "0": 0.013368581421673298,
+              "0.5": 0.028264980763196945,
+              "0.9": 0.05687198899686337,
+              "0.99": 0.06390073727816344,
+              "1": 0.06475861370563507
+            },
+            "above_threshold": {
+              "0.001": 12,
+              "0.01": 12,
+              "0.05": 3,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "negative_top_raw_scores": {
+            "count": 6,
+            "max": 0.06009889021515846,
+            "quantiles": {
+              "0": 0.012372196651995182,
+              "0.5": 0.014838834293186665,
+              "0.9": 0.038660869002342224,
+              "0.99": 0.057955088093876846,
+              "1": 0.06009889021515846
+            },
+            "above_threshold": {
+              "0.001": 6,
+              "0.01": 6,
+              "0.05": 1,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "positive_best_correct_raw_scores": {
+            "count": 12,
+            "max": 0.06475861370563507,
+            "quantiles": {
+              "0": 0.002925079083070159,
+              "0.5": 0.028264980763196945,
+              "0.9": 0.05687198899686337,
+              "0.99": 0.06390073727816344,
+              "1": 0.06475861370563507
+            },
+            "above_threshold": {
+              "0.001": 12,
+              "0.01": 9,
+              "0.05": 3,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "negative_post_nms_candidate_scores": {
+            "count": 0,
+            "max": null,
+            "quantiles": {
+              "0": null,
+              "0.5": null,
+              "0.9": null,
+              "0.99": null,
+              "1": null
+            },
+            "above_threshold": {
+              "0.001": 0,
+              "0.01": 0,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          }
+        }
+      }
+    },
+    "960": {
+      "0.001": {
+        "train": {
+          "tp": 8,
+          "fp": 1092,
+          "fn": 0,
+          "images": 11,
+          "positive_images": 8,
+          "negative_images": 3,
+          "correctly_localized_positive_images": 8,
+          "negative_images_with_candidates": 3,
+          "precision": 0.007272727272727273,
+          "recall": 1.0,
+          "negative_image_false_acceptance_rate": 1.0,
+          "post_nms_cap_images": 11,
+          "positive_images_with_correct_raw_box_above_threshold": 8,
+          "positive_top_raw_scores": {
+            "count": 8,
+            "max": 0.04987844452261925,
+            "quantiles": {
+              "0": 0.019908448681235313,
+              "0.5": 0.027024604380130768,
+              "0.9": 0.04046199694275856,
+              "0.99": 0.04893679976463317,
+              "1": 0.04987844452261925
+            },
+            "above_threshold": {
+              "0.001": 8,
+              "0.01": 8,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "negative_top_raw_scores": {
+            "count": 3,
+            "max": 0.017954502254724503,
+            "quantiles": {
+              "0": 0.012459981255233288,
+              "0.5": 0.016095509752631187,
+              "0.9": 0.017582703754305838,
+              "0.99": 0.017917322404682638,
+              "1": 0.017954502254724503
+            },
+            "above_threshold": {
+              "0.001": 3,
+              "0.01": 3,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "positive_best_correct_raw_scores": {
+            "count": 8,
+            "max": 0.04987844452261925,
+            "quantiles": {
+              "0": 0.016121575608849525,
+              "0.5": 0.02392907440662384,
+              "0.9": 0.04046199694275856,
+              "0.99": 0.04893679976463317,
+              "1": 0.04987844452261925
+            },
+            "above_threshold": {
+              "0.001": 8,
+              "0.01": 8,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "negative_post_nms_candidate_scores": {
+            "count": 300,
+            "max": 0.017954502254724503,
+            "quantiles": {
+              "0": 0.011903020553290844,
+              "0.5": 0.012052669189870358,
+              "0.9": 0.012321849260479212,
+              "0.99": 0.014064320037141437,
+              "1": 0.017954502254724503
+            },
+            "above_threshold": {
+              "0.001": 300,
+              "0.01": 300,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          }
+        },
+        "val": {
+          "tp": 4,
+          "fp": 696,
+          "fn": 0,
+          "images": 7,
+          "positive_images": 4,
+          "negative_images": 3,
+          "correctly_localized_positive_images": 4,
+          "negative_images_with_candidates": 3,
+          "precision": 0.005714285714285714,
+          "recall": 1.0,
+          "negative_image_false_acceptance_rate": 1.0,
+          "post_nms_cap_images": 7,
+          "positive_images_with_correct_raw_box_above_threshold": 4,
+          "positive_top_raw_scores": {
+            "count": 4,
+            "max": 0.03418271616101265,
+            "quantiles": {
+              "0": 0.017467917874455452,
+              "0.5": 0.023387488909065723,
+              "0.9": 0.03177436124533415,
+              "0.99": 0.0339418806694448,
+              "1": 0.03418271616101265
+            },
+            "above_threshold": {
+              "0.001": 4,
+              "0.01": 4,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "negative_top_raw_scores": {
+            "count": 3,
+            "max": 0.024477621540427208,
+            "quantiles": {
+              "0": 0.015218442305922508,
+              "0.5": 0.01613105647265911,
+              "0.9": 0.02280830852687359,
+              "0.99": 0.024310690239071845,
+              "1": 0.024477621540427208
+            },
+            "above_threshold": {
+              "0.001": 3,
+              "0.01": 3,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "positive_best_correct_raw_scores": {
+            "count": 4,
+            "max": 0.03418271616101265,
+            "quantiles": {
+              "0": 0.012046881951391697,
+              "0.5": 0.01316873263567686,
+              "0.9": 0.02805591151118279,
+              "0.99": 0.033570035696029656,
+              "1": 0.03418271616101265
+            },
+            "above_threshold": {
+              "0.001": 4,
+              "0.01": 4,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "negative_post_nms_candidate_scores": {
+            "count": 300,
+            "max": 0.024477621540427208,
+            "quantiles": {
+              "0": 0.01189067680388689,
+              "0.5": 0.01204399298876524,
+              "0.9": 0.01249533649533987,
+              "0.99": 0.01578477270901203,
+              "1": 0.024477621540427208
+            },
+            "above_threshold": {
+              "0.001": 300,
+              "0.01": 300,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          }
+        },
+        "all": {
+          "tp": 12,
+          "fp": 1788,
+          "fn": 0,
+          "images": 18,
+          "positive_images": 12,
+          "negative_images": 6,
+          "correctly_localized_positive_images": 12,
+          "negative_images_with_candidates": 6,
+          "precision": 0.006666666666666667,
+          "recall": 1.0,
+          "negative_image_false_acceptance_rate": 1.0,
+          "post_nms_cap_images": 18,
+          "positive_images_with_correct_raw_box_above_threshold": 12,
+          "positive_top_raw_scores": {
+            "count": 12,
+            "max": 0.04987844452261925,
+            "quantiles": {
+              "0": 0.017467917874455452,
+              "0.5": 0.026062301360070705,
+              "0.9": 0.036202010512351994,
+              "0.99": 0.048398717045784,
+              "1": 0.04987844452261925
+            },
+            "above_threshold": {
+              "0.001": 12,
+              "0.01": 12,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "negative_top_raw_scores": {
+            "count": 6,
+            "max": 0.024477621540427208,
+            "quantiles": {
+              "0": 0.012459981255233288,
+              "0.5": 0.01611328311264515,
+              "0.9": 0.021216061897575855,
+              "0.99": 0.024151465576142075,
+              "1": 0.024477621540427208
+            },
+            "above_threshold": {
+              "0.001": 6,
+              "0.01": 6,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "positive_best_correct_raw_scores": {
+            "count": 12,
+            "max": 0.04987844452261925,
+            "quantiles": {
+              "0": 0.012046881951391697,
+              "0.5": 0.021579728461802006,
+              "0.9": 0.036202010512351994,
+              "0.99": 0.048398717045784,
+              "1": 0.04987844452261925
+            },
+            "above_threshold": {
+              "0.001": 12,
+              "0.01": 12,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "negative_post_nms_candidate_scores": {
+            "count": 600,
+            "max": 0.024477621540427208,
+            "quantiles": {
+              "0": 0.01189067680388689,
+              "0.5": 0.012051280587911606,
+              "0.9": 0.012411536928266288,
+              "0.99": 0.0154924267437309,
+              "1": 0.024477621540427208
+            },
+            "above_threshold": {
+              "0.001": 600,
+              "0.01": 600,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          }
+        }
+      },
+      "0.01": {
+        "train": {
+          "tp": 8,
+          "fp": 1092,
+          "fn": 0,
+          "images": 11,
+          "positive_images": 8,
+          "negative_images": 3,
+          "correctly_localized_positive_images": 8,
+          "negative_images_with_candidates": 3,
+          "precision": 0.007272727272727273,
+          "recall": 1.0,
+          "negative_image_false_acceptance_rate": 1.0,
+          "post_nms_cap_images": 11,
+          "positive_images_with_correct_raw_box_above_threshold": 8,
+          "positive_top_raw_scores": {
+            "count": 8,
+            "max": 0.04987844452261925,
+            "quantiles": {
+              "0": 0.019908448681235313,
+              "0.5": 0.027024604380130768,
+              "0.9": 0.04046199694275856,
+              "0.99": 0.04893679976463317,
+              "1": 0.04987844452261925
+            },
+            "above_threshold": {
+              "0.001": 8,
+              "0.01": 8,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "negative_top_raw_scores": {
+            "count": 3,
+            "max": 0.017954502254724503,
+            "quantiles": {
+              "0": 0.012459981255233288,
+              "0.5": 0.016095509752631187,
+              "0.9": 0.017582703754305838,
+              "0.99": 0.017917322404682638,
+              "1": 0.017954502254724503
+            },
+            "above_threshold": {
+              "0.001": 3,
+              "0.01": 3,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "positive_best_correct_raw_scores": {
+            "count": 8,
+            "max": 0.04987844452261925,
+            "quantiles": {
+              "0": 0.016121575608849525,
+              "0.5": 0.02392907440662384,
+              "0.9": 0.04046199694275856,
+              "0.99": 0.04893679976463317,
+              "1": 0.04987844452261925
+            },
+            "above_threshold": {
+              "0.001": 8,
+              "0.01": 8,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "negative_post_nms_candidate_scores": {
+            "count": 300,
+            "max": 0.017954502254724503,
+            "quantiles": {
+              "0": 0.011903020553290844,
+              "0.5": 0.012052669189870358,
+              "0.9": 0.012321849260479212,
+              "0.99": 0.014064320037141437,
+              "1": 0.017954502254724503
+            },
+            "above_threshold": {
+              "0.001": 300,
+              "0.01": 300,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          }
+        },
+        "val": {
+          "tp": 4,
+          "fp": 696,
+          "fn": 0,
+          "images": 7,
+          "positive_images": 4,
+          "negative_images": 3,
+          "correctly_localized_positive_images": 4,
+          "negative_images_with_candidates": 3,
+          "precision": 0.005714285714285714,
+          "recall": 1.0,
+          "negative_image_false_acceptance_rate": 1.0,
+          "post_nms_cap_images": 7,
+          "positive_images_with_correct_raw_box_above_threshold": 4,
+          "positive_top_raw_scores": {
+            "count": 4,
+            "max": 0.03418271616101265,
+            "quantiles": {
+              "0": 0.017467917874455452,
+              "0.5": 0.023387488909065723,
+              "0.9": 0.03177436124533415,
+              "0.99": 0.0339418806694448,
+              "1": 0.03418271616101265
+            },
+            "above_threshold": {
+              "0.001": 4,
+              "0.01": 4,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "negative_top_raw_scores": {
+            "count": 3,
+            "max": 0.024477621540427208,
+            "quantiles": {
+              "0": 0.015218442305922508,
+              "0.5": 0.01613105647265911,
+              "0.9": 0.02280830852687359,
+              "0.99": 0.024310690239071845,
+              "1": 0.024477621540427208
+            },
+            "above_threshold": {
+              "0.001": 3,
+              "0.01": 3,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "positive_best_correct_raw_scores": {
+            "count": 4,
+            "max": 0.03418271616101265,
+            "quantiles": {
+              "0": 0.012046881951391697,
+              "0.5": 0.01316873263567686,
+              "0.9": 0.02805591151118279,
+              "0.99": 0.033570035696029656,
+              "1": 0.03418271616101265
+            },
+            "above_threshold": {
+              "0.001": 4,
+              "0.01": 4,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "negative_post_nms_candidate_scores": {
+            "count": 300,
+            "max": 0.024477621540427208,
+            "quantiles": {
+              "0": 0.01189067680388689,
+              "0.5": 0.01204399298876524,
+              "0.9": 0.01249533649533987,
+              "0.99": 0.01578477270901203,
+              "1": 0.024477621540427208
+            },
+            "above_threshold": {
+              "0.001": 300,
+              "0.01": 300,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          }
+        },
+        "all": {
+          "tp": 12,
+          "fp": 1788,
+          "fn": 0,
+          "images": 18,
+          "positive_images": 12,
+          "negative_images": 6,
+          "correctly_localized_positive_images": 12,
+          "negative_images_with_candidates": 6,
+          "precision": 0.006666666666666667,
+          "recall": 1.0,
+          "negative_image_false_acceptance_rate": 1.0,
+          "post_nms_cap_images": 18,
+          "positive_images_with_correct_raw_box_above_threshold": 12,
+          "positive_top_raw_scores": {
+            "count": 12,
+            "max": 0.04987844452261925,
+            "quantiles": {
+              "0": 0.017467917874455452,
+              "0.5": 0.026062301360070705,
+              "0.9": 0.036202010512351994,
+              "0.99": 0.048398717045784,
+              "1": 0.04987844452261925
+            },
+            "above_threshold": {
+              "0.001": 12,
+              "0.01": 12,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "negative_top_raw_scores": {
+            "count": 6,
+            "max": 0.024477621540427208,
+            "quantiles": {
+              "0": 0.012459981255233288,
+              "0.5": 0.01611328311264515,
+              "0.9": 0.021216061897575855,
+              "0.99": 0.024151465576142075,
+              "1": 0.024477621540427208
+            },
+            "above_threshold": {
+              "0.001": 6,
+              "0.01": 6,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "positive_best_correct_raw_scores": {
+            "count": 12,
+            "max": 0.04987844452261925,
+            "quantiles": {
+              "0": 0.012046881951391697,
+              "0.5": 0.021579728461802006,
+              "0.9": 0.036202010512351994,
+              "0.99": 0.048398717045784,
+              "1": 0.04987844452261925
+            },
+            "above_threshold": {
+              "0.001": 12,
+              "0.01": 12,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "negative_post_nms_candidate_scores": {
+            "count": 600,
+            "max": 0.024477621540427208,
+            "quantiles": {
+              "0": 0.01189067680388689,
+              "0.5": 0.012051280587911606,
+              "0.9": 0.012411536928266288,
+              "0.99": 0.0154924267437309,
+              "1": 0.024477621540427208
+            },
+            "above_threshold": {
+              "0.001": 600,
+              "0.01": 600,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          }
+        }
+      },
+      "0.05": {
+        "train": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 8,
+          "images": 11,
+          "positive_images": 8,
+          "negative_images": 3,
+          "correctly_localized_positive_images": 0,
+          "negative_images_with_candidates": 0,
+          "precision": null,
+          "recall": 0.0,
+          "negative_image_false_acceptance_rate": 0.0,
+          "post_nms_cap_images": 0,
+          "positive_images_with_correct_raw_box_above_threshold": 0,
+          "positive_top_raw_scores": {
+            "count": 8,
+            "max": 0.04987844452261925,
+            "quantiles": {
+              "0": 0.019908448681235313,
+              "0.5": 0.027024604380130768,
+              "0.9": 0.04046199694275856,
+              "0.99": 0.04893679976463317,
+              "1": 0.04987844452261925
+            },
+            "above_threshold": {
+              "0.001": 8,
+              "0.01": 8,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "negative_top_raw_scores": {
+            "count": 3,
+            "max": 0.017954502254724503,
+            "quantiles": {
+              "0": 0.012459981255233288,
+              "0.5": 0.016095509752631187,
+              "0.9": 0.017582703754305838,
+              "0.99": 0.017917322404682638,
+              "1": 0.017954502254724503
+            },
+            "above_threshold": {
+              "0.001": 3,
+              "0.01": 3,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "positive_best_correct_raw_scores": {
+            "count": 8,
+            "max": 0.04987844452261925,
+            "quantiles": {
+              "0": 0.016121575608849525,
+              "0.5": 0.02392907440662384,
+              "0.9": 0.04046199694275856,
+              "0.99": 0.04893679976463317,
+              "1": 0.04987844452261925
+            },
+            "above_threshold": {
+              "0.001": 8,
+              "0.01": 8,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "negative_post_nms_candidate_scores": {
+            "count": 0,
+            "max": null,
+            "quantiles": {
+              "0": null,
+              "0.5": null,
+              "0.9": null,
+              "0.99": null,
+              "1": null
+            },
+            "above_threshold": {
+              "0.001": 0,
+              "0.01": 0,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          }
+        },
+        "val": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 4,
+          "images": 7,
+          "positive_images": 4,
+          "negative_images": 3,
+          "correctly_localized_positive_images": 0,
+          "negative_images_with_candidates": 0,
+          "precision": null,
+          "recall": 0.0,
+          "negative_image_false_acceptance_rate": 0.0,
+          "post_nms_cap_images": 0,
+          "positive_images_with_correct_raw_box_above_threshold": 0,
+          "positive_top_raw_scores": {
+            "count": 4,
+            "max": 0.03418271616101265,
+            "quantiles": {
+              "0": 0.017467917874455452,
+              "0.5": 0.023387488909065723,
+              "0.9": 0.03177436124533415,
+              "0.99": 0.0339418806694448,
+              "1": 0.03418271616101265
+            },
+            "above_threshold": {
+              "0.001": 4,
+              "0.01": 4,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "negative_top_raw_scores": {
+            "count": 3,
+            "max": 0.024477621540427208,
+            "quantiles": {
+              "0": 0.015218442305922508,
+              "0.5": 0.01613105647265911,
+              "0.9": 0.02280830852687359,
+              "0.99": 0.024310690239071845,
+              "1": 0.024477621540427208
+            },
+            "above_threshold": {
+              "0.001": 3,
+              "0.01": 3,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "positive_best_correct_raw_scores": {
+            "count": 4,
+            "max": 0.03418271616101265,
+            "quantiles": {
+              "0": 0.012046881951391697,
+              "0.5": 0.01316873263567686,
+              "0.9": 0.02805591151118279,
+              "0.99": 0.033570035696029656,
+              "1": 0.03418271616101265
+            },
+            "above_threshold": {
+              "0.001": 4,
+              "0.01": 4,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "negative_post_nms_candidate_scores": {
+            "count": 0,
+            "max": null,
+            "quantiles": {
+              "0": null,
+              "0.5": null,
+              "0.9": null,
+              "0.99": null,
+              "1": null
+            },
+            "above_threshold": {
+              "0.001": 0,
+              "0.01": 0,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          }
+        },
+        "all": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 12,
+          "images": 18,
+          "positive_images": 12,
+          "negative_images": 6,
+          "correctly_localized_positive_images": 0,
+          "negative_images_with_candidates": 0,
+          "precision": null,
+          "recall": 0.0,
+          "negative_image_false_acceptance_rate": 0.0,
+          "post_nms_cap_images": 0,
+          "positive_images_with_correct_raw_box_above_threshold": 0,
+          "positive_top_raw_scores": {
+            "count": 12,
+            "max": 0.04987844452261925,
+            "quantiles": {
+              "0": 0.017467917874455452,
+              "0.5": 0.026062301360070705,
+              "0.9": 0.036202010512351994,
+              "0.99": 0.048398717045784,
+              "1": 0.04987844452261925
+            },
+            "above_threshold": {
+              "0.001": 12,
+              "0.01": 12,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "negative_top_raw_scores": {
+            "count": 6,
+            "max": 0.024477621540427208,
+            "quantiles": {
+              "0": 0.012459981255233288,
+              "0.5": 0.01611328311264515,
+              "0.9": 0.021216061897575855,
+              "0.99": 0.024151465576142075,
+              "1": 0.024477621540427208
+            },
+            "above_threshold": {
+              "0.001": 6,
+              "0.01": 6,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "positive_best_correct_raw_scores": {
+            "count": 12,
+            "max": 0.04987844452261925,
+            "quantiles": {
+              "0": 0.012046881951391697,
+              "0.5": 0.021579728461802006,
+              "0.9": 0.036202010512351994,
+              "0.99": 0.048398717045784,
+              "1": 0.04987844452261925
+            },
+            "above_threshold": {
+              "0.001": 12,
+              "0.01": 12,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "negative_post_nms_candidate_scores": {
+            "count": 0,
+            "max": null,
+            "quantiles": {
+              "0": null,
+              "0.5": null,
+              "0.9": null,
+              "0.99": null,
+              "1": null
+            },
+            "above_threshold": {
+              "0.001": 0,
+              "0.01": 0,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          }
+        }
+      },
+      "0.1": {
+        "train": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 8,
+          "images": 11,
+          "positive_images": 8,
+          "negative_images": 3,
+          "correctly_localized_positive_images": 0,
+          "negative_images_with_candidates": 0,
+          "precision": null,
+          "recall": 0.0,
+          "negative_image_false_acceptance_rate": 0.0,
+          "post_nms_cap_images": 0,
+          "positive_images_with_correct_raw_box_above_threshold": 0,
+          "positive_top_raw_scores": {
+            "count": 8,
+            "max": 0.04987844452261925,
+            "quantiles": {
+              "0": 0.019908448681235313,
+              "0.5": 0.027024604380130768,
+              "0.9": 0.04046199694275856,
+              "0.99": 0.04893679976463317,
+              "1": 0.04987844452261925
+            },
+            "above_threshold": {
+              "0.001": 8,
+              "0.01": 8,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "negative_top_raw_scores": {
+            "count": 3,
+            "max": 0.017954502254724503,
+            "quantiles": {
+              "0": 0.012459981255233288,
+              "0.5": 0.016095509752631187,
+              "0.9": 0.017582703754305838,
+              "0.99": 0.017917322404682638,
+              "1": 0.017954502254724503
+            },
+            "above_threshold": {
+              "0.001": 3,
+              "0.01": 3,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "positive_best_correct_raw_scores": {
+            "count": 8,
+            "max": 0.04987844452261925,
+            "quantiles": {
+              "0": 0.016121575608849525,
+              "0.5": 0.02392907440662384,
+              "0.9": 0.04046199694275856,
+              "0.99": 0.04893679976463317,
+              "1": 0.04987844452261925
+            },
+            "above_threshold": {
+              "0.001": 8,
+              "0.01": 8,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "negative_post_nms_candidate_scores": {
+            "count": 0,
+            "max": null,
+            "quantiles": {
+              "0": null,
+              "0.5": null,
+              "0.9": null,
+              "0.99": null,
+              "1": null
+            },
+            "above_threshold": {
+              "0.001": 0,
+              "0.01": 0,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          }
+        },
+        "val": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 4,
+          "images": 7,
+          "positive_images": 4,
+          "negative_images": 3,
+          "correctly_localized_positive_images": 0,
+          "negative_images_with_candidates": 0,
+          "precision": null,
+          "recall": 0.0,
+          "negative_image_false_acceptance_rate": 0.0,
+          "post_nms_cap_images": 0,
+          "positive_images_with_correct_raw_box_above_threshold": 0,
+          "positive_top_raw_scores": {
+            "count": 4,
+            "max": 0.03418271616101265,
+            "quantiles": {
+              "0": 0.017467917874455452,
+              "0.5": 0.023387488909065723,
+              "0.9": 0.03177436124533415,
+              "0.99": 0.0339418806694448,
+              "1": 0.03418271616101265
+            },
+            "above_threshold": {
+              "0.001": 4,
+              "0.01": 4,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "negative_top_raw_scores": {
+            "count": 3,
+            "max": 0.024477621540427208,
+            "quantiles": {
+              "0": 0.015218442305922508,
+              "0.5": 0.01613105647265911,
+              "0.9": 0.02280830852687359,
+              "0.99": 0.024310690239071845,
+              "1": 0.024477621540427208
+            },
+            "above_threshold": {
+              "0.001": 3,
+              "0.01": 3,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "positive_best_correct_raw_scores": {
+            "count": 4,
+            "max": 0.03418271616101265,
+            "quantiles": {
+              "0": 0.012046881951391697,
+              "0.5": 0.01316873263567686,
+              "0.9": 0.02805591151118279,
+              "0.99": 0.033570035696029656,
+              "1": 0.03418271616101265
+            },
+            "above_threshold": {
+              "0.001": 4,
+              "0.01": 4,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "negative_post_nms_candidate_scores": {
+            "count": 0,
+            "max": null,
+            "quantiles": {
+              "0": null,
+              "0.5": null,
+              "0.9": null,
+              "0.99": null,
+              "1": null
+            },
+            "above_threshold": {
+              "0.001": 0,
+              "0.01": 0,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          }
+        },
+        "all": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 12,
+          "images": 18,
+          "positive_images": 12,
+          "negative_images": 6,
+          "correctly_localized_positive_images": 0,
+          "negative_images_with_candidates": 0,
+          "precision": null,
+          "recall": 0.0,
+          "negative_image_false_acceptance_rate": 0.0,
+          "post_nms_cap_images": 0,
+          "positive_images_with_correct_raw_box_above_threshold": 0,
+          "positive_top_raw_scores": {
+            "count": 12,
+            "max": 0.04987844452261925,
+            "quantiles": {
+              "0": 0.017467917874455452,
+              "0.5": 0.026062301360070705,
+              "0.9": 0.036202010512351994,
+              "0.99": 0.048398717045784,
+              "1": 0.04987844452261925
+            },
+            "above_threshold": {
+              "0.001": 12,
+              "0.01": 12,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "negative_top_raw_scores": {
+            "count": 6,
+            "max": 0.024477621540427208,
+            "quantiles": {
+              "0": 0.012459981255233288,
+              "0.5": 0.01611328311264515,
+              "0.9": 0.021216061897575855,
+              "0.99": 0.024151465576142075,
+              "1": 0.024477621540427208
+            },
+            "above_threshold": {
+              "0.001": 6,
+              "0.01": 6,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "positive_best_correct_raw_scores": {
+            "count": 12,
+            "max": 0.04987844452261925,
+            "quantiles": {
+              "0": 0.012046881951391697,
+              "0.5": 0.021579728461802006,
+              "0.9": 0.036202010512351994,
+              "0.99": 0.048398717045784,
+              "1": 0.04987844452261925
+            },
+            "above_threshold": {
+              "0.001": 12,
+              "0.01": 12,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "negative_post_nms_candidate_scores": {
+            "count": 0,
+            "max": null,
+            "quantiles": {
+              "0": null,
+              "0.5": null,
+              "0.9": null,
+              "0.99": null,
+              "1": null
+            },
+            "above_threshold": {
+              "0.001": 0,
+              "0.01": 0,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          }
+        }
+      },
+      "0.25": {
+        "train": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 8,
+          "images": 11,
+          "positive_images": 8,
+          "negative_images": 3,
+          "correctly_localized_positive_images": 0,
+          "negative_images_with_candidates": 0,
+          "precision": null,
+          "recall": 0.0,
+          "negative_image_false_acceptance_rate": 0.0,
+          "post_nms_cap_images": 0,
+          "positive_images_with_correct_raw_box_above_threshold": 0,
+          "positive_top_raw_scores": {
+            "count": 8,
+            "max": 0.04987844452261925,
+            "quantiles": {
+              "0": 0.019908448681235313,
+              "0.5": 0.027024604380130768,
+              "0.9": 0.04046199694275856,
+              "0.99": 0.04893679976463317,
+              "1": 0.04987844452261925
+            },
+            "above_threshold": {
+              "0.001": 8,
+              "0.01": 8,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "negative_top_raw_scores": {
+            "count": 3,
+            "max": 0.017954502254724503,
+            "quantiles": {
+              "0": 0.012459981255233288,
+              "0.5": 0.016095509752631187,
+              "0.9": 0.017582703754305838,
+              "0.99": 0.017917322404682638,
+              "1": 0.017954502254724503
+            },
+            "above_threshold": {
+              "0.001": 3,
+              "0.01": 3,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "positive_best_correct_raw_scores": {
+            "count": 8,
+            "max": 0.04987844452261925,
+            "quantiles": {
+              "0": 0.016121575608849525,
+              "0.5": 0.02392907440662384,
+              "0.9": 0.04046199694275856,
+              "0.99": 0.04893679976463317,
+              "1": 0.04987844452261925
+            },
+            "above_threshold": {
+              "0.001": 8,
+              "0.01": 8,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "negative_post_nms_candidate_scores": {
+            "count": 0,
+            "max": null,
+            "quantiles": {
+              "0": null,
+              "0.5": null,
+              "0.9": null,
+              "0.99": null,
+              "1": null
+            },
+            "above_threshold": {
+              "0.001": 0,
+              "0.01": 0,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          }
+        },
+        "val": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 4,
+          "images": 7,
+          "positive_images": 4,
+          "negative_images": 3,
+          "correctly_localized_positive_images": 0,
+          "negative_images_with_candidates": 0,
+          "precision": null,
+          "recall": 0.0,
+          "negative_image_false_acceptance_rate": 0.0,
+          "post_nms_cap_images": 0,
+          "positive_images_with_correct_raw_box_above_threshold": 0,
+          "positive_top_raw_scores": {
+            "count": 4,
+            "max": 0.03418271616101265,
+            "quantiles": {
+              "0": 0.017467917874455452,
+              "0.5": 0.023387488909065723,
+              "0.9": 0.03177436124533415,
+              "0.99": 0.0339418806694448,
+              "1": 0.03418271616101265
+            },
+            "above_threshold": {
+              "0.001": 4,
+              "0.01": 4,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "negative_top_raw_scores": {
+            "count": 3,
+            "max": 0.024477621540427208,
+            "quantiles": {
+              "0": 0.015218442305922508,
+              "0.5": 0.01613105647265911,
+              "0.9": 0.02280830852687359,
+              "0.99": 0.024310690239071845,
+              "1": 0.024477621540427208
+            },
+            "above_threshold": {
+              "0.001": 3,
+              "0.01": 3,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "positive_best_correct_raw_scores": {
+            "count": 4,
+            "max": 0.03418271616101265,
+            "quantiles": {
+              "0": 0.012046881951391697,
+              "0.5": 0.01316873263567686,
+              "0.9": 0.02805591151118279,
+              "0.99": 0.033570035696029656,
+              "1": 0.03418271616101265
+            },
+            "above_threshold": {
+              "0.001": 4,
+              "0.01": 4,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "negative_post_nms_candidate_scores": {
+            "count": 0,
+            "max": null,
+            "quantiles": {
+              "0": null,
+              "0.5": null,
+              "0.9": null,
+              "0.99": null,
+              "1": null
+            },
+            "above_threshold": {
+              "0.001": 0,
+              "0.01": 0,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          }
+        },
+        "all": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 12,
+          "images": 18,
+          "positive_images": 12,
+          "negative_images": 6,
+          "correctly_localized_positive_images": 0,
+          "negative_images_with_candidates": 0,
+          "precision": null,
+          "recall": 0.0,
+          "negative_image_false_acceptance_rate": 0.0,
+          "post_nms_cap_images": 0,
+          "positive_images_with_correct_raw_box_above_threshold": 0,
+          "positive_top_raw_scores": {
+            "count": 12,
+            "max": 0.04987844452261925,
+            "quantiles": {
+              "0": 0.017467917874455452,
+              "0.5": 0.026062301360070705,
+              "0.9": 0.036202010512351994,
+              "0.99": 0.048398717045784,
+              "1": 0.04987844452261925
+            },
+            "above_threshold": {
+              "0.001": 12,
+              "0.01": 12,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "negative_top_raw_scores": {
+            "count": 6,
+            "max": 0.024477621540427208,
+            "quantiles": {
+              "0": 0.012459981255233288,
+              "0.5": 0.01611328311264515,
+              "0.9": 0.021216061897575855,
+              "0.99": 0.024151465576142075,
+              "1": 0.024477621540427208
+            },
+            "above_threshold": {
+              "0.001": 6,
+              "0.01": 6,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "positive_best_correct_raw_scores": {
+            "count": 12,
+            "max": 0.04987844452261925,
+            "quantiles": {
+              "0": 0.012046881951391697,
+              "0.5": 0.021579728461802006,
+              "0.9": 0.036202010512351994,
+              "0.99": 0.048398717045784,
+              "1": 0.04987844452261925
+            },
+            "above_threshold": {
+              "0.001": 12,
+              "0.01": 12,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          },
+          "negative_post_nms_candidate_scores": {
+            "count": 0,
+            "max": null,
+            "quantiles": {
+              "0": null,
+              "0.5": null,
+              "0.9": null,
+              "0.99": null,
+              "1": null
+            },
+            "above_threshold": {
+              "0.001": 0,
+              "0.01": 0,
+              "0.05": 0,
+              "0.1": 0,
+              "0.25": 0
+            }
+          }
+        }
+      }
+    }
+  },
+  "note": "Raw geometry is pre-NMS target-class score, not an accepted prediction; max_det=100 can truncate low-threshold post-NMS rows. No threshold selection."
+}

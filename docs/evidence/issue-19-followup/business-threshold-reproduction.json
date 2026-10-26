@@ -1,0 +1,14 @@
+{
+  "pretrained": {
+    "identical_target_candidate_calls": 36,
+    "compared_calls": 36
+  },
+  "freeze-backbone": {
+    "identical_target_candidate_calls": 36,
+    "compared_calls": 36
+  },
+  "low-lr-finetune": {
+    "identical_target_candidate_calls": 36,
+    "compared_calls": 36
+  }
+}
