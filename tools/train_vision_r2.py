@@ -36,6 +36,30 @@ def build_train_args(dataset, trial_dir, trial, epochs=50):
             "flipud": 0.0, "fliplr": 0.0, "mosaic": 0.0, "mixup": 0.0, "copy_paste": 0.0}
 
 
+def validate_export(dataset, samples, files):
+    """Bind exactly the exported images and labels to the reviewed annotation."""
+    expected = set()
+    for sample in samples:
+        if sample["split"] == "excluded":
+            continue
+        prefix = sample["split"] + "/" + sample["sample_id"]
+        image_name = "images/" + prefix + Path(sample["path"]).suffix.lower()
+        label_name = "labels/" + prefix + ".txt"
+        expected.update((image_name, label_name))
+        label_text = "\n".join(sample["yolo_lines"]) + ("\n" if sample["yolo_lines"] else "")
+        if not (dataset / label_name).is_file() or (dataset / label_name).read_text(encoding="utf-8") != label_text:
+            raise Blocked("Exported labels do not match human-reviewed boxes")
+        if not (dataset / image_name).is_file() or sha256(dataset / image_name) != sample["sha256"]:
+            raise Blocked("Exported image does not match reviewed original")
+    actual = {path.relative_to(dataset).as_posix()
+              for directory in ("images", "labels")
+              for path in (dataset / directory).rglob("*") if path.is_file()}
+    if actual != expected:
+        raise Blocked("Unexpected or missing image/label files in reviewed export")
+    if set(files) != expected | {"data.yaml", "annotation.private.json"}:
+        raise Blocked("Dataset integrity inventory does not match reviewed export")
+
+
 def validate_inputs(dataset, weights, expected_sha256, output_root, trial, repo):
     dataset, weights = require_private(repo, dataset), require_private(repo, weights)
     output_root = require_private(repo, output_root)
@@ -63,6 +87,7 @@ def validate_inputs(dataset, weights, expected_sha256, output_root, trial, repo)
     expected_samples = validate_manifest(json.loads(annotation.read_text(encoding="utf-8-sig")), originals)
     if expected_samples != record.get("samples"):
         raise Blocked("Prepared dataset does not match reviewed annotation")
+    validate_export(dataset, expected_samples, record["files"])
     return dataset, weights, output_root / trial, record
 
 

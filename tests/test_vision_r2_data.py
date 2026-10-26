@@ -160,3 +160,51 @@ def test_framework_working_copy_does_not_rewrite_reviewed_dataset(inputs):
     (staged / "images/train/sample_0.png").write_bytes(b"simulated framework repair")
     assert all(data.sha256(dataset / p) == h for p, h in record["files"].items())
     assert str(staged).replace("\\", "/") in (staged / "data.yaml").read_text()
+
+
+def test_export_is_exactly_bound_to_reviewed_images_and_labels(inputs):
+    repo, root, path, _ = inputs
+    dataset = repo / "private/dataset"
+    record = data.prepare_dataset(path, root, dataset, repo)
+    driver.validate_export(dataset, record["samples"], record["files"])
+
+
+@pytest.mark.parametrize("extra", ["images/train/unreviewed.png", "labels/train/unreviewed.txt"])
+def test_export_rejects_unreviewed_extra_files(inputs, extra):
+    repo, root, path, _ = inputs
+    dataset = repo / "private/dataset"
+    record = data.prepare_dataset(path, root, dataset, repo)
+    (dataset / extra).write_bytes(b"not reviewed")
+    with pytest.raises(data.Blocked, match="Unexpected or missing"):
+        driver.validate_export(dataset, record["samples"], record["files"])
+
+
+def test_export_rejects_labels_rehashed_without_human_box_review(inputs):
+    repo, root, path, _ = inputs
+    dataset = repo / "private/dataset"
+    record = data.prepare_dataset(path, root, dataset, repo)
+    relative = "labels/train/sample_0.txt"
+    (dataset / relative).write_text("0 0.5 0.5 0.1 0.1\n", encoding="utf-8")
+    record["files"][relative] = data.sha256(dataset / relative)
+    with pytest.raises(data.Blocked, match="human-reviewed boxes"):
+        driver.validate_export(dataset, record["samples"], record["files"])
+
+
+def test_export_rejects_replaced_image_even_when_export_hash_is_updated(inputs):
+    repo, root, path, _ = inputs
+    dataset = repo / "private/dataset"
+    record = data.prepare_dataset(path, root, dataset, repo)
+    relative = "images/train/sample_0.png"
+    (dataset / relative).write_bytes((root / "sample-2.png").read_bytes())
+    record["files"][relative] = data.sha256(dataset / relative)
+    with pytest.raises(data.Blocked, match="reviewed original"):
+        driver.validate_export(dataset, record["samples"], record["files"])
+
+
+def test_export_rejects_incomplete_integrity_inventory(inputs):
+    repo, root, path, _ = inputs
+    dataset = repo / "private/dataset"
+    record = data.prepare_dataset(path, root, dataset, repo)
+    del record["files"]["labels/train/sample_0.txt"]
+    with pytest.raises(data.Blocked, match="integrity inventory"):
+        driver.validate_export(dataset, record["samples"], record["files"])

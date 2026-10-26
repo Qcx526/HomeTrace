@@ -1,0 +1,8 @@
+Extracted actual log lines; full private log retained locally. No synthetic output.
+Ultralytics 8.3.221  Python-3.11.4 torch-2.6.0+cu124 CUDA:0 (NVIDIA GeForce GTX 1660, 6144MiB)
+YOLO11n summary: 181 layers, 2,590,035 parameters, 2,590,019 gradients, 6.4 GFLOPs
+Transferred 448/499 items from pretrained weights
+EarlyStopping: Training stopped early as no improvement observed in last 10 epochs. Best results observed at epoch 7, best model saved as best.pt.
+17 epochs completed in 0.011 hours.
+Ultralytics 8.3.221  Python-3.11.4 torch-2.6.0+cu124 CUDA:0 (NVIDIA GeForce GTX 1660, 6144MiB)
+YOLO11n summary (fused): 100 layers, 2,582,347 parameters, 0 gradients, 6.3 GFLOPs

@@ -56,6 +56,8 @@ def run(predictions, annotations, data_root, output, repo):
     samples = validate_manifest(manifest, data_root)
     by_path = {r['path']:r for r in manifest['images']}
     source = json.loads(predictions.read_text(encoding='utf-8'))
+    if not isinstance(source, list) or not source:
+        raise Blocked("Predictions must be a non-empty list; no evaluations were supplied")
     seen = set()
     rows=[]
     for p in source:

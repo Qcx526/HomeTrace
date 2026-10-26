@@ -1,0 +1,486 @@
+{
+  "threshold_confidence": 0.25,
+  "nms_iou": 0.7,
+  "localization_iou": 0.5,
+  "independent_test": false,
+  "production_found": false,
+  "experiments": [
+    {
+      "name": "pretrained",
+      "environment": {
+        "python": "3.11.4",
+        "torch": "2.6.0+cu124",
+        "torchvision": "0.21.0+cu124",
+        "torch_cuda": "12.4",
+        "cuda_available": true,
+        "ultralytics": "8.3.221",
+        "opencv": "4.14.0",
+        "gpu": "NVIDIA GeForce GTX 1660",
+        "gpu_memory_bytes": 6442123264,
+        "model": "yolo11n.pt",
+        "weight_sha256": "0ebbc80d4a7680d14987a577cd21342b65ecfd94632bd9a8da63ae6417644ee1",
+        "parameters": {
+          "imgsz": [
+            640,
+            960
+          ],
+          "conf": 0.25,
+          "iou": 0.7,
+          "device": 0,
+          "half": false,
+          "augment": false,
+          "max_det": 100,
+          "batch": 1,
+          "seed": 0,
+          "crop": "none_full_frame",
+          "classes": "all"
+        },
+        "source_commit": "4429fcf21797d6af05d189effdd510918315acc4",
+        "script_sha256": "46b2a6b41a279f62a248c20b239203f7fafa20fbeb51d5739fd62cf168121388",
+        "source_worktree_dirty": true,
+        "label_input": null,
+        "production_integration": false,
+        "identity_confirmed": false,
+        "timing": "CUDA synchronized wall time including predict preprocessing/postprocessing; excludes decode and visualization; first call includes cold setup",
+        "gpu_memory_scope": "PyTorch peak allocated/reserved bytes; not total display-driver GPU memory"
+      },
+      "inferences": 36,
+      "all_inputs_executed": true,
+      "timing": [
+        {
+          "imgsz": 640,
+          "calls": 18,
+          "cold_ms": [
+            6308.628
+          ],
+          "noncold_count": 17,
+          "noncold_min_ms": 11.885,
+          "noncold_median_ms": 14.769,
+          "noncold_max_ms": 158.819,
+          "max_peak_allocated_bytes": 72978944,
+          "max_peak_reserved_bytes": 92274688
+        },
+        {
+          "imgsz": 960,
+          "calls": 18,
+          "cold_ms": [],
+          "noncold_count": 18,
+          "noncold_min_ms": 19.726,
+          "noncold_median_ms": 25.075499999999998,
+          "noncold_max_ms": 78.818,
+          "max_peak_allocated_bytes": 95996416,
+          "max_peak_reserved_bytes": 125829120
+        }
+      ],
+      "metrics": {
+        "iou_threshold": 0.5,
+        "scope": "exploratory_fit; target appearance proxy, not physical instance identity",
+        "independent_test": false,
+        "threshold_tuned": false,
+        "group_metrics": {
+          "640": {
+            "train": {
+              "tp": 7,
+              "fp": 2,
+              "fn": 1,
+              "images": 11,
+              "positive_images": 8,
+              "negative_images": 3,
+              "correctly_localized_positive_images": 7,
+              "negative_images_with_candidates": 1,
+              "precision": 0.7777777777777778,
+              "recall": 0.875,
+              "negative_image_false_acceptance_rate": 0.3333333333333333
+            },
+            "val": {
+              "tp": 3,
+              "fp": 3,
+              "fn": 1,
+              "images": 7,
+              "positive_images": 4,
+              "negative_images": 3,
+              "correctly_localized_positive_images": 3,
+              "negative_images_with_candidates": 1,
+              "precision": 0.5,
+              "recall": 0.75,
+              "negative_image_false_acceptance_rate": 0.3333333333333333
+            },
+            "all": {
+              "tp": 10,
+              "fp": 5,
+              "fn": 2,
+              "images": 18,
+              "positive_images": 12,
+              "negative_images": 6,
+              "correctly_localized_positive_images": 10,
+              "negative_images_with_candidates": 2,
+              "precision": 0.6666666666666666,
+              "recall": 0.8333333333333334,
+              "negative_image_false_acceptance_rate": 0.3333333333333333
+            }
+          },
+          "960": {
+            "train": {
+              "tp": 7,
+              "fp": 2,
+              "fn": 1,
+              "images": 11,
+              "positive_images": 8,
+              "negative_images": 3,
+              "correctly_localized_positive_images": 7,
+              "negative_images_with_candidates": 1,
+              "precision": 0.7777777777777778,
+              "recall": 0.875,
+              "negative_image_false_acceptance_rate": 0.3333333333333333
+            },
+            "val": {
+              "tp": 3,
+              "fp": 4,
+              "fn": 1,
+              "images": 7,
+              "positive_images": 4,
+              "negative_images": 3,
+              "correctly_localized_positive_images": 3,
+              "negative_images_with_candidates": 1,
+              "precision": 0.42857142857142855,
+              "recall": 0.75,
+              "negative_image_false_acceptance_rate": 0.3333333333333333
+            },
+            "all": {
+              "tp": 10,
+              "fp": 6,
+              "fn": 2,
+              "images": 18,
+              "positive_images": 12,
+              "negative_images": 6,
+              "correctly_localized_positive_images": 10,
+              "negative_images_with_candidates": 2,
+              "precision": 0.625,
+              "recall": 0.8333333333333334,
+              "negative_image_false_acceptance_rate": 0.3333333333333333
+            }
+          }
+        },
+        "caution": "For COCO cup, non-target cups are correct category candidates but false target proposals; this is not COCO category precision."
+      }
+    },
+    {
+      "name": "freeze-backbone",
+      "environment": {
+        "python": "3.11.4",
+        "torch": "2.6.0+cu124",
+        "torchvision": "0.21.0+cu124",
+        "torch_cuda": "12.4",
+        "cuda_available": true,
+        "ultralytics": "8.3.221",
+        "opencv": "4.14.0",
+        "gpu": "NVIDIA GeForce GTX 1660",
+        "gpu_memory_bytes": 6442123264,
+        "model": "best.pt",
+        "weight_sha256": "300df186b6fab35d5dee40f8ad7c48b06614f110cf1a04071389611fa3bc3bce",
+        "parameters": {
+          "imgsz": [
+            640,
+            960
+          ],
+          "conf": 0.25,
+          "iou": 0.7,
+          "device": 0,
+          "half": false,
+          "augment": false,
+          "max_det": 100,
+          "batch": 1,
+          "seed": 0,
+          "crop": "none_full_frame",
+          "classes": "all"
+        },
+        "source_commit": "a613ff4e2126e1510272155c79f94cd4f0962efc",
+        "script_sha256": "31fd525eab1ab7a529c515c6d5822c3a22d19307282be148ff09d33c00e0b49b",
+        "source_worktree_dirty": true,
+        "label_input": null,
+        "production_integration": false,
+        "identity_confirmed": false,
+        "timing": "CUDA synchronized wall time including predict preprocessing/postprocessing; excludes decode and visualization; first call includes cold setup",
+        "gpu_memory_scope": "PyTorch peak allocated/reserved bytes; not total display-driver GPU memory"
+      },
+      "inferences": 36,
+      "all_inputs_executed": true,
+      "timing": [
+        {
+          "imgsz": 640,
+          "calls": 18,
+          "cold_ms": [
+            1278.387
+          ],
+          "noncold_count": 17,
+          "noncold_min_ms": 11.052,
+          "noncold_median_ms": 13.096,
+          "noncold_max_ms": 58.02,
+          "max_peak_allocated_bytes": 67338240,
+          "max_peak_reserved_bytes": 92274688
+        },
+        {
+          "imgsz": 960,
+          "calls": 18,
+          "cold_ms": [],
+          "noncold_count": 18,
+          "noncold_min_ms": 18.028,
+          "noncold_median_ms": 19.42,
+          "noncold_max_ms": 52.053,
+          "max_peak_allocated_bytes": 86473728,
+          "max_peak_reserved_bytes": 104857600
+        }
+      ],
+      "metrics": {
+        "iou_threshold": 0.5,
+        "scope": "exploratory_fit; target appearance proxy, not physical instance identity",
+        "independent_test": false,
+        "threshold_tuned": false,
+        "group_metrics": {
+          "640": {
+            "train": {
+              "tp": 0,
+              "fp": 0,
+              "fn": 8,
+              "images": 11,
+              "positive_images": 8,
+              "negative_images": 3,
+              "correctly_localized_positive_images": 0,
+              "negative_images_with_candidates": 0,
+              "precision": null,
+              "recall": 0.0,
+              "negative_image_false_acceptance_rate": 0.0
+            },
+            "val": {
+              "tp": 0,
+              "fp": 0,
+              "fn": 4,
+              "images": 7,
+              "positive_images": 4,
+              "negative_images": 3,
+              "correctly_localized_positive_images": 0,
+              "negative_images_with_candidates": 0,
+              "precision": null,
+              "recall": 0.0,
+              "negative_image_false_acceptance_rate": 0.0
+            },
+            "all": {
+              "tp": 0,
+              "fp": 0,
+              "fn": 12,
+              "images": 18,
+              "positive_images": 12,
+              "negative_images": 6,
+              "correctly_localized_positive_images": 0,
+              "negative_images_with_candidates": 0,
+              "precision": null,
+              "recall": 0.0,
+              "negative_image_false_acceptance_rate": 0.0
+            }
+          },
+          "960": {
+            "train": {
+              "tp": 0,
+              "fp": 0,
+              "fn": 8,
+              "images": 11,
+              "positive_images": 8,
+              "negative_images": 3,
+              "correctly_localized_positive_images": 0,
+              "negative_images_with_candidates": 0,
+              "precision": null,
+              "recall": 0.0,
+              "negative_image_false_acceptance_rate": 0.0
+            },
+            "val": {
+              "tp": 0,
+              "fp": 0,
+              "fn": 4,
+              "images": 7,
+              "positive_images": 4,
+              "negative_images": 3,
+              "correctly_localized_positive_images": 0,
+              "negative_images_with_candidates": 0,
+              "precision": null,
+              "recall": 0.0,
+              "negative_image_false_acceptance_rate": 0.0
+            },
+            "all": {
+              "tp": 0,
+              "fp": 0,
+              "fn": 12,
+              "images": 18,
+              "positive_images": 12,
+              "negative_images": 6,
+              "correctly_localized_positive_images": 0,
+              "negative_images_with_candidates": 0,
+              "precision": null,
+              "recall": 0.0,
+              "negative_image_false_acceptance_rate": 0.0
+            }
+          }
+        },
+        "caution": "For COCO cup, non-target cups are correct category candidates but false target proposals; this is not COCO category precision."
+      }
+    },
+    {
+      "name": "low-lr-finetune",
+      "environment": {
+        "python": "3.11.4",
+        "torch": "2.6.0+cu124",
+        "torchvision": "0.21.0+cu124",
+        "torch_cuda": "12.4",
+        "cuda_available": true,
+        "ultralytics": "8.3.221",
+        "opencv": "4.14.0",
+        "gpu": "NVIDIA GeForce GTX 1660",
+        "gpu_memory_bytes": 6442123264,
+        "model": "best.pt",
+        "weight_sha256": "75b390f89068a9815c765fcf04566944c0ffb3cdcd53f48f77d2c52faa836591",
+        "parameters": {
+          "imgsz": [
+            640,
+            960
+          ],
+          "conf": 0.25,
+          "iou": 0.7,
+          "device": 0,
+          "half": false,
+          "augment": false,
+          "max_det": 100,
+          "batch": 1,
+          "seed": 0,
+          "crop": "none_full_frame",
+          "classes": "all"
+        },
+        "source_commit": "7bb0c52e3c8c761c57c276798e3f779780904b63",
+        "script_sha256": "31fd525eab1ab7a529c515c6d5822c3a22d19307282be148ff09d33c00e0b49b",
+        "source_worktree_dirty": false,
+        "label_input": null,
+        "production_integration": false,
+        "identity_confirmed": false,
+        "timing": "CUDA synchronized wall time including predict preprocessing/postprocessing; excludes decode and visualization; first call includes cold setup",
+        "gpu_memory_scope": "PyTorch peak allocated/reserved bytes; not total display-driver GPU memory"
+      },
+      "inferences": 36,
+      "all_inputs_executed": true,
+      "timing": [
+        {
+          "imgsz": 640,
+          "calls": 18,
+          "cold_ms": [
+            4936.601
+          ],
+          "noncold_count": 17,
+          "noncold_min_ms": 10.356,
+          "noncold_median_ms": 13.164,
+          "noncold_max_ms": 38.133,
+          "max_peak_allocated_bytes": 67338240,
+          "max_peak_reserved_bytes": 92274688
+        },
+        {
+          "imgsz": 960,
+          "calls": 18,
+          "cold_ms": [],
+          "noncold_count": 18,
+          "noncold_min_ms": 18.107,
+          "noncold_median_ms": 22.5015,
+          "noncold_max_ms": 48.694,
+          "max_peak_allocated_bytes": 86473728,
+          "max_peak_reserved_bytes": 104857600
+        }
+      ],
+      "metrics": {
+        "iou_threshold": 0.5,
+        "scope": "exploratory_fit; target appearance proxy, not physical instance identity",
+        "independent_test": false,
+        "threshold_tuned": false,
+        "group_metrics": {
+          "640": {
+            "train": {
+              "tp": 0,
+              "fp": 0,
+              "fn": 8,
+              "images": 11,
+              "positive_images": 8,
+              "negative_images": 3,
+              "correctly_localized_positive_images": 0,
+              "negative_images_with_candidates": 0,
+              "precision": null,
+              "recall": 0.0,
+              "negative_image_false_acceptance_rate": 0.0
+            },
+            "val": {
+              "tp": 0,
+              "fp": 0,
+              "fn": 4,
+              "images": 7,
+              "positive_images": 4,
+              "negative_images": 3,
+              "correctly_localized_positive_images": 0,
+              "negative_images_with_candidates": 0,
+              "precision": null,
+              "recall": 0.0,
+              "negative_image_false_acceptance_rate": 0.0
+            },
+            "all": {
+              "tp": 0,
+              "fp": 0,
+              "fn": 12,
+              "images": 18,
+              "positive_images": 12,
+              "negative_images": 6,
+              "correctly_localized_positive_images": 0,
+              "negative_images_with_candidates": 0,
+              "precision": null,
+              "recall": 0.0,
+              "negative_image_false_acceptance_rate": 0.0
+            }
+          },
+          "960": {
+            "train": {
+              "tp": 0,
+              "fp": 0,
+              "fn": 8,
+              "images": 11,
+              "positive_images": 8,
+              "negative_images": 3,
+              "correctly_localized_positive_images": 0,
+              "negative_images_with_candidates": 0,
+              "precision": null,
+              "recall": 0.0,
+              "negative_image_false_acceptance_rate": 0.0
+            },
+            "val": {
+              "tp": 0,
+              "fp": 0,
+              "fn": 4,
+              "images": 7,
+              "positive_images": 4,
+              "negative_images": 3,
+              "correctly_localized_positive_images": 0,
+              "negative_images_with_candidates": 0,
+              "precision": null,
+              "recall": 0.0,
+              "negative_image_false_acceptance_rate": 0.0
+            },
+            "all": {
+              "tp": 0,
+              "fp": 0,
+              "fn": 12,
+              "images": 18,
+              "positive_images": 12,
+              "negative_images": 6,
+              "correctly_localized_positive_images": 0,
+              "negative_images_with_candidates": 0,
+              "precision": null,
+              "recall": 0.0,
+              "negative_image_false_acceptance_rate": 0.0
+            }
+          }
+        },
+        "caution": "For COCO cup, non-target cups are correct category candidates but false target proposals; this is not COCO category precision."
+      }
+    }
+  ]
+}

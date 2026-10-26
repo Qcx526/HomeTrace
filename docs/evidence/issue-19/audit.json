@@ -1,0 +1,42 @@
+{
+  "base_commit": "4429fcf21797d6af05d189effdd510918315acc4",
+  "scope": "worktree audit before final evidence commit; no production changes",
+  "baseline_tracked_files": 301,
+  "all_baseline_files_unchanged": true,
+  "new_public_file_count": 22,
+  "tests": {
+    "tests": 470,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "existing_baseline_tests": 424,
+  "new_r2_tests": 46,
+  "independent_test_images": 0,
+  "real_photo_result": "NO_GO for both specialized models; production BLOCKED",
+  "strict_rescoring_matches_original_all_three_models": true,
+  "strict_dataset_02_input_validation": true,
+  "private_secret_value_scan": "PASS (values never emitted)",
+  "private_original_hash_scan": "PASS",
+  "forbidden_artifact_scan": "PASS",
+  "private_absolute_path_scan": "PASS",
+  "git_diff_check": "PASS",
+  "allowed_public_images": "two inspected framework loss curves only; no photograph or label plot",
+  "pr15_unchanged": true,
+  "unmodified_experiment_branch_heads": {
+    "feature/4-vision-r0": "37114b64c6f85c295ab7f69885dc9e8ee09fdee6",
+    "feature/4-vision-r1-multireference": "16915c5f503e35076bdbbe612df465536c1d35f0",
+    "feature/4-vision-r1-watercup": "795f658450b7a0fb9bdd8fdb3feb0c5697cda13c"
+  },
+  "production_adapter_added": false,
+  "merged": false,
+  "source_file_hashes": {
+    "tests/test_vision_r2_data.py": "bdca691b3b0c2681d76f95b37f8063ba1aca14dda3a320f0064e8ebe4539b40c",
+    "tests/test_vision_r2_scoring.py": "34d96e75196d0bb1bc25dff6c2a8641cc7abf9fe7a6a0034f8ac0e68fa42afb2",
+    "tools/requirements-vision-r2.txt": "173279d0a290687fb575ad06ea6fdb6e396688750ddbe2f846a0476ba8ab1dbc",
+    "tools/score_vision_r2.py": "34142184e4b7fa9fb279b2fcae20cf10d17bd1399bd4582a41676f13f1cbd84a",
+    "tools/train_vision_r2.py": "521c1b95148012e4168baed4ec70920e4335c7b5cf480dc77c5fcadaf0c5d870",
+    "tools/vision_r2_data.py": "3573292c040fb74030a86e6d415a723a681eaf81027de59faaebb20a5116932f",
+    "tools/vision_r2_infer.py": "31fd525eab1ab7a529c515c6d5822c3a22d19307282be148ff09d33c00e0b49b"
+  }
+}
