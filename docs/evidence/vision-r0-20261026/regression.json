@@ -1,0 +1,18 @@
+{
+  "source_commit": "0dbb1c742d4ec6a4f020382471514948866598b9",
+  "counts": {
+    "tests": 473,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "passed": 473,
+  "seconds": 68.35,
+  "warnings": 1,
+  "warning": "LangChainPendingDeprecationWarning for future allowed_objects default",
+  "original_main_tests": 424,
+  "new_tests": 49,
+  "vision_experiment_opencv": "4.14.0",
+  "regression_environment_opencv": "4.12.0",
+  "source_import": "current worktree/src via explicit PYTHONPATH"
+}

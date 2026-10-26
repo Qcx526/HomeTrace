@@ -1,0 +1,21 @@
+earbud scene_01 UNKNOWN no_candidates 0
+earbud scene_02 UNKNOWN no_candidates 0
+earbud scene_03 UNKNOWN no_candidates 0
+earbud scene_04 UNKNOWN no_candidates 0
+earbud scene_05 UNKNOWN no_candidates 0
+panda scene_01 UNKNOWN no_candidates 0
+panda scene_02 SUSPECTED candidate_requires_instance_verification 1
+panda scene_03 SUSPECTED candidate_requires_instance_verification 1
+panda scene_04 UNKNOWN no_candidates 0
+panda scene_05 SUSPECTED candidate_requires_instance_verification 1
+keys scene_01 UNKNOWN no_candidates 0
+keys scene_02 UNKNOWN no_candidates 0
+keys scene_03 UNKNOWN no_candidates 0
+keys scene_04 UNKNOWN no_candidates 0
+keys scene_05 UNKNOWN no_candidates 0
+tissue scene_01 UNKNOWN no_candidates 0
+tissue scene_02 UNKNOWN no_candidates 0
+tissue scene_03 UNKNOWN no_candidates 0
+tissue scene_04 UNKNOWN no_candidates 0
+tissue scene_05 UNKNOWN no_candidates 0
+{"gate": "NO_GO", "counts": {"positive": {"samples": 6, "candidate_cases": 2, "no_candidate_cases": 4, "failed_or_unavailable_cases": 0}, "negative": {"samples": 8, "candidate_cases": 1, "no_candidate_cases": 7, "failed_or_unavailable_cases": 0}, "uncertain": {"samples": 5, "candidate_cases": 0, "no_candidate_cases": 5, "failed_or_unavailable_cases": 0}, "auxiliary": {"samples": 1, "candidate_cases": 0, "no_candidate_cases": 1, "failed_or_unavailable_cases": 0}}}

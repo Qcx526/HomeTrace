@@ -1,0 +1,14 @@
+{
+  "base_main": "4429fcf21797d6af05d189effdd510918315acc4",
+  "all_existing_tracked_files_unchanged": true,
+  "existing_files_verified": 301,
+  "production_src_unchanged": true,
+  "old_tests_and_frozen_reports_unchanged": true,
+  "all_tracked_and_new_files_key_scan_passed": true,
+  "files_key_scanned": 323,
+  "new_public_files_original_paths_hashes_names_scan_passed": true,
+  "new_public_files_scanned": 22,
+  "git_diff_check_passed": true,
+  "no_private_images_weights_or_database_added": true,
+  "scope": "Exact current configured Key and known private inventory identifiers, not a universal secret detector"
+}

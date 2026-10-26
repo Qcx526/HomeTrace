@@ -1,0 +1,23 @@
+{
+  "review_type": "developer visual inspection of actual current run overlays; NOT owner-certified boxes or IoU truth",
+  "reviewed_samples": [
+    {
+      "sample_id": "panda/scene_02",
+      "observation": "candidate mainly covers large similar panda; registered small instance not separately localized",
+      "supports_registered_target_candidate": false
+    },
+    {
+      "sample_id": "panda/scene_03",
+      "observation": "negative contains only large panda, model produces wrong-instance candidate",
+      "supports_registered_target_candidate": false
+    },
+    {
+      "sample_id": "panda/scene_05",
+      "observation": "candidate visually covers registered small panda; SIFT geometry still fails",
+      "supports_registered_target_candidate": true
+    }
+  ],
+  "production_found": 0,
+  "images_public": false,
+  "independent_test": false
+}

@@ -1,0 +1,50 @@
+[
+  {
+    "sample_id": "earbud/scene_05",
+    "method": "ORB_FULL",
+    "label": "negative",
+    "matches": 55,
+    "inliers": 44,
+    "matches_inside_fixed_reference_roi": 7,
+    "inliers_inside_fixed_reference_roi": 0,
+    "inliers_outside_fixed_reference_roi": 44,
+    "reproduced_saved_counts": true,
+    "roi_is_rectangle_not_segmentation": true
+  },
+  {
+    "sample_id": "earbud/scene_05",
+    "method": "SIFT_FULL",
+    "label": "negative",
+    "matches": 146,
+    "inliers": 115,
+    "matches_inside_fixed_reference_roi": 3,
+    "inliers_inside_fixed_reference_roi": 1,
+    "inliers_outside_fixed_reference_roi": 114,
+    "reproduced_saved_counts": true,
+    "roi_is_rectangle_not_segmentation": true
+  },
+  {
+    "sample_id": "earbud/scene_05",
+    "method": "AKAZE_FULL",
+    "label": "negative",
+    "matches": 22,
+    "inliers": 20,
+    "matches_inside_fixed_reference_roi": 1,
+    "inliers_inside_fixed_reference_roi": 1,
+    "inliers_outside_fixed_reference_roi": 19,
+    "reproduced_saved_counts": true,
+    "roi_is_rectangle_not_segmentation": true
+  },
+  {
+    "sample_id": "keys/scene_05",
+    "method": "SIFT_FULL",
+    "label": "negative",
+    "matches": 42,
+    "inliers": 25,
+    "matches_inside_fixed_reference_roi": 12,
+    "inliers_inside_fixed_reference_roi": 2,
+    "inliers_outside_fixed_reference_roi": 23,
+    "reproduced_saved_counts": true,
+    "roi_is_rectangle_not_segmentation": true
+  }
+]

@@ -1,0 +1,299 @@
+{
+  "schema_version": 1,
+  "audit_date_local": "2026-10-26",
+  "audit_mode": "read_only_sources",
+  "inputs": {
+    "new_pack_entries": 24,
+    "old_tissue_entries": 7,
+    "old_other_entries": 9,
+    "total_image_entries": 40,
+    "unique_original_byte_sequences": 32,
+    "exact_duplicate_groups": 6,
+    "all_expected_sha_and_bytes_verified": true,
+    "new_manifest_dimensions_verified": true,
+    "new_pack_human_roles": {
+      "uncertain_or_negative": 2,
+      "negative": 7,
+      "positive_observed": 5,
+      "reference_candidate": 4,
+      "uncertain": 3,
+      "negative_small_panda": 1,
+      "alternative_reference": 1,
+      "positive_observed_occluded": 1
+    },
+    "exif_orientation_counts": {
+      "None": 33,
+      "0": 7
+    },
+    "exif_present_entries": 7,
+    "orientation_changes_dimensions": 0,
+    "derived_images_created": 0,
+    "synthetic_images_created": 0
+  },
+  "duplicates": {
+    "exact_group_aliases": [
+      [
+        "new/tissue/scene_01",
+        "team_tissue/asset_04",
+        "team_other_objects/asset_07"
+      ],
+      [
+        "new/tissue/scene_02",
+        "team_tissue/asset_07"
+      ],
+      [
+        "new/tissue/scene_03",
+        "team_tissue/asset_05",
+        "team_other_objects/asset_08"
+      ],
+      [
+        "new/tissue/scene_04",
+        "team_tissue/asset_02"
+      ],
+      [
+        "new/tissue/scene_05",
+        "team_tissue/asset_03"
+      ],
+      [
+        "team_tissue/asset_06",
+        "team_other_objects/asset_09"
+      ]
+    ],
+    "decoded_pixel_group_aliases": [
+      [
+        "new/tissue/scene_01",
+        "team_tissue/asset_04",
+        "team_other_objects/asset_07"
+      ],
+      [
+        "new/tissue/scene_02",
+        "team_tissue/asset_07"
+      ],
+      [
+        "new/tissue/scene_03",
+        "team_tissue/asset_05",
+        "team_other_objects/asset_08"
+      ],
+      [
+        "new/tissue/scene_04",
+        "team_tissue/asset_02"
+      ],
+      [
+        "new/tissue/scene_05",
+        "team_tissue/asset_03"
+      ],
+      [
+        "team_tissue/asset_06",
+        "team_other_objects/asset_09"
+      ]
+    ],
+    "near_duplicate_screening_count": 1,
+    "near_duplicate_screening_is_not_ground_truth": true
+  },
+  "p3_frozen": {
+    "rows": 75,
+    "per_method": {
+      "ORB": {
+        "evaluations": 25,
+        "positive_pairs": 8,
+        "statuses": {
+          "SUSPECTED": 19,
+          "UNKNOWN": 6
+        },
+        "failure_reasons": {
+          "insufficient_geometric_inliers": 9,
+          "insufficient_distinct_matches": 10,
+          "reference_rejected": 4,
+          "no_verified_match": 2
+        }
+      },
+      "SIFT": {
+        "evaluations": 25,
+        "positive_pairs": 8,
+        "statuses": {
+          "SUSPECTED": 21,
+          "UNKNOWN": 4
+        },
+        "failure_reasons": {
+          "insufficient_geometric_inliers": 16,
+          "reference_low_sharpness_or_texture": 4,
+          "insufficient_distinct_matches": 5
+        }
+      },
+      "AKAZE": {
+        "evaluations": 25,
+        "positive_pairs": 8,
+        "statuses": {
+          "SUSPECTED": 6,
+          "UNKNOWN": 19
+        },
+        "failure_reasons": {
+          "insufficient_distinct_matches": 4,
+          "no_verified_match": 15,
+          "insufficient_geometric_inliers": 1,
+          "reference_low_sharpness_or_texture": 4,
+          "reference_support_too_local": 1
+        }
+      }
+    },
+    "unique_target_scene_pairs": 25,
+    "distinct_positive_target_scene_pairs": 8,
+    "found": 0
+  },
+  "r1_frozen": {
+    "rows": 40,
+    "counts": {
+      "baseline_full_image": {
+        "planned_evaluations": 20,
+        "detect_calls": 15,
+        "enrollment_rejected_cases": 5,
+        "statuses": {
+          "SUSPECTED": 13,
+          "FOUND": 1,
+          "UNKNOWN": 1
+        },
+        "labels": {
+          "positive": {
+            "planned": 6,
+            "detect_calls": 4,
+            "found": 0
+          },
+          "negative": {
+            "planned": 8,
+            "detect_calls": 6,
+            "found": 1
+          },
+          "uncertain": {
+            "planned": 5,
+            "detect_calls": 4,
+            "found": 0
+          },
+          "auxiliary": {
+            "planned": 1,
+            "detect_calls": 1,
+            "found": 0
+          }
+        }
+      },
+      "registration_roi": {
+        "planned_evaluations": 20,
+        "detect_calls": 20,
+        "enrollment_rejected_cases": 0,
+        "statuses": {
+          "SUSPECTED": 16,
+          "UNKNOWN": 4
+        },
+        "labels": {
+          "positive": {
+            "planned": 6,
+            "detect_calls": 6,
+            "found": 0
+          },
+          "negative": {
+            "planned": 8,
+            "detect_calls": 8,
+            "found": 0
+          },
+          "uncertain": {
+            "planned": 5,
+            "detect_calls": 5,
+            "found": 0
+          },
+          "auxiliary": {
+            "planned": 1,
+            "detect_calls": 1,
+            "found": 0
+          }
+        }
+      }
+    },
+    "failure_reasons": {
+      "baseline_full_image": {
+        "all": {
+          "insufficient_distinct_matches": 10,
+          "verified_planar_reference_match": 1,
+          "reference_quality_gate_rejected": 5,
+          "insufficient_geometric_inliers": 3,
+          "low_sharpness_or_texture": 1
+        },
+        "positive": {
+          "insufficient_distinct_matches": 2,
+          "reference_quality_gate_rejected": 2,
+          "insufficient_geometric_inliers": 2
+        }
+      },
+      "registration_roi": {
+        "all": {
+          "insufficient_distinct_matches": 13,
+          "no_verified_match": 3,
+          "insufficient_geometric_inliers": 3,
+          "low_sharpness_or_texture": 1
+        },
+        "positive": {
+          "insufficient_distinct_matches": 5,
+          "insufficient_geometric_inliers": 1
+        }
+      }
+    }
+  },
+  "yoloe_frozen": {
+    "rows": 20,
+    "counts": {
+      "positive": {
+        "samples": 6,
+        "candidate_cases": 2,
+        "no_candidate_cases": 4,
+        "failed_or_unavailable_cases": 0
+      },
+      "negative": {
+        "samples": 8,
+        "candidate_cases": 1,
+        "no_candidate_cases": 7,
+        "failed_or_unavailable_cases": 0
+      },
+      "uncertain": {
+        "samples": 5,
+        "candidate_cases": 0,
+        "no_candidate_cases": 5,
+        "failed_or_unavailable_cases": 0
+      },
+      "auxiliary": {
+        "samples": 1,
+        "candidate_cases": 0,
+        "no_candidate_cases": 1,
+        "failed_or_unavailable_cases": 0
+      }
+    },
+    "gate": "NO_GO",
+    "review_supported_target_candidates": 1,
+    "positive_target_scenes": 6,
+    "candidate_false_positive_scenes": 1,
+    "negative_target_scenes": 8,
+    "instance_confirmations": 0,
+    "pr13_repeat_semantic_rows_identical_excluding_runtime": true
+  },
+  "annotation_availability": {
+    "reference_roi": "four_fixed_rectangles_from_existing_registration_suggestions",
+    "target_instance_groups": "four_groups_in_new_pack; physical_identity_across_old_new_packs_not_certified",
+    "scene_target_boxes": false,
+    "scene_segmentation_masks": false,
+    "occlusion_fraction": false,
+    "numeric_view_angle": false,
+    "lighting_measurements": false,
+    "authenticated_capture_timestamps": false,
+    "human_presence": "existing_human_role_hints_preserved; five_uncertain_not_scored_as_negative",
+    "scene_context": "qualitative_human_notes_available; adjacent_views_must_stay_grouped"
+  },
+  "independent_split": {
+    "untouched_real_photo_holdout_available": false,
+    "reason": "All 24 new pack photos were reference or scene inputs in R1 and YOLOE; old scenes were already evaluated in P3. A retrospective split cannot erase prior use.",
+    "allowed_existing_use": "Exploratory development and regression; group byte duplicates and adjacent same-scene views.",
+    "strict_independent_test": "Requires a new untouched capture batch with separately recorded presence and ground-truth boxes; freeze method and thresholds before running.",
+    "no_reliable_generalization_claim": true
+  },
+  "limitations": [
+    "Historical evaluation records were read, not rerun by this audit agent.",
+    "No new presence labels, target boxes, or physical-instance identity assertions were invented.",
+    "EXIF timestamp presence does not authenticate capture time. No GPS or identity metadata retained."
+  ]
+}
