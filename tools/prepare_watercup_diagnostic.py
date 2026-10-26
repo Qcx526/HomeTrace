@@ -38,6 +38,8 @@ def prepare(root, review_path, output, repo):
     cv.setRNGSeed(0)
     for name in sorted(paths, key=lambda s: int(Path(s).stem)):
         record = review["photos"][name]
+        if not isinstance(record["capture_batch"], str) or not record["capture_batch"].strip():
+            raise ValueError("Capture batch must be nonempty text; use unknown when unknown")
         if record["sha256"] != before[name]:
             raise ValueError("Review is bound to different input bytes")
         pixels = cv.imdecode(np.frombuffer(paths[name].read_bytes(), np.uint8), cv.IMREAD_GRAYSCALE)
@@ -69,7 +71,8 @@ def prepare(root, review_path, output, repo):
         item = review["photos"][name]
         if type(item["label_confirmed_by_owner"]) is not bool:
             raise ValueError("Label confirmation must be an explicit boolean")
-        if item["label_confirmed_by_owner"] and not item.get("label_confirmation_source"):
+        source = item.get("label_confirmation_source")
+        if item["label_confirmed_by_owner"] and (not isinstance(source, str) or not source.strip()):
             raise ValueError("Confirmed label requires provenance")
         label = item["proposed_label"] if item["label_confirmed_by_owner"] else "uncertain"
         if label not in {"positive", "negative", "uncertain"}:

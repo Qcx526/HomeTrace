@@ -74,7 +74,7 @@ def test_confirmed_labels_do_not_create_localization_truth(inputs):
     assert all(l["target_box"] is None and not l["instance_reviews"] for l in labels)
 
 
-@pytest.mark.parametrize("mutation", ["missing_image", "unexpected_image", "hash", "roi", "bad_roi", "same_rival", "label_without_source", "confirmation_string", "review_missing_photo"])
+@pytest.mark.parametrize("mutation", ["missing_image", "unexpected_image", "hash", "roi", "bad_roi", "same_rival", "label_without_source", "confirmation_string", "review_missing_photo", "blank_source", "number_source", "blank_batch"])
 def test_invalid_inputs_do_not_fall_back_or_publish_outputs(inputs, mutation):
     root, path, output, repo, review = inputs
     if mutation == "missing_image": (root/"18.jpg").unlink()
@@ -86,6 +86,9 @@ def test_invalid_inputs_do_not_fall_back_or_publish_outputs(inputs, mutation):
     elif mutation == "label_without_source": review["photos"]["8.jpg"]["label_confirmed_by_owner"] = True
     elif mutation == "confirmation_string": review["photos"]["8.jpg"]["label_confirmed_by_owner"] = "true"
     elif mutation == "review_missing_photo": del review["photos"]["18.jpg"]
+    elif mutation == "blank_source": review["photos"]["8.jpg"].update(label_confirmed_by_owner=True, label_confirmation_source=" ")
+    elif mutation == "number_source": review["photos"]["8.jpg"].update(label_confirmed_by_owner=True, label_confirmation_source=123)
+    elif mutation == "blank_batch": review["photos"]["8.jpg"]["capture_batch"] = " "
     save(path, review)
     with pytest.raises(ValueError): watercup.prepare(root, path, output, repo)
     assert not output.exists()
