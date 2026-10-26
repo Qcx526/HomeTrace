@@ -1,0 +1,129 @@
+{
+  "status": "COMPLETED",
+  "authorization": "User follow-up: exactly one warmup_epochs=0 controlled trial; original two-trial quota unchanged",
+  "source_commit": "1bcc2aa3be11863b60333ea11391e2b515ecde73",
+  "driver_sha256": "237f8442c3ca792453216c430f534ec5f96d1c9376a304d96af3cdcca2288d2f",
+  "changed_training_factors": {
+    "warmup_epochs": {
+      "before": 1.0,
+      "after": 0.0
+    }
+  },
+  "versions": {
+    "torch": "2.6.0+cu124",
+    "torchvision": "0.21.0+cu124",
+    "ultralytics": "8.3.221",
+    "numpy": "2.4.6",
+    "opencv-python": "4.14.0.94"
+  },
+  "pretrained_sha256": "0ebbc80d4a7680d14987a577cd21342b65ecfd94632bd9a8da63ae6417644ee1",
+  "independent_test": false,
+  "warmup_logic_verified": true,
+  "effective_warmup_iterations": -1,
+  "trainer_source_sha256": "72b4bb1cbe2c2ce7979ffe75ff698a05f782e637d1e86793fb5a8d81b943edd4",
+  "optimizer_steps": 66,
+  "batch_callbacks": 66,
+  "gpu": "NVIDIA GeForce GTX 1660",
+  "cuda": "12.4",
+  "wall_seconds": 53.00210659997538,
+  "resolved_parameter_differences": {
+    "warmup_epochs": {
+      "before": 1.0,
+      "after": 0.0
+    }
+  },
+  "batches_per_epoch": 6,
+  "epochs_completed": 11,
+  "artifacts": {
+    "weights/best.pt": {
+      "sha256": "1216bb5e89ce2a20f543a060696d7b1140916e10f848e2294ca5d134eda8d914",
+      "bytes": 5453075
+    },
+    "weights/last.pt": {
+      "sha256": "568a323c39b5cf04758fbc0a67b5357e32d4ae0073f2a343352c61aa2811cb40",
+      "bytes": 5453075
+    },
+    "results.csv": {
+      "sha256": "0e74d410ff9cebbd436301e57381f1c439bcc50327036dd2f0c0199d32124f91",
+      "bytes": 1337
+    },
+    "results.png": {
+      "sha256": "942ea0c5adf554811c6d936d0746e23c174aa25e7eb44e8f48a29e953c790129",
+      "bytes": 281308
+    },
+    "args.yaml": {
+      "sha256": "017aac70ba4fcdb0b9dfbf971197c9b6386a1e3976169a174c8c89805846a6c6",
+      "bytes": 1861
+    }
+  },
+  "best_weight_sha256": "1216bb5e89ce2a20f543a060696d7b1140916e10f848e2294ca5d134eda8d914",
+  "last_weight_sha256": "568a323c39b5cf04758fbc0a67b5357e32d4ae0073f2a343352c61aa2811cb40",
+  "peak_allocated_bytes": 738849280,
+  "peak_reserved_bytes": 851443712,
+  "originals_unchanged": true,
+  "old_models_unchanged": true,
+  "working_images_equal_to_baseline": true,
+  "labels_unchanged": true,
+  "arguments_without_paths": {
+    "name": "training",
+    "device": 0,
+    "imgsz": 640,
+    "batch": 2,
+    "epochs": 50,
+    "patience": 10,
+    "seed": 19,
+    "deterministic": true,
+    "workers": 0,
+    "optimizer": "AdamW",
+    "freeze": 0,
+    "lr0": 0.001,
+    "nbs": 2,
+    "warmup_epochs": 0.0,
+    "warmup_bias_lr": 0.001,
+    "amp": false,
+    "cache": false,
+    "save": true,
+    "save_period": 1,
+    "plots": true,
+    "val": true,
+    "exist_ok": false,
+    "resume": false,
+    "hsv_h": 0.0,
+    "hsv_s": 0.15,
+    "hsv_v": 0.2,
+    "degrees": 5.0,
+    "translate": 0.1,
+    "scale": 0.3,
+    "shear": 0.0,
+    "perspective": 0.0,
+    "flipud": 0.0,
+    "fliplr": 0.0,
+    "mosaic": 0.0,
+    "mixup": 0.0,
+    "copy_paste": 0.0
+  },
+  "best_epoch": 1,
+  "first_step_learning_rates": [
+    0.001,
+    0.001,
+    0.001
+  ],
+  "last_step_learning_rates": [
+    0.0008020000000000001,
+    0.0008020000000000001,
+    0.0008020000000000001
+  ],
+  "optimizer_steps_per_epoch": {
+    "1": 6,
+    "2": 6,
+    "3": 6,
+    "4": 6,
+    "5": 6,
+    "6": 6,
+    "7": 6,
+    "8": 6,
+    "9": 6,
+    "10": 6,
+    "11": 6
+  }
+}
