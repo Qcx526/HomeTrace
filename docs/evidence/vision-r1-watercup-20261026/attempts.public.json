@@ -1,0 +1,532 @@
+{
+  "unique_detect_calls": 30,
+  "decoded_calls": 30,
+  "calls_reaching_geometry": 12,
+  "all_returned_boxes_null": true,
+  "raw_signal_counts": {
+    "unconfirmed": 23,
+    "rejected": 7
+  },
+  "reason_counts": {
+    "insufficient_geometric_inliers": 11,
+    "reference_support_too_local": 1,
+    "insufficient_distinct_matches": 11,
+    "low_sharpness_or_texture": 6,
+    "no_verified_match": 1
+  },
+  "timing_scope": "Each original attempt counted once; scene total includes all target and rival calls, not a standalone method benchmark",
+  "scene_total_ms_sum": 8771.907,
+  "attempt_elapsed_ms_sum": 8200.273,
+  "attempts": [
+    {
+      "reference_id": "reference_01",
+      "executed": true,
+      "geometric_signal": "unconfirmed",
+      "reason": "insufficient_geometric_inliers",
+      "metrics": {
+        "good_matches": 36,
+        "inliers": 18,
+        "inlier_ratio": 0.5,
+        "reference_coverage": 0.0068,
+        "elapsed_ms": 267.805,
+        "scene_keypoints": 2000,
+        "sharpness": 59.974
+      },
+      "sample_id": "scene_01",
+      "returned_bbox": null
+    },
+    {
+      "reference_id": "reference_02",
+      "executed": true,
+      "geometric_signal": "unconfirmed",
+      "reason": "reference_support_too_local",
+      "metrics": {
+        "good_matches": 62,
+        "inliers": 36,
+        "inlier_ratio": 0.5806,
+        "reference_coverage": 0.0208,
+        "elapsed_ms": 281.032,
+        "scene_keypoints": 2000,
+        "sharpness": 59.974
+      },
+      "sample_id": "scene_01",
+      "returned_bbox": null
+    },
+    {
+      "reference_id": "reference_03",
+      "executed": true,
+      "geometric_signal": "unconfirmed",
+      "reason": "insufficient_geometric_inliers",
+      "metrics": {
+        "good_matches": 28,
+        "inliers": 5,
+        "inlier_ratio": 0.1786,
+        "reference_coverage": 0.0549,
+        "elapsed_ms": 344.807,
+        "scene_keypoints": 2000,
+        "sharpness": 59.974
+      },
+      "sample_id": "scene_01",
+      "returned_bbox": null
+    },
+    {
+      "reference_id": "reference_01",
+      "executed": true,
+      "geometric_signal": "unconfirmed",
+      "reason": "insufficient_distinct_matches",
+      "metrics": {
+        "good_matches": 5,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 274.509,
+        "scene_keypoints": 2000,
+        "sharpness": 115.103
+      },
+      "sample_id": "scene_02",
+      "returned_bbox": null
+    },
+    {
+      "reference_id": "reference_02",
+      "executed": true,
+      "geometric_signal": "unconfirmed",
+      "reason": "insufficient_distinct_matches",
+      "metrics": {
+        "good_matches": 5,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 270.911,
+        "scene_keypoints": 2000,
+        "sharpness": 115.103
+      },
+      "sample_id": "scene_02",
+      "returned_bbox": null
+    },
+    {
+      "reference_id": "reference_03",
+      "executed": true,
+      "geometric_signal": "unconfirmed",
+      "reason": "insufficient_distinct_matches",
+      "metrics": {
+        "good_matches": 11,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 293.188,
+        "scene_keypoints": 2000,
+        "sharpness": 115.103
+      },
+      "sample_id": "scene_02",
+      "returned_bbox": null
+    },
+    {
+      "reference_id": "reference_01",
+      "executed": true,
+      "geometric_signal": "unconfirmed",
+      "reason": "insufficient_geometric_inliers",
+      "metrics": {
+        "good_matches": 12,
+        "inliers": 4,
+        "inlier_ratio": 0.3333,
+        "reference_coverage": 0.0144,
+        "elapsed_ms": 282.433,
+        "scene_keypoints": 2000,
+        "sharpness": 31.174
+      },
+      "sample_id": "scene_03",
+      "returned_bbox": null
+    },
+    {
+      "reference_id": "reference_02",
+      "executed": true,
+      "geometric_signal": "unconfirmed",
+      "reason": "insufficient_geometric_inliers",
+      "metrics": {
+        "good_matches": 13,
+        "inliers": 5,
+        "inlier_ratio": 0.3846,
+        "reference_coverage": 0.1172,
+        "elapsed_ms": 283.826,
+        "scene_keypoints": 2000,
+        "sharpness": 31.174
+      },
+      "sample_id": "scene_03",
+      "returned_bbox": null
+    },
+    {
+      "reference_id": "reference_03",
+      "executed": true,
+      "geometric_signal": "unconfirmed",
+      "reason": "insufficient_geometric_inliers",
+      "metrics": {
+        "good_matches": 16,
+        "inliers": 4,
+        "inlier_ratio": 0.25,
+        "reference_coverage": 0.0414,
+        "elapsed_ms": 312.791,
+        "scene_keypoints": 2000,
+        "sharpness": 31.174
+      },
+      "sample_id": "scene_03",
+      "returned_bbox": null
+    },
+    {
+      "reference_id": "reference_01",
+      "executed": true,
+      "geometric_signal": "rejected",
+      "reason": "low_sharpness_or_texture",
+      "metrics": {
+        "good_matches": 0,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 193.601,
+        "scene_keypoints": 0,
+        "sharpness": 26.076
+      },
+      "sample_id": "scene_04",
+      "returned_bbox": null
+    },
+    {
+      "reference_id": "reference_02",
+      "executed": true,
+      "geometric_signal": "rejected",
+      "reason": "low_sharpness_or_texture",
+      "metrics": {
+        "good_matches": 0,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 144.392,
+        "scene_keypoints": 0,
+        "sharpness": 26.076
+      },
+      "sample_id": "scene_04",
+      "returned_bbox": null
+    },
+    {
+      "reference_id": "reference_03",
+      "executed": true,
+      "geometric_signal": "rejected",
+      "reason": "low_sharpness_or_texture",
+      "metrics": {
+        "good_matches": 0,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 159.478,
+        "scene_keypoints": 0,
+        "sharpness": 26.076
+      },
+      "sample_id": "scene_04",
+      "returned_bbox": null
+    },
+    {
+      "reference_id": "reference_01",
+      "executed": true,
+      "geometric_signal": "rejected",
+      "reason": "low_sharpness_or_texture",
+      "metrics": {
+        "good_matches": 0,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 140.597,
+        "scene_keypoints": 0,
+        "sharpness": 21.81
+      },
+      "sample_id": "scene_05",
+      "returned_bbox": null
+    },
+    {
+      "reference_id": "reference_02",
+      "executed": true,
+      "geometric_signal": "rejected",
+      "reason": "low_sharpness_or_texture",
+      "metrics": {
+        "good_matches": 0,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 142.18,
+        "scene_keypoints": 0,
+        "sharpness": 21.81
+      },
+      "sample_id": "scene_05",
+      "returned_bbox": null
+    },
+    {
+      "reference_id": "reference_03",
+      "executed": true,
+      "geometric_signal": "rejected",
+      "reason": "low_sharpness_or_texture",
+      "metrics": {
+        "good_matches": 0,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 140.957,
+        "scene_keypoints": 0,
+        "sharpness": 21.81
+      },
+      "sample_id": "scene_05",
+      "returned_bbox": null
+    },
+    {
+      "reference_id": "reference_01",
+      "executed": true,
+      "geometric_signal": "unconfirmed",
+      "reason": "insufficient_distinct_matches",
+      "metrics": {
+        "good_matches": 9,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 326.35,
+        "scene_keypoints": 2000,
+        "sharpness": 191.235
+      },
+      "sample_id": "scene_06",
+      "returned_bbox": null
+    },
+    {
+      "reference_id": "reference_02",
+      "executed": true,
+      "geometric_signal": "unconfirmed",
+      "reason": "insufficient_distinct_matches",
+      "metrics": {
+        "good_matches": 8,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 295.809,
+        "scene_keypoints": 2000,
+        "sharpness": 191.235
+      },
+      "sample_id": "scene_06",
+      "returned_bbox": null
+    },
+    {
+      "reference_id": "reference_03",
+      "executed": true,
+      "geometric_signal": "unconfirmed",
+      "reason": "insufficient_geometric_inliers",
+      "metrics": {
+        "good_matches": 12,
+        "inliers": 2,
+        "inlier_ratio": 0.1667,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 310.818,
+        "scene_keypoints": 2000,
+        "sharpness": 191.235
+      },
+      "sample_id": "scene_06",
+      "returned_bbox": null
+    },
+    {
+      "reference_id": "reference_01",
+      "executed": true,
+      "geometric_signal": "rejected",
+      "reason": "no_verified_match",
+      "metrics": {
+        "good_matches": 0,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 348.265,
+        "scene_keypoints": 2000,
+        "sharpness": 79.034
+      },
+      "sample_id": "scene_07",
+      "returned_bbox": null
+    },
+    {
+      "reference_id": "reference_02",
+      "executed": true,
+      "geometric_signal": "unconfirmed",
+      "reason": "insufficient_distinct_matches",
+      "metrics": {
+        "good_matches": 4,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 280.193,
+        "scene_keypoints": 2000,
+        "sharpness": 79.034
+      },
+      "sample_id": "scene_07",
+      "returned_bbox": null
+    },
+    {
+      "reference_id": "reference_03",
+      "executed": true,
+      "geometric_signal": "unconfirmed",
+      "reason": "insufficient_distinct_matches",
+      "metrics": {
+        "good_matches": 4,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 277.291,
+        "scene_keypoints": 2000,
+        "sharpness": 79.034
+      },
+      "sample_id": "scene_07",
+      "returned_bbox": null
+    },
+    {
+      "reference_id": "reference_01",
+      "executed": true,
+      "geometric_signal": "unconfirmed",
+      "reason": "insufficient_distinct_matches",
+      "metrics": {
+        "good_matches": 6,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 319.749,
+        "scene_keypoints": 2000,
+        "sharpness": 30.566
+      },
+      "sample_id": "scene_08",
+      "returned_bbox": null
+    },
+    {
+      "reference_id": "reference_02",
+      "executed": true,
+      "geometric_signal": "unconfirmed",
+      "reason": "insufficient_distinct_matches",
+      "metrics": {
+        "good_matches": 9,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 268.689,
+        "scene_keypoints": 2000,
+        "sharpness": 30.566
+      },
+      "sample_id": "scene_08",
+      "returned_bbox": null
+    },
+    {
+      "reference_id": "reference_03",
+      "executed": true,
+      "geometric_signal": "unconfirmed",
+      "reason": "insufficient_geometric_inliers",
+      "metrics": {
+        "good_matches": 104,
+        "inliers": 35,
+        "inlier_ratio": 0.3365,
+        "reference_coverage": 0.086,
+        "elapsed_ms": 279.646,
+        "scene_keypoints": 2000,
+        "sharpness": 30.566
+      },
+      "sample_id": "scene_08",
+      "returned_bbox": null
+    },
+    {
+      "reference_id": "reference_01",
+      "executed": true,
+      "geometric_signal": "unconfirmed",
+      "reason": "insufficient_distinct_matches",
+      "metrics": {
+        "good_matches": 4,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 273.682,
+        "scene_keypoints": 2000,
+        "sharpness": 86.669
+      },
+      "sample_id": "scene_09",
+      "returned_bbox": null
+    },
+    {
+      "reference_id": "reference_02",
+      "executed": true,
+      "geometric_signal": "unconfirmed",
+      "reason": "insufficient_geometric_inliers",
+      "metrics": {
+        "good_matches": 22,
+        "inliers": 5,
+        "inlier_ratio": 0.2273,
+        "reference_coverage": 0.2377,
+        "elapsed_ms": 300.343,
+        "scene_keypoints": 2000,
+        "sharpness": 86.669
+      },
+      "sample_id": "scene_09",
+      "returned_bbox": null
+    },
+    {
+      "reference_id": "reference_03",
+      "executed": true,
+      "geometric_signal": "unconfirmed",
+      "reason": "insufficient_geometric_inliers",
+      "metrics": {
+        "good_matches": 20,
+        "inliers": 5,
+        "inlier_ratio": 0.25,
+        "reference_coverage": 0.102,
+        "elapsed_ms": 328.147,
+        "scene_keypoints": 2000,
+        "sharpness": 86.669
+      },
+      "sample_id": "scene_09",
+      "returned_bbox": null
+    },
+    {
+      "reference_id": "reference_01",
+      "executed": true,
+      "geometric_signal": "unconfirmed",
+      "reason": "insufficient_distinct_matches",
+      "metrics": {
+        "good_matches": 6,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "elapsed_ms": 290.625,
+        "scene_keypoints": 2000,
+        "sharpness": 121.068
+      },
+      "sample_id": "scene_10",
+      "returned_bbox": null
+    },
+    {
+      "reference_id": "reference_02",
+      "executed": true,
+      "geometric_signal": "unconfirmed",
+      "reason": "insufficient_geometric_inliers",
+      "metrics": {
+        "good_matches": 22,
+        "inliers": 7,
+        "inlier_ratio": 0.3182,
+        "reference_coverage": 0.0136,
+        "elapsed_ms": 350.506,
+        "scene_keypoints": 2000,
+        "sharpness": 121.068
+      },
+      "sample_id": "scene_10",
+      "returned_bbox": null
+    },
+    {
+      "reference_id": "reference_03",
+      "executed": true,
+      "geometric_signal": "unconfirmed",
+      "reason": "insufficient_geometric_inliers",
+      "metrics": {
+        "good_matches": 30,
+        "inliers": 5,
+        "inlier_ratio": 0.1667,
+        "reference_coverage": 0.0744,
+        "elapsed_ms": 417.653,
+        "scene_keypoints": 2000,
+        "sharpness": 121.068
+      },
+      "sample_id": "scene_10",
+      "returned_bbox": null
+    }
+  ]
+}

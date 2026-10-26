@@ -1,0 +1,44 @@
+{
+  "images": 18,
+  "scene_count": 10,
+  "independent_test_images": 0,
+  "target_reference_pair_eligible": false,
+  "rival_eligible": false,
+  "target_roi_dhash_distance": 30,
+  "registration": [
+    {
+      "alias": "reference_01",
+      "sharpness": 30.682,
+      "keypoints": 768,
+      "quality_pass": true,
+      "quality_reason": "production_reference_quality_pass",
+      "eligibility_reasons": [
+        "capture_id_unknown"
+      ]
+    },
+    {
+      "alias": "reference_02",
+      "sharpness": 54.997,
+      "keypoints": 1067,
+      "quality_pass": true,
+      "quality_reason": "production_reference_quality_pass",
+      "eligibility_reasons": [
+        "capture_id_unknown"
+      ]
+    },
+    {
+      "alias": "reference_03",
+      "sharpness": 70.803,
+      "keypoints": 1973,
+      "quality_pass": true,
+      "quality_reason": "production_reference_quality_pass",
+      "eligibility_reasons": [
+        "capture_id_unknown"
+      ]
+    }
+  ],
+  "qualification_gate": "BLOCKED",
+  "unconfirmed_scene_labels": 10,
+  "originals_unchanged": true,
+  "ground_truth_boxes_generated": 0
+}

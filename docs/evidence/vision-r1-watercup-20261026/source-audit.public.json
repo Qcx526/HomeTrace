@@ -1,0 +1,33 @@
+{
+  "base_commit": "16915c5f503e35076bdbbe612df465536c1d35f0",
+  "code_commit": "c7b8ce34a01c86f68ba19284e52280ee10607573",
+  "scope": "Code/test commit before evidence-only documentation commit",
+  "base_tracked_files_preserved": 344,
+  "modified_or_deleted_baseline_files": 0,
+  "production_source_changes": 0,
+  "production_configuration_changes": 0,
+  "sqlite_schema_changes": 0,
+  "frozen_tracked_reports_changed": 0,
+  "pr15_head": "775d601f63c1201bf517b57287fe5589b8b1b1d9",
+  "pr15_worktree_clean": true,
+  "original_photos_unchanged": 18,
+  "prior_prediction_bindings_valid": true,
+  "reviewed_snapshot_bindings_valid": true,
+  "diff_check_passed": true,
+  "new_paths": [
+    "docs/VISION_R1_WATERCUP_DIAGNOSTIC_20261026.md",
+    "docs/VISION_R1_WATERCUP_PROTOCOL_20261026.md",
+    "docs/evidence/vision-r1-watercup-20261026/attempts.public.json",
+    "docs/evidence/vision-r1-watercup-20261026/comparison.public.json",
+    "docs/evidence/vision-r1-watercup-20261026/inventory.public.json",
+    "docs/evidence/vision-r1-watercup-20261026/privacy-audit.public.json",
+    "docs/evidence/vision-r1-watercup-20261026/pytest.log",
+    "docs/evidence/vision-r1-watercup-20261026/qualification.public.json",
+    "docs/evidence/vision-r1-watercup-20261026/regression.public.json",
+    "docs/evidence/vision-r1-watercup-20261026/run.log",
+    "docs/evidence/vision-r1-watercup-20261026/source-audit.public.json",
+    "docs/evidence/vision-r1-watercup-20261026/summary.public.json",
+    "tests/test_watercup_preparation.py",
+    "tools/prepare_watercup_diagnostic.py"
+  ]
+}
