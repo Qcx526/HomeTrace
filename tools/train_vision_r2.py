@@ -13,8 +13,8 @@ from vision_r2_data import Blocked, require_private, sha256, validate_manifest
 
 
 TRIALS = {
-    "freeze-backbone": {"freeze": 10, "lr0": 0.01},
-    "low-lr-finetune": {"freeze": 0, "lr0": 0.001},
+    "freeze-backbone": {"freeze": 10, "lr0": 0.01, "optimizer": "SGD", "nbs": 64, "warmup_epochs": 3.0, "warmup_bias_lr": .1},
+    "low-lr-finetune": {"freeze": 0, "lr0": 0.001, "optimizer": "AdamW", "nbs": 2, "warmup_epochs": 1.0, "warmup_bias_lr": .001},
 }
 PRETRAINED_URL = "https://github.com/ultralytics/assets/releases/download/v8.3.0/yolo11n.pt"
 
@@ -24,8 +24,10 @@ def build_train_args(dataset, trial_dir, trial, epochs=50):
         raise Blocked("Only the two declared trials and 1..50 epochs are allowed")
     return {"data": str(Path(dataset) / "data.yaml"), "project": str(trial_dir), "name": "training",
             "device": 0, "imgsz": 640, "batch": 2, "epochs": epochs, "patience": 10,
-            "seed": 19, "deterministic": True, "workers": 0, "optimizer": "SGD",
+            "seed": 19, "deterministic": True, "workers": 0, "optimizer": TRIALS[trial]["optimizer"],
             "freeze": TRIALS[trial]["freeze"], "lr0": TRIALS[trial]["lr0"],
+            "nbs": TRIALS[trial]["nbs"], "warmup_epochs": TRIALS[trial]["warmup_epochs"],
+            "warmup_bias_lr": TRIALS[trial]["warmup_bias_lr"],
             "amp": False, "cache": False, "save": True, "save_period": 1,
             "plots": True, "val": True, "exist_ok": False, "resume": False,
             "hsv_h": 0.0, "hsv_s": 0.15, "hsv_v": 0.2, "degrees": 5.0,

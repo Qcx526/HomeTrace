@@ -118,6 +118,8 @@ def test_fixed_training_contract(trial, freeze, lr):
     assert arguments["seed"] == 19 and arguments["patience"] == 10 and arguments["workers"] == 0
     assert arguments["device"] == 0 and arguments["amp"] is False
     assert arguments["fliplr"] == 0 and arguments["mosaic"] == 0
+    assert arguments["optimizer"] == ("SGD" if trial == "freeze-backbone" else "AdamW")
+    assert arguments["nbs"] == (64 if trial == "freeze-backbone" else 2)
 
 
 @pytest.mark.parametrize("trial,epochs", [("third-experiment", 50), ("freeze-backbone", 51), ("freeze-backbone", 0), ("freeze-backbone", True)])
