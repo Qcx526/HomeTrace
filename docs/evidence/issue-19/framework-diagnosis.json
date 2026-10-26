@@ -1,0 +1,69 @@
+{
+  "ultralytics_version": "8.3.221",
+  "evidence_type": "installed source inspection and arithmetic; not another training run",
+  "sources": {
+    "engine/trainer.py": {
+      "sha256": "72b4bb1cbe2c2ce7979ffe75ff698a05f782e637d1e86793fb5a8d81b943edd4",
+      "lines": [
+        {
+          "line": 339,
+          "text": "self.accumulate = max(round(self.args.nbs / self.batch_size), 1)  # accumulate loss before optimizing"
+        },
+        {
+          "line": 364,
+          "text": "nw = max(round(self.args.warmup_epochs * nb), 100) if self.args.warmup_epochs > 0 else -1  # warmup iterations"
+        },
+        {
+          "line": 407,
+          "text": "self.accumulate = max(1, int(np.interp(ni, xi, [1, self.args.nbs / self.batch_size]).round()))"
+        }
+      ]
+    },
+    "engine/validator.py": {
+      "sha256": "1e8044e4b73b468ec84394e57c30bde0be4199d39bf09f327c69442e8cd9e843",
+      "lines": [
+        {
+          "line": 126,
+          "text": "self.args.conf = 0.01 if self.args.task == \"obb\" else 0.001  # reduce OBB val memory usage"
+        }
+      ]
+    },
+    "data/utils.py": {
+      "sha256": "eff1e94a8e2d17d4e84731bd1105e1bb0e060aeb063ce5c19961b0de1e86a7f0",
+      "lines": [
+        {
+          "line": 171,
+          "text": "if f.read() != b\"\\xff\\xd9\":  # corrupt JPEG"
+        },
+        {
+          "line": 172,
+          "text": "ImageOps.exif_transpose(Image.open(im_file)).save(im_file, \"JPEG\", subsampling=0, quality=100)"
+        },
+        {
+          "line": 197,
+          "text": "if f.read() != b\"\\xff\\xd9\":  # corrupt JPEG"
+        },
+        {
+          "line": 198,
+          "text": "ImageOps.exif_transpose(Image.open(im_file)).save(im_file, \"JPEG\", subsampling=0, quality=100)"
+        }
+      ]
+    }
+  },
+  "derived_schedule": {
+    "train_images": 11,
+    "batch": 2,
+    "batches_per_epoch": 6,
+    "freeze_backbone": {
+      "epochs": 17,
+      "batches": 102,
+      "warmup_nw": 100
+    },
+    "low_lr_finetune": {
+      "epochs": 15,
+      "batches": 90,
+      "warmup_nw": 100
+    },
+    "note": "Warmup condition ni <= nw is inclusive; not instrumented optimizer-step counts. These facts do not prove the sole cause of failed learning."
+  }
+}

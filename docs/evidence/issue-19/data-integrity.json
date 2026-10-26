@@ -1,0 +1,32 @@
+{
+  "original_photos": 18,
+  "all_original_hashes_unchanged": true,
+  "originals_without_eoi_at_last_two_bytes": 18,
+  "all_orientations_normal": true,
+  "all_repaired_dimensions_same": true,
+  "all_two_trial_working_images_byte_identical": true,
+  "second_audited_export_all_recorded_hashes_unchanged": true,
+  "inventories": {
+    "first_training_export": {
+      "expected_image_and_label_files": 36,
+      "actual_image_and_label_files": 36,
+      "exact_inventory_match": true,
+      "all_labels_match_approved_hashes": true
+    },
+    "second_audited_export": {
+      "expected_image_and_label_files": 36,
+      "actual_image_and_label_files": 36,
+      "exact_inventory_match": true,
+      "all_labels_match_approved_hashes": true
+    },
+    "second_training_copy": {
+      "expected_image_and_label_files": 36,
+      "actual_image_and_label_files": 36,
+      "exact_inventory_match": true,
+      "all_labels_match_approved_hashes": true
+    }
+  },
+  "jpeg_repair_scope": "first trial changed dataset-01 copies; second changed working-dataset copies only; originals never changed",
+  "pixel_values_preserved": false,
+  "note": "Framework JPEG re-encoding changes pixels; dimensions/EXIF orientation and labels were checked, not claimed lossless."
+}

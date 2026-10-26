@@ -1,0 +1,5 @@
+# Optional local experiment only; never add to the default Demo environment.
+# Install torch/torchvision from the CUDA 12.4 index first (see the R2 report).
+-r requirements-neural.txt
+pillow==13.0.0
+pytest==8.4.2

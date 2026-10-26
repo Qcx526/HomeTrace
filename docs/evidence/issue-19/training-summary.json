@@ -1,0 +1,172 @@
+{
+  "actual_training_runs": 2,
+  "pre_training_failures": [
+    {
+      "reason": "CUDA peak reset before lazy CUDA initialization",
+      "epochs": 0
+    },
+    {
+      "reason": "first export hashes changed by framework JPEG repair; fresh export and isolated working copy required",
+      "epochs": 0
+    }
+  ],
+  "trials": [
+    {
+      "trial": "freeze-backbone",
+      "status": "TRAINING_COMPLETED_EVALUATION_REQUIRED",
+      "source_commit": "a613ff4e2126e1510272155c79f94cd4f0962efc",
+      "driver_sha256": "850c4d093abde291c4277f3d1d5cf15936ccd7aa22e3aadc0ad050a663f1e55e",
+      "data_preparer_sha256": "3573292c040fb74030a86e6d415a723a681eaf81027de59faaebb20a5116932f",
+      "epochs_completed": 17,
+      "wall_seconds": 68.11086,
+      "versions": {
+        "torch": "2.6.0+cu124",
+        "torchvision": "0.21.0+cu124",
+        "ultralytics": "8.3.221",
+        "numpy": "2.4.6",
+        "opencv-python": "4.14.0.94"
+      },
+      "gpu_name": "NVIDIA GeForce GTX 1660",
+      "cuda_runtime": "12.4",
+      "gpu_total_bytes": 6442123264,
+      "peak_allocated_bytes": 467044864,
+      "peak_reserved_bytes": 551550976,
+      "pretrained_source": "https://github.com/ultralytics/assets/releases/download/v8.3.0/yolo11n.pt",
+      "pretrained_sha256": "0ebbc80d4a7680d14987a577cd21342b65ecfd94632bd9a8da63ae6417644ee1",
+      "arguments_without_local_paths": {
+        "name": "training",
+        "device": 0,
+        "imgsz": 640,
+        "batch": 2,
+        "epochs": 50,
+        "patience": 10,
+        "seed": 19,
+        "deterministic": true,
+        "workers": 0,
+        "optimizer": "SGD",
+        "freeze": 10,
+        "lr0": 0.01,
+        "amp": false,
+        "cache": false,
+        "save": true,
+        "save_period": 1,
+        "plots": true,
+        "val": true,
+        "exist_ok": false,
+        "resume": false,
+        "hsv_h": 0.0,
+        "hsv_s": 0.15,
+        "hsv_v": 0.2,
+        "degrees": 5.0,
+        "translate": 0.1,
+        "scale": 0.3,
+        "shear": 0.0,
+        "perspective": 0.0,
+        "flipud": 0.0,
+        "fliplr": 0.0,
+        "mosaic": 0.0,
+        "mixup": 0.0,
+        "copy_paste": 0.0
+      },
+      "best_epoch": 7,
+      "best_epoch_metrics": {
+        "metrics/precision(B)": 0.0019,
+        "metrics/recall(B)": 1.0,
+        "metrics/mAP50(B)": 0.12617,
+        "metrics/mAP50-95(B)": 0.10133
+      },
+      "best_weight": {
+        "sha256": "300df186b6fab35d5dee40f8ad7c48b06614f110cf1a04071389611fa3bc3bce",
+        "bytes": 5453843
+      },
+      "last_weight": {
+        "sha256": "1c6c8244d5fdb0c8d272a07c0a71ef5dcbc89585d7fc58ea8126ba58b5914fed",
+        "bytes": 5453843
+      },
+      "operational_result": "NO_GO: zero candidates at fixed confidence 0.25 on 18 originals at both resolutions",
+      "batches_per_epoch": 6,
+      "effective_warmup_iterations": 100,
+      "independent_test": false
+    },
+    {
+      "trial": "low-lr-finetune",
+      "status": "TRAINING_COMPLETED_EVALUATION_REQUIRED",
+      "source_commit": "7bb0c52e3c8c761c57c276798e3f779780904b63",
+      "driver_sha256": "bcff018e0fb61eb5cf87c5c1f49e0fc31697abcb0cce1100589779b44ea3056e",
+      "data_preparer_sha256": "3573292c040fb74030a86e6d415a723a681eaf81027de59faaebb20a5116932f",
+      "epochs_completed": 15,
+      "wall_seconds": 76.939377,
+      "versions": {
+        "torch": "2.6.0+cu124",
+        "torchvision": "0.21.0+cu124",
+        "ultralytics": "8.3.221",
+        "numpy": "2.4.6",
+        "opencv-python": "4.14.0.94"
+      },
+      "gpu_name": "NVIDIA GeForce GTX 1660",
+      "cuda_runtime": "12.4",
+      "gpu_total_bytes": 6442123264,
+      "peak_allocated_bytes": 802392576,
+      "peak_reserved_bytes": 914358272,
+      "pretrained_source": "https://github.com/ultralytics/assets/releases/download/v8.3.0/yolo11n.pt",
+      "pretrained_sha256": "0ebbc80d4a7680d14987a577cd21342b65ecfd94632bd9a8da63ae6417644ee1",
+      "arguments_without_local_paths": {
+        "name": "training",
+        "device": 0,
+        "imgsz": 640,
+        "batch": 2,
+        "epochs": 50,
+        "patience": 10,
+        "seed": 19,
+        "deterministic": true,
+        "workers": 0,
+        "optimizer": "AdamW",
+        "freeze": 0,
+        "lr0": 0.001,
+        "nbs": 2,
+        "warmup_epochs": 1.0,
+        "warmup_bias_lr": 0.001,
+        "amp": false,
+        "cache": false,
+        "save": true,
+        "save_period": 1,
+        "plots": true,
+        "val": true,
+        "exist_ok": false,
+        "resume": false,
+        "hsv_h": 0.0,
+        "hsv_s": 0.15,
+        "hsv_v": 0.2,
+        "degrees": 5.0,
+        "translate": 0.1,
+        "scale": 0.3,
+        "shear": 0.0,
+        "perspective": 0.0,
+        "flipud": 0.0,
+        "fliplr": 0.0,
+        "mosaic": 0.0,
+        "mixup": 0.0,
+        "copy_paste": 0.0
+      },
+      "best_epoch": 5,
+      "best_epoch_metrics": {
+        "metrics/precision(B)": 0.00143,
+        "metrics/recall(B)": 0.75,
+        "metrics/mAP50(B)": 0.24741,
+        "metrics/mAP50-95(B)": 0.24655
+      },
+      "best_weight": {
+        "sha256": "75b390f89068a9815c765fcf04566944c0ffb3cdcd53f48f77d2c52faa836591",
+        "bytes": 5453651
+      },
+      "last_weight": {
+        "sha256": "1eda085e8a335bbe40c70a18dcad01f9805d6dc41c6fe00c174bc80c39c9dfbc",
+        "bytes": 5453651
+      },
+      "operational_result": "NO_GO: zero candidates at fixed confidence 0.25 on 18 originals at both resolutions",
+      "batches_per_epoch": 6,
+      "effective_warmup_iterations": 100,
+      "independent_test": false
+    }
+  ]
+}
