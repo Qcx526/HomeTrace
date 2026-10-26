@@ -1,0 +1,19 @@
+{
+  "prior": "R0 comparison-02 ORB_ROI",
+  "current": "R1 run-01 SINGLE_ORB_ROI",
+  "same_environment": true,
+  "scenes_compared": 20,
+  "all_semantic_fields_equal": true,
+  "fields": [
+    "raw_status",
+    "executed",
+    "reason",
+    "good_matches",
+    "inliers",
+    "inlier_ratio",
+    "reference_coverage",
+    "scene_keypoints"
+  ],
+  "elapsed_time_compared": false,
+  "interpretation": "Reproduction of reused data; no improved real-photo recognition"
+}

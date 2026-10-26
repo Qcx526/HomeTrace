@@ -1,0 +1,33 @@
+{
+  "base_commit": "37114b64c6f85c295ab7f69885dc9e8ee09fdee6",
+  "head_commit": "81b14bdf1850ed4a07f37a3658d6bd650a0c73f2",
+  "base_tracked_files_preserved": 324,
+  "modified_or_deleted_baseline_files": 0,
+  "production_source_changes": 0,
+  "sqlite_schema_changes": 0,
+  "production_config_changes": 0,
+  "frozen_tracked_report_changes": 0,
+  "pr15_checkout_head": "775d601f63c1201bf517b57287fe5589b8b1b1d9",
+  "new_paths": [
+    "docs/VISION_R1_PROTOCOL.md",
+    "docs/VISION_R1_REPORT.md",
+    "docs/evidence/vision-r1-20261026/README.md",
+    "docs/evidence/vision-r1-20261026/baseline-comparison.public.json",
+    "docs/evidence/vision-r1-20261026/comparison.public.json",
+    "docs/evidence/vision-r1-20261026/privacy-audit.public.json",
+    "docs/evidence/vision-r1-20261026/pytest-cv414.log",
+    "docs/evidence/vision-r1-20261026/pytest.log",
+    "docs/evidence/vision-r1-20261026/regression.public.json",
+    "docs/evidence/vision-r1-20261026/run.log",
+    "docs/evidence/vision-r1-20261026/source-audit.public.json",
+    "examples/vision_r1/README.md",
+    "examples/vision_r1/labels.example.json",
+    "examples/vision_r1/manifest.example.json",
+    "tests/test_vision_r1.py",
+    "tests/test_vision_r1_metrics.py",
+    "tools/evaluate_vision_r1.py",
+    "tools/prepare_vision_r1_diagnostic.py",
+    "tools/vision_r1.py",
+    "tools/vision_r1_metrics.py"
+  ]
+}

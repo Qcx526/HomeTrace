@@ -1,0 +1,16 @@
+{
+  "tests": 549,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": 549,
+  "duration_seconds": 69.938,
+  "command": "artifacts/issue-11/agent-env/Scripts/python.exe -m pytest -q --junitxml=artifacts/vision-r1-20261026/pytest.xml",
+  "source_commit": "81b14bdf1850ed4a07f37a3658d6bd650a0c73f2",
+  "environment": {
+    "python": "3.11.4",
+    "opencv": "4.12.0",
+    "numpy": "2.2.6"
+  },
+  "warning": "1 LangChainPendingDeprecationWarning; no failures or skipped tests"
+}
