@@ -63,7 +63,7 @@ def map_box(bbox, origin):
     return [round(bbox[0]+x, 2), round(bbox[1]+y, 2), round(bbox[2]+x, 2), round(bbox[3]+y, 2)]
 
 
-def bind_neural(rows, root, manifest, suggestions, protocol):
+def bind_neural(rows, root, manifest, suggestions, protocol, neural_dir):
     """Do not trust labels, order or a scene name to bind prior real inference."""
     by_path = {r["path"]: r for r in manifest["files"]}
     expected = {r["path"] for r in manifest["files"] if r["path"] != suggestions[r["group"]]["file"]}
@@ -87,14 +87,32 @@ def bind_neural(rows, root, manifest, suggestions, protocol):
             or request["parameters"] != protocol["parameters"]
             or request["weights"]["sha256"] != protocol["weight_sha256"]):
             raise ValueError("Neural input/prompt/protocol binding mismatch")
+        raw_output = Path(request["output"]).resolve()
+        if not raw_output.is_relative_to(neural_dir.resolve()):
+            raise ValueError("Worker output must stay inside this neural evaluation")
+        request_file = raw_output.parent / "request.private.json"
+        worker_file = raw_output / "result.private.json"
+        if read(request_file) != request:
+            raise ValueError("Saved worker request differs from summary request")
+        worker = read(worker_file)
         result = row["result"]
         if result["reason"] not in {"no_candidates", "candidate_requires_instance_verification"}:
             raise ValueError("Neural inference failed; do not treat as negative")
         candidates = validate_candidates(result["candidates"], item["width"], item["height"])
         details = row["private_details"]
+        expected_status = "SUSPECTED" if candidates else "UNKNOWN"
+        expected_reason = "candidate_requires_instance_verification" if candidates else "no_candidates"
+        if (result.get("status") != expected_status or result["reason"] != expected_reason
+            or result.get("confirmed_identity") is not False or result.get("provider_called") is not True
+            or worker.get("status") != expected_status or worker.get("confirmed_identity") is not False
+            or worker.get("network_disabled") is not True
+            or worker.get("candidates") != candidates or details.get("candidates") != candidates
+            or any(details.get(key) != value for key, value in worker.items())):
+            raise ValueError("Wrapper, recorded details and raw worker results disagree")
         if details.get("returncode") != 0 or details.get("network_disabled") is not True:
             raise ValueError("Require successful local neural inference provenance")
-        indexed[relative] = {"candidates": candidates, "runtime": {k: details[k] for k in
+        indexed[relative] = {"candidates": candidates, "worker_sha256": digest(worker_file),
+            "request_sha256": digest(request_file), "runtime": {k: details[k] for k in
             ("predict_ms", "process_wall_ms", "device", "versions")}}
     if set(indexed) != expected:
         raise ValueError("Neural evaluation must cover all 20 scenes")
@@ -177,7 +195,8 @@ def run(root, output, neural_dir, repo):
     from evaluate_yoloe import validate_protocol
     validate_protocol(protocol)
     neural_path = neural_dir/"results.private.json"
-    neural = bind_neural(read(neural_path), root, manifest, suggestions, protocol)
+    neural_hash = digest(neural_path)
+    neural = bind_neural(read(neural_path), root, manifest, suggestions, protocol, neural_dir)
     source_paths = [Path(__file__), repo/"tools/evaluate_team_photos.py", repo/"tools/vision_r0_metrics.py", repo/"src/hometrace/image_matcher.py"]
     code_hashes = {p.relative_to(repo).as_posix(): digest(p) for p in source_paths}
     output.mkdir(parents=True)
@@ -240,6 +259,8 @@ def run(root, output, neural_dir, repo):
     _, after_roi, after = validate_assets(root, repo)
     if before != after or suggestions != after_roi or any(digest(repo/p) != h for p,h in code_hashes.items()):
         raise ValueError("Inputs, ROI or executed sources changed during run")
+    if digest(neural_path) != neural_hash or bind_neural(read(neural_path), root, manifest, suggestions, protocol, neural_dir) != neural:
+        raise ValueError("Neural evidence changed during comparison")
     public = [public_row(r) for r in rows]
     summary = {"schema_version": 1, "scope": "same-data diagnosis only; no independent test set", "generated_at": datetime.now(timezone.utc).isoformat(),
         "source_commit": subprocess.check_output(["git", "rev-parse", "HEAD"],cwd=repo,text=True).strip(), "source_sha256": code_hashes,
@@ -252,7 +273,8 @@ def run(root, output, neural_dir, repo):
     write(output/"summary.public.json", summary)
     write(output/"registry.private.json", registry)
     write(output/"binding.private.json", {"manifest_sha256": digest(root/"asset_manifest.json"), "roi_sha256": digest(root/"REGISTRATION_ROI_SUGGESTIONS.json"),
-        "neural_results_sha256": digest(neural_path), "neural_protocol_sha256": digest(neural_dir/"protocol.json"), "image_hashes": before})
+        "neural_results_sha256": neural_hash, "neural_protocol_sha256": digest(neural_dir/"protocol.json"), "image_hashes": before,
+        "worker_and_request_hashes": {p: {k: v[k] for k in ("worker_sha256", "request_sha256")} for p,v in neural.items()}})
     return summary
 
 
