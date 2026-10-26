@@ -9,7 +9,7 @@
 实验聚合额外限制（v1，先于真实实验固定）：
 
 - 每实例最多 6 张参考；哈希校验，记录清晰度、关键点数及每张登记结果。原图哈希重复、参考与场景相同字节、未确认身份、未审查 ROI 均不能成为多参考接受证据。
-- 至少两张质量合格的参考来自不同 capture_id、不同 view_id，且 visible_surface 相同。两张 ROI 的 64 位 dHash 距离必须大于 4。unknown 视角/表面/采集信息不能投票。dHash 仅过滤明显重复，不证明独立采集，也不能可靠识别所有近重复。
+- 至少两张质量合格的参考来自不同 capture_id、不同 view_id、不同 background_id，且 visible_surface 与 surface_extent_id 相同。后者标记 ROI 覆盖的同一物理表面范围，避免把物体局部和整体框混用。两张 ROI 的 64 位 dHash 距离必须大于 4。unknown 视角/表面/范围/采集/背景信息不能投票。dHash 仅过滤明显重复，不证明独立采集，也不能可靠识别所有近重复。不同背景条件在首次实验前根据代码审查加入，未据真实实验结果调参。
 - ROI 的人工 background_review 必须为 object_dominant；pending/background_risk 禁止投票。此字段是参考图审查，不是搜索图标签；矩形裁剪仍可能残留背景，绝不保证身份。
 - 至少两张上述参考各自通过原几何规则，且所有有效参考产生的接受框两两 IoU≥0.5；不同表面的投影不可当成同一个完整物体框。冲突框一律拒绝，不挑选有利子集。返回实际某张支持参考的框（固定 reference_id 字典序），不合成新框。
 - 可登记其他实例作为 rival controls；任何 rival 在目标位置通过几何验证则拒绝 ambiguous_instance。若 rival 参考全部不可用，拒绝未完成的对照，不能借助无效控制宣称无干扰。没有 rival 时明确标记未覆盖；相同外观复制品仍可能误接受。
@@ -30,14 +30,20 @@
 |path / sha256 / roi|原始文件、原始字节 SHA256、原图坐标整数 xyxy 半开矩形|
 |view_id|预先登记的视角名称，如 front_left；不得用检测结果补填|
 |visible_surface|投影可比较的同一表面，如 front_panel；unknown 不投票|
+|surface_extent_id|ROI 所覆盖的同一物理表面范围，例如 entire_front_panel；unknown 不投票|
 |capture_id|真实独立拍摄编号；unknown 不投票，不能用裁剪/增强冒充独立拍摄|
+|background_id|拍摄背景编号，支持交叉验证的参考必须使用不同背景；unknown 不投票|
 |source_type|real / synthetic / augmented，来源分开统计|
 |identity_reviewed / roi_reviewed|人工确认登记身份和固定 ROI；不是模型推断|
 |background_review|pending / object_dominant / background_risk；不能由搜索标签生成|
 
 scenes 每项只含 sample_id、object_instance_id、path、sha256、source_type。质量字段是程序输出：sharpness、keypoints、quality_pass、eligibility_reasons、elapsed_ms；不能由 manifest 伪造。输出原图坐标框，原图尺寸、哈希、方法版本、参数、源码 SHA256、commit、环境和耗时均存档。
 
-独立 labels 文件只在全部推理完成、私有预测写盘后读取。每项含 sample_id、label(positive/negative/uncertain/auxiliary)、source_type、split(diagnostic_reused/independent_test/software_fixture)、capture_batch、人工 target_box 或 null、box_source(human/none)、instance_reviews（按 method 的 correct/wrong/null）。同一场景不同方法的实例审查不能混用。禁止把预测框写成真值。
+独立 labels 文件只在全部推理完成、私有预测写盘后读取。每项含 sample_id、object_instance_id（必须与推理目标绑定）、label(positive/negative/uncertain/auxiliary)、source_type、split(diagnostic_reused/independent_test/software_fixture)、capture_batch、人工 target_box 或 null、box_source(human/none)、instance_reviews。同一场景不同方法的实例审查不能混用。禁止把预测框写成真值。验收按单个物理实例分别计算，不能合并多物品的正负例凑数过关。
+
+instance_reviews 为空时未审查；完成后按方法填 `{ "SINGLE_ORB_ROI": { "verdict": "correct", "prediction_fingerprint": "当前私有预测行的64位SHA256" } }`，verdict 只能为 correct/wrong。指纹绑定完整参考 manifest、输入场景、方法版本、参数、源码及状态/框，排除耗时；改参考、程序或预测后旧人工审查不再有效。重跑相同确定性输入可复用同一指纹的审查。指纹失配按未审查计，不可通过；它是防止陈旧记录误用的绑定，不是数字签名或自动证明审查真实。
+
+同实例重复场景字节禁止重复计数；参考图原字节或无损重编码重放标记 executed=false，不计视觉真负。近重复、相同拍摄批次和伪造采集元数据仍需人工审计；本工具不声称自动证明数据独立。单件物品满足数值门槛也只返回 PASS_PENDING_PROVENANCE_AUDIT，不代表 PM 验收通过。
 
 ## 本轮可运行范围
 

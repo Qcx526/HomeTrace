@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "objects": [
+    {
+      "object_instance_id": "example-instance-not-a-real-registration",
+      "baseline_reference_id": "example-front-a",
+      "references": [
+        {
+          "reference_id": "example-front-a",
+          "object_instance_id": "example-instance-not-a-real-registration",
+          "path": "references/front_a.jpg",
+          "sha256": "REPLACE_WITH_ACTUAL_SHA256",
+          "roi": [0, 0, 100, 100],
+          "view_id": "front_left",
+          "visible_surface": "front_panel",
+          "surface_extent_id": "entire_front_panel",
+          "capture_id": "capture_a",
+          "background_id": "plain_background_a",
+          "source_type": "real",
+          "identity_reviewed": false,
+          "roi_reviewed": false,
+          "background_review": "pending"
+        },
+        {
+          "reference_id": "example-front-b",
+          "object_instance_id": "example-instance-not-a-real-registration",
+          "path": "references/front_b.jpg",
+          "sha256": "REPLACE_WITH_ACTUAL_SHA256",
+          "roi": [0, 0, 100, 100],
+          "view_id": "front_right",
+          "visible_surface": "front_panel",
+          "surface_extent_id": "entire_front_panel",
+          "capture_id": "capture_b",
+          "background_id": "plain_background_b",
+          "source_type": "real",
+          "identity_reviewed": false,
+          "roi_reviewed": false,
+          "background_review": "pending"
+        }
+      ]
+    }
+  ],
+  "scenes": [
+    {
+      "sample_id": "example-scene-not-real-evidence",
+      "object_instance_id": "example-instance-not-a-real-registration",
+      "path": "scenes/scene_a.jpg",
+      "sha256": "REPLACE_WITH_ACTUAL_SHA256",
+      "source_type": "real"
+    }
+  ]
+}
