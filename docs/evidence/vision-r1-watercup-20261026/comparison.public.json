@@ -1,0 +1,13 @@
+{
+  "prior": "run-draft-01 before owner ROI approval",
+  "current": "run-reviewed-02 after owner ROI approval",
+  "method_rows": 20,
+  "unique_matcher_calls_per_run": 30,
+  "same_semantic_outputs": true,
+  "comparison_excludes_elapsed_time": true,
+  "reference_coordinates_changed": false,
+  "original_bytes_changed": false,
+  "labels_changed": false,
+  "qualified_multireference_execution": false,
+  "meaning": "Owner review reduces metadata gaps; no changed detector result or demonstrated recognition improvement"
+}

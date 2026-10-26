@@ -1,0 +1,20 @@
+{
+  "tests": 566,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": 566,
+  "source_commit": "c7b8ce34a01c86f68ba19284e52280ee10607573",
+  "command": "artifacts/issue-11/agent-env/Scripts/python.exe -m pytest -q --junitxml=artifacts/vision-r1-watercup-20261026/pytest-reviewed.xml",
+  "source_note": "The reviewed code and tests were committed immediately after the full run, before the image run; no code changed between test and commit.",
+  "environment": {
+    "python": "3.11.4",
+    "opencv": "4.12.0",
+    "numpy": "2.2.6"
+  },
+  "warning_count": 1,
+  "warning": "Existing LangChainPendingDeprecationWarning",
+  "log_summary": "566 passed, 1 warning in 69.71s (0:01:09)",
+  "new_preparation_tests": 17,
+  "real_experiment_tests": 0
+}

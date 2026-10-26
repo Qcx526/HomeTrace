@@ -1,0 +1,11 @@
+{
+  "scanned_new_public_files": 14,
+  "private_input_hashes_and_instance_ids": "no matches",
+  "private_reference_or_scene_roi_arrays": "no matches",
+  "local_env_secret_values": "no matches; values never printed",
+  "private_binary_files": 0,
+  "local_data_ignored": true,
+  "artifacts_ignored": true,
+  "env_ignored": true,
+  "scope": "Exact known private values and added file types; no claim of perfect PII detection"
+}

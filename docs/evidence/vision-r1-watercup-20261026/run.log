@@ -1,0 +1,11 @@
+scene_01: SINGLE_ORB_ROI=UNKNOWN (insufficient_geometric_inliers), MULTI_ORB_CONSENSUS=UNKNOWN (insufficient_independent_references)
+scene_02: SINGLE_ORB_ROI=UNKNOWN (insufficient_distinct_matches), MULTI_ORB_CONSENSUS=UNKNOWN (insufficient_independent_references)
+scene_03: SINGLE_ORB_ROI=UNKNOWN (insufficient_geometric_inliers), MULTI_ORB_CONSENSUS=UNKNOWN (insufficient_independent_references)
+scene_04: SINGLE_ORB_ROI=UNKNOWN (low_sharpness_or_texture), MULTI_ORB_CONSENSUS=UNKNOWN (insufficient_independent_references)
+scene_05: SINGLE_ORB_ROI=UNKNOWN (low_sharpness_or_texture), MULTI_ORB_CONSENSUS=UNKNOWN (insufficient_independent_references)
+scene_06: SINGLE_ORB_ROI=UNKNOWN (insufficient_distinct_matches), MULTI_ORB_CONSENSUS=UNKNOWN (insufficient_independent_references)
+scene_07: SINGLE_ORB_ROI=UNKNOWN (no_verified_match), MULTI_ORB_CONSENSUS=UNKNOWN (insufficient_independent_references)
+scene_08: SINGLE_ORB_ROI=UNKNOWN (insufficient_distinct_matches), MULTI_ORB_CONSENSUS=UNKNOWN (insufficient_independent_references)
+scene_09: SINGLE_ORB_ROI=UNKNOWN (insufficient_distinct_matches), MULTI_ORB_CONSENSUS=UNKNOWN (insufficient_independent_references)
+scene_10: SINGLE_ORB_ROI=UNKNOWN (insufficient_distinct_matches), MULTI_ORB_CONSENSUS=UNKNOWN (insufficient_independent_references)
+{"evaluations": 20, "production_integration": false}
