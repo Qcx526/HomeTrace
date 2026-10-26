@@ -1,0 +1,8 @@
+{
+  "new_binding_checks": "raw requests, worker outputs, wrapper candidates/status and immutable hashes checked before and after run",
+  "old_run_retained": true,
+  "final_run": "comparison-02",
+  "row_count": 160,
+  "same_semantics_after_binding_fix": true,
+  "source_commit": "0dbb1c742d4ec6a4f020382471514948866598b9"
+}
