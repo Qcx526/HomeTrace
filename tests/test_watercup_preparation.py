@@ -74,6 +74,21 @@ def test_confirmed_labels_do_not_create_localization_truth(inputs):
     assert all(l["target_box"] is None and not l["instance_reviews"] for l in labels)
 
 
+def test_owner_roi_approval_cannot_invent_independent_captures(inputs):
+    root, path, output, repo, review = inputs
+    for name in watercup.REFERENCE_FILES:
+        ref = review["photos"][name]["reference"]
+        ref.update(identity_reviewed=True, roi_reviewed=True,
+                   background_review="object_dominant", surface_extent_id="front-body",
+                   view_id="front-" + name, background_id="background-" + name)
+    save(path, review)
+    result = watercup.prepare(root, path, output, repo)
+    assert result["qualification_gate"] == "BLOCKED"
+    assert not result["target_reference_pair_eligible"] and not result["rival_eligible"]
+    assert all(r["eligibility_reasons"] == ["capture_id_unknown"] for r in result["registration"])
+    assert result["unconfirmed_scene_labels"] == 10
+
+
 @pytest.mark.parametrize("mutation", ["missing_image", "unexpected_image", "hash", "roi", "bad_roi", "same_rival", "label_without_source", "confirmation_string", "review_missing_photo", "blank_source", "number_source", "blank_batch"])
 def test_invalid_inputs_do_not_fall_back_or_publish_outputs(inputs, mutation):
     root, path, output, repo, review = inputs
