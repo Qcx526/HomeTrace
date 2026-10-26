@@ -1,0 +1,3974 @@
+{
+  "generated_at": "2026-10-26T03:09:27.567330+00:00",
+  "method_version": "multireference-orb-consensus/1",
+  "parameters": {
+    "max_references": 6,
+    "quorum": 2,
+    "box_iou": 0.5,
+    "min_dhash_distance": 5,
+    "seed": 0,
+    "threads": 1,
+    "feature_backend": "unchanged_production_ImageMatcher"
+  },
+  "production_thresholds": {
+    "MIN_REFERENCE_KEYPOINTS": 32,
+    "MIN_SCENE_KEYPOINTS": 20,
+    "MIN_GOOD_MATCHES": 12,
+    "MIN_INLIERS": 10,
+    "MIN_INLIER_RATIO": 0.55,
+    "MIN_REFERENCE_COVERAGE": 0.1,
+    "RATIO_THRESHOLD": 0.75,
+    "MAX_HAMMING_DISTANCE": 64,
+    "MIN_SHARPNESS": 30.0,
+    "MAX_IMAGE_PIXELS": 24000000,
+    "MAX_IMAGE_BYTES": 26214400
+  },
+  "source_commit": "81b14bdf1850ed4a07f37a3658d6bd650a0c73f2",
+  "source_sha256": {
+    "tools/vision_r1.py": "c5e0c69ae477a0a779fd48da4f4071f9fb57c7327fec35c839cf091ceebe1dca",
+    "tools/vision_r1_metrics.py": "e2c6f0fdae491bb53f08d9891ca9173152fa8cd3ec938bdc3c4f99efca4ff39f",
+    "tools/evaluate_vision_r1.py": "5fc36236297ad08a80ca243bee2e282160c86c3307bb6e3506d5e0dfc54cc100",
+    "tools/evaluate_vision_r0.py": "10830523627913616a45454f1e72601bec36b2641716f14187d62f1fa5b16e83",
+    "src/hometrace/image_matcher.py": "8a33462d59c45fba28bbb02b6aaa135ab9528b1f627c9495fa05f862d5f66ea1",
+    "src/hometrace/models.py": "1c347373168f3f175cdc1e039188ffe027c00c5e2b360064b935eb8ae110f9cc"
+  },
+  "environment": {
+    "python": "3.11.4",
+    "opencv": "4.14.0",
+    "numpy": "2.4.6",
+    "device": "cpu",
+    "seed": 0,
+    "threads": 1
+  },
+  "source_counts": {
+    "real": 20,
+    "synthetic": 0,
+    "augmented": 0
+  },
+  "timing_scope": "registration separately; per-scene total includes all target and rival detections, shared by both method rows",
+  "originals_unchanged": true,
+  "production_integration": false,
+  "identity_confirmed": false,
+  "registration": [
+    {
+      "reference_id": "reference_01",
+      "object_id": "object_01",
+      "sharpness": 84.372,
+      "keypoints": 552,
+      "quality_pass": true,
+      "quality_reason": "production_reference_quality_pass",
+      "eligibility_reasons": [
+        "background_review_incomplete_or_risk",
+        "view_id_unknown",
+        "visible_surface_unknown",
+        "surface_extent_id_unknown",
+        "capture_id_unknown",
+        "background_id_unknown"
+      ],
+      "elapsed_ms": 221.538
+    },
+    {
+      "reference_id": "reference_02",
+      "object_id": "object_02",
+      "sharpness": 53.175,
+      "keypoints": 2000,
+      "quality_pass": true,
+      "quality_reason": "production_reference_quality_pass",
+      "eligibility_reasons": [
+        "background_review_incomplete_or_risk",
+        "view_id_unknown",
+        "visible_surface_unknown",
+        "surface_extent_id_unknown",
+        "capture_id_unknown",
+        "background_id_unknown"
+      ],
+      "elapsed_ms": 254.169
+    },
+    {
+      "reference_id": "reference_03",
+      "object_id": "object_03",
+      "sharpness": 284.166,
+      "keypoints": 2000,
+      "quality_pass": true,
+      "quality_reason": "production_reference_quality_pass",
+      "eligibility_reasons": [
+        "background_review_incomplete_or_risk",
+        "view_id_unknown",
+        "visible_surface_unknown",
+        "surface_extent_id_unknown",
+        "capture_id_unknown",
+        "background_id_unknown"
+      ],
+      "elapsed_ms": 36.316
+    },
+    {
+      "reference_id": "reference_04",
+      "object_id": "object_04",
+      "sharpness": 124.85,
+      "keypoints": 2000,
+      "quality_pass": true,
+      "quality_reason": "production_reference_quality_pass",
+      "eligibility_reasons": [
+        "background_review_incomplete_or_risk",
+        "view_id_unknown",
+        "visible_surface_unknown",
+        "surface_extent_id_unknown",
+        "capture_id_unknown",
+        "background_id_unknown"
+      ],
+      "elapsed_ms": 320.151
+    }
+  ],
+  "evaluations": [
+    {
+      "method": "SINGLE_ORB_ROI",
+      "sample_id": "scene_01",
+      "source_type": "real",
+      "object_id": "object_01",
+      "status": "UNKNOWN",
+      "reason": "insufficient_distinct_matches",
+      "executed": true,
+      "total_elapsed_ms": 335.346,
+      "attempts": [
+        {
+          "reference_id": "reference_01",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 6,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 59.541,
+            "scene_keypoints": 2000,
+            "sharpness": 213.628
+          }
+        },
+        {
+          "reference_id": "reference_02",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 9,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 85.924,
+            "scene_keypoints": 2000,
+            "sharpness": 213.628
+          }
+        },
+        {
+          "reference_id": "reference_03",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 9,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 80.838,
+            "scene_keypoints": 2000,
+            "sharpness": 213.628
+          }
+        },
+        {
+          "reference_id": "reference_04",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 7,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 100.921,
+            "scene_keypoints": 2000,
+            "sharpness": 213.628
+          }
+        }
+      ]
+    },
+    {
+      "method": "MULTI_ORB_CONSENSUS",
+      "sample_id": "scene_01",
+      "source_type": "real",
+      "object_id": "object_01",
+      "status": "UNKNOWN",
+      "reason": "insufficient_independent_references",
+      "executed": false,
+      "total_elapsed_ms": 335.346,
+      "attempts": [
+        {
+          "reference_id": "reference_01",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 6,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 59.541,
+            "scene_keypoints": 2000,
+            "sharpness": 213.628
+          }
+        },
+        {
+          "reference_id": "reference_02",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 9,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 85.924,
+            "scene_keypoints": 2000,
+            "sharpness": 213.628
+          }
+        },
+        {
+          "reference_id": "reference_03",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 9,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 80.838,
+            "scene_keypoints": 2000,
+            "sharpness": 213.628
+          }
+        },
+        {
+          "reference_id": "reference_04",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 7,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 100.921,
+            "scene_keypoints": 2000,
+            "sharpness": 213.628
+          }
+        }
+      ]
+    },
+    {
+      "method": "SINGLE_ORB_ROI",
+      "sample_id": "scene_02",
+      "source_type": "real",
+      "object_id": "object_01",
+      "status": "UNKNOWN",
+      "reason": "no_verified_match",
+      "executed": true,
+      "total_elapsed_ms": 313.715,
+      "attempts": [
+        {
+          "reference_id": "reference_01",
+          "executed": true,
+          "geometric_signal": "rejected",
+          "reason": "no_verified_match",
+          "metrics": {
+            "good_matches": 3,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 59.638,
+            "scene_keypoints": 2000,
+            "sharpness": 224.717
+          }
+        },
+        {
+          "reference_id": "reference_02",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 11,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 89.124,
+            "scene_keypoints": 2000,
+            "sharpness": 224.717
+          }
+        },
+        {
+          "reference_id": "reference_03",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 9,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 74.421,
+            "scene_keypoints": 2000,
+            "sharpness": 224.717
+          }
+        },
+        {
+          "reference_id": "reference_04",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 7,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 81.441,
+            "scene_keypoints": 2000,
+            "sharpness": 224.717
+          }
+        }
+      ]
+    },
+    {
+      "method": "MULTI_ORB_CONSENSUS",
+      "sample_id": "scene_02",
+      "source_type": "real",
+      "object_id": "object_01",
+      "status": "UNKNOWN",
+      "reason": "insufficient_independent_references",
+      "executed": false,
+      "total_elapsed_ms": 313.715,
+      "attempts": [
+        {
+          "reference_id": "reference_01",
+          "executed": true,
+          "geometric_signal": "rejected",
+          "reason": "no_verified_match",
+          "metrics": {
+            "good_matches": 3,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 59.638,
+            "scene_keypoints": 2000,
+            "sharpness": 224.717
+          }
+        },
+        {
+          "reference_id": "reference_02",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 11,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 89.124,
+            "scene_keypoints": 2000,
+            "sharpness": 224.717
+          }
+        },
+        {
+          "reference_id": "reference_03",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 9,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 74.421,
+            "scene_keypoints": 2000,
+            "sharpness": 224.717
+          }
+        },
+        {
+          "reference_id": "reference_04",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 7,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 81.441,
+            "scene_keypoints": 2000,
+            "sharpness": 224.717
+          }
+        }
+      ]
+    },
+    {
+      "method": "SINGLE_ORB_ROI",
+      "sample_id": "scene_03",
+      "source_type": "real",
+      "object_id": "object_01",
+      "status": "UNKNOWN",
+      "reason": "insufficient_distinct_matches",
+      "executed": true,
+      "total_elapsed_ms": 282.868,
+      "attempts": [
+        {
+          "reference_id": "reference_01",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 6,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 55.961,
+            "scene_keypoints": 2000,
+            "sharpness": 76.791
+          }
+        },
+        {
+          "reference_id": "reference_02",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 6,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 76.35,
+            "scene_keypoints": 2000,
+            "sharpness": 76.791
+          }
+        },
+        {
+          "reference_id": "reference_03",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 10,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 69.405,
+            "scene_keypoints": 2000,
+            "sharpness": 76.791
+          }
+        },
+        {
+          "reference_id": "reference_04",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 11,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 73.443,
+            "scene_keypoints": 2000,
+            "sharpness": 76.791
+          }
+        }
+      ]
+    },
+    {
+      "method": "MULTI_ORB_CONSENSUS",
+      "sample_id": "scene_03",
+      "source_type": "real",
+      "object_id": "object_01",
+      "status": "UNKNOWN",
+      "reason": "insufficient_independent_references",
+      "executed": false,
+      "total_elapsed_ms": 282.868,
+      "attempts": [
+        {
+          "reference_id": "reference_01",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 6,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 55.961,
+            "scene_keypoints": 2000,
+            "sharpness": 76.791
+          }
+        },
+        {
+          "reference_id": "reference_02",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 6,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 76.35,
+            "scene_keypoints": 2000,
+            "sharpness": 76.791
+          }
+        },
+        {
+          "reference_id": "reference_03",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 10,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 69.405,
+            "scene_keypoints": 2000,
+            "sharpness": 76.791
+          }
+        },
+        {
+          "reference_id": "reference_04",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 11,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 73.443,
+            "scene_keypoints": 2000,
+            "sharpness": 76.791
+          }
+        }
+      ]
+    },
+    {
+      "method": "SINGLE_ORB_ROI",
+      "sample_id": "scene_04",
+      "source_type": "real",
+      "object_id": "object_01",
+      "status": "UNKNOWN",
+      "reason": "insufficient_distinct_matches",
+      "executed": true,
+      "total_elapsed_ms": 305.467,
+      "attempts": [
+        {
+          "reference_id": "reference_01",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 4,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 54.991,
+            "scene_keypoints": 2000,
+            "sharpness": 101.937
+          }
+        },
+        {
+          "reference_id": "reference_02",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 4,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 77.46,
+            "scene_keypoints": 2000,
+            "sharpness": 101.937
+          }
+        },
+        {
+          "reference_id": "reference_03",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_geometric_inliers",
+          "metrics": {
+            "good_matches": 14,
+            "inliers": 4,
+            "inlier_ratio": 0.2857,
+            "reference_coverage": 0.046,
+            "elapsed_ms": 86.37,
+            "scene_keypoints": 2000,
+            "sharpness": 101.937
+          }
+        },
+        {
+          "reference_id": "reference_04",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 7,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 77.74,
+            "scene_keypoints": 2000,
+            "sharpness": 101.937
+          }
+        }
+      ]
+    },
+    {
+      "method": "MULTI_ORB_CONSENSUS",
+      "sample_id": "scene_04",
+      "source_type": "real",
+      "object_id": "object_01",
+      "status": "UNKNOWN",
+      "reason": "insufficient_independent_references",
+      "executed": false,
+      "total_elapsed_ms": 305.467,
+      "attempts": [
+        {
+          "reference_id": "reference_01",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 4,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 54.991,
+            "scene_keypoints": 2000,
+            "sharpness": 101.937
+          }
+        },
+        {
+          "reference_id": "reference_02",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 4,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 77.46,
+            "scene_keypoints": 2000,
+            "sharpness": 101.937
+          }
+        },
+        {
+          "reference_id": "reference_03",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_geometric_inliers",
+          "metrics": {
+            "good_matches": 14,
+            "inliers": 4,
+            "inlier_ratio": 0.2857,
+            "reference_coverage": 0.046,
+            "elapsed_ms": 86.37,
+            "scene_keypoints": 2000,
+            "sharpness": 101.937
+          }
+        },
+        {
+          "reference_id": "reference_04",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 7,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 77.74,
+            "scene_keypoints": 2000,
+            "sharpness": 101.937
+          }
+        }
+      ]
+    },
+    {
+      "method": "SINGLE_ORB_ROI",
+      "sample_id": "scene_05",
+      "source_type": "real",
+      "object_id": "object_01",
+      "status": "UNKNOWN",
+      "reason": "no_verified_match",
+      "executed": true,
+      "total_elapsed_ms": 265.188,
+      "attempts": [
+        {
+          "reference_id": "reference_01",
+          "executed": true,
+          "geometric_signal": "rejected",
+          "reason": "no_verified_match",
+          "metrics": {
+            "good_matches": 2,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 58.208,
+            "scene_keypoints": 775,
+            "sharpness": 44.921
+          }
+        },
+        {
+          "reference_id": "reference_02",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 4,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 59.453,
+            "scene_keypoints": 775,
+            "sharpness": 44.921
+          }
+        },
+        {
+          "reference_id": "reference_03",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_geometric_inliers",
+          "metrics": {
+            "good_matches": 12,
+            "inliers": 4,
+            "inlier_ratio": 0.3333,
+            "reference_coverage": 0.0157,
+            "elapsed_ms": 59.181,
+            "scene_keypoints": 775,
+            "sharpness": 44.921
+          }
+        },
+        {
+          "reference_id": "reference_04",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 8,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 80.277,
+            "scene_keypoints": 775,
+            "sharpness": 44.921
+          }
+        }
+      ]
+    },
+    {
+      "method": "MULTI_ORB_CONSENSUS",
+      "sample_id": "scene_05",
+      "source_type": "real",
+      "object_id": "object_01",
+      "status": "UNKNOWN",
+      "reason": "insufficient_independent_references",
+      "executed": false,
+      "total_elapsed_ms": 265.188,
+      "attempts": [
+        {
+          "reference_id": "reference_01",
+          "executed": true,
+          "geometric_signal": "rejected",
+          "reason": "no_verified_match",
+          "metrics": {
+            "good_matches": 2,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 58.208,
+            "scene_keypoints": 775,
+            "sharpness": 44.921
+          }
+        },
+        {
+          "reference_id": "reference_02",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 4,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 59.453,
+            "scene_keypoints": 775,
+            "sharpness": 44.921
+          }
+        },
+        {
+          "reference_id": "reference_03",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_geometric_inliers",
+          "metrics": {
+            "good_matches": 12,
+            "inliers": 4,
+            "inlier_ratio": 0.3333,
+            "reference_coverage": 0.0157,
+            "elapsed_ms": 59.181,
+            "scene_keypoints": 775,
+            "sharpness": 44.921
+          }
+        },
+        {
+          "reference_id": "reference_04",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 8,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 80.277,
+            "scene_keypoints": 775,
+            "sharpness": 44.921
+          }
+        }
+      ]
+    },
+    {
+      "method": "SINGLE_ORB_ROI",
+      "sample_id": "scene_06",
+      "source_type": "real",
+      "object_id": "object_02",
+      "status": "UNKNOWN",
+      "reason": "insufficient_distinct_matches",
+      "executed": true,
+      "total_elapsed_ms": 1345.054,
+      "attempts": [
+        {
+          "reference_id": "reference_01",
+          "executed": true,
+          "geometric_signal": "rejected",
+          "reason": "no_verified_match",
+          "metrics": {
+            "good_matches": 3,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 308.391,
+            "scene_keypoints": 2000,
+            "sharpness": 164.068
+          }
+        },
+        {
+          "reference_id": "reference_02",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 10,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 329.632,
+            "scene_keypoints": 2000,
+            "sharpness": 164.068
+          }
+        },
+        {
+          "reference_id": "reference_03",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 11,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 324.067,
+            "scene_keypoints": 2000,
+            "sharpness": 164.068
+          }
+        },
+        {
+          "reference_id": "reference_04",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 7,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 309.141,
+            "scene_keypoints": 2000,
+            "sharpness": 164.068
+          }
+        }
+      ]
+    },
+    {
+      "method": "MULTI_ORB_CONSENSUS",
+      "sample_id": "scene_06",
+      "source_type": "real",
+      "object_id": "object_02",
+      "status": "UNKNOWN",
+      "reason": "insufficient_independent_references",
+      "executed": false,
+      "total_elapsed_ms": 1345.054,
+      "attempts": [
+        {
+          "reference_id": "reference_01",
+          "executed": true,
+          "geometric_signal": "rejected",
+          "reason": "no_verified_match",
+          "metrics": {
+            "good_matches": 3,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 308.391,
+            "scene_keypoints": 2000,
+            "sharpness": 164.068
+          }
+        },
+        {
+          "reference_id": "reference_02",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 10,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 329.632,
+            "scene_keypoints": 2000,
+            "sharpness": 164.068
+          }
+        },
+        {
+          "reference_id": "reference_03",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 11,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 324.067,
+            "scene_keypoints": 2000,
+            "sharpness": 164.068
+          }
+        },
+        {
+          "reference_id": "reference_04",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 7,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 309.141,
+            "scene_keypoints": 2000,
+            "sharpness": 164.068
+          }
+        }
+      ]
+    },
+    {
+      "method": "SINGLE_ORB_ROI",
+      "sample_id": "scene_07",
+      "source_type": "real",
+      "object_id": "object_02",
+      "status": "UNKNOWN",
+      "reason": "insufficient_distinct_matches",
+      "executed": true,
+      "total_elapsed_ms": 1232.671,
+      "attempts": [
+        {
+          "reference_id": "reference_01",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 5,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 279.373,
+            "scene_keypoints": 2000,
+            "sharpness": 86.99
+          }
+        },
+        {
+          "reference_id": "reference_02",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 8,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 319.247,
+            "scene_keypoints": 2000,
+            "sharpness": 86.99
+          }
+        },
+        {
+          "reference_id": "reference_03",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 5,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 279.953,
+            "scene_keypoints": 2000,
+            "sharpness": 86.99
+          }
+        },
+        {
+          "reference_id": "reference_04",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 6,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 295.336,
+            "scene_keypoints": 2000,
+            "sharpness": 86.99
+          }
+        }
+      ]
+    },
+    {
+      "method": "MULTI_ORB_CONSENSUS",
+      "sample_id": "scene_07",
+      "source_type": "real",
+      "object_id": "object_02",
+      "status": "UNKNOWN",
+      "reason": "insufficient_independent_references",
+      "executed": false,
+      "total_elapsed_ms": 1232.671,
+      "attempts": [
+        {
+          "reference_id": "reference_01",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 5,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 279.373,
+            "scene_keypoints": 2000,
+            "sharpness": 86.99
+          }
+        },
+        {
+          "reference_id": "reference_02",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 8,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 319.247,
+            "scene_keypoints": 2000,
+            "sharpness": 86.99
+          }
+        },
+        {
+          "reference_id": "reference_03",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 5,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 279.953,
+            "scene_keypoints": 2000,
+            "sharpness": 86.99
+          }
+        },
+        {
+          "reference_id": "reference_04",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 6,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 295.336,
+            "scene_keypoints": 2000,
+            "sharpness": 86.99
+          }
+        }
+      ]
+    },
+    {
+      "method": "SINGLE_ORB_ROI",
+      "sample_id": "scene_08",
+      "source_type": "real",
+      "object_id": "object_02",
+      "status": "UNKNOWN",
+      "reason": "insufficient_distinct_matches",
+      "executed": true,
+      "total_elapsed_ms": 1297.898,
+      "attempts": [
+        {
+          "reference_id": "reference_01",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 4,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 308.822,
+            "scene_keypoints": 2000,
+            "sharpness": 70.555
+          }
+        },
+        {
+          "reference_id": "reference_02",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 4,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 293.494,
+            "scene_keypoints": 2000,
+            "sharpness": 70.555
+          }
+        },
+        {
+          "reference_id": "reference_03",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 6,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 295.855,
+            "scene_keypoints": 2000,
+            "sharpness": 70.555
+          }
+        },
+        {
+          "reference_id": "reference_04",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 8,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 338.709,
+            "scene_keypoints": 2000,
+            "sharpness": 70.555
+          }
+        }
+      ]
+    },
+    {
+      "method": "MULTI_ORB_CONSENSUS",
+      "sample_id": "scene_08",
+      "source_type": "real",
+      "object_id": "object_02",
+      "status": "UNKNOWN",
+      "reason": "insufficient_independent_references",
+      "executed": false,
+      "total_elapsed_ms": 1297.898,
+      "attempts": [
+        {
+          "reference_id": "reference_01",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 4,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 308.822,
+            "scene_keypoints": 2000,
+            "sharpness": 70.555
+          }
+        },
+        {
+          "reference_id": "reference_02",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 4,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 293.494,
+            "scene_keypoints": 2000,
+            "sharpness": 70.555
+          }
+        },
+        {
+          "reference_id": "reference_03",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 6,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 295.855,
+            "scene_keypoints": 2000,
+            "sharpness": 70.555
+          }
+        },
+        {
+          "reference_id": "reference_04",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 8,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 338.709,
+            "scene_keypoints": 2000,
+            "sharpness": 70.555
+          }
+        }
+      ]
+    },
+    {
+      "method": "SINGLE_ORB_ROI",
+      "sample_id": "scene_09",
+      "source_type": "real",
+      "object_id": "object_02",
+      "status": "UNKNOWN",
+      "reason": "no_verified_match",
+      "executed": true,
+      "total_elapsed_ms": 1361.693,
+      "attempts": [
+        {
+          "reference_id": "reference_01",
+          "executed": true,
+          "geometric_signal": "rejected",
+          "reason": "no_verified_match",
+          "metrics": {
+            "good_matches": 3,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 317.767,
+            "scene_keypoints": 2000,
+            "sharpness": 59.032
+          }
+        },
+        {
+          "reference_id": "reference_02",
+          "executed": true,
+          "geometric_signal": "rejected",
+          "reason": "no_verified_match",
+          "metrics": {
+            "good_matches": 3,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 348.288,
+            "scene_keypoints": 2000,
+            "sharpness": 59.032
+          }
+        },
+        {
+          "reference_id": "reference_03",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 4,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 334.496,
+            "scene_keypoints": 2000,
+            "sharpness": 59.032
+          }
+        },
+        {
+          "reference_id": "reference_04",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 4,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 295.951,
+            "scene_keypoints": 2000,
+            "sharpness": 59.032
+          }
+        }
+      ]
+    },
+    {
+      "method": "MULTI_ORB_CONSENSUS",
+      "sample_id": "scene_09",
+      "source_type": "real",
+      "object_id": "object_02",
+      "status": "UNKNOWN",
+      "reason": "insufficient_independent_references",
+      "executed": false,
+      "total_elapsed_ms": 1361.693,
+      "attempts": [
+        {
+          "reference_id": "reference_01",
+          "executed": true,
+          "geometric_signal": "rejected",
+          "reason": "no_verified_match",
+          "metrics": {
+            "good_matches": 3,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 317.767,
+            "scene_keypoints": 2000,
+            "sharpness": 59.032
+          }
+        },
+        {
+          "reference_id": "reference_02",
+          "executed": true,
+          "geometric_signal": "rejected",
+          "reason": "no_verified_match",
+          "metrics": {
+            "good_matches": 3,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 348.288,
+            "scene_keypoints": 2000,
+            "sharpness": 59.032
+          }
+        },
+        {
+          "reference_id": "reference_03",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 4,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 334.496,
+            "scene_keypoints": 2000,
+            "sharpness": 59.032
+          }
+        },
+        {
+          "reference_id": "reference_04",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 4,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 295.951,
+            "scene_keypoints": 2000,
+            "sharpness": 59.032
+          }
+        }
+      ]
+    },
+    {
+      "method": "SINGLE_ORB_ROI",
+      "sample_id": "scene_10",
+      "source_type": "real",
+      "object_id": "object_02",
+      "status": "UNKNOWN",
+      "reason": "insufficient_geometric_inliers",
+      "executed": true,
+      "total_elapsed_ms": 1424.769,
+      "attempts": [
+        {
+          "reference_id": "reference_01",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 5,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 307.908,
+            "scene_keypoints": 2000,
+            "sharpness": 177.916
+          }
+        },
+        {
+          "reference_id": "reference_02",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_geometric_inliers",
+          "metrics": {
+            "good_matches": 12,
+            "inliers": 4,
+            "inlier_ratio": 0.3333,
+            "reference_coverage": 0.0507,
+            "elapsed_ms": 387.896,
+            "scene_keypoints": 2000,
+            "sharpness": 177.916
+          }
+        },
+        {
+          "reference_id": "reference_03",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_geometric_inliers",
+          "metrics": {
+            "good_matches": 12,
+            "inliers": 4,
+            "inlier_ratio": 0.3333,
+            "reference_coverage": 0.1559,
+            "elapsed_ms": 342.181,
+            "scene_keypoints": 2000,
+            "sharpness": 177.916
+          }
+        },
+        {
+          "reference_id": "reference_04",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 7,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 325.497,
+            "scene_keypoints": 2000,
+            "sharpness": 177.916
+          }
+        }
+      ]
+    },
+    {
+      "method": "MULTI_ORB_CONSENSUS",
+      "sample_id": "scene_10",
+      "source_type": "real",
+      "object_id": "object_02",
+      "status": "UNKNOWN",
+      "reason": "insufficient_independent_references",
+      "executed": false,
+      "total_elapsed_ms": 1424.769,
+      "attempts": [
+        {
+          "reference_id": "reference_01",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 5,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 307.908,
+            "scene_keypoints": 2000,
+            "sharpness": 177.916
+          }
+        },
+        {
+          "reference_id": "reference_02",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_geometric_inliers",
+          "metrics": {
+            "good_matches": 12,
+            "inliers": 4,
+            "inlier_ratio": 0.3333,
+            "reference_coverage": 0.0507,
+            "elapsed_ms": 387.896,
+            "scene_keypoints": 2000,
+            "sharpness": 177.916
+          }
+        },
+        {
+          "reference_id": "reference_03",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_geometric_inliers",
+          "metrics": {
+            "good_matches": 12,
+            "inliers": 4,
+            "inlier_ratio": 0.3333,
+            "reference_coverage": 0.1559,
+            "elapsed_ms": 342.181,
+            "scene_keypoints": 2000,
+            "sharpness": 177.916
+          }
+        },
+        {
+          "reference_id": "reference_04",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 7,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 325.497,
+            "scene_keypoints": 2000,
+            "sharpness": 177.916
+          }
+        }
+      ]
+    },
+    {
+      "method": "SINGLE_ORB_ROI",
+      "sample_id": "scene_11",
+      "source_type": "real",
+      "object_id": "object_03",
+      "status": "UNKNOWN",
+      "reason": "insufficient_geometric_inliers",
+      "executed": true,
+      "total_elapsed_ms": 366.292,
+      "attempts": [
+        {
+          "reference_id": "reference_01",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 4,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 68.789,
+            "scene_keypoints": 2000,
+            "sharpness": 279.801
+          }
+        },
+        {
+          "reference_id": "reference_02",
+          "executed": true,
+          "geometric_signal": "rejected",
+          "reason": "no_verified_match",
+          "metrics": {
+            "good_matches": 3,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 113.252,
+            "scene_keypoints": 2000,
+            "sharpness": 279.801
+          }
+        },
+        {
+          "reference_id": "reference_03",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_geometric_inliers",
+          "metrics": {
+            "good_matches": 12,
+            "inliers": 4,
+            "inlier_ratio": 0.3333,
+            "reference_coverage": 0.027,
+            "elapsed_ms": 88.791,
+            "scene_keypoints": 2000,
+            "sharpness": 279.801
+          }
+        },
+        {
+          "reference_id": "reference_04",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 9,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 85.819,
+            "scene_keypoints": 2000,
+            "sharpness": 279.801
+          }
+        }
+      ]
+    },
+    {
+      "method": "MULTI_ORB_CONSENSUS",
+      "sample_id": "scene_11",
+      "source_type": "real",
+      "object_id": "object_03",
+      "status": "UNKNOWN",
+      "reason": "insufficient_independent_references",
+      "executed": false,
+      "total_elapsed_ms": 366.292,
+      "attempts": [
+        {
+          "reference_id": "reference_01",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 4,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 68.789,
+            "scene_keypoints": 2000,
+            "sharpness": 279.801
+          }
+        },
+        {
+          "reference_id": "reference_02",
+          "executed": true,
+          "geometric_signal": "rejected",
+          "reason": "no_verified_match",
+          "metrics": {
+            "good_matches": 3,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 113.252,
+            "scene_keypoints": 2000,
+            "sharpness": 279.801
+          }
+        },
+        {
+          "reference_id": "reference_03",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_geometric_inliers",
+          "metrics": {
+            "good_matches": 12,
+            "inliers": 4,
+            "inlier_ratio": 0.3333,
+            "reference_coverage": 0.027,
+            "elapsed_ms": 88.791,
+            "scene_keypoints": 2000,
+            "sharpness": 279.801
+          }
+        },
+        {
+          "reference_id": "reference_04",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 9,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 85.819,
+            "scene_keypoints": 2000,
+            "sharpness": 279.801
+          }
+        }
+      ]
+    },
+    {
+      "method": "SINGLE_ORB_ROI",
+      "sample_id": "scene_12",
+      "source_type": "real",
+      "object_id": "object_03",
+      "status": "UNKNOWN",
+      "reason": "insufficient_distinct_matches",
+      "executed": true,
+      "total_elapsed_ms": 336.006,
+      "attempts": [
+        {
+          "reference_id": "reference_01",
+          "executed": true,
+          "geometric_signal": "rejected",
+          "reason": "no_verified_match",
+          "metrics": {
+            "good_matches": 1,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 67.338,
+            "scene_keypoints": 2000,
+            "sharpness": 277.115
+          }
+        },
+        {
+          "reference_id": "reference_02",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 4,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 91.723,
+            "scene_keypoints": 2000,
+            "sharpness": 277.115
+          }
+        },
+        {
+          "reference_id": "reference_03",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 11,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 82.628,
+            "scene_keypoints": 2000,
+            "sharpness": 277.115
+          }
+        },
+        {
+          "reference_id": "reference_04",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 8,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 84.0,
+            "scene_keypoints": 2000,
+            "sharpness": 277.115
+          }
+        }
+      ]
+    },
+    {
+      "method": "MULTI_ORB_CONSENSUS",
+      "sample_id": "scene_12",
+      "source_type": "real",
+      "object_id": "object_03",
+      "status": "UNKNOWN",
+      "reason": "insufficient_independent_references",
+      "executed": false,
+      "total_elapsed_ms": 336.006,
+      "attempts": [
+        {
+          "reference_id": "reference_01",
+          "executed": true,
+          "geometric_signal": "rejected",
+          "reason": "no_verified_match",
+          "metrics": {
+            "good_matches": 1,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 67.338,
+            "scene_keypoints": 2000,
+            "sharpness": 277.115
+          }
+        },
+        {
+          "reference_id": "reference_02",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 4,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 91.723,
+            "scene_keypoints": 2000,
+            "sharpness": 277.115
+          }
+        },
+        {
+          "reference_id": "reference_03",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 11,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 82.628,
+            "scene_keypoints": 2000,
+            "sharpness": 277.115
+          }
+        },
+        {
+          "reference_id": "reference_04",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 8,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 84.0,
+            "scene_keypoints": 2000,
+            "sharpness": 277.115
+          }
+        }
+      ]
+    },
+    {
+      "method": "SINGLE_ORB_ROI",
+      "sample_id": "scene_13",
+      "source_type": "real",
+      "object_id": "object_03",
+      "status": "UNKNOWN",
+      "reason": "insufficient_distinct_matches",
+      "executed": true,
+      "total_elapsed_ms": 320.459,
+      "attempts": [
+        {
+          "reference_id": "reference_01",
+          "executed": true,
+          "geometric_signal": "rejected",
+          "reason": "no_verified_match",
+          "metrics": {
+            "good_matches": 3,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 59.1,
+            "scene_keypoints": 2000,
+            "sharpness": 132.428
+          }
+        },
+        {
+          "reference_id": "reference_02",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 11,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 93.387,
+            "scene_keypoints": 2000,
+            "sharpness": 132.428
+          }
+        },
+        {
+          "reference_id": "reference_03",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 10,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 76.724,
+            "scene_keypoints": 2000,
+            "sharpness": 132.428
+          }
+        },
+        {
+          "reference_id": "reference_04",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 6,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 82.958,
+            "scene_keypoints": 2000,
+            "sharpness": 132.428
+          }
+        }
+      ]
+    },
+    {
+      "method": "MULTI_ORB_CONSENSUS",
+      "sample_id": "scene_13",
+      "source_type": "real",
+      "object_id": "object_03",
+      "status": "UNKNOWN",
+      "reason": "insufficient_independent_references",
+      "executed": false,
+      "total_elapsed_ms": 320.459,
+      "attempts": [
+        {
+          "reference_id": "reference_01",
+          "executed": true,
+          "geometric_signal": "rejected",
+          "reason": "no_verified_match",
+          "metrics": {
+            "good_matches": 3,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 59.1,
+            "scene_keypoints": 2000,
+            "sharpness": 132.428
+          }
+        },
+        {
+          "reference_id": "reference_02",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 11,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 93.387,
+            "scene_keypoints": 2000,
+            "sharpness": 132.428
+          }
+        },
+        {
+          "reference_id": "reference_03",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 10,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 76.724,
+            "scene_keypoints": 2000,
+            "sharpness": 132.428
+          }
+        },
+        {
+          "reference_id": "reference_04",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 6,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 82.958,
+            "scene_keypoints": 2000,
+            "sharpness": 132.428
+          }
+        }
+      ]
+    },
+    {
+      "method": "SINGLE_ORB_ROI",
+      "sample_id": "scene_14",
+      "source_type": "real",
+      "object_id": "object_03",
+      "status": "UNKNOWN",
+      "reason": "insufficient_distinct_matches",
+      "executed": true,
+      "total_elapsed_ms": 310.42,
+      "attempts": [
+        {
+          "reference_id": "reference_01",
+          "executed": true,
+          "geometric_signal": "rejected",
+          "reason": "no_verified_match",
+          "metrics": {
+            "good_matches": 1,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 59.589,
+            "scene_keypoints": 2000,
+            "sharpness": 116.613
+          }
+        },
+        {
+          "reference_id": "reference_02",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 10,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 100.484,
+            "scene_keypoints": 2000,
+            "sharpness": 116.613
+          }
+        },
+        {
+          "reference_id": "reference_03",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 8,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 69.516,
+            "scene_keypoints": 2000,
+            "sharpness": 116.613
+          }
+        },
+        {
+          "reference_id": "reference_04",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 5,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 72.564,
+            "scene_keypoints": 2000,
+            "sharpness": 116.613
+          }
+        }
+      ]
+    },
+    {
+      "method": "MULTI_ORB_CONSENSUS",
+      "sample_id": "scene_14",
+      "source_type": "real",
+      "object_id": "object_03",
+      "status": "UNKNOWN",
+      "reason": "insufficient_independent_references",
+      "executed": false,
+      "total_elapsed_ms": 310.42,
+      "attempts": [
+        {
+          "reference_id": "reference_01",
+          "executed": true,
+          "geometric_signal": "rejected",
+          "reason": "no_verified_match",
+          "metrics": {
+            "good_matches": 1,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 59.589,
+            "scene_keypoints": 2000,
+            "sharpness": 116.613
+          }
+        },
+        {
+          "reference_id": "reference_02",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 10,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 100.484,
+            "scene_keypoints": 2000,
+            "sharpness": 116.613
+          }
+        },
+        {
+          "reference_id": "reference_03",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 8,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 69.516,
+            "scene_keypoints": 2000,
+            "sharpness": 116.613
+          }
+        },
+        {
+          "reference_id": "reference_04",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 5,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 72.564,
+            "scene_keypoints": 2000,
+            "sharpness": 116.613
+          }
+        }
+      ]
+    },
+    {
+      "method": "SINGLE_ORB_ROI",
+      "sample_id": "scene_15",
+      "source_type": "real",
+      "object_id": "object_03",
+      "status": "UNKNOWN",
+      "reason": "insufficient_distinct_matches",
+      "executed": true,
+      "total_elapsed_ms": 245.984,
+      "attempts": [
+        {
+          "reference_id": "reference_01",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 4,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 45.907,
+            "scene_keypoints": 1091,
+            "sharpness": 93.582
+          }
+        },
+        {
+          "reference_id": "reference_02",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 5,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 58.297,
+            "scene_keypoints": 1091,
+            "sharpness": 93.582
+          }
+        },
+        {
+          "reference_id": "reference_03",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 8,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 66.835,
+            "scene_keypoints": 1091,
+            "sharpness": 93.582
+          }
+        },
+        {
+          "reference_id": "reference_04",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 4,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 66.612,
+            "scene_keypoints": 1091,
+            "sharpness": 93.582
+          }
+        }
+      ]
+    },
+    {
+      "method": "MULTI_ORB_CONSENSUS",
+      "sample_id": "scene_15",
+      "source_type": "real",
+      "object_id": "object_03",
+      "status": "UNKNOWN",
+      "reason": "insufficient_independent_references",
+      "executed": false,
+      "total_elapsed_ms": 245.984,
+      "attempts": [
+        {
+          "reference_id": "reference_01",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 4,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 45.907,
+            "scene_keypoints": 1091,
+            "sharpness": 93.582
+          }
+        },
+        {
+          "reference_id": "reference_02",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 5,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 58.297,
+            "scene_keypoints": 1091,
+            "sharpness": 93.582
+          }
+        },
+        {
+          "reference_id": "reference_03",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 8,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 66.835,
+            "scene_keypoints": 1091,
+            "sharpness": 93.582
+          }
+        },
+        {
+          "reference_id": "reference_04",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 4,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 66.612,
+            "scene_keypoints": 1091,
+            "sharpness": 93.582
+          }
+        }
+      ]
+    },
+    {
+      "method": "SINGLE_ORB_ROI",
+      "sample_id": "scene_16",
+      "source_type": "real",
+      "object_id": "object_04",
+      "status": "UNKNOWN",
+      "reason": "insufficient_distinct_matches",
+      "executed": true,
+      "total_elapsed_ms": 307.62,
+      "attempts": [
+        {
+          "reference_id": "reference_01",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 4,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 56.11,
+            "scene_keypoints": 2000,
+            "sharpness": 110.174
+          }
+        },
+        {
+          "reference_id": "reference_02",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 4,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 80.858,
+            "scene_keypoints": 2000,
+            "sharpness": 110.174
+          }
+        },
+        {
+          "reference_id": "reference_03",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_geometric_inliers",
+          "metrics": {
+            "good_matches": 12,
+            "inliers": 4,
+            "inlier_ratio": 0.3333,
+            "reference_coverage": 0.0081,
+            "elapsed_ms": 83.42,
+            "scene_keypoints": 2000,
+            "sharpness": 110.174
+          }
+        },
+        {
+          "reference_id": "reference_04",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 6,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 78.649,
+            "scene_keypoints": 2000,
+            "sharpness": 110.174
+          }
+        }
+      ]
+    },
+    {
+      "method": "MULTI_ORB_CONSENSUS",
+      "sample_id": "scene_16",
+      "source_type": "real",
+      "object_id": "object_04",
+      "status": "UNKNOWN",
+      "reason": "insufficient_independent_references",
+      "executed": false,
+      "total_elapsed_ms": 307.62,
+      "attempts": [
+        {
+          "reference_id": "reference_01",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 4,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 56.11,
+            "scene_keypoints": 2000,
+            "sharpness": 110.174
+          }
+        },
+        {
+          "reference_id": "reference_02",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 4,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 80.858,
+            "scene_keypoints": 2000,
+            "sharpness": 110.174
+          }
+        },
+        {
+          "reference_id": "reference_03",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_geometric_inliers",
+          "metrics": {
+            "good_matches": 12,
+            "inliers": 4,
+            "inlier_ratio": 0.3333,
+            "reference_coverage": 0.0081,
+            "elapsed_ms": 83.42,
+            "scene_keypoints": 2000,
+            "sharpness": 110.174
+          }
+        },
+        {
+          "reference_id": "reference_04",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 6,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 78.649,
+            "scene_keypoints": 2000,
+            "sharpness": 110.174
+          }
+        }
+      ]
+    },
+    {
+      "method": "SINGLE_ORB_ROI",
+      "sample_id": "scene_17",
+      "source_type": "real",
+      "object_id": "object_04",
+      "status": "UNKNOWN",
+      "reason": "low_sharpness_or_texture",
+      "executed": true,
+      "total_elapsed_ms": 115.312,
+      "attempts": [
+        {
+          "reference_id": "reference_01",
+          "executed": true,
+          "geometric_signal": "rejected",
+          "reason": "low_sharpness_or_texture",
+          "metrics": {
+            "good_matches": 0,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 26.936,
+            "scene_keypoints": 0,
+            "sharpness": 27.15
+          }
+        },
+        {
+          "reference_id": "reference_02",
+          "executed": true,
+          "geometric_signal": "rejected",
+          "reason": "low_sharpness_or_texture",
+          "metrics": {
+            "good_matches": 0,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 30.517,
+            "scene_keypoints": 0,
+            "sharpness": 27.15
+          }
+        },
+        {
+          "reference_id": "reference_03",
+          "executed": true,
+          "geometric_signal": "rejected",
+          "reason": "low_sharpness_or_texture",
+          "metrics": {
+            "good_matches": 0,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 22.87,
+            "scene_keypoints": 0,
+            "sharpness": 27.15
+          }
+        },
+        {
+          "reference_id": "reference_04",
+          "executed": true,
+          "geometric_signal": "rejected",
+          "reason": "low_sharpness_or_texture",
+          "metrics": {
+            "good_matches": 0,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 26.889,
+            "scene_keypoints": 0,
+            "sharpness": 27.15
+          }
+        }
+      ]
+    },
+    {
+      "method": "MULTI_ORB_CONSENSUS",
+      "sample_id": "scene_17",
+      "source_type": "real",
+      "object_id": "object_04",
+      "status": "UNKNOWN",
+      "reason": "insufficient_independent_references",
+      "executed": false,
+      "total_elapsed_ms": 115.312,
+      "attempts": [
+        {
+          "reference_id": "reference_01",
+          "executed": true,
+          "geometric_signal": "rejected",
+          "reason": "low_sharpness_or_texture",
+          "metrics": {
+            "good_matches": 0,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 26.936,
+            "scene_keypoints": 0,
+            "sharpness": 27.15
+          }
+        },
+        {
+          "reference_id": "reference_02",
+          "executed": true,
+          "geometric_signal": "rejected",
+          "reason": "low_sharpness_or_texture",
+          "metrics": {
+            "good_matches": 0,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 30.517,
+            "scene_keypoints": 0,
+            "sharpness": 27.15
+          }
+        },
+        {
+          "reference_id": "reference_03",
+          "executed": true,
+          "geometric_signal": "rejected",
+          "reason": "low_sharpness_or_texture",
+          "metrics": {
+            "good_matches": 0,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 22.87,
+            "scene_keypoints": 0,
+            "sharpness": 27.15
+          }
+        },
+        {
+          "reference_id": "reference_04",
+          "executed": true,
+          "geometric_signal": "rejected",
+          "reason": "low_sharpness_or_texture",
+          "metrics": {
+            "good_matches": 0,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 26.889,
+            "scene_keypoints": 0,
+            "sharpness": 27.15
+          }
+        }
+      ]
+    },
+    {
+      "method": "SINGLE_ORB_ROI",
+      "sample_id": "scene_18",
+      "source_type": "real",
+      "object_id": "object_04",
+      "status": "UNKNOWN",
+      "reason": "insufficient_distinct_matches",
+      "executed": true,
+      "total_elapsed_ms": 336.825,
+      "attempts": [
+        {
+          "reference_id": "reference_01",
+          "executed": true,
+          "geometric_signal": "rejected",
+          "reason": "no_verified_match",
+          "metrics": {
+            "good_matches": 3,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 59.272,
+            "scene_keypoints": 2000,
+            "sharpness": 276.553
+          }
+        },
+        {
+          "reference_id": "reference_02",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 6,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 105.578,
+            "scene_keypoints": 2000,
+            "sharpness": 276.553
+          }
+        },
+        {
+          "reference_id": "reference_03",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 8,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 77.858,
+            "scene_keypoints": 2000,
+            "sharpness": 276.553
+          }
+        },
+        {
+          "reference_id": "reference_04",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 10,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 84.778,
+            "scene_keypoints": 2000,
+            "sharpness": 276.553
+          }
+        }
+      ]
+    },
+    {
+      "method": "MULTI_ORB_CONSENSUS",
+      "sample_id": "scene_18",
+      "source_type": "real",
+      "object_id": "object_04",
+      "status": "UNKNOWN",
+      "reason": "insufficient_independent_references",
+      "executed": false,
+      "total_elapsed_ms": 336.825,
+      "attempts": [
+        {
+          "reference_id": "reference_01",
+          "executed": true,
+          "geometric_signal": "rejected",
+          "reason": "no_verified_match",
+          "metrics": {
+            "good_matches": 3,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 59.272,
+            "scene_keypoints": 2000,
+            "sharpness": 276.553
+          }
+        },
+        {
+          "reference_id": "reference_02",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 6,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 105.578,
+            "scene_keypoints": 2000,
+            "sharpness": 276.553
+          }
+        },
+        {
+          "reference_id": "reference_03",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 8,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 77.858,
+            "scene_keypoints": 2000,
+            "sharpness": 276.553
+          }
+        },
+        {
+          "reference_id": "reference_04",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 10,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 84.778,
+            "scene_keypoints": 2000,
+            "sharpness": 276.553
+          }
+        }
+      ]
+    },
+    {
+      "method": "SINGLE_ORB_ROI",
+      "sample_id": "scene_19",
+      "source_type": "real",
+      "object_id": "object_04",
+      "status": "UNKNOWN",
+      "reason": "insufficient_distinct_matches",
+      "executed": true,
+      "total_elapsed_ms": 238.445,
+      "attempts": [
+        {
+          "reference_id": "reference_01",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 4,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 54.888,
+            "scene_keypoints": 793,
+            "sharpness": 39.926
+          }
+        },
+        {
+          "reference_id": "reference_02",
+          "executed": true,
+          "geometric_signal": "rejected",
+          "reason": "no_verified_match",
+          "metrics": {
+            "good_matches": 3,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 58.433,
+            "scene_keypoints": 793,
+            "sharpness": 39.926
+          }
+        },
+        {
+          "reference_id": "reference_03",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 8,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 59.663,
+            "scene_keypoints": 793,
+            "sharpness": 39.926
+          }
+        },
+        {
+          "reference_id": "reference_04",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 9,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 56.63,
+            "scene_keypoints": 793,
+            "sharpness": 39.926
+          }
+        }
+      ]
+    },
+    {
+      "method": "MULTI_ORB_CONSENSUS",
+      "sample_id": "scene_19",
+      "source_type": "real",
+      "object_id": "object_04",
+      "status": "UNKNOWN",
+      "reason": "insufficient_independent_references",
+      "executed": false,
+      "total_elapsed_ms": 238.445,
+      "attempts": [
+        {
+          "reference_id": "reference_01",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 4,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 54.888,
+            "scene_keypoints": 793,
+            "sharpness": 39.926
+          }
+        },
+        {
+          "reference_id": "reference_02",
+          "executed": true,
+          "geometric_signal": "rejected",
+          "reason": "no_verified_match",
+          "metrics": {
+            "good_matches": 3,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 58.433,
+            "scene_keypoints": 793,
+            "sharpness": 39.926
+          }
+        },
+        {
+          "reference_id": "reference_03",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 8,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 59.663,
+            "scene_keypoints": 793,
+            "sharpness": 39.926
+          }
+        },
+        {
+          "reference_id": "reference_04",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 9,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 56.63,
+            "scene_keypoints": 793,
+            "sharpness": 39.926
+          }
+        }
+      ]
+    },
+    {
+      "method": "SINGLE_ORB_ROI",
+      "sample_id": "scene_20",
+      "source_type": "real",
+      "object_id": "object_04",
+      "status": "UNKNOWN",
+      "reason": "insufficient_geometric_inliers",
+      "executed": true,
+      "total_elapsed_ms": 239.853,
+      "attempts": [
+        {
+          "reference_id": "reference_01",
+          "executed": true,
+          "geometric_signal": "rejected",
+          "reason": "no_verified_match",
+          "metrics": {
+            "good_matches": 3,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 47.928,
+            "scene_keypoints": 611,
+            "sharpness": 45.228
+          }
+        },
+        {
+          "reference_id": "reference_02",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 7,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 55.21,
+            "scene_keypoints": 611,
+            "sharpness": 45.228
+          }
+        },
+        {
+          "reference_id": "reference_03",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 10,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 52.844,
+            "scene_keypoints": 611,
+            "sharpness": 45.228
+          }
+        },
+        {
+          "reference_id": "reference_04",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_geometric_inliers",
+          "metrics": {
+            "good_matches": 14,
+            "inliers": 4,
+            "inlier_ratio": 0.2857,
+            "reference_coverage": 0.2118,
+            "elapsed_ms": 75.444,
+            "scene_keypoints": 611,
+            "sharpness": 45.228
+          }
+        }
+      ]
+    },
+    {
+      "method": "MULTI_ORB_CONSENSUS",
+      "sample_id": "scene_20",
+      "source_type": "real",
+      "object_id": "object_04",
+      "status": "UNKNOWN",
+      "reason": "insufficient_independent_references",
+      "executed": false,
+      "total_elapsed_ms": 239.853,
+      "attempts": [
+        {
+          "reference_id": "reference_01",
+          "executed": true,
+          "geometric_signal": "rejected",
+          "reason": "no_verified_match",
+          "metrics": {
+            "good_matches": 3,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 47.928,
+            "scene_keypoints": 611,
+            "sharpness": 45.228
+          }
+        },
+        {
+          "reference_id": "reference_02",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 7,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 55.21,
+            "scene_keypoints": 611,
+            "sharpness": 45.228
+          }
+        },
+        {
+          "reference_id": "reference_03",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_distinct_matches",
+          "metrics": {
+            "good_matches": 10,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0,
+            "elapsed_ms": 52.844,
+            "scene_keypoints": 611,
+            "sharpness": 45.228
+          }
+        },
+        {
+          "reference_id": "reference_04",
+          "executed": true,
+          "geometric_signal": "unconfirmed",
+          "reason": "insufficient_geometric_inliers",
+          "metrics": {
+            "good_matches": 14,
+            "inliers": 4,
+            "inlier_ratio": 0.2857,
+            "reference_coverage": 0.2118,
+            "elapsed_ms": 75.444,
+            "scene_keypoints": 611,
+            "sharpness": 45.228
+          }
+        }
+      ]
+    }
+  ],
+  "metrics": {
+    "methods": {
+      "MULTI_ORB_CONSENSUS": {
+        "real/diagnostic_reused": {
+          "planned": {
+            "auxiliary": 1,
+            "negative": 8,
+            "positive": 6,
+            "uncertain": 5
+          },
+          "executed": {},
+          "row_count": 20,
+          "unexecuted_count": 20,
+          "accepted_count": 0,
+          "reason_counts": {
+            "insufficient_independent_references": 20
+          },
+          "presence_proxy": {
+            "positive_geometric_acceptances": 0,
+            "negative_false_acceptances": 0
+          },
+          "instance_localization": {
+            "status": "PARTIAL",
+            "correct": 0,
+            "false_acceptances": 0,
+            "misses": 6,
+            "true_negatives": 0,
+            "unverified_acceptances": 0,
+            "precision": null,
+            "recall": 0.0,
+            "negative_false_acceptances": 0,
+            "negative_count": 8,
+            "negative_false_acceptance_rate": null
+          },
+          "localization_truth_complete": false,
+          "samples": [
+            {
+              "sample_id": "scene_01",
+              "executed": false,
+              "iou": null,
+              "correct_instance_localization": null,
+              "label": "uncertain"
+            },
+            {
+              "sample_id": "scene_02",
+              "executed": false,
+              "iou": null,
+              "correct_instance_localization": null,
+              "label": "uncertain"
+            },
+            {
+              "sample_id": "scene_03",
+              "executed": false,
+              "iou": null,
+              "correct_instance_localization": false,
+              "label": "negative"
+            },
+            {
+              "sample_id": "scene_04",
+              "executed": false,
+              "iou": null,
+              "correct_instance_localization": false,
+              "label": "positive"
+            },
+            {
+              "sample_id": "scene_05",
+              "executed": false,
+              "iou": null,
+              "correct_instance_localization": false,
+              "label": "negative"
+            },
+            {
+              "sample_id": "scene_06",
+              "executed": false,
+              "iou": null,
+              "correct_instance_localization": null,
+              "label": "uncertain"
+            },
+            {
+              "sample_id": "scene_07",
+              "executed": false,
+              "iou": null,
+              "correct_instance_localization": false,
+              "label": "positive"
+            },
+            {
+              "sample_id": "scene_08",
+              "executed": false,
+              "iou": null,
+              "correct_instance_localization": false,
+              "label": "negative"
+            },
+            {
+              "sample_id": "scene_09",
+              "executed": false,
+              "iou": null,
+              "correct_instance_localization": false,
+              "label": "negative"
+            },
+            {
+              "sample_id": "scene_10",
+              "executed": false,
+              "iou": null,
+              "correct_instance_localization": false,
+              "label": "positive"
+            },
+            {
+              "sample_id": "scene_11",
+              "executed": false,
+              "iou": null,
+              "correct_instance_localization": null,
+              "label": "uncertain"
+            },
+            {
+              "sample_id": "scene_12",
+              "executed": false,
+              "iou": null,
+              "correct_instance_localization": null,
+              "label": "uncertain"
+            },
+            {
+              "sample_id": "scene_13",
+              "executed": false,
+              "iou": null,
+              "correct_instance_localization": false,
+              "label": "positive"
+            },
+            {
+              "sample_id": "scene_14",
+              "executed": false,
+              "iou": null,
+              "correct_instance_localization": false,
+              "label": "negative"
+            },
+            {
+              "sample_id": "scene_15",
+              "executed": false,
+              "iou": null,
+              "correct_instance_localization": false,
+              "label": "negative"
+            },
+            {
+              "sample_id": "scene_16",
+              "executed": false,
+              "iou": null,
+              "correct_instance_localization": false,
+              "label": "positive"
+            },
+            {
+              "sample_id": "scene_17",
+              "executed": false,
+              "iou": null,
+              "correct_instance_localization": null,
+              "label": "auxiliary"
+            },
+            {
+              "sample_id": "scene_18",
+              "executed": false,
+              "iou": null,
+              "correct_instance_localization": false,
+              "label": "negative"
+            },
+            {
+              "sample_id": "scene_19",
+              "executed": false,
+              "iou": null,
+              "correct_instance_localization": false,
+              "label": "positive"
+            },
+            {
+              "sample_id": "scene_20",
+              "executed": false,
+              "iou": null,
+              "correct_instance_localization": false,
+              "label": "negative"
+            }
+          ],
+          "restricted_demo_gate": "BLOCKED_MIXED_INSTANCES_USE_PER_INSTANCE",
+          "gate_prerequisites_met": false,
+          "per_instance": {
+            "object_01": {
+              "planned": {
+                "negative": 2,
+                "positive": 1,
+                "uncertain": 2
+              },
+              "executed": {},
+              "row_count": 5,
+              "unexecuted_count": 5,
+              "accepted_count": 0,
+              "reason_counts": {
+                "insufficient_independent_references": 5
+              },
+              "presence_proxy": {
+                "positive_geometric_acceptances": 0,
+                "negative_false_acceptances": 0
+              },
+              "instance_localization": {
+                "status": "PARTIAL",
+                "correct": 0,
+                "false_acceptances": 0,
+                "misses": 1,
+                "true_negatives": 0,
+                "unverified_acceptances": 0,
+                "precision": null,
+                "recall": 0.0,
+                "negative_false_acceptances": 0,
+                "negative_count": 2,
+                "negative_false_acceptance_rate": null
+              },
+              "localization_truth_complete": false,
+              "samples": [
+                {
+                  "sample_id": "scene_01",
+                  "executed": false,
+                  "iou": null,
+                  "correct_instance_localization": null,
+                  "label": "uncertain"
+                },
+                {
+                  "sample_id": "scene_02",
+                  "executed": false,
+                  "iou": null,
+                  "correct_instance_localization": null,
+                  "label": "uncertain"
+                },
+                {
+                  "sample_id": "scene_03",
+                  "executed": false,
+                  "iou": null,
+                  "correct_instance_localization": false,
+                  "label": "negative"
+                },
+                {
+                  "sample_id": "scene_04",
+                  "executed": false,
+                  "iou": null,
+                  "correct_instance_localization": false,
+                  "label": "positive"
+                },
+                {
+                  "sample_id": "scene_05",
+                  "executed": false,
+                  "iou": null,
+                  "correct_instance_localization": false,
+                  "label": "negative"
+                }
+              ],
+              "restricted_demo_gate": "BLOCKED",
+              "gate_prerequisites_met": false
+            },
+            "object_03": {
+              "planned": {
+                "negative": 2,
+                "positive": 1,
+                "uncertain": 2
+              },
+              "executed": {},
+              "row_count": 5,
+              "unexecuted_count": 5,
+              "accepted_count": 0,
+              "reason_counts": {
+                "insufficient_independent_references": 5
+              },
+              "presence_proxy": {
+                "positive_geometric_acceptances": 0,
+                "negative_false_acceptances": 0
+              },
+              "instance_localization": {
+                "status": "PARTIAL",
+                "correct": 0,
+                "false_acceptances": 0,
+                "misses": 1,
+                "true_negatives": 0,
+                "unverified_acceptances": 0,
+                "precision": null,
+                "recall": 0.0,
+                "negative_false_acceptances": 0,
+                "negative_count": 2,
+                "negative_false_acceptance_rate": null
+              },
+              "localization_truth_complete": false,
+              "samples": [
+                {
+                  "sample_id": "scene_11",
+                  "executed": false,
+                  "iou": null,
+                  "correct_instance_localization": null,
+                  "label": "uncertain"
+                },
+                {
+                  "sample_id": "scene_12",
+                  "executed": false,
+                  "iou": null,
+                  "correct_instance_localization": null,
+                  "label": "uncertain"
+                },
+                {
+                  "sample_id": "scene_13",
+                  "executed": false,
+                  "iou": null,
+                  "correct_instance_localization": false,
+                  "label": "positive"
+                },
+                {
+                  "sample_id": "scene_14",
+                  "executed": false,
+                  "iou": null,
+                  "correct_instance_localization": false,
+                  "label": "negative"
+                },
+                {
+                  "sample_id": "scene_15",
+                  "executed": false,
+                  "iou": null,
+                  "correct_instance_localization": false,
+                  "label": "negative"
+                }
+              ],
+              "restricted_demo_gate": "BLOCKED",
+              "gate_prerequisites_met": false
+            },
+            "object_02": {
+              "planned": {
+                "negative": 2,
+                "positive": 2,
+                "uncertain": 1
+              },
+              "executed": {},
+              "row_count": 5,
+              "unexecuted_count": 5,
+              "accepted_count": 0,
+              "reason_counts": {
+                "insufficient_independent_references": 5
+              },
+              "presence_proxy": {
+                "positive_geometric_acceptances": 0,
+                "negative_false_acceptances": 0
+              },
+              "instance_localization": {
+                "status": "PARTIAL",
+                "correct": 0,
+                "false_acceptances": 0,
+                "misses": 2,
+                "true_negatives": 0,
+                "unverified_acceptances": 0,
+                "precision": null,
+                "recall": 0.0,
+                "negative_false_acceptances": 0,
+                "negative_count": 2,
+                "negative_false_acceptance_rate": null
+              },
+              "localization_truth_complete": false,
+              "samples": [
+                {
+                  "sample_id": "scene_06",
+                  "executed": false,
+                  "iou": null,
+                  "correct_instance_localization": null,
+                  "label": "uncertain"
+                },
+                {
+                  "sample_id": "scene_07",
+                  "executed": false,
+                  "iou": null,
+                  "correct_instance_localization": false,
+                  "label": "positive"
+                },
+                {
+                  "sample_id": "scene_08",
+                  "executed": false,
+                  "iou": null,
+                  "correct_instance_localization": false,
+                  "label": "negative"
+                },
+                {
+                  "sample_id": "scene_09",
+                  "executed": false,
+                  "iou": null,
+                  "correct_instance_localization": false,
+                  "label": "negative"
+                },
+                {
+                  "sample_id": "scene_10",
+                  "executed": false,
+                  "iou": null,
+                  "correct_instance_localization": false,
+                  "label": "positive"
+                }
+              ],
+              "restricted_demo_gate": "BLOCKED",
+              "gate_prerequisites_met": false
+            },
+            "object_04": {
+              "planned": {
+                "auxiliary": 1,
+                "negative": 2,
+                "positive": 2
+              },
+              "executed": {},
+              "row_count": 5,
+              "unexecuted_count": 5,
+              "accepted_count": 0,
+              "reason_counts": {
+                "insufficient_independent_references": 5
+              },
+              "presence_proxy": {
+                "positive_geometric_acceptances": 0,
+                "negative_false_acceptances": 0
+              },
+              "instance_localization": {
+                "status": "PARTIAL",
+                "correct": 0,
+                "false_acceptances": 0,
+                "misses": 2,
+                "true_negatives": 0,
+                "unverified_acceptances": 0,
+                "precision": null,
+                "recall": 0.0,
+                "negative_false_acceptances": 0,
+                "negative_count": 2,
+                "negative_false_acceptance_rate": null
+              },
+              "localization_truth_complete": false,
+              "samples": [
+                {
+                  "sample_id": "scene_16",
+                  "executed": false,
+                  "iou": null,
+                  "correct_instance_localization": false,
+                  "label": "positive"
+                },
+                {
+                  "sample_id": "scene_17",
+                  "executed": false,
+                  "iou": null,
+                  "correct_instance_localization": null,
+                  "label": "auxiliary"
+                },
+                {
+                  "sample_id": "scene_18",
+                  "executed": false,
+                  "iou": null,
+                  "correct_instance_localization": false,
+                  "label": "negative"
+                },
+                {
+                  "sample_id": "scene_19",
+                  "executed": false,
+                  "iou": null,
+                  "correct_instance_localization": false,
+                  "label": "positive"
+                },
+                {
+                  "sample_id": "scene_20",
+                  "executed": false,
+                  "iou": null,
+                  "correct_instance_localization": false,
+                  "label": "negative"
+                }
+              ],
+              "restricted_demo_gate": "BLOCKED",
+              "gate_prerequisites_met": false
+            }
+          }
+        }
+      },
+      "SINGLE_ORB_ROI": {
+        "real/diagnostic_reused": {
+          "planned": {
+            "auxiliary": 1,
+            "negative": 8,
+            "positive": 6,
+            "uncertain": 5
+          },
+          "executed": {
+            "auxiliary": 1,
+            "negative": 8,
+            "positive": 6,
+            "uncertain": 5
+          },
+          "row_count": 20,
+          "unexecuted_count": 0,
+          "accepted_count": 0,
+          "reason_counts": {
+            "insufficient_distinct_matches": 13,
+            "insufficient_geometric_inliers": 3,
+            "low_sharpness_or_texture": 1,
+            "no_verified_match": 3
+          },
+          "presence_proxy": {
+            "positive_geometric_acceptances": 0,
+            "negative_false_acceptances": 0
+          },
+          "instance_localization": {
+            "status": "SCORED",
+            "correct": 0,
+            "false_acceptances": 0,
+            "misses": 6,
+            "true_negatives": 8,
+            "unverified_acceptances": 0,
+            "precision": null,
+            "recall": 0.0,
+            "negative_false_acceptances": 0,
+            "negative_count": 8,
+            "negative_false_acceptance_rate": 0.0
+          },
+          "localization_truth_complete": false,
+          "samples": [
+            {
+              "sample_id": "scene_01",
+              "executed": true,
+              "iou": null,
+              "correct_instance_localization": null,
+              "label": "uncertain"
+            },
+            {
+              "sample_id": "scene_02",
+              "executed": true,
+              "iou": null,
+              "correct_instance_localization": null,
+              "label": "uncertain"
+            },
+            {
+              "sample_id": "scene_03",
+              "executed": true,
+              "iou": null,
+              "correct_instance_localization": false,
+              "label": "negative"
+            },
+            {
+              "sample_id": "scene_04",
+              "executed": true,
+              "iou": null,
+              "correct_instance_localization": false,
+              "label": "positive"
+            },
+            {
+              "sample_id": "scene_05",
+              "executed": true,
+              "iou": null,
+              "correct_instance_localization": false,
+              "label": "negative"
+            },
+            {
+              "sample_id": "scene_06",
+              "executed": true,
+              "iou": null,
+              "correct_instance_localization": null,
+              "label": "uncertain"
+            },
+            {
+              "sample_id": "scene_07",
+              "executed": true,
+              "iou": null,
+              "correct_instance_localization": false,
+              "label": "positive"
+            },
+            {
+              "sample_id": "scene_08",
+              "executed": true,
+              "iou": null,
+              "correct_instance_localization": false,
+              "label": "negative"
+            },
+            {
+              "sample_id": "scene_09",
+              "executed": true,
+              "iou": null,
+              "correct_instance_localization": false,
+              "label": "negative"
+            },
+            {
+              "sample_id": "scene_10",
+              "executed": true,
+              "iou": null,
+              "correct_instance_localization": false,
+              "label": "positive"
+            },
+            {
+              "sample_id": "scene_11",
+              "executed": true,
+              "iou": null,
+              "correct_instance_localization": null,
+              "label": "uncertain"
+            },
+            {
+              "sample_id": "scene_12",
+              "executed": true,
+              "iou": null,
+              "correct_instance_localization": null,
+              "label": "uncertain"
+            },
+            {
+              "sample_id": "scene_13",
+              "executed": true,
+              "iou": null,
+              "correct_instance_localization": false,
+              "label": "positive"
+            },
+            {
+              "sample_id": "scene_14",
+              "executed": true,
+              "iou": null,
+              "correct_instance_localization": false,
+              "label": "negative"
+            },
+            {
+              "sample_id": "scene_15",
+              "executed": true,
+              "iou": null,
+              "correct_instance_localization": false,
+              "label": "negative"
+            },
+            {
+              "sample_id": "scene_16",
+              "executed": true,
+              "iou": null,
+              "correct_instance_localization": false,
+              "label": "positive"
+            },
+            {
+              "sample_id": "scene_17",
+              "executed": true,
+              "iou": null,
+              "correct_instance_localization": null,
+              "label": "auxiliary"
+            },
+            {
+              "sample_id": "scene_18",
+              "executed": true,
+              "iou": null,
+              "correct_instance_localization": false,
+              "label": "negative"
+            },
+            {
+              "sample_id": "scene_19",
+              "executed": true,
+              "iou": null,
+              "correct_instance_localization": false,
+              "label": "positive"
+            },
+            {
+              "sample_id": "scene_20",
+              "executed": true,
+              "iou": null,
+              "correct_instance_localization": false,
+              "label": "negative"
+            }
+          ],
+          "restricted_demo_gate": "BLOCKED_MIXED_INSTANCES_USE_PER_INSTANCE",
+          "gate_prerequisites_met": false,
+          "per_instance": {
+            "object_01": {
+              "planned": {
+                "negative": 2,
+                "positive": 1,
+                "uncertain": 2
+              },
+              "executed": {
+                "negative": 2,
+                "positive": 1,
+                "uncertain": 2
+              },
+              "row_count": 5,
+              "unexecuted_count": 0,
+              "accepted_count": 0,
+              "reason_counts": {
+                "insufficient_distinct_matches": 3,
+                "no_verified_match": 2
+              },
+              "presence_proxy": {
+                "positive_geometric_acceptances": 0,
+                "negative_false_acceptances": 0
+              },
+              "instance_localization": {
+                "status": "SCORED",
+                "correct": 0,
+                "false_acceptances": 0,
+                "misses": 1,
+                "true_negatives": 2,
+                "unverified_acceptances": 0,
+                "precision": null,
+                "recall": 0.0,
+                "negative_false_acceptances": 0,
+                "negative_count": 2,
+                "negative_false_acceptance_rate": 0.0
+              },
+              "localization_truth_complete": false,
+              "samples": [
+                {
+                  "sample_id": "scene_01",
+                  "executed": true,
+                  "iou": null,
+                  "correct_instance_localization": null,
+                  "label": "uncertain"
+                },
+                {
+                  "sample_id": "scene_02",
+                  "executed": true,
+                  "iou": null,
+                  "correct_instance_localization": null,
+                  "label": "uncertain"
+                },
+                {
+                  "sample_id": "scene_03",
+                  "executed": true,
+                  "iou": null,
+                  "correct_instance_localization": false,
+                  "label": "negative"
+                },
+                {
+                  "sample_id": "scene_04",
+                  "executed": true,
+                  "iou": null,
+                  "correct_instance_localization": false,
+                  "label": "positive"
+                },
+                {
+                  "sample_id": "scene_05",
+                  "executed": true,
+                  "iou": null,
+                  "correct_instance_localization": false,
+                  "label": "negative"
+                }
+              ],
+              "restricted_demo_gate": "BLOCKED",
+              "gate_prerequisites_met": false
+            },
+            "object_03": {
+              "planned": {
+                "negative": 2,
+                "positive": 1,
+                "uncertain": 2
+              },
+              "executed": {
+                "negative": 2,
+                "positive": 1,
+                "uncertain": 2
+              },
+              "row_count": 5,
+              "unexecuted_count": 0,
+              "accepted_count": 0,
+              "reason_counts": {
+                "insufficient_distinct_matches": 4,
+                "insufficient_geometric_inliers": 1
+              },
+              "presence_proxy": {
+                "positive_geometric_acceptances": 0,
+                "negative_false_acceptances": 0
+              },
+              "instance_localization": {
+                "status": "SCORED",
+                "correct": 0,
+                "false_acceptances": 0,
+                "misses": 1,
+                "true_negatives": 2,
+                "unverified_acceptances": 0,
+                "precision": null,
+                "recall": 0.0,
+                "negative_false_acceptances": 0,
+                "negative_count": 2,
+                "negative_false_acceptance_rate": 0.0
+              },
+              "localization_truth_complete": false,
+              "samples": [
+                {
+                  "sample_id": "scene_11",
+                  "executed": true,
+                  "iou": null,
+                  "correct_instance_localization": null,
+                  "label": "uncertain"
+                },
+                {
+                  "sample_id": "scene_12",
+                  "executed": true,
+                  "iou": null,
+                  "correct_instance_localization": null,
+                  "label": "uncertain"
+                },
+                {
+                  "sample_id": "scene_13",
+                  "executed": true,
+                  "iou": null,
+                  "correct_instance_localization": false,
+                  "label": "positive"
+                },
+                {
+                  "sample_id": "scene_14",
+                  "executed": true,
+                  "iou": null,
+                  "correct_instance_localization": false,
+                  "label": "negative"
+                },
+                {
+                  "sample_id": "scene_15",
+                  "executed": true,
+                  "iou": null,
+                  "correct_instance_localization": false,
+                  "label": "negative"
+                }
+              ],
+              "restricted_demo_gate": "BLOCKED",
+              "gate_prerequisites_met": false
+            },
+            "object_02": {
+              "planned": {
+                "negative": 2,
+                "positive": 2,
+                "uncertain": 1
+              },
+              "executed": {
+                "negative": 2,
+                "positive": 2,
+                "uncertain": 1
+              },
+              "row_count": 5,
+              "unexecuted_count": 0,
+              "accepted_count": 0,
+              "reason_counts": {
+                "insufficient_distinct_matches": 3,
+                "insufficient_geometric_inliers": 1,
+                "no_verified_match": 1
+              },
+              "presence_proxy": {
+                "positive_geometric_acceptances": 0,
+                "negative_false_acceptances": 0
+              },
+              "instance_localization": {
+                "status": "SCORED",
+                "correct": 0,
+                "false_acceptances": 0,
+                "misses": 2,
+                "true_negatives": 2,
+                "unverified_acceptances": 0,
+                "precision": null,
+                "recall": 0.0,
+                "negative_false_acceptances": 0,
+                "negative_count": 2,
+                "negative_false_acceptance_rate": 0.0
+              },
+              "localization_truth_complete": false,
+              "samples": [
+                {
+                  "sample_id": "scene_06",
+                  "executed": true,
+                  "iou": null,
+                  "correct_instance_localization": null,
+                  "label": "uncertain"
+                },
+                {
+                  "sample_id": "scene_07",
+                  "executed": true,
+                  "iou": null,
+                  "correct_instance_localization": false,
+                  "label": "positive"
+                },
+                {
+                  "sample_id": "scene_08",
+                  "executed": true,
+                  "iou": null,
+                  "correct_instance_localization": false,
+                  "label": "negative"
+                },
+                {
+                  "sample_id": "scene_09",
+                  "executed": true,
+                  "iou": null,
+                  "correct_instance_localization": false,
+                  "label": "negative"
+                },
+                {
+                  "sample_id": "scene_10",
+                  "executed": true,
+                  "iou": null,
+                  "correct_instance_localization": false,
+                  "label": "positive"
+                }
+              ],
+              "restricted_demo_gate": "BLOCKED",
+              "gate_prerequisites_met": false
+            },
+            "object_04": {
+              "planned": {
+                "auxiliary": 1,
+                "negative": 2,
+                "positive": 2
+              },
+              "executed": {
+                "auxiliary": 1,
+                "negative": 2,
+                "positive": 2
+              },
+              "row_count": 5,
+              "unexecuted_count": 0,
+              "accepted_count": 0,
+              "reason_counts": {
+                "insufficient_distinct_matches": 3,
+                "insufficient_geometric_inliers": 1,
+                "low_sharpness_or_texture": 1
+              },
+              "presence_proxy": {
+                "positive_geometric_acceptances": 0,
+                "negative_false_acceptances": 0
+              },
+              "instance_localization": {
+                "status": "SCORED",
+                "correct": 0,
+                "false_acceptances": 0,
+                "misses": 2,
+                "true_negatives": 2,
+                "unverified_acceptances": 0,
+                "precision": null,
+                "recall": 0.0,
+                "negative_false_acceptances": 0,
+                "negative_count": 2,
+                "negative_false_acceptance_rate": 0.0
+              },
+              "localization_truth_complete": false,
+              "samples": [
+                {
+                  "sample_id": "scene_16",
+                  "executed": true,
+                  "iou": null,
+                  "correct_instance_localization": false,
+                  "label": "positive"
+                },
+                {
+                  "sample_id": "scene_17",
+                  "executed": true,
+                  "iou": null,
+                  "correct_instance_localization": null,
+                  "label": "auxiliary"
+                },
+                {
+                  "sample_id": "scene_18",
+                  "executed": true,
+                  "iou": null,
+                  "correct_instance_localization": false,
+                  "label": "negative"
+                },
+                {
+                  "sample_id": "scene_19",
+                  "executed": true,
+                  "iou": null,
+                  "correct_instance_localization": false,
+                  "label": "positive"
+                },
+                {
+                  "sample_id": "scene_20",
+                  "executed": true,
+                  "iou": null,
+                  "correct_instance_localization": false,
+                  "label": "negative"
+                }
+              ],
+              "restricted_demo_gate": "BLOCKED",
+              "gate_prerequisites_met": false
+            }
+          }
+        }
+      }
+    },
+    "gate": "SEE_METHOD_GROUPS",
+    "notes": [
+      "EXPERIMENTAL_ACCEPTED is geometric support, not production FOUND",
+      "diagnostic_reused and software_fixture cannot establish real independent improvement",
+      "capture independence, reference freeze and human identity reviews require external audit"
+    ]
+  }
+}

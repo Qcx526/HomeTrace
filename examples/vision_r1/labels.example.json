@@ -1,0 +1,13 @@
+[
+  {
+    "sample_id": "example-scene-not-real-evidence",
+    "object_instance_id": "example-instance-not-a-real-registration",
+    "label": "uncertain",
+    "source_type": "real",
+    "split": "diagnostic_reused",
+    "capture_batch": "unknown",
+    "target_box": null,
+    "box_source": "none",
+    "instance_reviews": {}
+  }
+]
