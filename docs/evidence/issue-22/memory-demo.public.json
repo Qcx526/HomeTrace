@@ -1,0 +1,16 @@
+{
+  "scope": "software demonstration statements, not physical object observations",
+  "independent_processes": 5,
+  "all_exit_codes": [
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "history_event_count": 1,
+  "first_candidate_location_id": "study",
+  "visual_confirmed": false,
+  "new_training_steps": 0,
+  "expected_reply": "好的，我已记录你说的位置；尚未通过当前图像确认"
+}

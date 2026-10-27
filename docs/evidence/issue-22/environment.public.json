@@ -1,0 +1,40 @@
+{
+  "parameters": {
+    "detector_sizes": [
+      640,
+      960
+    ],
+    "conf": 0.25,
+    "nms_iou": 0.7,
+    "max_det": 100,
+    "encoder_size": 224,
+    "min_similarity": 0.7,
+    "min_margin": 0.05,
+    "min_support": 2,
+    "feature": "normalized_cls_token",
+    "resize": "whole_crop_bicubic_224_square",
+    "candidate_classes": [
+      "cup"
+    ],
+    "training": false
+  },
+  "encoder": "dinov2_vits14",
+  "encoder_source_commit": "7764ea0f912e53c92e82eb78a2a1631e92725fc8",
+  "encoder_sha256": "b938bf1bc15cd2ec0feacfe3a1bb553fe8ea9ca46a7e1d8d00217f29aef60cd9",
+  "detector_sha256": "0ebbc80d4a7680d14987a577cd21342b65ecfd94632bd9a8da63ae6417644ee1",
+  "encoder_license": "Apache-2.0",
+  "detector_license": "Ultralytics AGPL-3.0 or enterprise; no redistribution here",
+  "torch": "2.6.0+cu124",
+  "ultralytics": "8.3.221",
+  "cuda": "12.4",
+  "device": "NVIDIA GeForce GTX 1660",
+  "trainable_encoder_parameters": 0,
+  "scene_ground_truth_input": false,
+  "independent_test": false,
+  "production_integration": false,
+  "source_commit": "cf049774891b020a988ce14421bb73dc75790240",
+  "script_sha256": "93a98ea26495b2811d6cee9fd35a9dd3e60018049880fb8b338e17756bceef31",
+  "gallery_script_sha256": "03b8dfdc1948f0a50f924f7ae07566ee4cd113e0b653ed09dd98684daa793ac1",
+  "encoder_preprocessing": "RGB candidate/reference crop resized entirely to square; ImageNet normalization",
+  "timing": "CUDA synchronized full candidate detection plus encoding/ranking, excludes decode and drawing; first call cold"
+}

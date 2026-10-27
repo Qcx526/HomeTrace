@@ -1,0 +1,192 @@
+{
+  "groups": {
+    "640": {
+      "detector_only": {
+        "train": {
+          "tp": 5,
+          "fp": 1,
+          "fn": 1,
+          "images": 8,
+          "positive_images": 6,
+          "negative_images": 2,
+          "correctly_localized_positive_images": 5,
+          "negative_images_with_candidates": 0,
+          "precision": 0.8333333333333334,
+          "recall": 0.8333333333333334,
+          "negative_image_false_acceptance_rate": 0.0
+        },
+        "val": {
+          "tp": 3,
+          "fp": 3,
+          "fn": 1,
+          "images": 7,
+          "positive_images": 4,
+          "negative_images": 3,
+          "correctly_localized_positive_images": 3,
+          "negative_images_with_candidates": 1,
+          "precision": 0.5,
+          "recall": 0.75,
+          "negative_image_false_acceptance_rate": 0.3333333333333333
+        },
+        "all": {
+          "tp": 8,
+          "fp": 4,
+          "fn": 2,
+          "images": 15,
+          "positive_images": 10,
+          "negative_images": 5,
+          "correctly_localized_positive_images": 8,
+          "negative_images_with_candidates": 1,
+          "precision": 0.6666666666666666,
+          "recall": 0.8,
+          "negative_image_false_acceptance_rate": 0.2
+        }
+      },
+      "retrieval": {
+        "train": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 4,
+          "images": 8,
+          "positive_images": 6,
+          "negative_images": 2,
+          "correctly_localized_positive_images": 2,
+          "negative_images_with_candidates": 0,
+          "precision": 1.0,
+          "recall": 0.3333333333333333,
+          "negative_image_false_acceptance_rate": 0.0
+        },
+        "val": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 3,
+          "images": 7,
+          "positive_images": 4,
+          "negative_images": 3,
+          "correctly_localized_positive_images": 1,
+          "negative_images_with_candidates": 0,
+          "precision": 1.0,
+          "recall": 0.25,
+          "negative_image_false_acceptance_rate": 0.0
+        },
+        "all": {
+          "tp": 3,
+          "fp": 0,
+          "fn": 7,
+          "images": 15,
+          "positive_images": 10,
+          "negative_images": 5,
+          "correctly_localized_positive_images": 3,
+          "negative_images_with_candidates": 0,
+          "precision": 1.0,
+          "recall": 0.3,
+          "negative_image_false_acceptance_rate": 0.0
+        }
+      },
+      "rejection_reasons": {
+        "insufficient_distinct_reference_support": 9
+      },
+      "no_detector_candidate_images": 5,
+      "warm_median_ms": 47.464,
+      "max_peak_allocated_bytes": 161968128
+    },
+    "960": {
+      "detector_only": {
+        "train": {
+          "tp": 5,
+          "fp": 1,
+          "fn": 1,
+          "images": 8,
+          "positive_images": 6,
+          "negative_images": 2,
+          "correctly_localized_positive_images": 5,
+          "negative_images_with_candidates": 0,
+          "precision": 0.8333333333333334,
+          "recall": 0.8333333333333334,
+          "negative_image_false_acceptance_rate": 0.0
+        },
+        "val": {
+          "tp": 3,
+          "fp": 4,
+          "fn": 1,
+          "images": 7,
+          "positive_images": 4,
+          "negative_images": 3,
+          "correctly_localized_positive_images": 3,
+          "negative_images_with_candidates": 1,
+          "precision": 0.42857142857142855,
+          "recall": 0.75,
+          "negative_image_false_acceptance_rate": 0.3333333333333333
+        },
+        "all": {
+          "tp": 8,
+          "fp": 5,
+          "fn": 2,
+          "images": 15,
+          "positive_images": 10,
+          "negative_images": 5,
+          "correctly_localized_positive_images": 8,
+          "negative_images_with_candidates": 1,
+          "precision": 0.6153846153846154,
+          "recall": 0.8,
+          "negative_image_false_acceptance_rate": 0.2
+        }
+      },
+      "retrieval": {
+        "train": {
+          "tp": 3,
+          "fp": 0,
+          "fn": 3,
+          "images": 8,
+          "positive_images": 6,
+          "negative_images": 2,
+          "correctly_localized_positive_images": 3,
+          "negative_images_with_candidates": 0,
+          "precision": 1.0,
+          "recall": 0.5,
+          "negative_image_false_acceptance_rate": 0.0
+        },
+        "val": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 3,
+          "images": 7,
+          "positive_images": 4,
+          "negative_images": 3,
+          "correctly_localized_positive_images": 1,
+          "negative_images_with_candidates": 0,
+          "precision": 1.0,
+          "recall": 0.25,
+          "negative_image_false_acceptance_rate": 0.0
+        },
+        "all": {
+          "tp": 4,
+          "fp": 0,
+          "fn": 6,
+          "images": 15,
+          "positive_images": 10,
+          "negative_images": 5,
+          "correctly_localized_positive_images": 4,
+          "negative_images_with_candidates": 0,
+          "precision": 1.0,
+          "recall": 0.4,
+          "negative_image_false_acceptance_rate": 0.0
+        }
+      },
+      "rejection_reasons": {
+        "insufficient_distinct_reference_support": 9
+      },
+      "no_detector_candidate_images": 5,
+      "warm_median_ms": 59.1525,
+      "max_peak_allocated_bytes": 184385536
+    }
+  },
+  "physical_images": 18,
+  "reference_images_excluded": 3,
+  "independent_test_images": 0,
+  "production_found": false,
+  "thresholds_calibrated": false,
+  "scope": "reused-development appearance retrieval; not physical identity",
+  "rival_control": "one reviewed cartoon reference, limited",
+  "evaluation_rule": "one-to-one IoU >= .5; duplicate supported boxes count FP"
+}
