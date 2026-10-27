@@ -31,7 +31,7 @@ SOURCE_DOCS = {
     "P0_IMPLEMENTATION.md", "P1_IMPLEMENTATION.md", "P1_VISION_CHOICE.md",
     "P2_DEMO.md", "P3_DELIVERY.md", "SUBMISSION_TOOL.md", "SUBMISSION_PLAN.md",
     "TEAM_PHOTO_EVALUATION.md", "SUBMISSION_READINESS.md", "REGISTRATION_ROI_EVALUATION.md",
-    "P4_AGENT.md",
+    "P4_AGENT.md", "HOUSEHOLD_WORKSPACE.md",
 }
 CONFIRMATIONS = ("privacy_reviewed", "media_truthful", "materials_consistent")
 MATERIALS = ("application", "presentation", "video", "run_report", "originality")

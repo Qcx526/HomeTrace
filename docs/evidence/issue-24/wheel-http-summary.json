@@ -1,0 +1,33 @@
+{
+  "status": "PASS",
+  "evidence_kind": "actual_http_processes_with_software_fixture_statements",
+  "timestamp": "2026-10-27T07:10:47.237111+00:00",
+  "server_processes": 2,
+  "api_requests": 20,
+  "visual_confirmed": false,
+  "browser_ui_executed": false,
+  "persisted_blue_key_events": 2,
+  "cancelled_cup_events": 0,
+  "candidate_order": [
+    "study-desk",
+    "entry-tray"
+  ],
+  "assets": {
+    "household.html": {
+      "bytes": 7031,
+      "sha256": "717e40af0a9f3b01f3c1ae5b618ba2717556d60dd22b733380f1074bea89e94e"
+    },
+    "household.js": {
+      "bytes": 12946,
+      "sha256": "24b9798ed109477f5ebee33462d285589901be14f7921adc9d43fa3b0412d7c4"
+    },
+    "household.css": {
+      "bytes": 9055,
+      "sha256": "6bfe22ca6fa3add339216c7d4b816a58a25ce4c174bf6368d22cc2b7a3d9f2f8"
+    }
+  },
+  "local_logs": [
+    "server-1.log",
+    "server-2.log"
+  ]
+}

@@ -7,15 +7,17 @@ import json
 import mimetypes
 from pathlib import Path
 import re
+import sqlite3
 import subprocess
 import sys
 from urllib.parse import urlsplit
 
 from .demo_service import DemoBusyError, DemoService
 from .recorded import load_recorded_scene
+from .household_service import HouseholdConflict, HouseholdService
 
 
-def make_server(service: DemoService, port: int = 8765, *, agent_service=None) -> ThreadingHTTPServer:
+def make_server(service: DemoService, port: int = 8765, *, agent_service=None, household_service=None) -> ThreadingHTTPServer:
     class Handler(BaseHTTPRequestHandler):
         def _local(self) -> bool:
             actual_port = self.server.server_port
@@ -48,6 +50,27 @@ def make_server(service: DemoService, port: int = 8765, *, agent_service=None) -
             if not self._local():
                 return
             path = urlsplit(self.path).path
+            if path == '/api/household':
+                if household_service is None:
+                    self._json({'error': '家庭工作区未启用', 'enabled': False}, 503)
+                else:
+                    try:
+                        self._json(household_service.config())
+                    except (sqlite3.Error, OSError, ValueError):
+                        self._json({'error': '家庭工作区暂时无法读取，请检查本地数据库'}, 500)
+                return
+            household_match = re.fullmatch(r'/api/household/sessions/([0-9a-f]{32})', path)
+            if household_match:
+                if household_service is None:
+                    self._json({'error': '家庭工作区未启用'}, 503)
+                    return
+                try:
+                    self._json(household_service.get(household_match.group(1)))
+                except KeyError:
+                    self._json({'error': '交互记录不存在'}, 404)
+                except (sqlite3.Error, OSError, ValueError):
+                    self._json({'error': '交互记录无法读取'}, 500)
+                return
             if path == "/api/config":
                 self._json(service.config())
                 return
@@ -68,6 +91,8 @@ def make_server(service: DemoService, port: int = 8765, *, agent_service=None) -
                 return
             static = {"/": ("index.html", "text/html"), "/app.js": ("app.js", "text/javascript"), "/style.css": ("style.css", "text/css")}
             static.update({"/agent.html":("agent.html","text/html"),"/agent.js":("agent.js","text/javascript"),"/agent.css":("agent.css","text/css")})
+            static.update({f'/household.{ext}': (f'household.{ext}', mime) for ext, mime in
+                           [('html', 'text/html'), ('js', 'text/javascript'), ('css', 'text/css')]})
             if path in static:
                 name, mime = static[path]
                 self._send(files("hometrace").joinpath("web", name).read_bytes(), mime + "; charset=utf-8")
@@ -92,7 +117,8 @@ def make_server(service: DemoService, port: int = 8765, *, agent_service=None) -
         def do_POST(self):
             if not self._local():
                 return
-            if self.path not in ("/api/run", "/api/agent/run"):
+            household_paths = ('/api/household/enroll', '/api/household/start', '/api/household/act')
+            if self.path not in ("/api/run", "/api/agent/run", *household_paths):
                 self._json({"error": "Not found"}, 404)
                 return
             if self.headers.get("Content-Type", "").split(";")[0] != "application/json":
@@ -100,9 +126,29 @@ def make_server(service: DemoService, port: int = 8765, *, agent_service=None) -
                 return
             try:
                 length = int(self.headers.get("Content-Length", "0"))
-                if not 0 < length <= (4096 if self.path == "/api/agent/run" else 1024):
+                limit = 8192 if self.path in household_paths else 4096 if self.path == '/api/agent/run' else 1024
+                if not 0 < length <= limit:
                     raise ValueError("Invalid request length")
                 value = json.loads(self.rfile.read(length))
+                if self.path in household_paths:
+                    if household_service is None:
+                        self._json({'error': '家庭工作区未启用'}, 503)
+                        return
+                    if not isinstance(value, dict):
+                        raise ValueError('请求必须为JSON对象')
+                    if self.path.endswith('/enroll'):
+                        if (set(value) != {'object_id', 'name', 'aliases'} or not isinstance(value['aliases'], list)):
+                            raise ValueError('登记须提供object_id、name与aliases列表')
+                        self._json(household_service.enroll(**value))
+                    elif self.path.endswith('/start'):
+                        if not {'intent', 'query'} <= set(value) or set(value) - {'intent', 'query', 'location_id', 'reported_at'}:
+                            raise ValueError('交互须提供intent、query和可选地点、时间')
+                        self._json(household_service.start(**value))
+                    else:
+                        if not {'session_id', 'version', 'action'} <= set(value) or set(value) - {'session_id', 'version', 'action', 'object_id'}:
+                            raise ValueError('操作须提供session_id、version、action和可选object_id')
+                        self._json(household_service.act(**value))
+                    return
                 if self.path == "/api/agent/run":
                     if agent_service is None:
                         self._json({"error":"Agent is disabled; start with --agent"},503)
@@ -116,10 +162,14 @@ def make_server(service: DemoService, port: int = 8765, *, agent_service=None) -
                 if not all(isinstance(v, str) for v in value.values()):
                     raise ValueError("Scenario and strategy must be strings")
                 self._json(service.run(value["scenario"], value["strategy"], value.get("case_id", "public")))
-            except DemoBusyError as exc:
+            except (DemoBusyError, HouseholdConflict) as exc:
                 self._json({"error": str(exc)}, 409)
             except (ValueError, UnicodeError) as exc:
                 self._json({"error": str(exc)}, 400)
+            except KeyError:
+                self._json({'error': '交互记录不存在'}, 404)
+            except sqlite3.Error:
+                self._json({'error': '本地数据库操作失败，未确认保存成功；请重新读取当前状态'}, 500)
             except (OSError, subprocess.TimeoutExpired):
                 self._json({"error": "Local photo operation failed; inspect the run logs"}, 500)
 
@@ -134,6 +184,8 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--case-config", type=Path, action="append", default=[], help="Optional private local object configuration; repeat to add cases")
     parser.add_argument("--agent", action="store_true", help="Enable the real API Agent; requires [agent] dependencies and local .env")
     parser.add_argument("--config", type=Path, help="Optional Agent config.yaml path")
+    parser.add_argument('--household-dir', type=Path, default=Path('artifacts/household'),
+                        help='Persistent private household workspace; reuse across restarts')
     args = parser.parse_args(argv)
     try:
         if not 0 <= args.port <= 65535:
@@ -145,10 +197,12 @@ def main(argv: list[str] | None = None) -> int:
         if args.agent:
             from .agent_service import AgentService
             agent_service = AgentService(args.samples_dir,args.output_dir/"agent",config_path=args.config)
-        with make_server(service, args.port, agent_service=agent_service) as server:
+        household_service = HouseholdService(args.household_dir)
+        with make_server(service, args.port, agent_service=agent_service, household_service=household_service) as server:
             print(f"HomeTrace demo: http://127.0.0.1:{server.server_port}", flush=True)
             print("Recorded photographs + simulated navigation. Real execution followed by event playback.", flush=True)
             print(f"Run evidence: {service.output_dir}", flush=True)
+            print(f"Household workspace: http://127.0.0.1:{server.server_port}/household.html (owner statements, no visual confirmation)", flush=True)
             server.serve_forever()
     except KeyboardInterrupt:
         return 0

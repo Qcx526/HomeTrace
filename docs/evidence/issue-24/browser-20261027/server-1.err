@@ -1,0 +1,16 @@
+127.0.0.1 - - [27/Oct/2026 15:54:56] "GET /household.html HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2026 15:54:56] "GET /household.css HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2026 15:54:56] "GET /household.js HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2026 15:54:56] "GET /api/household HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2026 15:54:56] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [27/Oct/2026 15:55:44] "POST /api/household/enroll HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2026 15:55:44] "GET /api/household HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2026 15:56:25] "POST /api/household/enroll HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2026 15:56:25] "GET /api/household HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2026 15:56:26] "POST /api/household/start HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2026 15:56:51] "POST /api/household/act HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2026 15:56:51] "GET /household.html HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2026 15:56:51] "GET /household.css HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2026 15:56:51] "GET /household.js HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2026 15:56:51] "GET /api/household HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2026 15:56:52] "GET /api/household/sessions/cd37765930634f1ab7c492cd94a5fa30 HTTP/1.1" 200 -

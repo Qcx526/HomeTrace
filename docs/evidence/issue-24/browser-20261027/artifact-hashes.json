@@ -1,0 +1,32 @@
+{
+  "scope": "SHA256 of Git-index bytes (text normalized by Git); excludes this manifest itself.",
+  "files": {
+    "01-clarify.txt": "72d20753e2b9a71d6c7e4c35fd91c8f3bf411962ec3d47de0768d58f52fe08dc",
+    "02-reload-pending.jpg": "9fd080e5aef92a45d5d8253bdb538af5d1bbd5667e2253f33d237fb9fa8e6d11",
+    "02-reload-pending.txt": "2c9bb1124cfac5e960b7adb46b59e1b5f15a3c946afca00dac0dfb5a5a7126b8",
+    "03-server-restart-pending.txt": "2c9bb1124cfac5e960b7adb46b59e1b5f15a3c946afca00dac0dfb5a5a7126b8",
+    "04-confirmed.txt": "bccedbc8b245b840730bbee9f3c06e60559ce7b323179230268833d80f973a06",
+    "05-conflict.jpg": "f05ed6cd688d5168c1e8a5cd68fb617d07d91a89481b6519ff6a295c781b2fdf",
+    "05-conflict.txt": "0d28e4e3172d720cf1f731a8e248e5f5d304d1ffe39a9e88c3cd3d8b02639854",
+    "06-cancelled.txt": "f08b07beffa59af45a9f79907891a5ac887e0266b6388070f94c10ead0cd0481",
+    "07-cancel-history.txt": "abede53217fb098f0f347394a32a55962da1a2300ddae5db0199d05b7bbad964",
+    "08-unknown.txt": "d279206bcf6bfffe956d250bd82def6d6d38425892ab7b5d7a3d1156b8779d45",
+    "09-unknown-resumed.jpg": "66207dc3c3124bb84c584bae046cf654d8028967cc7cd534ed9eae6b07cad49d",
+    "09-unknown-resumed.txt": "1848fa791ece3452a99a68729909464bf3191eeae827b1717ca358cb4052720d",
+    "10-cup-empty.txt": "d372ff2bfacf77df893bfdba894d5cbedc9fd306e99bda187f23b84ebc72ab58",
+    "11-latest-history.txt": "0edd98c5164b0fffecc28036117ef46e986bb8ad9a63d784785ad27c93b30c0c",
+    "12-other-instance-empty.txt": "71bcba08446f7844e3779f3bed240724fe1d8e1a5c0d68a8f7dd8f7b809bc25e",
+    "13-final-history.jpg": "409dc72011b6bdc3eb65ed2591283b5ac542cd11bc0a0d482eb115fb0bd399e6",
+    "13-final-history.txt": "3a5b66cb9eea98d84217f717fcdf67ffb24193d6670d0a31768750860eb603f7",
+    "14-mobile-layout.jpg": "b5496c4179e993fca3268c699f1f3a440398e5197d921e8230352f7af16dc8d0",
+    "14-mobile-layout.txt": "3a5b66cb9eea98d84217f717fcdf67ffb24193d6670d0a31768750860eb603f7",
+    "README.md": "d86afa6cb9186aa1a097005893b55b4f02d7e21e1cc988374f696092540871ed",
+    "browser-checks.json": "b690d8593d45671d67347d4557bb516149e9961883d916002fd21d0c829ee656",
+    "console-handoff.json": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "privacy-source-audit.json": "99064f15e3a22215211715c3e9f0f60ed6c58d4d69024378d1b31f6f1bb6ff90",
+    "server-1.err": "ef696c6971adbcdecd9ea2c9d2731bc3ca83a7079dbb061827b600df224ccc5c",
+    "server-1.log": "7bd6b191d89276e2c3afc50b19a79c3d76524814042375061f431916d4c6b9fc",
+    "server-2.err": "8224a4bf13f87b4a023e1918ce4c1bb3d1d110961fb580e0932b99b691e8ca18",
+    "server-2.log": "7bd6b191d89276e2c3afc50b19a79c3d76524814042375061f431916d4c6b9fc"
+  }
+}
