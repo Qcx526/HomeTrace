@@ -1,0 +1,9 @@
+{
+  "actual_inference_calls": 36,
+  "physical_images": 18,
+  "training_steps": 0,
+  "originals_unchanged": true,
+  "weights_unchanged": true,
+  "independent_test_images": 0,
+  "identity_confirmed": false
+}

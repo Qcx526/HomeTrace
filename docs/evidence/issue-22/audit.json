@@ -1,0 +1,41 @@
+{
+  "base_commit": "cf049774891b020a988ce14421bb73dc75790240",
+  "stacked_on_pr": 21,
+  "historical_experiment_files_and_photos_unchanged": 754,
+  "old_tracked_files_modified": [],
+  "production_code_unchanged": true,
+  "new_file_paths": [
+    "docs/DELIVERY_SPRINT_20261102.md",
+    "docs/VISION_R3_PROTOCOL.md",
+    "docs/VISION_R3_SHARED_MEMORY_20261027.md",
+    "docs/evidence/issue-22/README.md",
+    "docs/evidence/issue-22/completion.public.json",
+    "docs/evidence/issue-22/environment.public.json",
+    "docs/evidence/issue-22/memory-demo.public.json",
+    "docs/evidence/issue-22/metrics.public.json",
+    "docs/evidence/issue-22/reproduction.json",
+    "tests/test_household_memory.py",
+    "tests/test_vision_gallery.py",
+    "tests/test_vision_r3.py",
+    "tools/household_memory.py",
+    "tools/score_vision_r3.py",
+    "tools/vision_gallery.py",
+    "tools/vision_r3_retrieve.py"
+  ],
+  "privacy_scan_findings": [],
+  "photo_hashes_found_in_public_files": 0,
+  "tests": {
+    "tests": "576",
+    "failures": "0",
+    "errors": "0",
+    "skipped": "0",
+    "time": "83.596"
+  },
+  "test_environment": "existing Windows Python 3.11.4 agent-env; not a new clean installation",
+  "inference_script_hash_matches_current_source": true,
+  "shared_gallery_hash_matches_current_source": true,
+  "ultralytics_settings_only_in_ignored_output": true,
+  "no_production_found": true,
+  "no_new_training": true,
+  "no_synthetic_images": true
+}

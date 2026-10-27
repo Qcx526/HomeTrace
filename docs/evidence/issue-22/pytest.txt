@@ -1,0 +1,16 @@
+........................................................................ [ 12%]
+........................................................................ [ 25%]
+........................................................................ [ 37%]
+........................................................................ [ 50%]
+........................................................................ [ 62%]
+........................................................................ [ 75%]
+........................................................................ [ 87%]
+........................................................................ [100%]
+============================== warnings summary ===============================
+tests/test_agent_loop.py::test_feedback_and_shared_found
+  <WORKSPACE>\artifacts\issue-11\agent-env\Lib\site-packages\langgraph\cache\base\__init__.py:8: LangChainPendingDeprecationWarning: The default value of `allowed_objects` will change in a future version. Pass an explicit value (e.g., allowed_objects='messages' or allowed_objects='core') to suppress this warning.
+    from langgraph.checkpoint.serde.jsonplus import JsonPlusSerializer
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+- generated xml file: <WORKSPACE>\artifacts\vision-r3-shared\pytest-final-02.xml -
+576 passed, 1 warning in 83.71s (0:01:23)

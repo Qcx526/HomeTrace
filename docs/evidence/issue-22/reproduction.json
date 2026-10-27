@@ -1,0 +1,8 @@
+{
+  "prediction_and_embedding_rows_exactly_reproduced": 36,
+  "original_physical_images": 18,
+  "total_calls_including_config_path_recheck": 72,
+  "new_training_steps": 0,
+  "change": "Initialize ignored Ultralytics settings directory; no algorithm/threshold changes",
+  "config_fallback_fixed": true
+}
