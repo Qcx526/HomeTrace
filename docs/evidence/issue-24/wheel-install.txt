@@ -1,0 +1,11 @@
+Looking in indexes: https://pypi.tuna.tsinghua.edu.cn/simple
+Processing <workspace>\artifacts\issue-24\wheel-final\hometrace-0.4.1-py3-none-any.whl
+Installing collected packages: hometrace
+  Attempting uninstall: hometrace
+    Found existing installation: hometrace 0.4.1
+    Uninstalling hometrace-0.4.1:
+      Successfully uninstalled hometrace-0.4.1
+Successfully installed hometrace-0.4.1
+
+[notice] A new release of pip is available: 23.1.2 -> 26.2.2
+[notice] To update, run: <workspace>\artifacts\issue-24\wheel-env\Scripts\python.exe -m pip install --upgrade pip

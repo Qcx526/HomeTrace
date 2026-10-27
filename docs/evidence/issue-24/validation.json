@@ -1,0 +1,54 @@
+{
+  "generated_at": "2026-10-27T07:14:20.176248+00:00",
+  "base_commit": "1aa8526ab354113db0a67d9c74088a666dcfdef0",
+  "python": "3.11.4",
+  "platform": "win32",
+  "tests": {
+    "name": "pytest",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "tests": "630",
+    "time": "97.187",
+    "timestamp": "2026-10-27T15:11:48.851883+08:00",
+    "hostname": "PC-20230108UHKZ"
+  },
+  "baseline_docs_and_tests_unchanged": 284,
+  "baseline_comparison": "Git blob hashes with checkout line-ending filters",
+  "source_sha256": {
+    "src/hometrace/household_memory.py": "4ca13853afec4758ef09f50534bdba1cebec30f812036c77ebc5dc65a9e4292a",
+    "src/hometrace/household_service.py": "112bbcba6c69b6b76d2f5eb08c283beef8f375a65dab0ae230546e2ba4cab6c3",
+    "src/hometrace/demo_server.py": "d3cbd875e61ffd09aecb780d25aac9965b48c68bbe905cddb7adc93eff3f63fd",
+    "src/hometrace/submission.py": "1e12fda4f79c4765125043631a5fe96af53bfbf6fce53a13bd0b228c0f89db22",
+    "src/hometrace/web/household.html": "717e40af0a9f3b01f3c1ae5b618ba2717556d60dd22b733380f1074bea89e94e",
+    "src/hometrace/web/household.js": "24b9798ed109477f5ebee33462d285589901be14f7921adc9d43fa3b0412d7c4",
+    "src/hometrace/web/household.css": "6bfe22ca6fa3add339216c7d4b816a58a25ce4c174bf6368d22cc2b7a3d9f2f8",
+    "src/hometrace/web/index.html": "ec243c4a23a8bc58d3ad4a47fa084353d1f19d84fce09602d4b6822ed3b479e6",
+    "src/hometrace/web/agent.html": "fac24fb3646553cb5ebf6681fd7c33d27bd2ff2d3bb20e32c751dd373f497a33",
+    "tools/household_memory.py": "b4b464640bc4647f3674ea19b299ba1365cbf8cf4194098025b9e0beb7cddb52",
+    "tools/validate_household_workspace.py": "eec713026eea49ae5cbaff13d0ccec7a49ca0fa6ba2d752eae852cd199503b8c",
+    "tests/test_household_http.py": "6fb02f2701371b2b150c19fcff7ff41176d5fff08dbfb7535ca4a89d3c76bd37",
+    "tests/test_household_workspace.py": "de356acaf5d2a28b1d0ae3323da89986cbef48316868959fde5998b3d07e142e"
+  },
+  "wheel": {
+    "filename": "hometrace-0.4.1-py3-none-any.whl",
+    "bytes": 105040,
+    "sha256": "779e5027d634c44f646f13e673534f8443bd0bb5725d9950aa8c422b7334d126",
+    "fresh_venv": true,
+    "runtime_dependencies_installed": [],
+    "http_lifecycle_verified": true
+  },
+  "javascript_syntax": {
+    "command": "node --check src/hometrace/web/household.js",
+    "exit_code": 0
+  },
+  "browser_verification": {
+    "status": "BLOCKED",
+    "executed": false,
+    "reason": "Local browser use is disabled in Work settings"
+  },
+  "real_photograph_inference": "NOT_RUN_THIS_INCREMENT",
+  "llm_api": "NOT_RUN",
+  "navigation": "NOT_EXECUTED_BY_HOUSEHOLD_WORKSPACE",
+  "production_recognition": "BLOCKED"
+}

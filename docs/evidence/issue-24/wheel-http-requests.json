@@ -1,0 +1,1239 @@
+[
+  {
+    "path": "/api/household/enroll",
+    "input": {
+      "object_id": "blue-keys",
+      "name": "蓝色钥匙",
+      "aliases": [
+        "我的钥匙"
+      ]
+    },
+    "http_status": 200,
+    "output": {
+      "object": {
+        "object_id": "blue-keys",
+        "name": "蓝色钥匙",
+        "aliases": [
+          "我的钥匙"
+        ],
+        "enrolled_at": "2026-10-27T07:10:43.754855+00:00",
+        "visual_registration": "NOT_REGISTERED",
+        "created": true
+      },
+      "message": "已保存物品名称档案；外观尚未登记或验证",
+      "visual_confirmed": false
+    }
+  },
+  {
+    "path": "/api/household/enroll",
+    "input": {
+      "object_id": "red-keys",
+      "name": "红色钥匙",
+      "aliases": [
+        "我的钥匙"
+      ]
+    },
+    "http_status": 200,
+    "output": {
+      "object": {
+        "object_id": "red-keys",
+        "name": "红色钥匙",
+        "aliases": [
+          "我的钥匙"
+        ],
+        "enrolled_at": "2026-10-27T07:10:43.903729+00:00",
+        "visual_registration": "NOT_REGISTERED",
+        "created": true
+      },
+      "message": "已保存物品名称档案；外观尚未登记或验证",
+      "visual_confirmed": false
+    }
+  },
+  {
+    "path": "/api/household/start",
+    "input": {
+      "intent": "remember",
+      "query": "我的钥匙",
+      "location_id": "entry-tray",
+      "reported_at": "2026-10-27T10:00:00+08:00"
+    },
+    "http_status": 200,
+    "output": {
+      "session_id": "9895eb4c391d459e921f370664dc13ab",
+      "version": 1,
+      "state": "CLARIFY",
+      "intent": "remember",
+      "query": "我的钥匙",
+      "matches": [
+        {
+          "object_id": "blue-keys",
+          "name": "蓝色钥匙",
+          "aliases": [
+            "我的钥匙"
+          ],
+          "enrolled_at": "2026-10-27T07:10:43.754855+00:00",
+          "visual_registration": "NOT_REGISTERED"
+        },
+        {
+          "object_id": "red-keys",
+          "name": "红色钥匙",
+          "aliases": [
+            "我的钥匙"
+          ],
+          "enrolled_at": "2026-10-27T07:10:43.903729+00:00",
+          "visual_registration": "NOT_REGISTERED"
+        }
+      ],
+      "selected_object": null,
+      "location": {
+        "location_id": "entry-tray",
+        "location_name": "玄关托盘"
+      },
+      "reported_at": "2026-10-27T10:00:00+08:00",
+      "reported_at_basis": "owner_supplied_timestamp",
+      "created_at": "2026-10-27T07:10:44.059620+00:00",
+      "messages": [
+        {
+          "role": "user",
+          "text": "记住“我的钥匙”的位置：玄关托盘"
+        },
+        {
+          "role": "assistant",
+          "text": "有多个匹配的物品，请选择这次要操作的那一件。"
+        }
+      ],
+      "history": [],
+      "candidates": [],
+      "visual_confirmed": false,
+      "interaction_mode": "local_rules_and_explicit_confirmation"
+    }
+  },
+  {
+    "path": "/api/household/act",
+    "input": {
+      "session_id": "9895eb4c391d459e921f370664dc13ab",
+      "version": 1,
+      "action": "select",
+      "object_id": "blue-keys"
+    },
+    "http_status": 200,
+    "output": {
+      "session_id": "9895eb4c391d459e921f370664dc13ab",
+      "version": 2,
+      "state": "CONFIRM",
+      "intent": "remember",
+      "query": "我的钥匙",
+      "matches": [
+        {
+          "object_id": "blue-keys",
+          "name": "蓝色钥匙",
+          "aliases": [
+            "我的钥匙"
+          ],
+          "enrolled_at": "2026-10-27T07:10:43.754855+00:00",
+          "visual_registration": "NOT_REGISTERED"
+        },
+        {
+          "object_id": "red-keys",
+          "name": "红色钥匙",
+          "aliases": [
+            "我的钥匙"
+          ],
+          "enrolled_at": "2026-10-27T07:10:43.903729+00:00",
+          "visual_registration": "NOT_REGISTERED"
+        }
+      ],
+      "selected_object": {
+        "object_id": "blue-keys",
+        "name": "蓝色钥匙",
+        "aliases": [
+          "我的钥匙"
+        ],
+        "enrolled_at": "2026-10-27T07:10:43.754855+00:00",
+        "visual_registration": "NOT_REGISTERED"
+      },
+      "location": {
+        "location_id": "entry-tray",
+        "location_name": "玄关托盘"
+      },
+      "reported_at": "2026-10-27T10:00:00+08:00",
+      "reported_at_basis": "owner_supplied_timestamp",
+      "created_at": "2026-10-27T07:10:44.059620+00:00",
+      "messages": [
+        {
+          "role": "user",
+          "text": "记住“我的钥匙”的位置：玄关托盘"
+        },
+        {
+          "role": "assistant",
+          "text": "有多个匹配的物品，请选择这次要操作的那一件。"
+        },
+        {
+          "role": "user",
+          "text": "选择“蓝色钥匙”（blue-keys）"
+        },
+        {
+          "role": "assistant",
+          "text": "请确认：把你说的“蓝色钥匙”位置记录为“玄关托盘”。这不会成为视觉确认。"
+        }
+      ],
+      "history": [],
+      "candidates": [],
+      "visual_confirmed": false,
+      "interaction_mode": "local_rules_and_explicit_confirmation"
+    }
+  },
+  {
+    "path": "/api/household/start",
+    "input": {
+      "intent": "recall",
+      "query": "blue-keys"
+    },
+    "http_status": 200,
+    "output": {
+      "session_id": "ca26a2e79a7040298906e0360b931999",
+      "version": 1,
+      "state": "COMPLETED",
+      "intent": "recall",
+      "query": "blue-keys",
+      "matches": [
+        {
+          "object_id": "blue-keys",
+          "name": "蓝色钥匙",
+          "aliases": [
+            "我的钥匙"
+          ],
+          "enrolled_at": "2026-10-27T07:10:43.754855+00:00",
+          "visual_registration": "NOT_REGISTERED"
+        }
+      ],
+      "selected_object": {
+        "object_id": "blue-keys",
+        "name": "蓝色钥匙",
+        "aliases": [
+          "我的钥匙"
+        ],
+        "enrolled_at": "2026-10-27T07:10:43.754855+00:00",
+        "visual_registration": "NOT_REGISTERED"
+      },
+      "location": null,
+      "reported_at": null,
+      "reported_at_basis": null,
+      "created_at": "2026-10-27T07:10:44.437736+00:00",
+      "messages": [
+        {
+          "role": "user",
+          "text": "查询“blue-keys”的历史位置"
+        },
+        {
+          "role": "assistant",
+          "text": "该物品已登记名称，但还没有位置记录，不能推断它现在在哪里。"
+        }
+      ],
+      "history": [],
+      "candidates": [],
+      "visual_confirmed": false,
+      "interaction_mode": "local_rules_and_explicit_confirmation"
+    }
+  },
+  {
+    "path": "/api/household/sessions/9895eb4c391d459e921f370664dc13ab",
+    "input": null,
+    "http_status": 200,
+    "output": {
+      "session_id": "9895eb4c391d459e921f370664dc13ab",
+      "version": 2,
+      "state": "CONFIRM",
+      "intent": "remember",
+      "query": "我的钥匙",
+      "matches": [
+        {
+          "object_id": "blue-keys",
+          "name": "蓝色钥匙",
+          "aliases": [
+            "我的钥匙"
+          ],
+          "enrolled_at": "2026-10-27T07:10:43.754855+00:00",
+          "visual_registration": "NOT_REGISTERED"
+        },
+        {
+          "object_id": "red-keys",
+          "name": "红色钥匙",
+          "aliases": [
+            "我的钥匙"
+          ],
+          "enrolled_at": "2026-10-27T07:10:43.903729+00:00",
+          "visual_registration": "NOT_REGISTERED"
+        }
+      ],
+      "selected_object": {
+        "object_id": "blue-keys",
+        "name": "蓝色钥匙",
+        "aliases": [
+          "我的钥匙"
+        ],
+        "enrolled_at": "2026-10-27T07:10:43.754855+00:00",
+        "visual_registration": "NOT_REGISTERED"
+      },
+      "location": {
+        "location_id": "entry-tray",
+        "location_name": "玄关托盘"
+      },
+      "reported_at": "2026-10-27T10:00:00+08:00",
+      "reported_at_basis": "owner_supplied_timestamp",
+      "created_at": "2026-10-27T07:10:44.059620+00:00",
+      "messages": [
+        {
+          "role": "user",
+          "text": "记住“我的钥匙”的位置：玄关托盘"
+        },
+        {
+          "role": "assistant",
+          "text": "有多个匹配的物品，请选择这次要操作的那一件。"
+        },
+        {
+          "role": "user",
+          "text": "选择“蓝色钥匙”（blue-keys）"
+        },
+        {
+          "role": "assistant",
+          "text": "请确认：把你说的“蓝色钥匙”位置记录为“玄关托盘”。这不会成为视觉确认。"
+        }
+      ],
+      "history": [],
+      "candidates": [],
+      "visual_confirmed": false,
+      "interaction_mode": "local_rules_and_explicit_confirmation"
+    }
+  },
+  {
+    "path": "/api/household/act",
+    "input": {
+      "session_id": "9895eb4c391d459e921f370664dc13ab",
+      "version": 2,
+      "action": "confirm"
+    },
+    "http_status": 200,
+    "output": {
+      "session_id": "9895eb4c391d459e921f370664dc13ab",
+      "version": 3,
+      "state": "COMPLETED",
+      "intent": "remember",
+      "query": "我的钥匙",
+      "matches": [
+        {
+          "object_id": "blue-keys",
+          "name": "蓝色钥匙",
+          "aliases": [
+            "我的钥匙"
+          ],
+          "enrolled_at": "2026-10-27T07:10:43.754855+00:00",
+          "visual_registration": "NOT_REGISTERED"
+        },
+        {
+          "object_id": "red-keys",
+          "name": "红色钥匙",
+          "aliases": [
+            "我的钥匙"
+          ],
+          "enrolled_at": "2026-10-27T07:10:43.903729+00:00",
+          "visual_registration": "NOT_REGISTERED"
+        }
+      ],
+      "selected_object": {
+        "object_id": "blue-keys",
+        "name": "蓝色钥匙",
+        "aliases": [
+          "我的钥匙"
+        ],
+        "enrolled_at": "2026-10-27T07:10:43.754855+00:00",
+        "visual_registration": "NOT_REGISTERED"
+      },
+      "location": {
+        "location_id": "entry-tray",
+        "location_name": "玄关托盘"
+      },
+      "reported_at": "2026-10-27T10:00:00+08:00",
+      "reported_at_basis": "owner_supplied_timestamp",
+      "created_at": "2026-10-27T07:10:44.059620+00:00",
+      "messages": [
+        {
+          "role": "user",
+          "text": "记住“我的钥匙”的位置：玄关托盘"
+        },
+        {
+          "role": "assistant",
+          "text": "有多个匹配的物品，请选择这次要操作的那一件。"
+        },
+        {
+          "role": "user",
+          "text": "选择“蓝色钥匙”（blue-keys）"
+        },
+        {
+          "role": "assistant",
+          "text": "请确认：把你说的“蓝色钥匙”位置记录为“玄关托盘”。这不会成为视觉确认。"
+        },
+        {
+          "role": "user",
+          "text": "确认保存这条位置陈述"
+        },
+        {
+          "role": "assistant",
+          "text": "好的，我已记录你说的位置；尚未通过当前图像确认。"
+        }
+      ],
+      "history": [
+        {
+          "event_id": "remember-9895eb4c391d459e921f370664dc13ab",
+          "object_id": "blue-keys",
+          "location_id": "entry-tray",
+          "location_name": "玄关托盘",
+          "reported_at": "2026-10-27T10:00:00+08:00",
+          "recorded_at": "2026-10-27T07:10:44.914368+00:00",
+          "source": "local_workspace_explicit_owner_confirmation:owner_supplied_timestamp",
+          "source_kind": "owner_reported",
+          "visual_confirmed": false,
+          "reported_at_basis": "owner_supplied_timestamp",
+          "recorded_at_basis": "local_system_clock"
+        }
+      ],
+      "candidates": [
+        {
+          "rank": 1,
+          "location_id": "entry-tray",
+          "location_name": "玄关托盘",
+          "latest_reported_at": "2026-10-27T10:00:00+08:00",
+          "source_kind": "owner_reported",
+          "visual_confirmed": false,
+          "reason": "latest_owner_reported_location",
+          "event_ids": [
+            "remember-9895eb4c391d459e921f370664dc13ab"
+          ],
+          "report_count": 1
+        }
+      ],
+      "visual_confirmed": false,
+      "interaction_mode": "local_rules_and_explicit_confirmation"
+    }
+  },
+  {
+    "path": "/api/household/act",
+    "input": {
+      "session_id": "9895eb4c391d459e921f370664dc13ab",
+      "version": 2,
+      "action": "confirm"
+    },
+    "http_status": 409,
+    "output": {
+      "error": "会话已更新，请刷新后确认当前内容"
+    }
+  },
+  {
+    "path": "/api/household/act",
+    "input": {
+      "session_id": "9895eb4c391d459e921f370664dc13ab",
+      "version": 3,
+      "action": "confirm"
+    },
+    "http_status": 200,
+    "output": {
+      "session_id": "9895eb4c391d459e921f370664dc13ab",
+      "version": 3,
+      "state": "COMPLETED",
+      "intent": "remember",
+      "query": "我的钥匙",
+      "matches": [
+        {
+          "object_id": "blue-keys",
+          "name": "蓝色钥匙",
+          "aliases": [
+            "我的钥匙"
+          ],
+          "enrolled_at": "2026-10-27T07:10:43.754855+00:00",
+          "visual_registration": "NOT_REGISTERED"
+        },
+        {
+          "object_id": "red-keys",
+          "name": "红色钥匙",
+          "aliases": [
+            "我的钥匙"
+          ],
+          "enrolled_at": "2026-10-27T07:10:43.903729+00:00",
+          "visual_registration": "NOT_REGISTERED"
+        }
+      ],
+      "selected_object": {
+        "object_id": "blue-keys",
+        "name": "蓝色钥匙",
+        "aliases": [
+          "我的钥匙"
+        ],
+        "enrolled_at": "2026-10-27T07:10:43.754855+00:00",
+        "visual_registration": "NOT_REGISTERED"
+      },
+      "location": {
+        "location_id": "entry-tray",
+        "location_name": "玄关托盘"
+      },
+      "reported_at": "2026-10-27T10:00:00+08:00",
+      "reported_at_basis": "owner_supplied_timestamp",
+      "created_at": "2026-10-27T07:10:44.059620+00:00",
+      "messages": [
+        {
+          "role": "user",
+          "text": "记住“我的钥匙”的位置：玄关托盘"
+        },
+        {
+          "role": "assistant",
+          "text": "有多个匹配的物品，请选择这次要操作的那一件。"
+        },
+        {
+          "role": "user",
+          "text": "选择“蓝色钥匙”（blue-keys）"
+        },
+        {
+          "role": "assistant",
+          "text": "请确认：把你说的“蓝色钥匙”位置记录为“玄关托盘”。这不会成为视觉确认。"
+        },
+        {
+          "role": "user",
+          "text": "确认保存这条位置陈述"
+        },
+        {
+          "role": "assistant",
+          "text": "好的，我已记录你说的位置；尚未通过当前图像确认。"
+        }
+      ],
+      "history": [
+        {
+          "event_id": "remember-9895eb4c391d459e921f370664dc13ab",
+          "object_id": "blue-keys",
+          "location_id": "entry-tray",
+          "location_name": "玄关托盘",
+          "reported_at": "2026-10-27T10:00:00+08:00",
+          "recorded_at": "2026-10-27T07:10:44.914368+00:00",
+          "source": "local_workspace_explicit_owner_confirmation:owner_supplied_timestamp",
+          "source_kind": "owner_reported",
+          "visual_confirmed": false,
+          "reported_at_basis": "owner_supplied_timestamp",
+          "recorded_at_basis": "local_system_clock"
+        }
+      ],
+      "candidates": [
+        {
+          "rank": 1,
+          "location_id": "entry-tray",
+          "location_name": "玄关托盘",
+          "latest_reported_at": "2026-10-27T10:00:00+08:00",
+          "source_kind": "owner_reported",
+          "visual_confirmed": false,
+          "reason": "latest_owner_reported_location",
+          "event_ids": [
+            "remember-9895eb4c391d459e921f370664dc13ab"
+          ],
+          "report_count": 1
+        }
+      ],
+      "visual_confirmed": false,
+      "interaction_mode": "local_rules_and_explicit_confirmation"
+    }
+  },
+  {
+    "path": "/api/household/start",
+    "input": {
+      "intent": "remember",
+      "query": "blue-keys",
+      "location_id": "study-desk",
+      "reported_at": "2026-10-27T11:00:00+08:00"
+    },
+    "http_status": 200,
+    "output": {
+      "session_id": "b62cddee5e824069a416d5027dc0cd46",
+      "version": 1,
+      "state": "CONFIRM",
+      "intent": "remember",
+      "query": "blue-keys",
+      "matches": [
+        {
+          "object_id": "blue-keys",
+          "name": "蓝色钥匙",
+          "aliases": [
+            "我的钥匙"
+          ],
+          "enrolled_at": "2026-10-27T07:10:43.754855+00:00",
+          "visual_registration": "NOT_REGISTERED"
+        }
+      ],
+      "selected_object": {
+        "object_id": "blue-keys",
+        "name": "蓝色钥匙",
+        "aliases": [
+          "我的钥匙"
+        ],
+        "enrolled_at": "2026-10-27T07:10:43.754855+00:00",
+        "visual_registration": "NOT_REGISTERED"
+      },
+      "location": {
+        "location_id": "study-desk",
+        "location_name": "书房桌面"
+      },
+      "reported_at": "2026-10-27T11:00:00+08:00",
+      "reported_at_basis": "owner_supplied_timestamp",
+      "created_at": "2026-10-27T07:10:45.247461+00:00",
+      "messages": [
+        {
+          "role": "user",
+          "text": "记住“blue-keys”的位置：书房桌面"
+        },
+        {
+          "role": "assistant",
+          "text": "请确认：把你说的“蓝色钥匙”位置记录为“书房桌面”。这不会成为视觉确认。"
+        }
+      ],
+      "history": [],
+      "candidates": [],
+      "visual_confirmed": false,
+      "interaction_mode": "local_rules_and_explicit_confirmation"
+    }
+  },
+  {
+    "path": "/api/household/act",
+    "input": {
+      "session_id": "b62cddee5e824069a416d5027dc0cd46",
+      "version": 1,
+      "action": "confirm"
+    },
+    "http_status": 200,
+    "output": {
+      "session_id": "b62cddee5e824069a416d5027dc0cd46",
+      "version": 2,
+      "state": "COMPLETED",
+      "intent": "remember",
+      "query": "blue-keys",
+      "matches": [
+        {
+          "object_id": "blue-keys",
+          "name": "蓝色钥匙",
+          "aliases": [
+            "我的钥匙"
+          ],
+          "enrolled_at": "2026-10-27T07:10:43.754855+00:00",
+          "visual_registration": "NOT_REGISTERED"
+        }
+      ],
+      "selected_object": {
+        "object_id": "blue-keys",
+        "name": "蓝色钥匙",
+        "aliases": [
+          "我的钥匙"
+        ],
+        "enrolled_at": "2026-10-27T07:10:43.754855+00:00",
+        "visual_registration": "NOT_REGISTERED"
+      },
+      "location": {
+        "location_id": "study-desk",
+        "location_name": "书房桌面"
+      },
+      "reported_at": "2026-10-27T11:00:00+08:00",
+      "reported_at_basis": "owner_supplied_timestamp",
+      "created_at": "2026-10-27T07:10:45.247461+00:00",
+      "messages": [
+        {
+          "role": "user",
+          "text": "记住“blue-keys”的位置：书房桌面"
+        },
+        {
+          "role": "assistant",
+          "text": "请确认：把你说的“蓝色钥匙”位置记录为“书房桌面”。这不会成为视觉确认。"
+        },
+        {
+          "role": "user",
+          "text": "确认保存这条位置陈述"
+        },
+        {
+          "role": "assistant",
+          "text": "好的，我已记录你说的位置；尚未通过当前图像确认。"
+        }
+      ],
+      "history": [
+        {
+          "event_id": "remember-b62cddee5e824069a416d5027dc0cd46",
+          "object_id": "blue-keys",
+          "location_id": "study-desk",
+          "location_name": "书房桌面",
+          "reported_at": "2026-10-27T11:00:00+08:00",
+          "recorded_at": "2026-10-27T07:10:45.387817+00:00",
+          "source": "local_workspace_explicit_owner_confirmation:owner_supplied_timestamp",
+          "source_kind": "owner_reported",
+          "visual_confirmed": false,
+          "reported_at_basis": "owner_supplied_timestamp",
+          "recorded_at_basis": "local_system_clock"
+        },
+        {
+          "event_id": "remember-9895eb4c391d459e921f370664dc13ab",
+          "object_id": "blue-keys",
+          "location_id": "entry-tray",
+          "location_name": "玄关托盘",
+          "reported_at": "2026-10-27T10:00:00+08:00",
+          "recorded_at": "2026-10-27T07:10:44.914368+00:00",
+          "source": "local_workspace_explicit_owner_confirmation:owner_supplied_timestamp",
+          "source_kind": "owner_reported",
+          "visual_confirmed": false,
+          "reported_at_basis": "owner_supplied_timestamp",
+          "recorded_at_basis": "local_system_clock"
+        }
+      ],
+      "candidates": [
+        {
+          "rank": 1,
+          "location_id": "study-desk",
+          "location_name": "书房桌面",
+          "latest_reported_at": "2026-10-27T11:00:00+08:00",
+          "source_kind": "owner_reported",
+          "visual_confirmed": false,
+          "reason": "latest_owner_reported_location",
+          "event_ids": [
+            "remember-b62cddee5e824069a416d5027dc0cd46"
+          ],
+          "report_count": 1
+        },
+        {
+          "rank": 2,
+          "location_id": "entry-tray",
+          "location_name": "玄关托盘",
+          "latest_reported_at": "2026-10-27T10:00:00+08:00",
+          "source_kind": "owner_reported",
+          "visual_confirmed": false,
+          "reason": "latest_owner_reported_location",
+          "event_ids": [
+            "remember-9895eb4c391d459e921f370664dc13ab"
+          ],
+          "report_count": 1
+        }
+      ],
+      "visual_confirmed": false,
+      "interaction_mode": "local_rules_and_explicit_confirmation"
+    }
+  },
+  {
+    "path": "/api/household/start",
+    "input": {
+      "intent": "remember",
+      "query": "blue-keys",
+      "location_id": "living-table"
+    },
+    "http_status": 200,
+    "output": {
+      "session_id": "634f96d79f9345e58e2436ebec210313",
+      "version": 1,
+      "state": "CONFIRM",
+      "intent": "remember",
+      "query": "blue-keys",
+      "matches": [
+        {
+          "object_id": "blue-keys",
+          "name": "蓝色钥匙",
+          "aliases": [
+            "我的钥匙"
+          ],
+          "enrolled_at": "2026-10-27T07:10:43.754855+00:00",
+          "visual_registration": "NOT_REGISTERED"
+        }
+      ],
+      "selected_object": {
+        "object_id": "blue-keys",
+        "name": "蓝色钥匙",
+        "aliases": [
+          "我的钥匙"
+        ],
+        "enrolled_at": "2026-10-27T07:10:43.754855+00:00",
+        "visual_registration": "NOT_REGISTERED"
+      },
+      "location": {
+        "location_id": "living-table",
+        "location_name": "客厅茶几"
+      },
+      "reported_at": "2026-10-27T07:10:45.736004+00:00",
+      "reported_at_basis": "session_creation_time",
+      "created_at": "2026-10-27T07:10:45.736004+00:00",
+      "messages": [
+        {
+          "role": "user",
+          "text": "记住“blue-keys”的位置：客厅茶几"
+        },
+        {
+          "role": "assistant",
+          "text": "请确认：把你说的“蓝色钥匙”位置记录为“客厅茶几”。这不会成为视觉确认。"
+        }
+      ],
+      "history": [],
+      "candidates": [],
+      "visual_confirmed": false,
+      "interaction_mode": "local_rules_and_explicit_confirmation"
+    }
+  },
+  {
+    "path": "/api/household/act",
+    "input": {
+      "session_id": "634f96d79f9345e58e2436ebec210313",
+      "version": 1,
+      "action": "cancel"
+    },
+    "http_status": 200,
+    "output": {
+      "session_id": "634f96d79f9345e58e2436ebec210313",
+      "version": 2,
+      "state": "CANCELLED",
+      "intent": "remember",
+      "query": "blue-keys",
+      "matches": [
+        {
+          "object_id": "blue-keys",
+          "name": "蓝色钥匙",
+          "aliases": [
+            "我的钥匙"
+          ],
+          "enrolled_at": "2026-10-27T07:10:43.754855+00:00",
+          "visual_registration": "NOT_REGISTERED"
+        }
+      ],
+      "selected_object": {
+        "object_id": "blue-keys",
+        "name": "蓝色钥匙",
+        "aliases": [
+          "我的钥匙"
+        ],
+        "enrolled_at": "2026-10-27T07:10:43.754855+00:00",
+        "visual_registration": "NOT_REGISTERED"
+      },
+      "location": {
+        "location_id": "living-table",
+        "location_name": "客厅茶几"
+      },
+      "reported_at": "2026-10-27T07:10:45.736004+00:00",
+      "reported_at_basis": "session_creation_time",
+      "created_at": "2026-10-27T07:10:45.736004+00:00",
+      "messages": [
+        {
+          "role": "user",
+          "text": "记住“blue-keys”的位置：客厅茶几"
+        },
+        {
+          "role": "assistant",
+          "text": "请确认：把你说的“蓝色钥匙”位置记录为“客厅茶几”。这不会成为视觉确认。"
+        },
+        {
+          "role": "user",
+          "text": "取消本次操作"
+        },
+        {
+          "role": "assistant",
+          "text": "已取消，没有保存新的位置记录。"
+        }
+      ],
+      "history": [],
+      "candidates": [],
+      "visual_confirmed": false,
+      "interaction_mode": "local_rules_and_explicit_confirmation"
+    }
+  },
+  {
+    "path": "/api/household/start",
+    "input": {
+      "intent": "remember",
+      "query": "我的水杯",
+      "location_id": "living-table"
+    },
+    "http_status": 200,
+    "output": {
+      "session_id": "c82de5ea88944012a1cc7a3d14c91787",
+      "version": 1,
+      "state": "UNKNOWN_OBJECT",
+      "intent": "remember",
+      "query": "我的水杯",
+      "matches": [],
+      "selected_object": null,
+      "location": {
+        "location_id": "living-table",
+        "location_name": "客厅茶几"
+      },
+      "reported_at": "2026-10-27T07:10:46.083232+00:00",
+      "reported_at_basis": "session_creation_time",
+      "created_at": "2026-10-27T07:10:46.083232+00:00",
+      "messages": [
+        {
+          "role": "user",
+          "text": "记住“我的水杯”的位置：客厅茶几"
+        },
+        {
+          "role": "assistant",
+          "text": "这个名称还没有登记。请先登记物品名称与别名，再点击“重新查询”。"
+        }
+      ],
+      "history": [],
+      "candidates": [],
+      "visual_confirmed": false,
+      "interaction_mode": "local_rules_and_explicit_confirmation"
+    }
+  },
+  {
+    "path": "/api/household/enroll",
+    "input": {
+      "object_id": "demo-cup",
+      "name": "我的水杯",
+      "aliases": []
+    },
+    "http_status": 200,
+    "output": {
+      "object": {
+        "object_id": "demo-cup",
+        "name": "我的水杯",
+        "aliases": [],
+        "enrolled_at": "2026-10-27T07:10:46.215778+00:00",
+        "visual_registration": "NOT_REGISTERED",
+        "created": true
+      },
+      "message": "已保存物品名称档案；外观尚未登记或验证",
+      "visual_confirmed": false
+    }
+  },
+  {
+    "path": "/api/household/act",
+    "input": {
+      "session_id": "c82de5ea88944012a1cc7a3d14c91787",
+      "version": 1,
+      "action": "retry"
+    },
+    "http_status": 200,
+    "output": {
+      "session_id": "c82de5ea88944012a1cc7a3d14c91787",
+      "version": 2,
+      "state": "CONFIRM",
+      "intent": "remember",
+      "query": "我的水杯",
+      "matches": [
+        {
+          "object_id": "demo-cup",
+          "name": "我的水杯",
+          "aliases": [],
+          "enrolled_at": "2026-10-27T07:10:46.215778+00:00",
+          "visual_registration": "NOT_REGISTERED"
+        }
+      ],
+      "selected_object": {
+        "object_id": "demo-cup",
+        "name": "我的水杯",
+        "aliases": [],
+        "enrolled_at": "2026-10-27T07:10:46.215778+00:00",
+        "visual_registration": "NOT_REGISTERED"
+      },
+      "location": {
+        "location_id": "living-table",
+        "location_name": "客厅茶几"
+      },
+      "reported_at": "2026-10-27T07:10:46.083232+00:00",
+      "reported_at_basis": "session_creation_time",
+      "created_at": "2026-10-27T07:10:46.083232+00:00",
+      "messages": [
+        {
+          "role": "user",
+          "text": "记住“我的水杯”的位置：客厅茶几"
+        },
+        {
+          "role": "assistant",
+          "text": "这个名称还没有登记。请先登记物品名称与别名，再点击“重新查询”。"
+        },
+        {
+          "role": "user",
+          "text": "登记后重新查询"
+        },
+        {
+          "role": "assistant",
+          "text": "请确认：把你说的“我的水杯”位置记录为“客厅茶几”。这不会成为视觉确认。"
+        }
+      ],
+      "history": [],
+      "candidates": [],
+      "visual_confirmed": false,
+      "interaction_mode": "local_rules_and_explicit_confirmation"
+    }
+  },
+  {
+    "path": "/api/household/act",
+    "input": {
+      "session_id": "c82de5ea88944012a1cc7a3d14c91787",
+      "version": 2,
+      "action": "cancel"
+    },
+    "http_status": 200,
+    "output": {
+      "session_id": "c82de5ea88944012a1cc7a3d14c91787",
+      "version": 3,
+      "state": "CANCELLED",
+      "intent": "remember",
+      "query": "我的水杯",
+      "matches": [
+        {
+          "object_id": "demo-cup",
+          "name": "我的水杯",
+          "aliases": [],
+          "enrolled_at": "2026-10-27T07:10:46.215778+00:00",
+          "visual_registration": "NOT_REGISTERED"
+        }
+      ],
+      "selected_object": {
+        "object_id": "demo-cup",
+        "name": "我的水杯",
+        "aliases": [],
+        "enrolled_at": "2026-10-27T07:10:46.215778+00:00",
+        "visual_registration": "NOT_REGISTERED"
+      },
+      "location": {
+        "location_id": "living-table",
+        "location_name": "客厅茶几"
+      },
+      "reported_at": "2026-10-27T07:10:46.083232+00:00",
+      "reported_at_basis": "session_creation_time",
+      "created_at": "2026-10-27T07:10:46.083232+00:00",
+      "messages": [
+        {
+          "role": "user",
+          "text": "记住“我的水杯”的位置：客厅茶几"
+        },
+        {
+          "role": "assistant",
+          "text": "这个名称还没有登记。请先登记物品名称与别名，再点击“重新查询”。"
+        },
+        {
+          "role": "user",
+          "text": "登记后重新查询"
+        },
+        {
+          "role": "assistant",
+          "text": "请确认：把你说的“我的水杯”位置记录为“客厅茶几”。这不会成为视觉确认。"
+        },
+        {
+          "role": "user",
+          "text": "取消本次操作"
+        },
+        {
+          "role": "assistant",
+          "text": "已取消，没有保存新的位置记录。"
+        }
+      ],
+      "history": [],
+      "candidates": [],
+      "visual_confirmed": false,
+      "interaction_mode": "local_rules_and_explicit_confirmation"
+    }
+  },
+  {
+    "path": "/api/household/start",
+    "input": {
+      "intent": "recall",
+      "query": "demo-cup"
+    },
+    "http_status": 200,
+    "output": {
+      "session_id": "831b394873f544faa473b2883791a445",
+      "version": 1,
+      "state": "COMPLETED",
+      "intent": "recall",
+      "query": "demo-cup",
+      "matches": [
+        {
+          "object_id": "demo-cup",
+          "name": "我的水杯",
+          "aliases": [],
+          "enrolled_at": "2026-10-27T07:10:46.215778+00:00",
+          "visual_registration": "NOT_REGISTERED"
+        }
+      ],
+      "selected_object": {
+        "object_id": "demo-cup",
+        "name": "我的水杯",
+        "aliases": [],
+        "enrolled_at": "2026-10-27T07:10:46.215778+00:00",
+        "visual_registration": "NOT_REGISTERED"
+      },
+      "location": null,
+      "reported_at": null,
+      "reported_at_basis": null,
+      "created_at": "2026-10-27T07:10:46.741344+00:00",
+      "messages": [
+        {
+          "role": "user",
+          "text": "查询“demo-cup”的历史位置"
+        },
+        {
+          "role": "assistant",
+          "text": "该物品已登记名称，但还没有位置记录，不能推断它现在在哪里。"
+        }
+      ],
+      "history": [],
+      "candidates": [],
+      "visual_confirmed": false,
+      "interaction_mode": "local_rules_and_explicit_confirmation"
+    }
+  },
+  {
+    "path": "/api/household/start",
+    "input": {
+      "intent": "recall",
+      "query": "blue-keys"
+    },
+    "http_status": 200,
+    "output": {
+      "session_id": "2058efda00ce4da7bcfa6ed59c88efa7",
+      "version": 1,
+      "state": "COMPLETED",
+      "intent": "recall",
+      "query": "blue-keys",
+      "matches": [
+        {
+          "object_id": "blue-keys",
+          "name": "蓝色钥匙",
+          "aliases": [
+            "我的钥匙"
+          ],
+          "enrolled_at": "2026-10-27T07:10:43.754855+00:00",
+          "visual_registration": "NOT_REGISTERED"
+        }
+      ],
+      "selected_object": {
+        "object_id": "blue-keys",
+        "name": "蓝色钥匙",
+        "aliases": [
+          "我的钥匙"
+        ],
+        "enrolled_at": "2026-10-27T07:10:43.754855+00:00",
+        "visual_registration": "NOT_REGISTERED"
+      },
+      "location": null,
+      "reported_at": null,
+      "reported_at_basis": null,
+      "created_at": "2026-10-27T07:10:46.904018+00:00",
+      "messages": [
+        {
+          "role": "user",
+          "text": "查询“blue-keys”的历史位置"
+        },
+        {
+          "role": "assistant",
+          "text": "最近一条主人陈述的位置是“书房桌面”。这是历史线索，尚未扫描或确认当前位置。"
+        }
+      ],
+      "history": [
+        {
+          "event_id": "remember-b62cddee5e824069a416d5027dc0cd46",
+          "object_id": "blue-keys",
+          "location_id": "study-desk",
+          "location_name": "书房桌面",
+          "reported_at": "2026-10-27T11:00:00+08:00",
+          "recorded_at": "2026-10-27T07:10:45.387817+00:00",
+          "source": "local_workspace_explicit_owner_confirmation:owner_supplied_timestamp",
+          "source_kind": "owner_reported",
+          "visual_confirmed": false,
+          "reported_at_basis": "owner_supplied_timestamp",
+          "recorded_at_basis": "local_system_clock"
+        },
+        {
+          "event_id": "remember-9895eb4c391d459e921f370664dc13ab",
+          "object_id": "blue-keys",
+          "location_id": "entry-tray",
+          "location_name": "玄关托盘",
+          "reported_at": "2026-10-27T10:00:00+08:00",
+          "recorded_at": "2026-10-27T07:10:44.914368+00:00",
+          "source": "local_workspace_explicit_owner_confirmation:owner_supplied_timestamp",
+          "source_kind": "owner_reported",
+          "visual_confirmed": false,
+          "reported_at_basis": "owner_supplied_timestamp",
+          "recorded_at_basis": "local_system_clock"
+        }
+      ],
+      "candidates": [
+        {
+          "rank": 1,
+          "location_id": "study-desk",
+          "location_name": "书房桌面",
+          "latest_reported_at": "2026-10-27T11:00:00+08:00",
+          "source_kind": "owner_reported",
+          "visual_confirmed": false,
+          "reason": "latest_owner_reported_location",
+          "event_ids": [
+            "remember-b62cddee5e824069a416d5027dc0cd46"
+          ],
+          "report_count": 1
+        },
+        {
+          "rank": 2,
+          "location_id": "entry-tray",
+          "location_name": "玄关托盘",
+          "latest_reported_at": "2026-10-27T10:00:00+08:00",
+          "source_kind": "owner_reported",
+          "visual_confirmed": false,
+          "reason": "latest_owner_reported_location",
+          "event_ids": [
+            "remember-9895eb4c391d459e921f370664dc13ab"
+          ],
+          "report_count": 1
+        }
+      ],
+      "visual_confirmed": false,
+      "interaction_mode": "local_rules_and_explicit_confirmation"
+    }
+  },
+  {
+    "path": "/api/household/start",
+    "input": {
+      "intent": "recall",
+      "query": "red-keys"
+    },
+    "http_status": 200,
+    "output": {
+      "session_id": "43eaffe2d04c49f7ad335d12009d5677",
+      "version": 1,
+      "state": "COMPLETED",
+      "intent": "recall",
+      "query": "red-keys",
+      "matches": [
+        {
+          "object_id": "red-keys",
+          "name": "红色钥匙",
+          "aliases": [
+            "我的钥匙"
+          ],
+          "enrolled_at": "2026-10-27T07:10:43.903729+00:00",
+          "visual_registration": "NOT_REGISTERED"
+        }
+      ],
+      "selected_object": {
+        "object_id": "red-keys",
+        "name": "红色钥匙",
+        "aliases": [
+          "我的钥匙"
+        ],
+        "enrolled_at": "2026-10-27T07:10:43.903729+00:00",
+        "visual_registration": "NOT_REGISTERED"
+      },
+      "location": null,
+      "reported_at": null,
+      "reported_at_basis": null,
+      "created_at": "2026-10-27T07:10:47.044057+00:00",
+      "messages": [
+        {
+          "role": "user",
+          "text": "查询“red-keys”的历史位置"
+        },
+        {
+          "role": "assistant",
+          "text": "该物品已登记名称，但还没有位置记录，不能推断它现在在哪里。"
+        }
+      ],
+      "history": [],
+      "candidates": [],
+      "visual_confirmed": false,
+      "interaction_mode": "local_rules_and_explicit_confirmation"
+    }
+  }
+]

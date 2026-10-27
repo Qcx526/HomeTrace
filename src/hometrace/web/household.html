@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>HomeTrace · 家庭记忆工作区</title>
+  <link rel="stylesheet" href="/household.css">
+  <script defer src="/household.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/">H<span>·</span> <strong>HomeTrace</strong></a>
+    <nav aria-label="演示入口"><a href="/">照片寻物演示</a><a href="/agent.html">寻物 Agent</a><span class="badge">家庭记忆</span></nav>
+  </header>
+  <main>
+    <section class="intro">
+      <div><p class="eyebrow">HOME MEMORY / 持久工作区</p><h1>先把你说的位置，认真记下来。</h1><p class="subtitle">登记物品、确认位置、再次查询。刷新页面和重启服务后，已保存的记忆仍在同一工作区。</p></div>
+      <div class="boundary"><strong>主人陈述 · 未视觉确认</strong><p>本页采用本地规则与确认控件，不调用语言模型，不采集照片，不执行视觉识别或机器人动作。</p></div>
+    </section>
+    <div id="service-notice" class="service-notice" role="status">正在连接本地家庭工作区…</div>
+    <div id="error" class="error" role="alert" hidden></div>
+    <p id="storage-notice" class="note" hidden></p>
+
+    <div class="workspace">
+      <aside class="catalog-column">
+        <section class="panel" aria-labelledby="catalog-title">
+          <div class="panel-heading"><h2 id="catalog-title">我的物品</h2><span id="catalog-count" class="badge">0 件</span></div>
+          <p class="note">名称和别名用于匹配。外观尚未登记；每件物品使用独立编号。</p>
+          <ul id="catalog" class="catalog"><li class="empty">等待读取物品目录。</li></ul>
+        </section>
+        <section class="panel" aria-labelledby="enroll-title">
+          <div class="panel-heading"><h2 id="enroll-title">登记一件物品</h2><span class="step">01</span></div>
+          <form id="enroll-form">
+            <label for="object-id">物品编号</label>
+            <input id="object-id" name="object_id" pattern="[a-z][a-z0-9_\-]{0,63}" maxlength="64" placeholder="例如 home-keys" autocomplete="off" required disabled>
+            <p class="field-help">小写字母开头，可含数字、下划线或连字符。保存后不可将编号改绑给另一件物品。</p>
+            <label for="object-name">物品名称</label>
+            <input id="object-name" name="name" maxlength="120" placeholder="例如 家门钥匙" autocomplete="off" required disabled>
+            <label for="object-aliases">别名 <span class="optional">可选</span></label>
+            <input id="object-aliases" name="aliases" maxlength="2400" placeholder="例如 钥匙，蓝色挂件钥匙" autocomplete="off" disabled>
+            <p class="field-help">用中文或英文逗号分隔，最多 20 个；无需重复物品名称。</p>
+            <button class="secondary full" type="submit" disabled>保存物品档案</button>
+            <p id="enroll-status" class="inline-status" role="status"></p>
+          </form>
+        </section>
+      </aside>
+
+      <div class="interaction-column">
+        <section class="panel" aria-labelledby="request-title">
+          <div class="panel-heading"><h2 id="request-title">告诉我你要做什么</h2><span class="step">02</span></div>
+          <form id="request-form">
+            <fieldset class="intent-picker"><legend class="sr-only">选择操作</legend>
+              <label><input type="radio" name="intent" value="remember" checked disabled><span>记住位置</span></label>
+              <label><input type="radio" name="intent" value="recall" disabled><span>查找历史</span></label>
+            </fieldset>
+            <label for="query">物品名称、别名或编号</label>
+            <input id="query" name="query" maxlength="120" placeholder="例如 家门钥匙" autocomplete="off" required disabled>
+            <p class="field-help">这里匹配已登记名称，不解析自由对话。同名物品会要求你明确选择。</p>
+            <div id="remember-fields" class="remember-fields">
+              <label for="location">你明确指定的位置</label>
+              <select id="location" name="location_id" required disabled><option value="">请选择地点</option></select>
+              <p class="field-help">“这里”由你选择地点来说明；页面不会自动获取主人位置。</p>
+              <details class="time-settings"><summary>补充陈述时间 <span class="optional">可选</span></summary>
+                <label for="reported-at">带时区的 ISO 日期时间</label>
+                <input id="reported-at" name="reported_at" maxlength="64" placeholder="2026-10-27T10:30:00+08:00" autocomplete="off" disabled>
+                <p class="field-help">留空使用服务接收请求的时间。这是陈述时间，不是拍摄或物品被看到的时间。</p>
+              </details>
+            </div>
+            <div class="request-footer"><p id="pending-notice" class="note">记住位置前，还会请你确认一次。</p><button id="start" class="primary" type="submit" disabled>继续确认</button></div>
+          </form>
+        </section>
+
+        <section class="panel session-panel" aria-labelledby="session-title">
+          <div class="panel-heading"><h2 id="session-title">本次交互</h2><span id="session-state" class="badge">尚未开始</span></div>
+          <p id="session-meta" class="note">操作结果来自本地程序；不会预填对话或物品位置。</p>
+          <ol id="messages" class="messages" aria-label="本次实际交互记录" aria-live="polite"><li class="empty">登记物品后，记住位置或查询已有历史。</li></ol>
+          <div id="session-actions" class="session-actions"></div>
+        </section>
+
+        <section id="memory-panel" class="panel" aria-labelledby="memory-title" hidden>
+          <div class="panel-heading"><h2 id="memory-title">历史与候选地点</h2><span class="badge amber">未视觉确认</span></div>
+          <p class="note">按最新主人陈述安排候选顺序。尚未访问、扫描或确认这些地点；陈述次数不代表视觉发现次数。</p>
+          <ol id="candidates" class="candidates" aria-label="根据历史陈述排列的候选地点"></ol>
+          <details class="history-details" open><summary>查看实际保存的位置记录 <span id="history-count"></span></summary><ol id="history" class="history"></ol></details>
+        </section>
+      </div>
+    </div>
+    <footer><strong>记忆是寻找的线索，当前图像才可能成为核验依据。</strong><p>本页只完成名称登记与主人陈述记忆。与照片寻物演示分别运行，不会把陈述写成视觉确认。<br>浏览器只保存用于恢复交互的会话编号；物品档案与历史由本地服务保存。</p></footer>
+  </main>
+</body>
+</html>

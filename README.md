@@ -2,7 +2,9 @@
 
 > Huawei Embedded AI Challenge 2026 / 开放创新赛道
 
-**项目状态：** [PR #14](https://github.com/Qcx526/HomeTrace/pull/14) 已通过 PM 审查并合并，当前 main 基线为 `708d8b2`；[真实 LLM Agent](docs/P4_AGENT.md) 与 P0–P3/R1 功能均保留。本分支将 [PR #13](https://github.com/Qcx526/HomeTrace/pull/13) 的 YOLOE 真实 GPU 实验集成到该基线，等待 PM 复核。相似熊猫存在误候选，生产接入结论仍为 **NO_GO**，详见 [P4 视觉报告](docs/P4_VISION_EVALUATION.md)。默认视觉仍为 ORB；家庭照片尚未可靠确认目标。导航始终为模拟，没有真实机器人运行数据。
+**项目状态（2026-10-27）：** 当前分支增量实现 [Issue #24 家庭记忆工作区](docs/HOUSEHOLD_WORKSPACE.md)，依赖未合并的 [PR #23](https://github.com/Qcx526/HomeTrace/pull/23)。名称登记、主人陈述位置和待确认交互可持久保存；本页尚未接入照片外观登记或自动寻找。[共享冻结模型实验](docs/VISION_R3_SHARED_MEMORY_20261027.md) 仍不足以证明家庭实例识别通过。已有 [真实 LLM Agent](docs/P4_AGENT.md)、经典三场景及历史证据保留；导航始终为模拟，没有真实机器人运行数据。本分支不代表 main 已包含这些增量，也不代表正式参赛包完成。
+
+新增入口：按下方命令启动后打开 [家庭记忆工作区](http://127.0.0.1:8765/household.html)，无需 API Key 或模型训练。默认数据目录为 `artifacts/household/`，可用 `--household-dir` 指定并在重启时复用。同名物品须选择、位置须确认；主人陈述不会变成视觉 FOUND。本轮 HTTP 持久化与回归已验证，浏览器页面实操因工具禁用尚未验证，详见[验收与限制](docs/HOUSEHOLD_WORKSPACE.md)。内部材料目标为 **11 月 2 日结束前完成整理**，与赛事平台截止时间分别核验。
 
 ## 一句话产品定义
 
@@ -123,8 +125,8 @@ Issue #1 的历史验证在 Windows / Python 3.11.4 的全新虚拟环境安装 
 
 ## 工作方式
 
-- 产品负责人：参赛团队；PM/技术审查：ChatGPT；开发执行：Codex。
-- **GitHub 为协作与版本依据**：Issue 写明合同和验收标准；Codex 在任务分支实施，通过 Pull Request 提交；PM 检查源码、测试与证据，再决定是否合并。
+- 当前由项目负责人直接向 Codex 下达指令和审查交付，不再依赖网页版 ChatGPT PM；保留 HomeTrace 自身的演示网页。
+- **GitHub 为协作与版本依据**：Issue 写明合同和验收标准；Codex 在任务分支实施，通过 Pull Request 提交；负责人检查源码、测试与证据后决定是否合并。每次汇报说明已完成内容、问题及下一步。
 - 禁止把模拟运动、离线图片、模型猜测写成真机观测；禁止用成功运行示例替代测试。
 - 不在 Issue、提交记录或演示视频中写入私钥、云服务 Token、个人隐私图像或赛事敏感资料。
 

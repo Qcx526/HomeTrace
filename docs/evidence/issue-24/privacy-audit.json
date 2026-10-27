@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "scope": "staged files; known local credential values and recognizable credential patterns",
+  "staged_files_scanned": 25,
+  "privacy_violations": [],
+  "diff_check_exit_code": 0,
+  "private_runtime_paths_ignored": [
+    "artifacts/",
+    "local_data/",
+    ".env"
+  ],
+  "limits": "Not a claim to detect every possible private datum; this increment contains no image uploads or private training labels."
+}
