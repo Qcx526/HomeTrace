@@ -1,0 +1,4 @@
+HomeTrace demo: http://127.0.0.1:8784
+Recorded photographs + simulated navigation. Real execution followed by event playback.
+Run evidence: <WORKSPACE>\artifacts\issue-24\browser-20261027-01\photo-runs
+Household workspace: http://127.0.0.1:8784/household.html (owner statements, no visual confirmation)

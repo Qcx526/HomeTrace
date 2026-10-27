@@ -1,0 +1,30 @@
+{
+  "status": "PASS",
+  "code_commit": "f99ebefbdf74f85ddcfb08d1ae5d0972935168e0",
+  "staged_files_scanned_before_audit_and_hash_manifest": 29,
+  "privacy_violations": [],
+  "diff_check_exit_code": 0,
+  "source_hashes_match_previous_630_test_run": {
+    "src/hometrace/household_memory.py": true,
+    "src/hometrace/household_service.py": true,
+    "src/hometrace/demo_server.py": true,
+    "src/hometrace/submission.py": true,
+    "src/hometrace/web/household.html": true,
+    "src/hometrace/web/household.js": true,
+    "src/hometrace/web/household.css": true,
+    "src/hometrace/web/index.html": true,
+    "src/hometrace/web/agent.html": true,
+    "tools/household_memory.py": true,
+    "tools/validate_household_workspace.py": true,
+    "tests/test_household_http.py": true,
+    "tests/test_household_workspace.py": true
+  },
+  "scope": "Staged text/binary bytes scanned against known local secret values and common credential patterns; screenshots visually reviewed. All screenshots contain synthetic software-test data only.",
+  "private_paths_ignored": [
+    "artifacts/",
+    "local_data/",
+    ".env"
+  ],
+  "no_source_or_test_changes": true,
+  "limits": "Not a guarantee that every possible private datum is machine-detectable. No private photos, labels, weights, database or credentials included."
+}

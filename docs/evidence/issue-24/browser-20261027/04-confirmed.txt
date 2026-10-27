@@ -1,0 +1,108 @@
+- banner:
+  - link "H· HomeTrace":
+    - /url: /
+    - text: H·
+    - strong: HomeTrace
+  - navigation "演示入口":
+    - link "照片寻物演示":
+      - /url: /
+    - link "寻物 Agent":
+      - /url: /agent.html
+    - generic: 家庭记忆
+- main:
+  - paragraph: HOME MEMORY / 持久工作区
+  - heading "先把你说的位置，认真记下来。" [level=1]
+  - paragraph: 登记物品、确认位置、再次查询。刷新页面和重启服务后，已保存的记忆仍在同一工作区。
+  - strong: 主人陈述 · 未视觉确认
+  - paragraph: 本页采用本地规则与确认控件，不调用语言模型，不采集照片，不执行视觉识别或机器人动作。
+  - status: 本地规则与确认控件 · 主人陈述记忆 · 尚未进行视觉识别或机器人动作
+  - complementary:
+    - region "我的物品":
+      - heading "我的物品" [level=2]
+      - generic: 2 件
+      - paragraph: 名称和别名用于匹配。外观尚未登记；每件物品使用独立编号。
+      - list:
+        - strong: 蓝色钥匙
+        - code: blue-keys
+        - paragraph: 别名：我的钥匙
+        - paragraph: 外观未登记 · 未视觉确认
+        - button "使用此物品"
+        - strong: 红色钥匙
+        - code: red-keys
+        - paragraph: 别名：我的钥匙
+        - paragraph: 外观未登记 · 未视觉确认
+        - button "使用此物品"
+    - region "登记一件物品":
+      - heading "登记一件物品" [level=2]
+      - generic: "01"
+      - generic: 物品编号
+      - textbox "物品编号":
+        - /placeholder: 例如 home-keys
+      - paragraph: 小写字母开头，可含数字、下划线或连字符。保存后不可将编号改绑给另一件物品。
+      - generic: 物品名称
+      - textbox "物品名称":
+        - /placeholder: 例如 家门钥匙
+      - generic: 别名 可选
+      - textbox "别名 可选":
+        - /placeholder: 例如 钥匙，蓝色挂件钥匙
+      - paragraph: 用中文或英文逗号分隔，最多 20 个；无需重复物品名称。
+      - button "保存物品档案"
+  - region "告诉我你要做什么":
+    - heading "告诉我你要做什么" [level=2]
+    - generic: "02"
+    - group "选择操作":
+      - generic: 选择操作
+      - radio "记住位置" [checked]
+      - generic: 记住位置
+      - radio "查找历史"
+      - generic: 查找历史
+    - generic: 物品名称、别名或编号
+    - textbox "物品名称、别名或编号":
+      - /placeholder: 例如 家门钥匙
+    - paragraph: 这里匹配已登记名称，不解析自由对话。同名物品会要求你明确选择。
+    - generic: 你明确指定的位置
+    - combobox "你明确指定的位置":
+      - option "请选择地点" [selected]
+      - option "玄关托盘"
+      - option "书房桌面"
+      - option "客厅茶几"
+    - paragraph: “这里”由你选择地点来说明；页面不会自动获取主人位置。
+    - generic "补充陈述时间 可选"
+    - paragraph: 记住位置前，还会请你确认一次。
+    - button "继续确认"
+  - region "本次交互":
+    - heading "本次交互" [level=2]
+    - generic: 操作完成
+    - paragraph: 会话 cd377659 · 版本 3 · 记住位置 · 未视觉确认
+    - list "本次实际交互记录":
+      - generic: 你的实际操作
+      - paragraph: 记住“我的钥匙”的位置：玄关托盘
+      - generic: 本地程序回复
+      - paragraph: 有多个匹配的物品，请选择这次要操作的那一件。
+      - generic: 你的实际操作
+      - paragraph: 选择“蓝色钥匙”（blue-keys）
+      - generic: 本地程序回复
+      - paragraph: 请确认：把你说的“蓝色钥匙”位置记录为“玄关托盘”。这不会成为视觉确认。
+      - generic: 你的实际操作
+      - paragraph: 确认保存这条位置陈述
+      - generic: 本地程序回复
+      - paragraph: 好的，我已记录你说的位置；尚未通过当前图像确认。
+  - region "历史与候选地点":
+    - heading "历史与候选地点" [level=2]
+    - generic: 未视觉确认
+    - paragraph: 按最新主人陈述安排候选顺序。尚未访问、扫描或确认这些地点；陈述次数不代表视觉发现次数。
+    - list "根据历史陈述排列的候选地点":
+      - generic: "1"
+      - strong: 玄关托盘
+      - paragraph: 最近陈述：2026/10/27 GMT+8 15:56:26
+      - paragraph: 共 1 条主人陈述 · 按最近陈述排序 · 未视觉确认
+    - generic "查看实际保存的位置记录 1 条"
+    - list:
+      - strong: 玄关托盘
+      - paragraph: 陈述时间：2026/10/27 GMT+8 15:56:26
+      - paragraph: 主人陈述 · 未视觉确认
+      - generic "来源与原始时间"
+  - strong: 记忆是寻找的线索，当前图像才可能成为核验依据。
+  - paragraph:
+    - text: 本页只完成名称登记与主人陈述记忆。与照片寻物演示分别运行，不会把陈述写成视觉确认。
+    - text: 浏览器只保存用于恢复交互的会话编号；物品档案与历史由本地服务保存。

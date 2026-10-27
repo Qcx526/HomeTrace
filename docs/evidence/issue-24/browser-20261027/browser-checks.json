@@ -1,0 +1,185 @@
+{
+  "status": "PASS_WITH_SCOPE_LIMITS",
+  "date": "2026-10-27",
+  "timezone": "Asia/Shanghai",
+  "code_commit": "f99ebefbdf74f85ddcfb08d1ae5d0972935168e0",
+  "browser": "Codex in-app browser; actual UI controls driven through browser tool",
+  "url": "http://127.0.0.1:8784/household.html",
+  "input_kind": "synthetic owner statements and names; no private photos or household observations",
+  "checks": [
+    {
+      "id": "alias_clarification",
+      "result": "PASS",
+      "evidence": "01-clarify.txt",
+      "observed": "Two names share 我的钥匙; explicit blue-keys selection required."
+    },
+    {
+      "id": "reload_pending",
+      "result": "PASS",
+      "evidence": "02-reload-pending.txt",
+      "observed": "Session cd377659 restored at version 2 / confirmation pending."
+    },
+    {
+      "id": "server_restart_pending",
+      "result": "PASS",
+      "evidence": "03-server-restart-pending.txt",
+      "observed": "Same workspace after server restart restores cd377659 version 2."
+    },
+    {
+      "id": "confirm",
+      "result": "PASS",
+      "evidence": "04-confirmed.txt",
+      "observed": "Confirmation produces version 3 and one entry-tray statement."
+    },
+    {
+      "id": "stale_tab_conflict",
+      "result": "PASS",
+      "evidence": "05-conflict.txt",
+      "observed": "Second tab cancellation of old version receives 409 and loads completed state."
+    },
+    {
+      "id": "cancel_no_event",
+      "result": "PASS",
+      "evidence": "07-cancel-history.txt",
+      "observed": "Cancelled living-table update leaves one blue-keys statement."
+    },
+    {
+      "id": "unknown",
+      "result": "PASS",
+      "evidence": "08-unknown.txt",
+      "observed": "Unregistered cup cannot be silently resolved."
+    },
+    {
+      "id": "enroll_then_retry",
+      "result": "PASS",
+      "evidence": "09-unknown-resumed.txt",
+      "observed": "New cup registration resumes same 412bc391 session at version 2 with living-table."
+    },
+    {
+      "id": "cancelled_cup_empty",
+      "result": "PASS",
+      "evidence": "10-cup-empty.txt",
+      "observed": "Cancelled cup confirmation leaves zero location statements."
+    },
+    {
+      "id": "latest_first",
+      "result": "PASS",
+      "evidence": "11-latest-history.txt",
+      "observed": "Blue-keys now has two statements; study-desk precedes entry-tray."
+    },
+    {
+      "id": "other_instance_empty",
+      "result": "PASS",
+      "evidence": "12-other-instance-empty.txt",
+      "observed": "Red-keys has zero location statements."
+    },
+    {
+      "id": "reload_completed_history",
+      "result": "PASS",
+      "evidence": "13-final-history.txt",
+      "observed": "Completed query and both historical statements restored after reload."
+    },
+    {
+      "id": "narrow_layout",
+      "result": "PASS",
+      "evidence": "14-mobile-layout.txt",
+      "observed": "Narrow viewport visually inspected; no overlapping cards or horizontal page overflow observed. Screenshot width is 375 pixels."
+    }
+  ],
+  "checks_are": "Observed browser acceptance cases; not additional pytest tests or vision samples.",
+  "final_database_read_at": "2026-10-27T08:15:45.702492+00:00",
+  "final_database_open_mode": "read-only",
+  "registered_objects": [
+    {
+      "object_id": "blue-keys",
+      "name": "蓝色钥匙"
+    },
+    {
+      "object_id": "demo-cup",
+      "name": "我的水杯"
+    },
+    {
+      "object_id": "red-keys",
+      "name": "红色钥匙"
+    }
+  ],
+  "final_event_counts": {
+    "blue-keys": 2,
+    "demo-cup": 0,
+    "red-keys": 0
+  },
+  "events_latest_first": [
+    {
+      "object_id": "blue-keys",
+      "location_id": "study-desk",
+      "reported_at": "2026-10-27T08:08:36.387810+00:00",
+      "source_kind": "owner_reported",
+      "visual_confirmed": 0
+    },
+    {
+      "object_id": "blue-keys",
+      "location_id": "entry-tray",
+      "reported_at": "2026-10-27T07:56:26.107284+00:00",
+      "source_kind": "owner_reported",
+      "visual_confirmed": 0
+    }
+  ],
+  "session_count": 8,
+  "session_states": [
+    {
+      "id_prefix": "cd377659",
+      "state": "COMPLETED",
+      "version": 3
+    },
+    {
+      "id_prefix": "9fc41e55",
+      "state": "CANCELLED",
+      "version": 2
+    },
+    {
+      "id_prefix": "d3d8e35e",
+      "state": "COMPLETED",
+      "version": 1
+    },
+    {
+      "id_prefix": "412bc391",
+      "state": "CANCELLED",
+      "version": 3
+    },
+    {
+      "id_prefix": "74812853",
+      "state": "COMPLETED",
+      "version": 1
+    },
+    {
+      "id_prefix": "716f704e",
+      "state": "COMPLETED",
+      "version": 2
+    },
+    {
+      "id_prefix": "af1ffab3",
+      "state": "COMPLETED",
+      "version": 1
+    },
+    {
+      "id_prefix": "bfbafaa5",
+      "state": "COMPLETED",
+      "version": 1
+    }
+  ],
+  "server_restart": "Server 1 stopped; server 2 reused same directory. During continuation server became unavailable; server 3 reused the same saved directory. Original server 1/2 logs retained; server 3 redirected logs were empty and are not claimed as request evidence.",
+  "known_minor_issue": "Initial page requested favicon.ico and received 404; content and operations loaded successfully.",
+  "console_scope": "console-handoff.json contains the final opened tab only, not a claim that every earlier tab had no console errors.",
+  "regression": "Existing full run: 630 passed, 0 failed, 0 skipped, 1 warning in 97.32s. This supplement changes only documentation/evidence; no new pytest run or count.",
+  "not_executed": [
+    "localStorage-disabled browser recovery",
+    "cross-browser matrix",
+    "physical mobile device",
+    "browser custom timestamp input",
+    "photographic enrollment",
+    "current-image recognition",
+    "real LLM API",
+    "robot movement"
+  ],
+  "narrow_viewport_note": "Browser requested viewport 390x844; DOM width check returned clientWidth=390 and scrollWidth=390. Saved full-page JPEG is 375x3261; screenshot dimensions differ from requested viewport. No physical mobile device tested."
+}
