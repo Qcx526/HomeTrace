@@ -1,7 +1,7 @@
 'use strict';
 // Server-owned state and evidence only. No client-side detector or pretend trace.
 const $ = id => document.getElementById(id);
-let config = null, run = null, referenceAsset = null, busy = false, timer = null;
+let config = null, run = null, referenceAsset = null, busy = false, timer = null, interactionEpoch = 0;
 const storageKey = 'hometrace.photo-flow.run.v1';
 const sourceText = s => s === 'synthetic' ? 'AI 合成图' : s === 'real_upload' ? '用户声明实拍图' : '无图片';
 const labels = {CONFIRM_MEMORY:'等待确认位置', RUNNING:'正在搜索', AWAITING_REVIEW:'等待核对候选',
@@ -22,11 +22,14 @@ function controls() {
   $('start').disabled=busy || !config || run?.state==='RUNNING';
 }
 async function perform(fn) {
-  if(busy)return; busy=true; $('error').hidden=true; controls();
+  if(busy)return; busy=true; interactionEpoch++; clearTimeout(timer); $('error').hidden=true; controls();
   try {await fn();} catch(e) {
     error(e);
     if(e.status===409 && run) {try{run=await api('/api/home-flow/runs/'+run.run_id); renderRun();}catch{}}
-  } finally {busy=false; controls();}
+  } finally {
+    busy=false; controls();
+    if(run?.state==='RUNNING') {clearTimeout(timer);timer=setTimeout(poll,700);}
+  }
 }
 function options(select, rows, blank) {
   const previous=select.value; select.replaceChildren();
@@ -141,15 +144,30 @@ function renderRun() {
 }
 async function poll() {
   if(busy){timer=setTimeout(poll,700);return;}
-  try {run=await api('/api/home-flow/runs/'+run.run_id);renderRun();}
-  catch(e) {error(e);timer=setTimeout(poll,3000);}
+  if(!run || run.state!=='RUNNING')return;
+  const runId=run.run_id, epoch=interactionEpoch;
+  const current=()=>!busy && epoch===interactionEpoch && run?.run_id===runId;
+  try {
+    const next=await api('/api/home-flow/runs/'+runId);
+    // A queued response must not undo an action, restore a previous task or
+    // replace a newer server version. This also suppresses stale error UI.
+    if(!current())return;
+    if(next.run_id!==runId || next.version<run.version) {timer=setTimeout(poll,700);return;}
+    run=next;renderRun();
+  } catch(e) {if(current()){error(e);timer=setTimeout(poll,3000);}}
 }
 $('enroll-form').addEventListener('submit',e=>{e.preventDefault();perform(async()=>{
   const id=$('object-id').value.trim();await api('/api/household/enroll',{object_id:id,name:$('object-name').value.trim(),aliases:$('object-aliases').value.split(/[,，]/).map(x=>x.trim()).filter(Boolean)});
   await reloadConfig();$('reference-object').value=id;referenceAsset=null;renderReference();$('enroll-status').textContent='名称已保存；接下来上传参考图。';
 });});
 $('reference-object').addEventListener('change',()=>{referenceAsset=null;$('reference-file').value='';renderReference();controls();});
-$('reference-file').addEventListener('change',()=>perform(async()=>{referenceAsset=await upload($('reference-file').files[0],$('reference-source').value);editRoi();$('reference-upload-status').textContent='图片已保存。请框选目标并确认区域。';}));
+$('reference-file').addEventListener('change',()=>perform(async()=>{
+  referenceAsset=null;$('roi-editor').hidden=true;$('roi-reviewed').checked=false;
+  $('reference-upload-status').textContent='正在校验所选图片…';controls();
+  try {referenceAsset=await upload($('reference-file').files[0],$('reference-source').value);}
+  catch(e) {$('reference-upload-status').textContent='图片未保存，请重新选择。';throw e;}
+  editRoi();$('reference-upload-status').textContent='图片已保存。请框选目标并确认区域。';
+}));
 $('reference-source').addEventListener('change',()=>{referenceAsset=null;$('reference-file').value='';$('roi-editor').hidden=true;$('reference-upload-status').textContent='来源已改变，请重新选择照片。';controls();});
 ['x1','y1','x2','y2'].forEach(k=>$('roi-'+k).addEventListener('input',()=>{if(referenceAsset)changeRoi(roi());}));
 $('roi-reviewed').addEventListener('change',controls);
