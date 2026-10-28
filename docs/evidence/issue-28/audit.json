@@ -1,0 +1,63 @@
+{
+  "date_asia_shanghai": "2026-10-28",
+  "base_commit": "5861967f8e78d9470fad19cc0ead595bca3f58d5",
+  "full_pytest": {
+    "passed": 773,
+    "failed": 0,
+    "skipped": 0,
+    "warnings": 1,
+    "seconds": 123.07
+  },
+  "node_tests": {
+    "passed": 8,
+    "failed": 0,
+    "skipped": 0
+  },
+  "original_test_files_unchanged": 38,
+  "original_docs_unchanged": 309,
+  "source_sha256": {
+    "src/hometrace/demo_server.py": "cefeea501d6a97fc29df1dac5a3ab157ea0e573d14c8a8031bee69e538ecb70d",
+    "src/hometrace/photo_agent_service.py": "ad98232763d9a6cd66c1f9d03f0c5ff43fa801af226f3f17c7650c4a100abd70",
+    "src/hometrace/photo_flow_service.py": "b2efb8d1944063cda808323d0d4e701728d21849e33fb1ef49b033285b301efc",
+    "src/hometrace/web/home-flow.css": "3f1ee3ecdb9e1046a3b4be78ea0274a2662034b45075dc6515da1c06252af6cf",
+    "src/hometrace/web/home-flow.html": "55111ccedf085d03fd22ce06f14e46c6812532ce228e7d66ca5d62332bee5334",
+    "src/hometrace/web/home-flow.js": "ae6ed41d5da5740fbc59c383f8686f36fa5491579994d0cd99f99d6bfee72f35",
+    "tests/test_photo_agent_client.cjs": "34598ec275ecde20690731ac5730b0052c0ff5a9a4ca6762ce9cace240778846",
+    "tests/test_photo_agent_hooks.py": "f059125ea3a41e210f1ab90829a078627a8eee5ac048a3c0fc48a724da9c57bb",
+    "tests/test_photo_agent_service.py": "c01bb50ce532629b7dad841d23fb9ad926559d47364699600a8751e674782b7d",
+    "tools/validate_photo_agent.py": "5d4777245b5ee4531fdf5a0a2a13f0d43362cce3df7bd665bcc1661d4edb4a2a"
+  },
+  "privacy_scan": {
+    "files": 23,
+    "violations": [],
+    "secret_values_printed": false
+  },
+  "browser": {
+    "actual_ui_executed": true,
+    "checks": [
+      "natural language request",
+      "actual LLM metrics",
+      "candidate and bbox",
+      "refresh restoration",
+      "reject and model continuation",
+      "UNKNOWN"
+    ],
+    "not_tested": [
+      "new ROI drag",
+      "other browser engines",
+      "physical mobile devices"
+    ],
+    "initial_connection_failure_retained": true,
+    "screenshots_private": true
+  },
+  "ready_demo": {
+    "port": 8770,
+    "model_available": true,
+    "mode": "llm_langgraph",
+    "evidence_count": 0
+  },
+  "wheel_sha256": "c2caaac24418d2484e798810cfb8729ee98ce4771c45774139279740451b9bd0",
+  "wheel_contains_current_sources": true,
+  "fresh_environment_install": false,
+  "real_household_recognition": "BLOCKED"
+}

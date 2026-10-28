@@ -1,0 +1,397 @@
+{
+  "run_id": "591861d22cdc486ca4b7b9578964ffdc",
+  "version": 17,
+  "state": "UNKNOWN",
+  "mode": "llm_langgraph",
+  "model": "deepseek-v4.1-flash-1017",
+  "model_calls": 5,
+  "tool_calls": 5,
+  "total_tokens": 6913,
+  "visual_confirmed": false,
+  "visited": [
+    "entry-tray",
+    "study-desk",
+    "living-table"
+  ],
+  "reply": "LLM 已停止搜索；现有工具证据仍未确认目标。UNKNOWN 不等于目标不存在。",
+  "llm_explanation": "三个可能有线索的位置（玄关托盘、书房桌面、客厅茶几）都已查看：书房桌面曾出现疑似外观候选，但已被你排除；其余未获可靠匹配。目前没有可继续核查的新地点，暂不能确认蓝色钥匙的位置。",
+  "observations": [
+    {
+      "location_id": "entry-tray",
+      "source_kind": "synthetic",
+      "image_sha256": "0b66fbf63b2255ecd3d2535974e0a730403e88c35c9038a67663006a879ae307",
+      "status": "UNKNOWN",
+      "bbox": null,
+      "reason": "insufficient_distinct_matches",
+      "duration_ms": 95.041,
+      "diagnostics": {
+        "elapsed_ms": 92.2,
+        "good_matches": 10,
+        "image_decoded": true,
+        "inlier_ratio": 0.0,
+        "inliers": 0,
+        "opencv_version": "4.12.0",
+        "reason": "insufficient_distinct_matches",
+        "reference_coverage": 0.0,
+        "reference_image_hash": "3cc149287c013dd6b9ff8f4ff9f54a4d32d9dfeb5b4200612ec2ea0d40e94fe8",
+        "reference_keypoints": 2000,
+        "reference_original_size": [
+          1448,
+          1086
+        ],
+        "reference_preprocessing": "registration_roi",
+        "reference_roi": [
+          110,
+          120,
+          1390,
+          950
+        ],
+        "reference_sharpness": 399.499,
+        "reference_size": [
+          1280,
+          830
+        ],
+        "scene_keypoints": 1974,
+        "scene_preprocessing": "full_image",
+        "scene_size": [
+          1672,
+          941
+        ],
+        "seed": 0,
+        "sharpness": 265.205,
+        "threads": 1
+      },
+      "identity_confirmed": false
+    },
+    {
+      "location_id": "study-desk",
+      "source_kind": "synthetic",
+      "image_sha256": "ac06b717b7171daa0b4b26c6adcbb1556938717929b7a68d53ba785494239502",
+      "status": "SUSPECTED",
+      "bbox": [
+        439.12,
+        511.97,
+        1194.69,
+        1003.22
+      ],
+      "reason": "appearance_candidate_requires_review",
+      "duration_ms": 101.519,
+      "diagnostics": {
+        "elapsed_ms": 98.376,
+        "good_matches": 174,
+        "image_decoded": true,
+        "inlier_ratio": 0.8161,
+        "inliers": 142,
+        "opencv_version": "4.12.0",
+        "projected_area_fraction": 0.2089,
+        "projected_corners": [
+          [
+            470.62,
+            511.97
+          ],
+          [
+            1194.69,
+            540.04
+          ],
+          [
+            1163.77,
+            1003.22
+          ],
+          [
+            439.12,
+            952.55
+          ]
+        ],
+        "projected_visible_fraction": 1.0,
+        "raw_match_reason": "verified_planar_reference_match",
+        "reason": "appearance_candidate_requires_review",
+        "reference_coverage": 0.1458,
+        "reference_image_hash": "3cc149287c013dd6b9ff8f4ff9f54a4d32d9dfeb5b4200612ec2ea0d40e94fe8",
+        "reference_keypoints": 2000,
+        "reference_original_size": [
+          1448,
+          1086
+        ],
+        "reference_preprocessing": "registration_roi",
+        "reference_roi": [
+          110,
+          120,
+          1390,
+          950
+        ],
+        "reference_sharpness": 399.499,
+        "reference_size": [
+          1280,
+          830
+        ],
+        "scene_keypoints": 2000,
+        "scene_preprocessing": "full_image",
+        "scene_size": [
+          1448,
+          1086
+        ],
+        "seed": 0,
+        "sharpness": 389.037,
+        "threads": 1
+      },
+      "identity_confirmed": false
+    },
+    {
+      "location_id": "living-table",
+      "source_kind": "synthetic",
+      "image_sha256": "5646c45ed7f793136e85ce9183a96d6ef9055af428d47a35ce4215fa447d3b50",
+      "status": "UNKNOWN",
+      "bbox": null,
+      "reason": "no_verified_match",
+      "duration_ms": 147.149,
+      "diagnostics": {
+        "elapsed_ms": 144.08,
+        "good_matches": 2,
+        "image_decoded": true,
+        "inlier_ratio": 0.0,
+        "inliers": 0,
+        "opencv_version": "4.12.0",
+        "reason": "no_verified_match",
+        "reference_coverage": 0.0,
+        "reference_image_hash": "3cc149287c013dd6b9ff8f4ff9f54a4d32d9dfeb5b4200612ec2ea0d40e94fe8",
+        "reference_keypoints": 2000,
+        "reference_original_size": [
+          1448,
+          1086
+        ],
+        "reference_preprocessing": "registration_roi",
+        "reference_roi": [
+          110,
+          120,
+          1390,
+          950
+        ],
+        "reference_sharpness": 399.499,
+        "reference_size": [
+          1280,
+          830
+        ],
+        "scene_keypoints": 2000,
+        "scene_preprocessing": "full_image",
+        "scene_size": [
+          1448,
+          1086
+        ],
+        "seed": 0,
+        "sharpness": 265.23,
+        "threads": 1
+      },
+      "identity_confirmed": false
+    }
+  ],
+  "model_events": [
+    {
+      "at": "2026-10-28T07:12:46.776015+00:00",
+      "input": {},
+      "result": {
+        "call": 1,
+        "model": "deepseek-v4.1-flash-1017",
+        "raw_images_sent": false
+      },
+      "seq": 1,
+      "tool": "llm_request"
+    },
+    {
+      "at": "2026-10-28T07:12:48.998799+00:00",
+      "input": {},
+      "result": {
+        "decision_reason": "主人要找蓝色钥匙，目录中已登记该物品，准备读取历史后寻找。",
+        "latency_ms": 2065.918,
+        "model": "deepseek-v4.1-flash-1017",
+        "selected_tool": "resolve_request",
+        "usage": {
+          "input_tokens": 1068,
+          "output_tokens": 91,
+          "total_tokens": 1159
+        }
+      },
+      "seq": 2,
+      "tool": "llm_decision"
+    },
+    {
+      "at": "2026-10-28T07:12:49.135104+00:00",
+      "input": {
+        "intent": "find",
+        "name": "resolve_request",
+        "object_id": "blue-keys",
+        "reason": "主人要找蓝色钥匙，目录中已登记该物品，准备读取历史后寻找。"
+      },
+      "result": {
+        "automatic_found": false,
+        "state": "RUNNING"
+      },
+      "seq": 5,
+      "tool": "llm_tool"
+    },
+    {
+      "at": "2026-10-28T07:12:49.241753+00:00",
+      "input": {},
+      "result": {
+        "call": 2,
+        "model": "deepseek-v4.1-flash-1017",
+        "raw_images_sent": false
+      },
+      "seq": 6,
+      "tool": "llm_request"
+    },
+    {
+      "at": "2026-10-28T07:12:50.665141+00:00",
+      "input": {},
+      "result": {
+        "decision_reason": "历史记录显示蓝色钥匙最近曾放在玄关托盘，先核查这里。",
+        "latency_ms": 1307.866,
+        "model": "deepseek-v4.1-flash-1017",
+        "selected_tool": "inspect_location",
+        "usage": {
+          "input_tokens": 1115,
+          "output_tokens": 135,
+          "total_tokens": 1250
+        }
+      },
+      "seq": 7,
+      "tool": "llm_decision"
+    },
+    {
+      "at": "2026-10-28T07:12:51.317621+00:00",
+      "input": {},
+      "result": {
+        "call": 3,
+        "model": "deepseek-v4.1-flash-1017",
+        "raw_images_sent": false
+      },
+      "seq": 12,
+      "tool": "llm_request"
+    },
+    {
+      "at": "2026-10-28T07:12:52.637970+00:00",
+      "input": {},
+      "result": {
+        "decision_reason": "玄关托盘未发现明确匹配，继续检查另一处记忆提到过的书房桌面。",
+        "latency_ms": 1171.171,
+        "model": "deepseek-v4.1-flash-1017",
+        "selected_tool": "inspect_location",
+        "usage": {
+          "input_tokens": 1290,
+          "output_tokens": 121,
+          "total_tokens": 1411
+        }
+      },
+      "seq": 13,
+      "tool": "llm_decision"
+    },
+    {
+      "at": "2026-10-28T07:13:45.171364+00:00",
+      "input": {},
+      "result": {
+        "call": 4,
+        "model": "deepseek-v4.1-flash-1017",
+        "raw_images_sent": false
+      },
+      "seq": 19,
+      "tool": "llm_request"
+    },
+    {
+      "at": "2026-10-28T07:13:46.693362+00:00",
+      "input": {},
+      "result": {
+        "decision_reason": "书房候选已被你否掉，玄关也没有明确匹配，剩下的客厅茶几还没看过，去确认一下。",
+        "latency_ms": 1358.417,
+        "model": "deepseek-v4.1-flash-1017",
+        "selected_tool": "inspect_location",
+        "usage": {
+          "input_tokens": 1439,
+          "output_tokens": 113,
+          "total_tokens": 1552
+        }
+      },
+      "seq": 20,
+      "tool": "llm_decision"
+    },
+    {
+      "at": "2026-10-28T07:13:47.223058+00:00",
+      "input": {},
+      "result": {
+        "call": 5,
+        "model": "deepseek-v4.1-flash-1017",
+        "raw_images_sent": false
+      },
+      "seq": 25,
+      "tool": "llm_request"
+    },
+    {
+      "at": "2026-10-28T07:13:48.994183+00:00",
+      "input": {},
+      "result": {
+        "decision_reason": "三个可能有线索的位置（玄关托盘、书房桌面、客厅茶几）都已查看：书房桌面曾出现疑似外观候选，但已被你排除；其余未获可靠匹配。目前没有可继续核查的新地点，暂不能确认蓝色钥匙的位置。",
+        "latency_ms": 1607.75,
+        "model": "deepseek-v4.1-flash-1017",
+        "selected_tool": "finish_search",
+        "usage": {
+          "input_tokens": 1417,
+          "output_tokens": 124,
+          "total_tokens": 1541
+        }
+      },
+      "seq": 26,
+      "tool": "llm_decision"
+    },
+    {
+      "at": "2026-10-28T07:13:49.160894+00:00",
+      "input": {
+        "name": "finish_search",
+        "reason": "三个可能有线索的位置（玄关托盘、书房桌面、客厅茶几）都已查看：书房桌面曾出现疑似外观候选，但已被你排除；其余未获可靠匹配。目前没有可继续核查的新地点，暂不能确认蓝色钥匙的位置。"
+      },
+      "result": {
+        "automatic_found": false,
+        "state": "UNKNOWN"
+      },
+      "seq": 27,
+      "tool": "llm_tool"
+    }
+  ],
+  "actual_location_choices": [
+    {
+      "seq": 8,
+      "input": {
+        "location_id": "entry-tray",
+        "reason": "历史记录显示蓝色钥匙最近曾放在玄关托盘，先核查这里。"
+      },
+      "result_status": "ARRIVED"
+    },
+    {
+      "seq": 14,
+      "input": {
+        "location_id": "study-desk",
+        "reason": "玄关托盘未发现明确匹配，继续检查另一处记忆提到过的书房桌面。"
+      },
+      "result_status": "ARRIVED"
+    },
+    {
+      "seq": 21,
+      "input": {
+        "location_id": "living-table",
+        "reason": "书房候选已被你否掉，玄关也没有明确匹配，剩下的客厅茶几还没看过，去确认一下。"
+      },
+      "result_status": "ARRIVED"
+    }
+  ],
+  "owner_rejections": [
+    {
+      "at": "2026-10-28T07:13:45.007174+00:00",
+      "input": {
+        "location_id": "study-desk"
+      },
+      "result": {
+        "accepted": false
+      },
+      "seq": 18,
+      "tool": "owner_reject_candidate"
+    }
+  ],
+  "history_record_count": 2
+}

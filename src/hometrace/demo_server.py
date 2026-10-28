@@ -228,6 +228,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--samples-dir", type=Path, default=Path("examples/recorded_images"))
     parser.add_argument("--case-config", type=Path, action="append", default=[], help="Optional private local object configuration; repeat to add cases")
     parser.add_argument("--agent", action="store_true", help="Enable the real API Agent; requires [agent] dependencies and local .env")
+    parser.add_argument("--photo-agent", action="store_true", help="Use real LLM tool decisions in /home-flow.html; never silently falls back to rules")
     parser.add_argument("--config", type=Path, help="Optional Agent config.yaml path")
     parser.add_argument('--household-dir', type=Path, default=Path('artifacts/household'),
                         help='Persistent private household workspace; reuse across restarts')
@@ -244,7 +245,11 @@ def main(argv: list[str] | None = None) -> int:
             agent_service = AgentService(args.samples_dir,args.output_dir/"agent",config_path=args.config)
         household_service = HouseholdService(args.household_dir)
         from .photo_flow_service import PhotoFlowService
-        photo_flow_service = PhotoFlowService(household_service)
+        if args.photo_agent:
+            from .photo_agent_service import PhotoAgentService
+            photo_flow_service = PhotoAgentService(household_service, config_path=args.config)
+        else:
+            photo_flow_service = PhotoFlowService(household_service)
         with make_server(service, args.port, agent_service=agent_service, household_service=household_service, photo_flow_service=photo_flow_service) as server:
             print(f"HomeTrace demo: http://127.0.0.1:{server.server_port}", flush=True)
             print("Recorded photographs + simulated navigation. Real execution followed by event playback.", flush=True)
