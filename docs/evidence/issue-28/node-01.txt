@@ -1,0 +1,16 @@
+✔ LLM metrics and choice are visible without turning a model rationale into a tool fact (19.4004ms)
+✔ offline and restored offline runs do not claim LLM execution (3.2603ms)
+✔ model outages, budget exhaustion and protocol failure stay explicit and do not offer false fallback (1.7422ms)
+✔ unknown model usage stays unknown and model text is rendered as literal non-authoritative text (1.3164ms)
+✔ an old poll cannot replace a newly started run or its recovery ID (6.2214ms)
+✔ a lower version response cannot roll back the same run (2.418ms)
+✔ an invalidated request error cannot disturb the new run or its polling timer (2.4768ms)
+✔ a failed replacement upload cannot submit the previously reviewed reference (2.6799ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 170.3749

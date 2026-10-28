@@ -208,7 +208,7 @@ class PhotoFlowService:
 
     @staticmethod
     def _public(run):
-        return {k: v for k, v in run.items() if k not in ('snapshot',)}
+        return {k: v for k, v in run.items() if k not in ('snapshot', 'agent_internal')}
 
     def get(self, run_id):
         with closing(self._connect()) as db:
@@ -439,6 +439,8 @@ class PhotoFlowService:
     def act(self, run_id, version, action, object_id=None):
         if type(version) is not int or version < 1:
             raise ValueError('无效版本号')
+        if self.mode != 'llm_langgraph' and self.get(run_id).get('mode') == 'llm_langgraph':
+            raise ValueError('此记录由真实 LLM 执行，请使用 --photo-agent 启动后继续；不能切换为规则执行')
         if action in ('confirm_memory', 'accept_candidate'):
             if object_id is not None:
                 raise ValueError('确认操作不接收新的物品编号')
@@ -486,7 +488,7 @@ class PhotoFlowService:
     def _work(self, run_id):
         try:
             if self.graph is not None:
-                self.graph.invoke({'run_id': run_id, 'again': True}, {'recursion_limit': 8})
+                self.graph.invoke({'run_id': run_id, 'again': True}, {'recursion_limit': getattr(self, 'graph_limit', 8)})
             else:
                 while self._step(run_id):
                     pass
@@ -521,7 +523,7 @@ class PhotoFlowService:
             # its successor. Wait on that worker, not just the first thread.
             sleep(min(.01, max(0, deadline-monotonic())))
 
-    def _step(self, run_id):
+    def _step(self, run_id, *, location_id=None, reason=None, expected_version=None):
         # Evidence + completed location + trace commit together. A crash rolls
         # back the entire step, so resume does not consume invisible evidence.
         with closing(self._connect()) as db, db:
@@ -529,13 +531,21 @@ class PhotoFlowService:
             run = self._load(db, run_id)
             if run['state'] != 'RUNNING':
                 return False
+            if expected_version is not None and run['version'] != expected_version:
+                return False
             remaining = [x for x in run['planned_locations'] if x['location_id'] not in run['visited']]
+            chosen = None
+            if location_id is not None:
+                chosen = next((x for x in remaining if x['location_id'] == location_id), None)
+                if chosen is None:
+                    raise ValueError('模型只能选择合法且尚未访问的地点')
+                chosen = {**chosen, 'reason': _text(reason, '决策理由', 240)}
             if not remaining:
                 run.update(state='UNKNOWN', reply='已检查所有配置地点，仍未确认目标。UNKNOWN 不代表目标一定不在家中；请补充新的场景照片。')
                 self._trace(run, 'finish_search', {}, {'status': 'UNKNOWN', 'automatic_found': False})
                 self._save(db, run)
                 return False
-            view = remaining[0]
+            view = chosen or remaining[0]
             loc = view['location_id']
             source = SOURCES[run['snapshot']['reference']['source_kind']]
             memory = _EvidenceStore(db, run['selected_object'], run['snapshot']['reference'])

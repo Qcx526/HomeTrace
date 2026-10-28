@@ -16,7 +16,7 @@
   <main>
     <section class="intro">
       <div><p class="eyebrow">HOME MEMORY / PHOTO WORKSPACE</p><h1>记住一件物品，再循着证据去寻找。</h1><p class="subtitle">登记外观 → 保存位置 → 查看当前场景 → 候选核验。每一步都保留实际执行记录。</p></div>
-      <div class="boundary"><strong>模拟导航 · 外观候选需要你核对</strong><p>地点由你选择，观察来自你配置的图片；系统不控制真实机器人。外观匹配不会自动变成实例 FOUND。</p></div>
+      <div class="boundary"><strong>模拟导航 · 外观候选需要你核对</strong><p>主人位置由你提供，观察来自你配置的图片；系统不控制真实机器人。外观匹配不会自动变成实例 FOUND。</p></div>
     </section>
     <div id="service-notice" class="service-notice" role="status">正在连接本地服务…</div>
     <div id="error" class="error" role="alert" hidden></div>
@@ -89,7 +89,24 @@
             <label for="message">你的请求</label><textarea id="message" rows="3" maxlength="1000" placeholder="例如：帮我记住蓝色挂件钥匙放在这里了" required disabled></textarea>
             <div class="prompt-buttons"><button type="button" data-template="remember" disabled>记住位置</button><button type="button" data-template="find" disabled>帮我寻找</button><button type="button" data-template="history" disabled>查看历史</button></div>
             <div class="request-footer"><p id="pending-notice" class="note">先登记名称和外观，然后保存位置或发起寻找。</p><button id="start" class="primary" type="submit" disabled>发送并执行</button></div>
+            <p id="model-privacy" class="field-help">连接后会显示本页的实际决策模式与数据发送范围。</p>
           </form>
+        </section>
+
+        <section class="panel model-panel" aria-labelledby="model-title">
+          <div class="panel-heading"><h2 id="model-title">谁在做下一步决定</h2><span id="model-mode" class="badge">等待连接</span></div>
+          <p id="model-description" class="note">尚未取得服务端配置。</p>
+          <dl id="model-metrics" class="model-metrics" hidden>
+            <div><dt>实际模型</dt><dd id="model-name">待执行</dd></div>
+            <div><dt>模型调用</dt><dd id="model-calls">待执行</dd></div>
+            <div><dt>工具调用</dt><dd id="tool-calls">待执行</dd></div>
+            <div><dt>已用 Token</dt><dd id="model-tokens">待执行</dd></div>
+          </dl>
+          <div id="model-decision" class="model-decision" hidden>
+            <strong>最近一次模型决策摘要</strong><p id="model-reason"></p>
+            <p id="model-next-tool" class="field-help"></p>
+          </div>
+          <p id="model-error" class="model-error" role="status" hidden></p>
         </section>
 
         <section class="panel session-panel" aria-labelledby="session-title">

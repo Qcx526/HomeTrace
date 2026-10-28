@@ -6,7 +6,21 @@ const storageKey = 'hometrace.photo-flow.run.v1';
 const sourceText = s => s === 'synthetic' ? 'AI 合成图' : s === 'real_upload' ? '用户声明实拍图' : '无图片';
 const labels = {CONFIRM_MEMORY:'等待确认位置', RUNNING:'正在搜索', AWAITING_REVIEW:'等待核对候选',
   USER_CONFIRMED:'主人已确认', UNKNOWN:'未确认 UNKNOWN', COMPLETED:'已完成', CLARIFY:'需要选择物品',
-  UNKNOWN_OBJECT:'物品尚未登记', NEEDS_REFERENCE:'需要登记参考', ERROR:'执行遇到问题', CANCELLED:'已取消'};
+  UNKNOWN_OBJECT:'物品尚未登记', NEEDS_REFERENCE:'需要登记参考', ERROR:'执行遇到问题', CANCELLED:'已取消',
+  MODEL_UNAVAILABLE:'模型服务不可用', BUDGET_EXCEEDED:'本次调用预算已用尽', AGENT_FAILED:'Agent 执行失败'};
+const modelFailures = {
+  MODEL_UNAVAILABLE:'模型调用失败，本次执行已停止。没有切换成规则搜索；请检查模型服务后重试，已有调用预算会保留。',
+  BUDGET_EXCEEDED:'本次执行达到调用或 Token 预算，已停止继续调用。请查看已有证据，再发送新的请求。',
+  AGENT_FAILED:'Agent 未能完成有效的工具决策，本次执行已停止。没有生成找到物品的结论；请查看轨迹后发送新的请求。',
+};
+const toolLabels = {list_registered_objects:'读取登记目录',resolve_registered_object:'解析已登记物品',
+  query_owner_memory:'查询位置记忆',query_memory:'查询位置记忆',plan_search:'生成搜索计划',
+  navigate_simulated:'模拟导航',observe_uploaded_image:'读取当前场景图',match_reference_image:'核验图像匹配',
+  review_or_continue:'根据观察更新状态',save_owner_memory:'保存主人位置陈述',
+  owner_reject_candidate:'主人拒绝候选',finish_search:'结束搜索',execution_error:'记录执行错误',decline_request:'说明无法执行并结束',
+  resolve_request:'理解请求并读取物品历史',clarify_request:'请主人选择物品',unknown_object:'报告未登记物品',
+  inspect_location:'检查所选地点',list_search_options:'列出可选地点',llm_request:'发起真实模型请求',llm_tool:'执行模型所选工具'};
+const modeLabel = mode => ({llm_langgraph:'真实 LLM 决策',deterministic_langgraph:'离线规则 + LangGraph',deterministic_rules:'离线确定性规则'}[mode] || mode || '模式未知');
 function node(tag, text, cls) { const n=document.createElement(tag); if(text!==undefined)n.textContent=text; if(cls)n.className=cls; return n; }
 function error(e) { $('error').textContent=e?.message || String(e); $('error').hidden=false; }
 function rememberRun(id) { try {localStorage.setItem(storageKey,id);} catch { $('storage-notice').textContent='浏览器存储不可用，刷新后请保留报告中的执行编号。服务端记录仍保留。'; $('storage-notice').hidden=false; } }
@@ -52,7 +66,10 @@ function imageFrame(asset,bbox,caption) {
 function details(title,value) {const d=node('details',undefined,'diagnostics');d.append(node('summary',title),node('pre',JSON.stringify(value,null,2)));return d;}
 async function reloadConfig() {config=await api('/api/home-flow/config');renderConfig();}
 function renderConfig() {
-  $('service-notice').textContent=config.notice+' · '+config.mode;
+  $('service-notice').textContent=config.notice+' · 当前服务：'+modeLabel(config.mode);
+  $('model-privacy').textContent=config.mode==='llm_langgraph'
+    ? '真实 LLM 模式：请求文字、物品名称、地点及结构化工具结果会发送给已配置的模型 API；原始图片留在本地。模型决定下一步工具，图片证据由本地程序产生。'
+    : '当前服务使用本地确定性规则，不调用 LLM。LangGraph 负责流程状态，不代表模型正在参与决策。';
   $('catalog-count').textContent=config.catalog.length+' 件';
   $('catalog').replaceChildren();
   for(const obj of config.catalog) {
@@ -69,7 +86,28 @@ function renderConfig() {
     if(scene){const img=node('img');img.src=scene.url;img.alt=loc.location_name+'当前配置';li.append(img);}
     const text=node('div');text.append(node('strong',loc.location_name),node('p',scene?sourceText(scene.source_kind)+' · '+scene.width+'×'+scene.height:'未配置，搜索时会报告无法观察'));li.append(text);$('scenes').append(li);
   }
-  renderReference();controls();
+  renderReference();renderModel();controls();
+}
+function renderModel() {
+  const mode=run?.mode || config?.mode, real=mode==='llm_langgraph';
+  $('model-mode').textContent=modeLabel(mode);
+  $('model-description').textContent=real
+    ? 'LLM 根据请求和真实工具反馈选择下一步。下方摘要是模型给出的决策说明，不是视觉证据；位置、检测框与状态以实际工具返回为准。'
+    : '此执行使用固定规则，不产生真实 LLM 调用。历史与图片仍由程序读取；不会把规则轨迹表述为模型决策。';
+  $('model-metrics').hidden=!real;
+  const count=value=>Number.isSafeInteger(value)&&value>=0?String(value):'待返回';
+  $('model-name').textContent=real ? (run?.model || config?.model || '等待模型返回') : '未调用';
+  $('model-calls').textContent=real?count(run?.model_calls):'未调用';
+  $('tool-calls').textContent=real?count(run?.tool_calls):'待执行';
+  $('model-tokens').textContent=real?count(run?.total_tokens):'未调用';
+  const last=real?(run?.trace || []).filter(t=>t.tool==='llm_decision').at(-1):null;
+  const reason=last?.result?.decision_reason || (real?run?.llm_explanation:null);
+  $('model-decision').hidden=!reason;
+  $('model-reason').textContent=reason || '';
+  const selected=last?.result?.selected_tool;
+  $('model-next-tool').textContent=selected?'选择工具：'+(toolLabels[selected] || selected)+'。是否实际执行请查看下方工具轨迹。':'模型提供的文字说明，不替代工具证据。';
+  $('model-error').hidden=!modelFailures[run?.state];
+  $('model-error').textContent=modelFailures[run?.state] || '';
 }
 function renderReference() {
   const ref=config?.catalog.find(x=>x.object_id===$('reference-object').value)?.reference;
@@ -109,12 +147,12 @@ function renderRun() {
   if(!run)return;
   clearTimeout(timer); rememberRun(run.run_id);
   $('session-state').textContent=labels[run.state] || run.state;
-  $('session-meta').textContent=`${run.selected_object?.name || '待解析物品'} · 版本 ${run.version} · ${run.mode}`;
-  $('reply').textContent=run.reply;$('mode-badge').textContent=run.mode;
+  $('session-meta').textContent=`${run.selected_object?.name || '待解析物品'} · 版本 ${run.version} · ${modeLabel(run.mode)}`;
+  $('reply').textContent=run.reply;$('mode-badge').textContent=modeLabel(run.mode);renderModel();
   const actions=$('session-actions');actions.replaceChildren();
   if(run.state==='CLARIFY')run.matches.forEach(obj=>actionButton(actions,obj.name+' · '+obj.object_id,'select',obj.object_id));
   if(run.state==='CONFIRM_MEMORY')actionButton(actions,'确认记住这个位置','confirm_memory',null,'primary');
-  if(['UNKNOWN_OBJECT','NEEDS_REFERENCE','ERROR','RUNNING'].includes(run.state))actionButton(actions,run.state==='RUNNING'?'服务重启后继续执行':'重新查询 / 重试','retry');
+  if(['UNKNOWN_OBJECT','NEEDS_REFERENCE','ERROR','RUNNING','MODEL_UNAVAILABLE'].includes(run.state))actionButton(actions,run.state==='RUNNING'?'服务重启后继续执行':'重新查询 / 重试','retry');
   if(!['COMPLETED','USER_CONFIRMED','UNKNOWN','CANCELLED'].includes(run.state))actionButton(actions,'取消后续操作','cancel');
   const report=node('a','下载本次真实执行 JSON');report.href='/api/home-flow/runs/'+run.run_id+'/report';report.className='small-link';report.style.marginLeft='12px';actions.append(report);
   $('candidate-panel').hidden=run.state!=='AWAITING_REVIEW';$('candidate-content').replaceChildren();$('candidate-actions').replaceChildren();
@@ -129,7 +167,12 @@ function renderRun() {
     actionButton($('candidate-actions'),'不是它，继续寻找','reject_candidate');
   }
   $('memory-panel').hidden=!run.selected_object;
-  $('plan').replaceChildren();run.planned_locations.forEach((loc,i)=>$('plan').append(node('li',`${i+1}. ${loc.location_name} · ${loc.reason==='recent_owner_memory'?'历史优先':'剩余地点'}`,run.visited.includes(loc.location_id)?'visited':'')));
+  $('plan').replaceChildren();
+  if(run.mode==='llm_langgraph') {
+    const locations=new Map(run.planned_locations.map(x=>[x.location_id,x]));
+    run.visited.forEach((id,i)=>$('plan').append(node('li',`${i+1}. ${locations.get(id)?.location_name || id} · LLM 选择并已执行`,'visited')));
+    run.planned_locations.filter(x=>!run.visited.includes(x.location_id)).forEach(loc=>$('plan').append(node('li',`${loc.location_name} · 候选地点，尚未选择`)));
+  } else run.planned_locations.forEach((loc,i)=>$('plan').append(node('li',`${i+1}. ${loc.location_name} · ${loc.reason==='recent_owner_memory'?'规则：历史优先':'规则：剩余地点'}`,run.visited.includes(loc.location_id)?'visited':'')));
   $('history-count').textContent=`${run.history.length} 条`;$('history').replaceChildren();
   run.history.forEach(x=>{const li=node('li');li.append(node('strong',x.location_name),node('p',new Date(x.reported_at).toLocaleString()+' · 主人陈述 / 非视觉确认'),node('p','来源：'+x.source));$('history').append(li);});
   if(!run.history.length)$('history').append(node('li','尚无位置记录','empty'));
@@ -138,7 +181,26 @@ function renderRun() {
     const card=node('article',undefined,'observation-card');card.append(node('h3',obs.location_name),node('span',obs.status,'badge amber'),imageFrame(obs,obs.bbox,obs.location_name+'观察证据'),node('p',sourceText(obs.source_kind)+' · '+obs.reason,'note'),details('实际匹配诊断与坐标',{bbox:obs.bbox,raw_match_status:obs.raw_match_status,duration_ms:obs.duration_ms,...obs.diagnostics}));$('observations').append(card);
   }
   $('trace-panel').hidden=!run.trace.length;$('trace').replaceChildren();
-  run.trace.forEach(t=>{const li=node('li'),head=node('div',undefined,'trace-header');head.append(node('strong',`${t.seq}. ${t.tool}`),node('time',new Date(t.at).toLocaleTimeString()));li.append(head,details('输入与真实返回',{input:t.input,result:t.result}));$('trace').append(li);});
+  run.trace.forEach(t=>{
+    const decision=t.tool==='llm_decision',li=node('li',undefined,decision?'model-trace':'tool-trace'),head=node('div',undefined,'trace-header');
+    head.append(node('strong',`${t.seq}. ${decision?'LLM 决策摘要':(toolLabels[t.tool] || t.tool)}`),node('time',new Date(t.at).toLocaleTimeString()));li.append(head);
+    if(decision) {
+      li.append(node('span','模型选择 · 非观察证据','badge model-badge'));
+      if(t.result?.decision_reason)li.append(node('p',t.result.decision_reason,'decision-reason'));
+      if(t.result?.selected_tool)li.append(node('p','选择工具：'+(toolLabels[t.result.selected_tool] || t.result.selected_tool)));
+      const metrics=[];
+      if(Number.isFinite(t.result?.latency_ms))metrics.push('模型耗时 '+t.result.latency_ms+' ms');
+      if(Number.isSafeInteger(t.result?.usage?.total_tokens))metrics.push(t.result.usage.total_tokens+' Token');
+      if(metrics.length)li.append(node('p',metrics.join(' · '),'field-help'));
+    } else {
+      li.append(node('span',t.tool==='navigate_simulated'?'实际工具执行 · 模拟导航':'实际工具返回','badge'));
+      const facts=[];
+      if(t.result?.status || t.result?.state)facts.push('状态：'+(labels[t.result.status || t.result.state] || t.result.status || t.result.state));
+      if(t.result?.reason)facts.push('返回原因：'+t.result.reason);
+      if(facts.length)li.append(node('p',facts.join(' · ')));
+    }
+    li.append(details(decision?'模型结构化选择与用量':'工具输入与实际返回',{input:t.input,result:t.result}));$('trace').append(li);
+  });
   if(run.state==='RUNNING')timer=setTimeout(poll,700);
   controls();
 }

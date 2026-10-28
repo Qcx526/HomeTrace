@@ -2,9 +2,9 @@
 
 > Huawei Embedded AI Challenge 2026 / 开放创新赛道
 
-**项目状态（2026-10-28）：** 当前分支增量实现 [Issue #26 照片登记与寻物闭环](docs/HOUSEHOLD_PHOTO_FLOW.md)，依赖未合并的 [PR #25](https://github.com/Qcx526/HomeTrace/pull/25)。上传参考与固定 ROI → 保存主人位置陈述 → 历史优先搜索上传场景 → 实际匹配候选 → 主人接受/拒绝 → 持久记忆与旧图保护，已完成 HTTP、浏览器与 738 项全量回归。演示使用 AI 合成图片；新流程只提出外观候选，主人确认不升级为自动 FOUND。[真实家庭识别](docs/VISION_R3_SHARED_MEMORY_20261027.md) 仍为 BLOCKED。导航始终模拟，本分支不代表 main 或正式参赛包完成。
+**项目状态（2026-10-28）：** 当前分支增量实现 [Issue #28 真实 LLM 照片寻物决策](docs/HOUSEHOLD_PHOTO_AGENT.md)，依赖未合并的 [PR #27](https://github.com/Qcx526/HomeTrace/pull/27)。在同一照片页面中，LLM 理解请求、调用记忆工具，并根据每次观察和主人拒绝选择下一地点或停止；22 次实际 API 调用完成记忆、历史、候选、拒绝重规划与负例/重放验证，联合 pytest 773 项通过。演示使用 AI 合成图片，导航模拟；外观候选需主人核对，不能升级为自动实例 FOUND。[真实家庭识别](docs/VISION_R3_SHARED_MEMORY_20261027.md) 仍为 BLOCKED。本分支不代表 main 或正式参赛包完成。
 
-最新入口：启动后打开 [照片登记与寻找](http://127.0.0.1:8765/home-flow.html)。无需 API Key 或每物品训练；支持明确的中文单意图规则请求，可选确定性 LangGraph，原云端 LLM Agent 保持独立。照片、数据库和合成素材全部留在 Git ignored 目录。[一键准备本机合成 Demo、实际运行命令与限制](docs/HOUSEHOLD_PHOTO_FLOW.md)。
+最新入口：配置本地 `.env` 后运行 `python -m hometrace demo --photo-agent --port 8770 --household-dir artifacts/my-photo-agent`，打开 [LLM 照片登记与寻找](http://127.0.0.1:8770/home-flow.html)。模型主导工具选择，图片仍由本地视觉处理；不需每物品训练。API 失败明确停止，不静默回退。照片、数据库和合成素材全部留在 Git ignored 目录。[运行命令、真实调用证据和边界](docs/HOUSEHOLD_PHOTO_AGENT.md)。未加 `--photo-agent` 的旧规则模式与原云端 Agent 保留，不能将规则执行称为 LLM 决策。
 
 保留的文字入口：按下方命令启动后打开 [家庭记忆工作区](http://127.0.0.1:8765/household.html)，无需 API Key 或模型训练。默认数据目录为 `artifacts/household/`，可用 `--household-dir` 指定并在重启时复用。同名物品须选择、位置须确认；主人陈述不会变成视觉 FOUND。Issue #24 留存的 HTTP 持久化、630 项全量回归及[浏览器补验收](docs/evidence/issue-24/browser-20261027/README.md)涵盖刷新/重启恢复、确认/取消、旧版本冲突和历史排序；详见[历史验收与限制](docs/HOUSEHOLD_WORKSPACE.md)。内部材料目标为 **11 月 2 日结束前完成整理**，与赛事平台截止时间分别核验。
 
