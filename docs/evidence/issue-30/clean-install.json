@@ -1,0 +1,361 @@
+{
+  "status": "PASSED",
+  "commands": [
+    {
+      "name": "wheel-build",
+      "argv": [
+        "<workspace>\\artifacts\\issue-11\\agent-env\\Scripts\\python.exe",
+        "-m",
+        "pip",
+        "wheel",
+        "<workspace>\\artifacts\\issue-30\\packaging-01\\clean-source",
+        "--no-deps",
+        "--wheel-dir",
+        "<workspace>\\artifacts\\issue-30\\packaging-01\\wheels"
+      ],
+      "cwd": "<workspace>\\artifacts\\issue-30\\packaging-01\\clean-source",
+      "exit_code": 0,
+      "seconds": 7.937
+    },
+    {
+      "name": "create-fresh-venv",
+      "argv": [
+        "<workspace>\\artifacts\\issue-11\\agent-env\\Scripts\\python.exe",
+        "-m",
+        "venv",
+        "<workspace>\\artifacts\\issue-30\\packaging-01\\fresh-env"
+      ],
+      "cwd": "<workspace>\\artifacts\\issue-30\\packaging-01",
+      "exit_code": 0,
+      "seconds": 25.297
+    },
+    {
+      "name": "install-wheel-extras",
+      "argv": [
+        "<workspace>\\artifacts\\issue-30\\packaging-01\\fresh-env\\Scripts\\python.exe",
+        "-m",
+        "pip",
+        "install",
+        "<workspace>\\artifacts\\issue-30\\packaging-01\\wheels\\hometrace-0.4.1-py3-none-any.whl[vision,agent]"
+      ],
+      "cwd": "<workspace>\\artifacts\\issue-30\\packaging-01",
+      "exit_code": 0,
+      "seconds": 77.125
+    },
+    {
+      "name": "installed-versions",
+      "argv": [
+        "<workspace>\\artifacts\\issue-30\\packaging-01\\fresh-env\\Scripts\\python.exe",
+        "-c",
+        "import sys,json,hometrace,cv2,langgraph,langchain_openai,importlib.metadata as m; print(json.dumps({'python':sys.version,'hometrace_file':hometrace.__file__,'versions':{n:m.version(n) for n in ['hometrace','opencv-python-headless','numpy','langchain-openai','langchain-core','langgraph','python-dotenv','PyYAML']}},indent=2))"
+      ],
+      "cwd": "C:\\Windows\\Temp",
+      "exit_code": 0,
+      "seconds": 1.765
+    },
+    {
+      "name": "pip-check",
+      "argv": [
+        "<workspace>\\artifacts\\issue-30\\packaging-01\\fresh-env\\Scripts\\python.exe",
+        "-m",
+        "pip",
+        "check"
+      ],
+      "cwd": "C:\\Windows\\Temp",
+      "exit_code": 0,
+      "seconds": 0.688
+    }
+  ],
+  "checks": [
+    {
+      "name": "snapshot_has_no_cached_build_or_private_inputs",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "wheel-build_exit",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "wheel_contains_exactly_current_web_assets",
+      "passed": true,
+      "details": [
+        "hometrace/web/home-flow.css",
+        "hometrace/web/home-flow.html",
+        "hometrace/web/home-flow.js"
+      ]
+    },
+    {
+      "name": "wheel_integrity",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "wheel_has_no_private_data",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "create-fresh-venv_exit",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "install-wheel-extras_exit",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "runtime_cwd_outside_repository",
+      "passed": true,
+      "details": "C:\\Windows\\Temp"
+    },
+    {
+      "name": "installed-versions_exit",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "imports_use_fresh_installed_package",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "pip-check_exit",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "household_workspace_initially_absent",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "installed_demo_starts_outside_repository",
+      "passed": true,
+      "details": {
+        "server_exit": null
+      }
+    },
+    {
+      "name": "http_/",
+      "passed": true,
+      "details": {
+        "route": "/",
+        "status": 200,
+        "bytes": 11883,
+        "sha256": "b665e535768856c0465cf641dbea8c370e35bab950bb951b35e5e5384964a320"
+      }
+    },
+    {
+      "name": "http_/home-flow.html",
+      "passed": true,
+      "details": {
+        "route": "/home-flow.html",
+        "status": 200,
+        "bytes": 11883,
+        "sha256": "b665e535768856c0465cf641dbea8c370e35bab950bb951b35e5e5384964a320"
+      }
+    },
+    {
+      "name": "http_/home-flow.js",
+      "passed": true,
+      "details": {
+        "route": "/home-flow.js",
+        "status": 200,
+        "bytes": 22198,
+        "sha256": "ae6ed41d5da5740fbc59c383f8686f36fa5491579994d0cd99f99d6bfee72f35"
+      }
+    },
+    {
+      "name": "http_/home-flow.css",
+      "passed": true,
+      "details": {
+        "route": "/home-flow.css",
+        "status": 200,
+        "bytes": 11671,
+        "sha256": "3f1ee3ecdb9e1046a3b4be78ea0274a2662034b45075dc6515da1c06252af6cf"
+      }
+    },
+    {
+      "name": "http_/agent.html",
+      "passed": true,
+      "details": {
+        "route": "/agent.html",
+        "status": 404,
+        "bytes": 22,
+        "sha256": "064e1262e82600f52520eec5a475fe906f349f8a6452efa8b1ba6f39250902b6"
+      }
+    },
+    {
+      "name": "http_/household.html",
+      "passed": true,
+      "details": {
+        "route": "/household.html",
+        "status": 404,
+        "bytes": 22,
+        "sha256": "064e1262e82600f52520eec5a475fe906f349f8a6452efa8b1ba6f39250902b6"
+      }
+    },
+    {
+      "name": "http_/index.html",
+      "passed": true,
+      "details": {
+        "route": "/index.html",
+        "status": 404,
+        "bytes": 22,
+        "sha256": "064e1262e82600f52520eec5a475fe906f349f8a6452efa8b1ba6f39250902b6"
+      }
+    },
+    {
+      "name": "http_/app.js",
+      "passed": true,
+      "details": {
+        "route": "/app.js",
+        "status": 404,
+        "bytes": 22,
+        "sha256": "064e1262e82600f52520eec5a475fe906f349f8a6452efa8b1ba6f39250902b6"
+      }
+    },
+    {
+      "name": "http_/api/config",
+      "passed": true,
+      "details": {
+        "route": "/api/config",
+        "status": 503,
+        "bytes": 70,
+        "sha256": "cbbd0702ba16883dd5376e3e42e3d7efb3d252002aa6df543103b449a5788f0b"
+      }
+    },
+    {
+      "name": "http_/api/home-flow/config",
+      "passed": true,
+      "details": {
+        "route": "/api/home-flow/config",
+        "status": 200,
+        "bytes": 464,
+        "sha256": "e4d4156cb44449cebb9ccaa9f1e042f0a338a4ab9c2ed935117c8749ee8e1ac2",
+        "json": {
+          "enabled": true,
+          "catalog": [],
+          "locations": [
+            {
+              "location_id": "entry-tray",
+              "location_name": "玄关托盘"
+            },
+            {
+              "location_id": "study-desk",
+              "location_name": "书房桌面"
+            },
+            {
+              "location_id": "living-table",
+              "location_name": "客厅茶几"
+            }
+          ],
+          "notice": "本地规则决策 · 模拟导航 · 真实执行图像匹配 · 外观候选需主人核对 · 合成图不证明实拍识别能力",
+          "visual_confirmed": false,
+          "scenes": [],
+          "mode": "deterministic_langgraph"
+        }
+      }
+    },
+    {
+      "name": "empty_config_catalog",
+      "passed": true,
+      "details": {
+        "enabled": true,
+        "catalog": [],
+        "locations": [
+          {
+            "location_id": "entry-tray",
+            "location_name": "玄关托盘"
+          },
+          {
+            "location_id": "study-desk",
+            "location_name": "书房桌面"
+          },
+          {
+            "location_id": "living-table",
+            "location_name": "客厅茶几"
+          }
+        ],
+        "notice": "本地规则决策 · 模拟导航 · 真实执行图像匹配 · 外观候选需主人核对 · 合成图不证明实拍识别能力",
+        "visual_confirmed": false,
+        "scenes": [],
+        "mode": "deterministic_langgraph"
+      }
+    }
+  ],
+  "limitations": [
+    "Rules provider smoke test; this test does not invoke a live LLM or claim image recognition accuracy."
+  ],
+  "wheel": {
+    "name": "hometrace-0.4.1-py3-none-any.whl",
+    "sha256": "d0d8e87a6a68f532d05287dc274b37fee6f0b537d2c51e340284e012a14de416",
+    "size": 109676,
+    "web_files": [
+      "hometrace/web/home-flow.css",
+      "hometrace/web/home-flow.html",
+      "hometrace/web/home-flow.js"
+    ]
+  },
+  "installed": {
+    "python": "3.11.4 (tags/v3.11.4:d2340ef, Jun  7 2023, 05:45:37) [MSC v.1934 64 bit (AMD64)]",
+    "hometrace_file": "<workspace>\\artifacts\\issue-30\\packaging-01\\fresh-env\\Lib\\site-packages\\hometrace\\__init__.py",
+    "versions": {
+      "hometrace": "0.4.1",
+      "opencv-python-headless": "4.14.0.94",
+      "numpy": "2.4.6",
+      "langchain-openai": "1.0.1",
+      "langchain-core": "1.7.0",
+      "langgraph": "1.0.2",
+      "python-dotenv": "1.2.1",
+      "PyYAML": "6.0.3"
+    }
+  },
+  "server": {
+    "argv": [
+      "<workspace>\\artifacts\\issue-30\\packaging-01\\fresh-env\\Scripts\\python.exe",
+      "-m",
+      "hometrace",
+      "demo",
+      "--port",
+      "0",
+      "--household-dir",
+      "<workspace>\\artifacts\\issue-30\\packaging-01\\empty-household"
+    ],
+    "cwd": "C:\\Windows\\Temp",
+    "pid": 26032,
+    "terminated": true,
+    "exit_code_after_termination": 1
+  },
+  "empty_config": {
+    "enabled": true,
+    "catalog": [],
+    "locations": [
+      {
+        "location_id": "entry-tray",
+        "location_name": "玄关托盘"
+      },
+      {
+        "location_id": "study-desk",
+        "location_name": "书房桌面"
+      },
+      {
+        "location_id": "living-table",
+        "location_name": "客厅茶几"
+      }
+    ],
+    "notice": "本地规则决策 · 模拟导航 · 真实执行图像匹配 · 外观候选需主人核对 · 合成图不证明实拍识别能力",
+    "visual_confirmed": false,
+    "scenes": [],
+    "mode": "deterministic_langgraph"
+  },
+  "postchecks": {
+    "server_port_closed": true,
+    "include_system_site_packages": false,
+    "empty_scenes": true,
+    "visual_confirmed": false
+  }
+}

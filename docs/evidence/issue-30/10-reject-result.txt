@@ -1,0 +1,290 @@
+Browser tab: 1, Title: "HomeTrace · 记住与寻找", URL: "http://127.0.0.1:8774/".
+0 AXWebArea HomeTrace · 记住与寻找, URL: 127.0.0.1:8774/
+	1 container
+		2 link Description: H· HomeTrace, Value: 127.0.0.1:8774/
+		3 container 当前演示
+			4 text 记住与寻找
+	5 container
+		6 text HOME MEMORY / PHOTO WORKSPACE
+		7 heading 记住一件物品，再循着证据去寻找。, Value: 1
+			8 text 记住一件物品，再循着证据去寻找。
+		9 text 登记外观 → 保存位置 → 查看当前场景 → 候选核验。每一步都保留实际执行记录。
+		10 text 模拟导航 · 外观候选需要你核对
+		11 text 主人位置由你提供，观察来自你配置的图片；系统不控制真实机器人。外观匹配不会自动变成实例 FOUND。
+		272 text 真实 LLM 工具决策 · 模拟导航 · 本地图像匹配 · 外观候选需主人核对 · 图片不发送给 LLM · 当前服务：真实 LLM 决策
+		13 container 我的物品
+			14 heading 我的物品, Value: 2, ID: catalog-title
+				15 text 我的物品
+			273 text 1 件
+			17 content list catalog
+				274 container
+					275 text 蓝色钥匙 blue-keys 外观参考已固定 · AI 合成图
+					276 button 选择这件物品
+			21 button (collapsed) ＋ 登记新的物品名称, Secondary Actions: Expand
+				22 text ＋ 登记新的物品名称
+		23 container 登记物品外观
+			24 heading 登记物品外观, Value: 2, ID: reference-title
+				25 text 登记物品外观
+			26 text 01
+			27 text 先选物品，再上传参考图并框选完整目标。登记后参考固定；不会训练一个新网络或覆盖旧参考。
+			28 container reference-form
+				29 text 对应的物品
+				30 pop up button (collapsed, settable) 对应的物品, Value: 请选择已登记物品, ID: reference-object, Secondary Actions: Expand
+					31 menu
+						277 (selected) 请选择已登记物品
+						278 蓝色钥匙
+				34 container reference-edit-fields
+					35 text 参考图来源
+					36 pop up button (collapsed, settable) 参考图来源, Value: AI 合成测试图, ID: reference-source, Secondary Actions: Expand
+						37 menu
+							38 (selected) AI 合成测试图
+							39 用户上传的实拍图片
+					40 text 参考图片（JPEG / PNG，最大 8 MB）
+					41 button 参考图片（JPEG / PNG，最大 8 MB）, ID: reference-file
+					42 button (disabled) 确认登记此参考, ID: save-reference
+		43 container 配置当前场景
+			44 heading 配置当前场景, Value: 2, ID: scene-title
+				45 text 配置当前场景
+			46 text 02
+			47 text 每个地点放一张当前照片。搜索会按历史与实际反馈访问地点；未配置图像的地点会明确报告不可观察。
+			48 content list scenes
+				279 container
+					280 image 玄关托盘当前配置
+					281 text 玄关托盘 AI 合成图 · 1672×941
+				282 container
+					283 image 书房桌面当前配置
+					284 text 书房桌面 AI 合成图 · 1448×1086
+				285 container
+					286 image 客厅茶几当前配置
+					287 text 客厅茶几 AI 合成图 · 1448×1086
+			57 container scene-form
+				58 text 照片对应地点
+				59 pop up button (collapsed, settable) 照片对应地点, Value: 客厅茶几, ID: scene-location, Secondary Actions: Expand
+					60 menu
+						288 请选择地点
+						289 玄关托盘
+						290 书房桌面
+						291 (selected) 客厅茶几
+				65 text 场景图来源
+				66 pop up button (collapsed, settable) 场景图来源, Value: AI 合成测试图, ID: scene-source, Secondary Actions: Expand
+					67 menu
+						68 (selected) AI 合成测试图
+						69 用户上传的实拍图片
+				70 text 当前场景图片（JPEG / PNG，最大 8 MB）
+				71 button 当前场景图片（JPEG / PNG，最大 8 MB）, ID: scene-file
+				72 button 保存此地点的当前场景
+				184 text 场景已保存，下一次搜索使用新配置；进行中的搜索保持原始输入。
+			73 button (collapsed) 关于测试素材, Secondary Actions: Expand
+				74 text 关于测试素材
+		75 container 和 HomeTrace 说一句
+			76 heading 和 HomeTrace 说一句, Value: 2, ID: request-title
+				77 text 和 HomeTrace 说一句
+			78 text 03
+			79 container request-form
+				80 text 你现在所在的位置
+				81 pop up button (collapsed, settable) 你现在所在的位置, Value: 暂不指定, ID: current-location, Secondary Actions: Expand
+					82 menu
+						292 (selected) 暂不指定
+						293 玄关托盘
+						294 书房桌面
+						295 客厅茶几
+				87 text “这里”指上面手动选择的地点；不会自动定位主人。
+				88 text 你的请求
+				89 text entry area (settable) 你的请求, Value: 蓝色钥匙找不到了，请先检查最近记录的位置，没找到再继续寻找。, ID: message
+				90 button 记住位置
+				91 button 帮我寻找
+				92 button 查看历史
+				93 text 先登记名称和外观，然后保存位置或发起寻找。
+				94 button 发送并执行, ID: start
+				296 text 真实 LLM 模式：请求文字、物品名称、地点及结构化工具结果会发送给已配置的模型 API；原始图片留在本地。模型决定下一步工具，图片证据由本地程序产生。
+		96 container 谁在做下一步决定
+			97 heading 谁在做下一步决定, Value: 2, ID: model-title
+				98 text 谁在做下一步决定
+			297 text 真实 LLM 决策
+			298 text LLM 根据请求和真实工具反馈选择下一步。下方摘要是模型给出的决策说明，不是视觉证据；位置、检测框与状态以实际工具返回为准。
+			101 definition list model-metrics
+				102 container 实际模型
+					103 text 实际模型
+				299 text deepseek-v4.1-flash-1017
+				105 container 模型调用
+					106 text 模型调用
+				300 text 5
+				108 container 工具调用
+					109 text 工具调用
+				301 text 5
+				111 container 已用 Token
+					112 text 已用 Token
+				302 text 6760
+			206 container model-decision
+				207 text 最近一次模型决策摘要
+				303 text 已按最近记录先检查玄关托盘，并继续检查书房桌面和客厅茶几，三处均未获主人确认；书房候选已被主人否决，暂无可继续检查的地点。
+				304 text 选择工具：结束搜索。是否实际执行请查看下方工具轨迹。
+		118 container 本次执行
+			119 heading 本次执行, Value: 2, ID: session-title
+				120 text 本次执行
+			305 text 未确认 UNKNOWN
+			306 text 蓝色钥匙 · 版本 17 · 真实 LLM 决策
+			307 text LLM 已停止搜索；现有工具证据仍未确认目标。UNKNOWN 不等于目标不存在。
+			308 link Description: 下载本次真实执行 JSON, Value: 127.0.0.1:8774/api/home-flow/runs/0c3c68d8a1bc41289eef49e27f20711f/report
+		230 container 历史记忆与搜索顺序, ID: memory-panel
+			231 heading 历史记忆与搜索顺序, Value: 2, ID: memory-title
+				232 text 历史记忆与搜索顺序
+			233 text 历史是线索
+			234 content list plan
+				309 text 1. 玄关托盘 · LLM 选择并已执行
+				310 text 2. 书房桌面 · LLM 选择并已执行
+				311 text 3. 客厅茶几 · LLM 选择并已执行
+			238 container
+				239 button (expanded) 已保存的位置记录 1 条, Secondary Actions: Collapse
+					240 text 已保存的位置记录
+					312 text 1 条
+				242 content list history
+					313 container
+						314 text 玄关托盘 2026/10/28 20:43:31 · 主人陈述 / 非视觉确认 来源：photo_workspace_owner_statement:9d101704f5774c3f9784d7fa49a4c8ed:local_system_clock
+		245 container 实际观察与匹配证据, ID: observations-panel
+			246 heading 实际观察与匹配证据, Value: 2, ID: observations-title
+				247 text 实际观察与匹配证据
+			315 text 3 次
+			249 container observations
+				316 container
+					317 heading 玄关托盘, Value: 3
+						318 text 玄关托盘
+					319 text UNKNOWN
+					320 image 玄关托盘观察证据
+					321 text AI 合成图 · insufficient_distinct_matches
+					322 button (collapsed) 实际匹配诊断与坐标, Secondary Actions: Expand
+						323 text 实际匹配诊断与坐标
+				324 container
+					325 heading 书房桌面, Value: 3
+						326 text 书房桌面
+					327 text SUSPECTED
+					328 image 书房桌面观察证据
+					329 text AI 合成图 · appearance_candidate_requires_review
+					330 button (collapsed) 实际匹配诊断与坐标, Secondary Actions: Expand
+						331 text 实际匹配诊断与坐标
+				332 container
+					333 heading 客厅茶几, Value: 3
+						334 text 客厅茶几
+					335 text UNKNOWN
+					336 image 客厅茶几观察证据
+					337 text AI 合成图 · no_verified_match
+					338 button (collapsed) 实际匹配诊断与坐标, Secondary Actions: Expand
+						339 text 实际匹配诊断与坐标
+		266 container Agent 状态与工具轨迹, ID: trace-panel
+			267 heading Agent 状态与工具轨迹, Value: 2, ID: trace-title
+				268 text Agent 状态与工具轨迹
+			340 text 真实 LLM 决策
+			270 text 这里展示后端已执行的工具调用与反馈。导航为软件模拟，图像来自本次配置；不生成虚构的机器人到达或视觉确认。
+			271 content list trace
+				341 container
+					342 text 1. 发起真实模型请求 21:17:34 实际工具返回
+					343 button (collapsed) 工具输入与实际返回, Secondary Actions: Expand
+						344 text 工具输入与实际返回
+				345 container
+					346 text 2. LLM 决策摘要 21:17:37 模型选择 · 非观察证据 已登记“蓝色钥匙”，按寻物意图先读取其最近记录。 选择工具：理解请求并读取物品历史 模型耗时 2078.959 ms · 1187 Token
+					347 button (collapsed) 模型结构化选择与用量, Secondary Actions: Expand
+						348 text 模型结构化选择与用量
+				349 container
+					350 text 3. 查询位置记忆 21:17:37 实际工具返回
+					351 button (collapsed) 工具输入与实际返回, Secondary Actions: Expand
+						352 text 工具输入与实际返回
+				353 container
+					354 text 4. 列出可选地点 21:17:37 实际工具返回
+					355 button (collapsed) 工具输入与实际返回, Secondary Actions: Expand
+						356 text 工具输入与实际返回
+				357 container
+					358 text 5. 执行模型所选工具 21:17:37 实际工具返回 状态：正在搜索
+					359 button (collapsed) 工具输入与实际返回, Secondary Actions: Expand
+						360 text 工具输入与实际返回
+				361 container
+					362 text 6. 发起真实模型请求 21:17:37 实际工具返回
+					363 button (collapsed) 工具输入与实际返回, Secondary Actions: Expand
+						364 text 工具输入与实际返回
+				365 container
+					366 text 7. LLM 决策摘要 21:17:38 模型选择 · 非观察证据 历史记录显示蓝色钥匙最近出现在玄关托盘，按用户要求先检查这里。 选择工具：检查所选地点 模型耗时 1390.485 ms · 1170 Token
+					367 button (collapsed) 模型结构化选择与用量, Secondary Actions: Expand
+						368 text 模型结构化选择与用量
+				369 container
+					370 text 8. 模拟导航 21:17:39 实际工具执行 · 模拟导航 状态：ARRIVED
+					371 button (collapsed) 工具输入与实际返回, Secondary Actions: Expand
+						372 text 工具输入与实际返回
+				373 container
+					374 text 9. 读取当前场景图 21:17:39 实际工具返回 状态：PENDING_VERIFICATION
+					375 button (collapsed) 工具输入与实际返回, Secondary Actions: Expand
+						376 text 工具输入与实际返回
+				377 container
+					378 text 10. 核验图像匹配 21:17:39 实际工具返回 状态：未确认 UNKNOWN
+					379 button (collapsed) 工具输入与实际返回, Secondary Actions: Expand
+						380 text 工具输入与实际返回
+				381 container
+					382 text 11. 根据观察更新状态 21:17:39 实际工具返回 状态：正在搜索 · 返回原因：insufficient_distinct_matches
+					383 button (collapsed) 工具输入与实际返回, Secondary Actions: Expand
+						384 text 工具输入与实际返回
+				385 container
+					386 text 12. 发起真实模型请求 21:17:39 实际工具返回
+					387 button (collapsed) 工具输入与实际返回, Secondary Actions: Expand
+						388 text 工具输入与实际返回
+				389 container
+					390 text 13. LLM 决策摘要 21:17:41 模型选择 · 非观察证据 玄关托盘检查无明确匹配，继续检查未访问的书房桌面。 选择工具：检查所选地点 模型耗时 1617.559 ms · 1401 Token
+					391 button (collapsed) 模型结构化选择与用量, Secondary Actions: Expand
+						392 text 模型结构化选择与用量
+				393 container
+					394 text 14. 模拟导航 21:17:41 实际工具执行 · 模拟导航 状态：ARRIVED
+					395 button (collapsed) 工具输入与实际返回, Secondary Actions: Expand
+						396 text 工具输入与实际返回
+				397 container
+					398 text 15. 读取当前场景图 21:17:41 实际工具返回 状态：PENDING_VERIFICATION
+					399 button (collapsed) 工具输入与实际返回, Secondary Actions: Expand
+						400 text 工具输入与实际返回
+				401 container
+					402 text 16. 核验图像匹配 21:17:41 实际工具返回 状态：SUSPECTED
+					403 button (collapsed) 工具输入与实际返回, Secondary Actions: Expand
+						404 text 工具输入与实际返回
+				405 container
+					406 text 17. 根据观察更新状态 21:17:41 实际工具返回 状态：等待核对候选 · 返回原因：appearance_candidate_requires_review
+					407 button (collapsed) 工具输入与实际返回, Secondary Actions: Expand
+						408 text 工具输入与实际返回
+				409 container
+					410 text 18. 主人拒绝候选 21:18:03 实际工具返回
+					411 button (collapsed) 工具输入与实际返回, Secondary Actions: Expand
+						412 text 工具输入与实际返回
+				413 container
+					414 text 19. 发起真实模型请求 21:18:03 实际工具返回
+					415 button (collapsed) 工具输入与实际返回, Secondary Actions: Expand
+						416 text 工具输入与实际返回
+				417 container
+					418 text 20. LLM 决策摘要 21:18:05 模型选择 · 非观察证据 玄关托盘（最近记录）无明确匹配，书房桌面候选已被否认，继续检查唯一未访问的客厅茶几。 选择工具：检查所选地点 模型耗时 1578.826 ms · 1530 Token
+					419 button (collapsed) 模型结构化选择与用量, Secondary Actions: Expand
+						420 text 模型结构化选择与用量
+				421 container
+					422 text 21. 模拟导航 21:18:05 实际工具执行 · 模拟导航 状态：ARRIVED
+					423 button (collapsed) 工具输入与实际返回, Secondary Actions: Expand
+						424 text 工具输入与实际返回
+				425 container
+					426 text 22. 读取当前场景图 21:18:05 实际工具返回 状态：PENDING_VERIFICATION
+					427 button (collapsed) 工具输入与实际返回, Secondary Actions: Expand
+						428 text 工具输入与实际返回
+				429 container
+					430 text 23. 核验图像匹配 21:18:05 实际工具返回 状态：未确认 UNKNOWN
+					431 button (collapsed) 工具输入与实际返回, Secondary Actions: Expand
+						432 text 工具输入与实际返回
+				433 container
+					434 text 24. 根据观察更新状态 21:18:05 实际工具返回 状态：正在搜索 · 返回原因：no_verified_match
+					435 button (collapsed) 工具输入与实际返回, Secondary Actions: Expand
+						436 text 工具输入与实际返回
+				437 container
+					438 text 25. 发起真实模型请求 21:18:06 实际工具返回
+					439 button (collapsed) 工具输入与实际返回, Secondary Actions: Expand
+						440 text 工具输入与实际返回
+				441 container
+					442 text 26. LLM 决策摘要 21:18:07 模型选择 · 非观察证据 已按最近记录先检查玄关托盘，并继续检查书房桌面和客厅茶几，三处均未获主人确认；书房候选已被主人否决，暂无可继续检查的地点。 选择工具：结束搜索 模型耗时 1108.598 ms · 1472 Token
+					443 button (collapsed) 模型结构化选择与用量, Secondary Actions: Expand
+						444 text 模型结构化选择与用量
+				445 container
+					446 text 27. 执行模型所选工具 21:18:07 实际工具返回 状态：未确认 UNKNOWN
+					447 button (collapsed) 工具输入与实际返回, Secondary Actions: Expand
+						448 text 工具输入与实际返回
+		162 text 用记忆决定去哪里，用当前图像提出候选，用明确确认保留边界。
+		163 text 合成素材用于软件流程体验；实拍能力需要独立真实数据验证。浏览器仅保存用于恢复本次执行的编号。
+
+The focused UI element is 0 AXWebArea HomeTrace · 记住与寻找, URL: 127.0.0.1:8774/

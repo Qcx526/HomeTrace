@@ -1,0 +1,120 @@
+Browser tab: 3, Title: "HomeTrace · 记住与寻找", URL: "http://127.0.0.1:8774/".
+0 AXWebArea HomeTrace · 记住与寻找, URL: 127.0.0.1:8774/
+	1 container
+		2 link Description: H· HomeTrace, Value: 127.0.0.1:8774/
+		3 container 当前演示
+			4 text 记住与寻找
+	5 container
+		6 text HOME MEMORY / PHOTO WORKSPACE
+		7 heading 记住一件物品，再循着证据去寻找。, Value: 1
+			8 text 记住一件物品，再循着证据去寻找。
+		9 text 登记外观 → 保存位置 → 查看当前场景 → 候选核验。每一步都保留实际执行记录。
+		10 text 模拟导航 · 外观候选需要你核对
+		11 text 主人位置由你提供，观察来自你配置的图片；系统不控制真实机器人。外观匹配不会自动变成实例 FOUND。
+		12 text 真实 LLM 工具决策 · 模拟导航 · 本地图像匹配 · 外观候选需主人核对 · 图片不发送给 LLM · 当前服务：真实 LLM 决策
+		13 container 我的物品
+			14 heading 我的物品, Value: 2, ID: catalog-title
+				15 text 我的物品
+			16 text 0 件
+			17 content list catalog
+				18 text 先登记一件物品的名称。
+			19 button (collapsed) ＋ 登记新的物品名称, Secondary Actions: Expand
+				20 text ＋ 登记新的物品名称
+		21 container 登记物品外观
+			22 heading 登记物品外观, Value: 2, ID: reference-title
+				23 text 登记物品外观
+			24 text 01
+			25 text 先选物品，再上传参考图并框选完整目标。登记后参考固定；不会训练一个新网络或覆盖旧参考。
+			26 container reference-form
+				27 text 对应的物品
+				28 pop up button (collapsed, settable) 对应的物品, Value: 请选择已登记物品, ID: reference-object, Secondary Actions: Expand
+					29 menu
+						30 (selected) 请选择已登记物品
+				31 container reference-edit-fields
+					32 text 参考图来源
+					33 pop up button (collapsed, settable) 参考图来源, Value: AI 合成测试图, ID: reference-source, Secondary Actions: Expand
+						34 menu
+							35 (selected) AI 合成测试图
+							36 用户上传的实拍图片
+					37 text 参考图片（JPEG / PNG，最大 8 MB）
+					38 button 参考图片（JPEG / PNG，最大 8 MB）, ID: reference-file
+					39 button (disabled) 确认登记此参考, ID: save-reference
+		40 container 配置当前场景
+			41 heading 配置当前场景, Value: 2, ID: scene-title
+				42 text 配置当前场景
+			43 text 02
+			44 text 每个地点放一张当前照片。搜索会按历史与实际反馈访问地点；未配置图像的地点会明确报告不可观察。
+			45 content list scenes
+				46 container
+					47 text 玄关托盘 未配置，搜索时会报告无法观察
+				48 container
+					49 text 书房桌面 未配置，搜索时会报告无法观察
+				50 container
+					51 text 客厅茶几 未配置，搜索时会报告无法观察
+			52 container scene-form
+				53 text 照片对应地点
+				54 pop up button (collapsed, settable) 照片对应地点, Value: 请选择地点, ID: scene-location, Secondary Actions: Expand
+					55 menu
+						56 (selected) 请选择地点
+						57 玄关托盘
+						58 书房桌面
+						59 客厅茶几
+				60 text 场景图来源
+				61 pop up button (collapsed, settable) 场景图来源, Value: AI 合成测试图, ID: scene-source, Secondary Actions: Expand
+					62 menu
+						63 (selected) AI 合成测试图
+						64 用户上传的实拍图片
+				65 text 当前场景图片（JPEG / PNG，最大 8 MB）
+				66 button 当前场景图片（JPEG / PNG，最大 8 MB）, ID: scene-file
+				67 button 保存此地点的当前场景
+			68 button (collapsed) 关于测试素材, Secondary Actions: Expand
+				69 text 关于测试素材
+		70 container 和 HomeTrace 说一句
+			71 heading 和 HomeTrace 说一句, Value: 2, ID: request-title
+				72 text 和 HomeTrace 说一句
+			73 text 03
+			74 container request-form
+				75 text 你现在所在的位置
+				76 pop up button (collapsed, settable) 你现在所在的位置, Value: 暂不指定, ID: current-location, Secondary Actions: Expand
+					77 menu
+						78 (selected) 暂不指定
+						79 玄关托盘
+						80 书房桌面
+						81 客厅茶几
+				82 text “这里”指上面手动选择的地点；不会自动定位主人。
+				83 text 你的请求
+				84 text entry area (settable) 你的请求, ID: message
+				85 button 记住位置
+				86 button 帮我寻找
+				87 button 查看历史
+				88 text 先登记名称和外观，然后保存位置或发起寻找。
+				89 button 发送并执行, ID: start
+				90 text 真实 LLM 模式：请求文字、物品名称、地点及结构化工具结果会发送给已配置的模型 API；原始图片留在本地。模型决定下一步工具，图片证据由本地程序产生。
+		91 container 谁在做下一步决定
+			92 heading 谁在做下一步决定, Value: 2, ID: model-title
+				93 text 谁在做下一步决定
+			94 text 真实 LLM 决策
+			95 text LLM 根据请求和真实工具反馈选择下一步。下方摘要是模型给出的决策说明，不是视觉证据；位置、检测框与状态以实际工具返回为准。
+			96 definition list model-metrics
+				97 container 实际模型
+					98 text 实际模型
+				99 text deepseek-v4.1-flash-1017
+				100 container 模型调用
+					101 text 模型调用
+				102 text 待返回
+				103 container 工具调用
+					104 text 工具调用
+				105 text 待返回
+				106 container 已用 Token
+					107 text 已用 Token
+				108 text 待返回
+		109 container 本次执行
+			110 heading 本次执行, Value: 2, ID: session-title
+				111 text 本次执行
+			112 text 尚未开始
+			113 text 执行状态、回复和工具结果由后端实际产生。
+			114 text 配置好物品与场景后，试着让 HomeTrace 记住位置，再帮你寻找。
+		115 text 用记忆决定去哪里，用当前图像提出候选，用明确确认保留边界。
+		116 text 合成素材用于软件流程体验；实拍能力需要独立真实数据验证。浏览器仅保存用于恢复本次执行的编号。
+
+The focused UI element is 0 AXWebArea HomeTrace · 记住与寻找, URL: 127.0.0.1:8774/

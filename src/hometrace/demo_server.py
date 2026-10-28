@@ -17,7 +17,21 @@ from .recorded import load_recorded_scene
 from .household_service import HouseholdConflict, HouseholdService
 
 
-def make_server(service: DemoService, port: int = 8765, *, agent_service=None, household_service=None, photo_flow_service=None) -> ThreadingHTTPServer:
+LEGACY_WEB_FILES = (
+    "index.html", "app.js", "style.css", "agent.html", "agent.js", "agent.css",
+    "household.html", "household.js", "household.css",
+)
+
+
+def make_server(service: DemoService | None = None, port: int = 8765, *, agent_service=None,
+                household_service=None, photo_flow_service=None, legacy_web_dir: Path | None = None) -> ThreadingHTTPServer:
+    # Historical pages are source-checkout test fixtures, never installed runtime assets.
+    if legacy_web_dir is not None:
+        legacy_web_dir = legacy_web_dir.resolve()
+        if any(not (legacy_web_dir / name).is_file() or (legacy_web_dir / name).is_symlink()
+               for name in LEGACY_WEB_FILES):
+            raise ValueError("Legacy web directory must contain the complete historical test fixtures")
+
     class Handler(BaseHTTPRequestHandler):
         def _local(self) -> bool:
             actual_port = self.server.server_port
@@ -95,7 +109,10 @@ def make_server(service: DemoService, port: int = 8765, *, agent_service=None, h
                     self._json({'error': '交互记录无法读取'}, 500)
                 return
             if path == "/api/config":
-                self._json(service.config())
+                if service is None:
+                    self._json({"enabled": False, "error": "Historical scenario service is disabled"}, 503)
+                else:
+                    self._json(service.config())
                 return
             if path == "/api/agent/config":
                 self._json(agent_service.config() if agent_service else {"enabled":False,"error":"Start demo with --agent"})
@@ -112,10 +129,15 @@ def make_server(service: DemoService, port: int = 8765, *, agent_service=None, h
                 except (KeyError,OSError,ValueError):
                     self._json({"error":"Agent run or image unavailable"},404)
                 return
-            static = {"/": ("index.html", "text/html"), "/app.js": ("app.js", "text/javascript"), "/style.css": ("style.css", "text/css")}
-            static.update({"/agent.html":("agent.html","text/html"),"/agent.js":("agent.js","text/javascript"),"/agent.css":("agent.css","text/css")})
-            static.update({f'/household.{ext}': (f'household.{ext}', mime) for ext, mime in
-                           [('html', 'text/html'), ('js', 'text/javascript'), ('css', 'text/css')]})
+            if legacy_web_dir is not None and (path == "/" or path[1:] in LEGACY_WEB_FILES):
+                name = "index.html" if path == "/" else path[1:]
+                mime = {".html": "text/html", ".js": "text/javascript", ".css": "text/css"}[Path(name).suffix]
+                try:
+                    self._send((legacy_web_dir / name).read_bytes(), mime + "; charset=utf-8")
+                except OSError:
+                    self._json({"error": "Historical test fixture unavailable"}, 404)
+                return
+            static = {"/": ("home-flow.html", "text/html")}
             static.update({f'/home-flow.{ext}': (f'home-flow.{ext}', mime) for ext, mime in
                            [('html', 'text/html'), ('js', 'text/javascript'), ('css', 'text/css')]})
             if path in static:
@@ -124,6 +146,9 @@ def make_server(service: DemoService, port: int = 8765, *, agent_service=None, h
                 return
             match = re.fullmatch(r"/api/runs/([0-9a-f]{32})/(images|downloads)/([a-z0-9-]+)", path)
             if match:
+                if service is None:
+                    self._json({"error": "Historical scenario service is disabled"}, 503)
+                    return
                 run_id, kind, key = match.groups()
                 try:
                     if kind == "images":
@@ -204,6 +229,9 @@ def make_server(service: DemoService, port: int = 8765, *, agent_service=None, h
                     raise ValueError("Expected scenario, strategy and optional case_id only")
                 if not all(isinstance(v, str) for v in value.values()):
                     raise ValueError("Scenario and strategy must be strings")
+                if service is None:
+                    self._json({"error": "Historical scenario service is disabled"}, 503)
+                    return
                 self._json(service.run(value["scenario"], value["strategy"], value.get("case_id", "public")))
             except (DemoBusyError, HouseholdConflict) as exc:
                 self._json({"error": str(exc)}, 409)
@@ -228,6 +256,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--samples-dir", type=Path, default=Path("examples/recorded_images"))
     parser.add_argument("--case-config", type=Path, action="append", default=[], help="Optional private local object configuration; repeat to add cases")
     parser.add_argument("--agent", action="store_true", help="Enable the real API Agent; requires [agent] dependencies and local .env")
+    parser.add_argument("--legacy-web-dir", type=Path, help="Development only: serve historical pages from tests/fixtures/legacy_web and enable public sample scenarios")
     parser.add_argument("--photo-agent", action="store_true", help="Use real LLM tool decisions in /home-flow.html; never silently falls back to rules")
     parser.add_argument("--config", type=Path, help="Optional Agent config.yaml path")
     parser.add_argument('--household-dir', type=Path, default=Path('artifacts/household'),
@@ -236,9 +265,13 @@ def main(argv: list[str] | None = None) -> int:
     try:
         if not 0 <= args.port <= 65535:
             raise ValueError("Port must be between 0 and 65535")
-        for name in ("history.json", "moved.json", "missing.json"):
-            load_recorded_scene(args.samples_dir / name)
-        service = DemoService(args.samples_dir, args.output_dir, case_configs=args.case_config)
+        service = None
+        if args.legacy_web_dir is not None or args.agent:
+            for name in ("history.json", "moved.json", "missing.json"):
+                load_recorded_scene(args.samples_dir / name)
+            service = DemoService(args.samples_dir, args.output_dir, case_configs=args.case_config)
+        elif args.case_config:
+            raise ValueError("--case-config requires the explicit historical demo mode")
         agent_service = None
         if args.agent:
             from .agent_service import AgentService
@@ -250,11 +283,14 @@ def main(argv: list[str] | None = None) -> int:
             photo_flow_service = PhotoAgentService(household_service, config_path=args.config)
         else:
             photo_flow_service = PhotoFlowService(household_service)
-        with make_server(service, args.port, agent_service=agent_service, household_service=household_service, photo_flow_service=photo_flow_service) as server:
+        with make_server(service, args.port, agent_service=agent_service, household_service=household_service,
+                         photo_flow_service=photo_flow_service, legacy_web_dir=args.legacy_web_dir) as server:
             print(f"HomeTrace demo: http://127.0.0.1:{server.server_port}", flush=True)
-            print("Recorded photographs + simulated navigation. Real execution followed by event playback.", flush=True)
-            print(f"Run evidence: {service.output_dir}", flush=True)
-            print(f"Household workspace: http://127.0.0.1:{server.server_port}/household.html (owner statements, no visual confirmation)", flush=True)
+            print("Uploaded photographs + simulated navigation. Appearance candidates require owner review.", flush=True)
+            if service is not None:
+                print(f"Historical run evidence: {service.output_dir}", flush=True)
+            if args.legacy_web_dir is not None:
+                print("Development mode: historical test pages are explicitly enabled.", flush=True)
             print(f"Photo flow: http://127.0.0.1:{server.server_port}/home-flow.html (appearance candidates + owner review)", flush=True)
             server.serve_forever()
     except KeyboardInterrupt:

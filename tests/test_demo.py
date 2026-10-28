@@ -95,7 +95,7 @@ def test_runner_validates_choices_and_busy_state_before_work(demo):
 @pytest.fixture
 def server(demo):
     service, _ = demo
-    server = make_server(service, 0)
+    server = make_server(service, 0, legacy_web_dir=Path(__file__).parent / "fixtures" / "legacy_web")
     thread = threading.Thread(target=server.serve_forever, daemon=True)
     thread.start()
     yield server
