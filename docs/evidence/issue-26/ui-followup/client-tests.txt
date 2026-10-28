@@ -1,0 +1,12 @@
+✔ an old poll cannot replace a newly started run or its recovery ID (5.2926ms)
+✔ a lower version response cannot roll back the same run (2.0633ms)
+✔ an invalidated request error cannot disturb the new run or its polling timer (2.5764ms)
+✔ a failed replacement upload cannot submit the previously reviewed reference (1.6634ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 105.8469

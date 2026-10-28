@@ -17,7 +17,7 @@ from .recorded import load_recorded_scene
 from .household_service import HouseholdConflict, HouseholdService
 
 
-def make_server(service: DemoService, port: int = 8765, *, agent_service=None, household_service=None) -> ThreadingHTTPServer:
+def make_server(service: DemoService, port: int = 8765, *, agent_service=None, household_service=None, photo_flow_service=None) -> ThreadingHTTPServer:
     class Handler(BaseHTTPRequestHandler):
         def _local(self) -> bool:
             actual_port = self.server.server_port
@@ -50,6 +50,29 @@ def make_server(service: DemoService, port: int = 8765, *, agent_service=None, h
             if not self._local():
                 return
             path = urlsplit(self.path).path
+            if path.startswith('/api/home-flow/'):
+                if photo_flow_service is None:
+                    self._json({'error': '照片工作区未启用'}, 503)
+                    return
+                try:
+                    if path == '/api/home-flow/config':
+                        self._json(photo_flow_service.config())
+                    elif match := re.fullmatch(r'/api/home-flow/assets/([0-9a-f]{32})', path):
+                        data, mime = photo_flow_service.asset(match.group(1))
+                        self._send(data, mime)
+                    elif match := re.fullmatch(r'/api/home-flow/runs/([0-9a-f]{32})(/report)?', path):
+                        value = photo_flow_service.get(match.group(1))
+                        if match.group(2):
+                            self._send(json.dumps(value, ensure_ascii=False).encode('utf-8'), 'application/json; charset=utf-8', filename='photo-flow-report.json')
+                        else:
+                            self._json(value)
+                    else:
+                        self._json({'error': 'Not found'}, 404)
+                except (KeyError, ValueError, OSError):
+                    self._json({'error': '本地照片或执行记录不可读取'}, 404)
+                except sqlite3.Error:
+                    self._json({'error': '照片工作区数据库暂不可读取'}, 500)
+                return
             if path == '/api/household':
                 if household_service is None:
                     self._json({'error': '家庭工作区未启用', 'enabled': False}, 503)
@@ -93,6 +116,8 @@ def make_server(service: DemoService, port: int = 8765, *, agent_service=None, h
             static.update({"/agent.html":("agent.html","text/html"),"/agent.js":("agent.js","text/javascript"),"/agent.css":("agent.css","text/css")})
             static.update({f'/household.{ext}': (f'household.{ext}', mime) for ext, mime in
                            [('html', 'text/html'), ('js', 'text/javascript'), ('css', 'text/css')]})
+            static.update({f'/home-flow.{ext}': (f'home-flow.{ext}', mime) for ext, mime in
+                           [('html', 'text/html'), ('js', 'text/javascript'), ('css', 'text/css')]})
             if path in static:
                 name, mime = static[path]
                 self._send(files("hometrace").joinpath("web", name).read_bytes(), mime + "; charset=utf-8")
@@ -118,7 +143,8 @@ def make_server(service: DemoService, port: int = 8765, *, agent_service=None, h
             if not self._local():
                 return
             household_paths = ('/api/household/enroll', '/api/household/start', '/api/household/act')
-            if self.path not in ("/api/run", "/api/agent/run", *household_paths):
+            photo_paths = ('/api/home-flow/assets', '/api/home-flow/reference', '/api/home-flow/scene', '/api/home-flow/start', '/api/home-flow/act')
+            if self.path not in ("/api/run", "/api/agent/run", *household_paths, *photo_paths):
                 self._json({"error": "Not found"}, 404)
                 return
             if self.headers.get("Content-Type", "").split(";")[0] != "application/json":
@@ -126,10 +152,27 @@ def make_server(service: DemoService, port: int = 8765, *, agent_service=None, h
                 return
             try:
                 length = int(self.headers.get("Content-Length", "0"))
-                limit = 8192 if self.path in household_paths else 4096 if self.path == '/api/agent/run' else 1024
+                limit = (12*1024*1024 if self.path == '/api/home-flow/assets' else 8192
+                         if self.path in (*household_paths, *photo_paths) else 4096 if self.path == '/api/agent/run' else 1024)
                 if not 0 < length <= limit:
                     raise ValueError("Invalid request length")
                 value = json.loads(self.rfile.read(length))
+                if self.path in photo_paths:
+                    if photo_flow_service is None:
+                        self._json({'error': '照片工作区未启用'}, 503)
+                        return
+                    contracts = {
+                        '/api/home-flow/assets': ({'data_base64', 'source_kind'}, set(), photo_flow_service.upload),
+                        '/api/home-flow/reference': ({'object_id', 'asset_id', 'roi', 'roi_reviewed'}, set(), photo_flow_service.reference),
+                        '/api/home-flow/scene': ({'location_id', 'asset_id'}, set(), photo_flow_service.scene),
+                        '/api/home-flow/start': ({'message'}, {'current_location_id'}, photo_flow_service.start),
+                        '/api/home-flow/act': ({'run_id', 'version', 'action'}, {'object_id'}, photo_flow_service.act),
+                    }
+                    required, optional, operation = contracts[self.path]
+                    if not isinstance(value, dict) or not required <= set(value) or set(value) - required - optional:
+                        raise ValueError('照片操作字段不符合合同')
+                    self._json(operation(**value))
+                    return
                 if self.path in household_paths:
                     if household_service is None:
                         self._json({'error': '家庭工作区未启用'}, 503)
@@ -170,6 +213,8 @@ def make_server(service: DemoService, port: int = 8765, *, agent_service=None, h
                 self._json({'error': '交互记录不存在'}, 404)
             except sqlite3.Error:
                 self._json({'error': '本地数据库操作失败，未确认保存成功；请重新读取当前状态'}, 500)
+            except ImportError:
+                self._json({'error': '照片识别依赖未安装；请安装本项目 vision 可选依赖'}, 503)
             except (OSError, subprocess.TimeoutExpired):
                 self._json({"error": "Local photo operation failed; inspect the run logs"}, 500)
 
@@ -198,11 +243,14 @@ def main(argv: list[str] | None = None) -> int:
             from .agent_service import AgentService
             agent_service = AgentService(args.samples_dir,args.output_dir/"agent",config_path=args.config)
         household_service = HouseholdService(args.household_dir)
-        with make_server(service, args.port, agent_service=agent_service, household_service=household_service) as server:
+        from .photo_flow_service import PhotoFlowService
+        photo_flow_service = PhotoFlowService(household_service)
+        with make_server(service, args.port, agent_service=agent_service, household_service=household_service, photo_flow_service=photo_flow_service) as server:
             print(f"HomeTrace demo: http://127.0.0.1:{server.server_port}", flush=True)
             print("Recorded photographs + simulated navigation. Real execution followed by event playback.", flush=True)
             print(f"Run evidence: {service.output_dir}", flush=True)
             print(f"Household workspace: http://127.0.0.1:{server.server_port}/household.html (owner statements, no visual confirmation)", flush=True)
+            print(f"Photo flow: http://127.0.0.1:{server.server_port}/home-flow.html (appearance candidates + owner review)", flush=True)
             server.serve_forever()
     except KeyboardInterrupt:
         return 0

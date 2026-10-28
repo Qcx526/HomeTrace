@@ -1,0 +1,83 @@
+{
+  "base_commit": "b6f8d02303d11048150c733f08af2e16ca601070",
+  "validation_date_asia_shanghai": "2026-10-28",
+  "full_pytest": {
+    "passed": 738,
+    "failed": 0,
+    "skipped": 0,
+    "warnings": 1,
+    "seconds": 111.47
+  },
+  "existing_test_files_unchanged": 33,
+  "existing_docs_files_unchanged": 292,
+  "privacy_scan": {
+    "changed_and_added_files": 30,
+    "violations": [],
+    "local_secret_values_printed": false
+  },
+  "synthetic_image_assets_committed": false,
+  "private_household_inputs_committed": false,
+  "source_sha256": {
+    "src/hometrace/demo_server.py": "f24c5ac86dc5e3d281959b891200b5960d2e35f6628ff1aa1085d3a9ccc8204b",
+    "src/hometrace/models.py": "91e903301e258bf088ba0dd3ad03373b9bb4b187d822856f16a583ee128972cd",
+    "src/hometrace/photo_engine.py": "a78eda9c3e1abc36c4e19e760e551e11fefa046ef2b528bea5058a035df5e1c1",
+    "src/hometrace/photo_flow_service.py": "04d5853a7411893f444eb456c3c1454752cad482917b2b5d566346fbe8db15a7",
+    "src/hometrace/search_core.py": "789e7e88a0a17adf892433b22f486f3e5375ae2ae1832d0f4b56509cb310b81a",
+    "src/hometrace/web/agent.html": "8186523c2074e811d2b6f9c24e28ba907d8c83847e995e37763b57fbd9b48d05",
+    "src/hometrace/web/home-flow.css": "fc1f4f4185fd6d1e8f6dbef1660df6224fd95ad1d2ee0c0ab19faa62ebce9cf7",
+    "src/hometrace/web/home-flow.html": "4bcc637ed1b864814e26c1b59ba509c5e20889991616a6092e01808070855664",
+    "src/hometrace/web/home-flow.js": "d53c721174dfb62be0cbeee70e9a52d70995a4603f960b6a99b975bb12a441ad",
+    "src/hometrace/web/household.html": "c4926245a49d084bcc15a3887460a910a77f76aedce4ea90e27b3b5440d38149",
+    "src/hometrace/web/index.html": "ebccaf90d57f581d1f4179de22362d76c4a205e6c8db547b43ec1d2ea98ccce3",
+    "tests/test_photo_core_contract.py": "ce1aa454850413b5df725f1c766913c05ab6f445432eb64ca1f3ea7589b465f2",
+    "tests/test_photo_engine.py": "2c6cd303af027effc294a051c67430ff6e1257cb3b6a42814aeb39ed689d6344",
+    "tests/test_photo_flow_http.py": "5022e77c82675751a654b7a987b61422a12cbf4c146806ccd569f7dc158c13d0",
+    "tests/test_photo_flow_service.py": "e078e0c2672219065b170a536901a99351331f4281593fd433a8e6bf1ef98568",
+    "tools/prepare_photo_flow_demo.py": "12cc9b4a59c238169f4571571607e718bdece093dd2703fedce7f17ae780599f",
+    "tools/validate_photo_flow.py": "e86ea4da06dd954be41e40f1be030d9a45e334238d49729a9e18bd7a46143391"
+  },
+  "wheel": {
+    "hometrace-0.4.1-py3-none-any.whl": "64ae89f388393ea29e4485e6db125612002a1c27c7e3a3587f99ad519e30ba0f"
+  },
+  "browser": {
+    "performed": true,
+    "source": "synthetic images",
+    "process_restart": [
+      30316,
+      10156
+    ],
+    "viewport_checks": [
+      {
+        "width": 1280,
+        "body_scroll_width": 1265
+      },
+      {
+        "width": 390,
+        "body_scroll_width": 375
+      }
+    ],
+    "console_errors_or_warnings": [],
+    "checks": [
+      "UI upload and fixed numeric ROI",
+      "scene configuration",
+      "two owner memory confirmations",
+      "history-driven search",
+      "actual candidate bbox",
+      "page reload recovery",
+      "process restart recovery",
+      "owner confirmation persistence",
+      "old-photo replay",
+      "candidate rejection and continuation",
+      "ambiguous names",
+      "missing reference",
+      "cancel"
+    ],
+    "not_tested": [
+      "ROI pointer drag",
+      "disabled localStorage",
+      "other browser engines",
+      "physical mobile device"
+    ],
+    "initial_permission_error": "Local browser use was disabled; connection later restored by user"
+  }
+}

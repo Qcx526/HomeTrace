@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>HomeTrace · 记住与寻找</title>
+  <link rel="stylesheet" href="/home-flow.css">
+  <script defer src="/home-flow.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/">H<span>·</span> <strong>HomeTrace</strong></a>
+    <nav aria-label="演示入口"><a href="/household.html">文字记忆工作区</a><a href="/agent.html">原 Agent 演示</a><span class="badge">记住与寻找</span></nav>
+  </header>
+  <main>
+    <section class="intro">
+      <div><p class="eyebrow">HOME MEMORY / PHOTO WORKSPACE</p><h1>记住一件物品，再循着证据去寻找。</h1><p class="subtitle">登记外观 → 保存位置 → 查看当前场景 → 候选核验。每一步都保留实际执行记录。</p></div>
+      <div class="boundary"><strong>模拟导航 · 外观候选需要你核对</strong><p>地点由你选择，观察来自你配置的图片；系统不控制真实机器人。外观匹配不会自动变成实例 FOUND。</p></div>
+    </section>
+    <div id="service-notice" class="service-notice" role="status">正在连接本地服务…</div>
+    <div id="error" class="error" role="alert" hidden></div>
+    <p id="storage-notice" class="note" hidden></p>
+    <div class="workspace">
+      <aside class="setup-column">
+        <section class="panel" aria-labelledby="catalog-title">
+          <div class="panel-heading"><h2 id="catalog-title">我的物品</h2><span id="catalog-count" class="badge">0 件</span></div>
+          <ul id="catalog" class="catalog"><li class="empty">正在读取物品目录。</li></ul>
+          <details id="enroll-details" class="form-details"><summary>＋ 登记新的物品名称</summary>
+            <form id="enroll-form">
+              <label for="object-id">物品编号</label><input id="object-id" pattern="[a-z][a-z0-9_\-]{0,63}" maxlength="64" placeholder="例如 blue-keys" required disabled>
+              <label for="object-name">物品名称</label><input id="object-name" maxlength="120" placeholder="例如 蓝色挂件钥匙" required disabled>
+              <label for="object-aliases">别名 <span class="optional">用逗号分隔，可留空</span></label><input id="object-aliases" maxlength="2400" placeholder="钥匙，我的钥匙" disabled>
+              <button class="secondary full" type="submit" disabled>保存名称档案</button>
+              <p id="enroll-status" class="inline-status" role="status"></p>
+            </form>
+          </details>
+        </section>
+
+        <section class="panel" aria-labelledby="reference-title">
+          <div class="panel-heading"><h2 id="reference-title">登记物品外观</h2><span class="step">01</span></div>
+          <p class="note">先选物品，再上传参考图并框选完整目标。登记后参考固定；不会训练一个新网络或覆盖旧参考。</p>
+          <form id="reference-form">
+            <label for="reference-object">对应的物品</label><select id="reference-object" required disabled><option value="">请选择已登记物品</option></select>
+            <div id="registered-reference" hidden></div>
+            <div id="reference-edit-fields">
+              <label for="reference-source">参考图来源</label><select id="reference-source" required disabled><option value="synthetic">AI 合成测试图</option><option value="real_upload">用户上传的实拍图片</option></select>
+              <label for="reference-file">参考图片（JPEG / PNG，最大 8 MB）</label><input id="reference-file" type="file" accept="image/jpeg,image/png" disabled>
+              <p id="reference-upload-status" class="inline-status" role="status"></p>
+              <div id="roi-editor" hidden>
+                <p class="field-help">拖动图片画框，也可输入原图像素坐标。应尽量覆盖物品、排除背景。</p>
+                <div id="roi-image" class="image-frame roi-image"></div>
+                <div class="roi-fields">
+                  <label for="roi-x1">左 x1<input id="roi-x1" type="number" min="0" step="1" required disabled></label>
+                  <label for="roi-y1">上 y1<input id="roi-y1" type="number" min="0" step="1" required disabled></label>
+                  <label for="roi-x2">右 x2<input id="roi-x2" type="number" min="1" step="1" required disabled></label>
+                  <label for="roi-y2">下 y2<input id="roi-y2" type="number" min="1" step="1" required disabled></label>
+                </div>
+                <p id="roi-size" class="field-help"></p>
+                <label class="check-label"><input id="roi-reviewed" type="checkbox" required disabled><span>我已查看图片，确认框内是这件物品，目标区域合理。</span></label>
+              </div>
+              <button id="save-reference" class="primary full" type="submit" disabled>确认登记此参考</button>
+            </div>
+            <p id="reference-status" class="inline-status" role="status"></p>
+          </form>
+        </section>
+
+        <section class="panel" aria-labelledby="scene-title">
+          <div class="panel-heading"><h2 id="scene-title">配置当前场景</h2><span class="step">02</span></div>
+          <p class="note">每个地点放一张当前照片。搜索会按历史与实际反馈访问地点；未配置图像的地点会明确报告不可观察。</p>
+          <ul id="scenes" class="scene-list"></ul>
+          <form id="scene-form">
+            <label for="scene-location">照片对应地点</label><select id="scene-location" required disabled><option value="">请选择地点</option></select>
+            <label for="scene-source">场景图来源</label><select id="scene-source" required disabled><option value="synthetic">AI 合成测试图</option><option value="real_upload">用户上传的实拍图片</option></select>
+            <label for="scene-file">当前场景图片（JPEG / PNG，最大 8 MB）</label><input id="scene-file" type="file" accept="image/jpeg,image/png" required disabled>
+            <button class="secondary full" type="submit" disabled>保存此地点的当前场景</button>
+            <p id="scene-status" class="inline-status" role="status"></p>
+          </form>
+          <details class="form-details"><summary>在哪里找到合成测试素材？</summary><p class="note">本地目录：<code>local_data/ai_html_test_20261027/</code>。素材为 AI 合成，不能用作真实家庭识别通过的证据。若使用演示准备器，预装的两条位置记忆也是虚构的示范陈述。</p><a class="small-link" href="http://127.0.0.1:8786/index.html" target="_blank" rel="noopener noreferrer">打开素材预览（需要预览服务运行）</a></details>
+        </section>
+      </aside>
+
+      <div class="interaction-column">
+        <section class="panel" aria-labelledby="request-title">
+          <div class="panel-heading"><h2 id="request-title">和 HomeTrace 说一句</h2><span class="step">03</span></div>
+          <form id="request-form">
+            <label for="current-location">你现在所在的位置</label><select id="current-location" disabled><option value="">暂不指定</option></select>
+            <p class="field-help">“这里”指上面手动选择的地点；不会自动定位主人。</p>
+            <label for="message">你的请求</label><textarea id="message" rows="3" maxlength="1000" placeholder="例如：帮我记住蓝色挂件钥匙放在这里了" required disabled></textarea>
+            <div class="prompt-buttons"><button type="button" data-template="remember" disabled>记住位置</button><button type="button" data-template="find" disabled>帮我寻找</button><button type="button" data-template="history" disabled>查看历史</button></div>
+            <div class="request-footer"><p id="pending-notice" class="note">先登记名称和外观，然后保存位置或发起寻找。</p><button id="start" class="primary" type="submit" disabled>发送并执行</button></div>
+          </form>
+        </section>
+
+        <section class="panel session-panel" aria-labelledby="session-title">
+          <div class="panel-heading"><h2 id="session-title">本次执行</h2><span id="session-state" class="badge">尚未开始</span></div>
+          <p id="session-meta" class="note">执行状态、回复和工具结果由后端实际产生。</p>
+          <div id="reply" class="reply" role="status" aria-live="polite">配置好物品与场景后，试着让 HomeTrace 记住位置，再帮你寻找。</div>
+          <div id="session-actions" class="session-actions"></div>
+        </section>
+
+        <section id="candidate-panel" class="panel candidate-panel" aria-labelledby="candidate-title" hidden>
+          <div class="panel-heading"><h2 id="candidate-title">发现外观候选，请你核对</h2><span class="badge amber">尚未确认实例</span></div>
+          <p class="note">检测框来自实际匹配结果。相似外观不能证明物理身份；请对照登记参考判断。确认仅记录为主人确认，不写成自动视觉 FOUND。</p>
+          <div id="candidate-content"></div>
+          <div id="candidate-actions" class="action-buttons"></div>
+        </section>
+
+        <section id="memory-panel" class="panel" aria-labelledby="memory-title" hidden>
+          <div class="panel-heading"><h2 id="memory-title">历史记忆与搜索顺序</h2><span class="badge amber">历史是线索</span></div>
+          <ol id="plan" class="plan"></ol>
+          <details open class="history-details"><summary>已保存的位置记录 <span id="history-count"></span></summary><ol id="history" class="history"></ol></details>
+        </section>
+
+        <section id="observations-panel" class="panel" aria-labelledby="observations-title" hidden>
+          <div class="panel-heading"><h2 id="observations-title">实际观察与匹配证据</h2><span id="observation-count" class="badge">0 次</span></div>
+          <div id="observations" class="observations"></div>
+        </section>
+
+        <section id="trace-panel" class="panel" aria-labelledby="trace-title" hidden>
+          <div class="panel-heading"><h2 id="trace-title">Agent 状态与工具轨迹</h2><span id="mode-badge" class="badge">本地执行</span></div>
+          <p class="note">这里展示后端已执行的工具调用与反馈。导航为软件模拟，图像来自本次配置；不生成虚构的机器人到达或视觉确认。</p>
+          <ol id="trace" class="trace"></ol>
+        </section>
+      </div>
+    </div>
+    <footer><strong>用记忆决定去哪里，用当前图像提出候选，用明确确认保留边界。</strong><p>合成素材用于软件流程体验；实拍能力需要独立真实数据验证。浏览器仅保存用于恢复本次执行的编号。</p></footer>
+  </main>
+</body>
+</html>

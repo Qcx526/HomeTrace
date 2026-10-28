@@ -1,0 +1,38 @@
+{
+  "date_asia_shanghai": "2026-10-28",
+  "prior_implementation_commit": "b7ccde2df4400762812921c9e2950107801700e2",
+  "followup_source_files": [
+    "src/hometrace/web/home-flow.js"
+  ],
+  "old_test_files_unchanged": 33,
+  "old_docs_files_unchanged": 292,
+  "original_evidence_overwritten": false,
+  "source_sha256": {
+    "src/hometrace/web/home-flow.js": "07ea1aa5f234aa2b572e87f1b0e6c538e5f72151d4caa459f66bf9dd36bda966",
+    "tests/test_photo_flow_client.cjs": "81a09a61c54508c71f0864f3ef7f28ab7ed8fe4eee53e0b25cf67a249bbba1b4"
+  },
+  "privacy": {
+    "scanned_changed_or_new_files": 35,
+    "violations": [],
+    "secret_values_printed": false
+  },
+  "wheel": {
+    "sha256": "23c6e8c31ea0143c4e3746d73cddb0ca59673512291fda3974f49f73442e4693",
+    "contains_current_client_bytes": true,
+    "fresh_install_performed": false
+  },
+  "ready_demo": {
+    "http_status": 200,
+    "served_current_client_bytes": true,
+    "mode": "deterministic_langgraph",
+    "objects": 1,
+    "scenes": 3,
+    "visual_evidence": 0,
+    "memory_runs": 2
+  },
+  "browser_followup": {
+    "performed": false,
+    "reason": "Tool reported local browser use disabled; earlier browser evidence retained"
+  },
+  "real_household_recognition": "BLOCKED"
+}

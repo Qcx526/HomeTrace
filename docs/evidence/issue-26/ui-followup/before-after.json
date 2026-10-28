@@ -1,0 +1,30 @@
+{
+  "baseline_b7ccde2": {
+    "poll_race": {
+      "expected_active_run": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "actual_active_run": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "stored_run": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "correct": false
+    },
+    "failed_replacement": {
+      "retained_asset": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "save_disabled": false,
+      "submitted_old_reference": true,
+      "correct": false
+    }
+  },
+  "working_tree": {
+    "poll_race": {
+      "expected_active_run": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "actual_active_run": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "stored_run": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "correct": true
+    },
+    "failed_replacement": {
+      "retained_asset": null,
+      "save_disabled": true,
+      "submitted_old_reference": false,
+      "correct": true
+    }
+  }
+}
