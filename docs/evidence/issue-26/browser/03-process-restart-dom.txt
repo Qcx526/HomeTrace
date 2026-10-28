@@ -1,0 +1,179 @@
+- banner:
+  - link "H· HomeTrace":
+    - /url: /
+    - text: H·
+    - strong: HomeTrace
+  - navigation "演示入口":
+    - link "文字记忆工作区":
+      - /url: /household.html
+    - link "原 Agent 演示":
+      - /url: /agent.html
+    - generic: 记住与寻找
+- main:
+  - paragraph: HOME MEMORY / PHOTO WORKSPACE
+  - heading "记住一件物品，再循着证据去寻找。" [level=1]
+  - paragraph: 登记外观 → 保存位置 → 查看当前场景 → 候选核验。每一步都保留实际执行记录。
+  - strong: 模拟导航 · 外观候选需要你核对
+  - paragraph: 地点由你选择，观察来自你配置的图片；系统不控制真实机器人。外观匹配不会自动变成实例 FOUND。
+  - status: 本地规则决策 · 模拟导航 · 真实执行图像匹配 · 外观候选需主人核对 · 合成图不证明实拍识别能力 · deterministic_langgraph
+  - complementary:
+    - region "我的物品":
+      - heading "我的物品" [level=2]
+      - generic: 1 件
+      - list:
+        - strong: 蓝色钥匙
+        - code: blue-keys
+        - paragraph: 外观参考已固定 · AI 合成图
+        - button "选择这件物品"
+      - generic "＋ 登记新的物品名称"
+    - region "登记物品外观":
+      - heading "登记物品外观" [level=2]
+      - generic: "01"
+      - paragraph: 先选物品，再上传参考图并框选完整目标。登记后参考固定；不会训练一个新网络或覆盖旧参考。
+      - generic: 对应的物品
+      - combobox "对应的物品":
+        - option "请选择已登记物品" [selected]
+        - option "蓝色钥匙"
+      - generic: 参考图来源
+      - combobox "参考图来源":
+        - option "AI 合成测试图" [selected]
+        - option "用户上传的实拍图片"
+      - generic: 参考图片（JPEG / PNG，最大 8 MB）
+      - button "参考图片（JPEG / PNG，最大 8 MB）"
+      - button "确认登记此参考" [disabled]
+    - region "配置当前场景":
+      - heading "配置当前场景" [level=2]
+      - generic: "02"
+      - paragraph: 每个地点放一张当前照片。搜索会按历史与实际反馈访问地点；未配置图像的地点会明确报告不可观察。
+      - list:
+        - img "玄关托盘当前配置"
+        - strong: 玄关托盘
+        - paragraph: AI 合成图 · 1672×941
+        - img "书房桌面当前配置"
+        - strong: 书房桌面
+        - paragraph: AI 合成图 · 1448×1086
+        - img "客厅茶几当前配置"
+        - strong: 客厅茶几
+        - paragraph: AI 合成图 · 1448×1086
+      - generic: 照片对应地点
+      - combobox "照片对应地点":
+        - option "请选择地点" [selected]
+        - option "玄关托盘"
+        - option "书房桌面"
+        - option "客厅茶几"
+      - generic: 场景图来源
+      - combobox "场景图来源":
+        - option "AI 合成测试图" [selected]
+        - option "用户上传的实拍图片"
+      - generic: 当前场景图片（JPEG / PNG，最大 8 MB）
+      - button "当前场景图片（JPEG / PNG，最大 8 MB）"
+      - button "保存此地点的当前场景"
+      - generic "在哪里找到合成测试素材？"
+  - region "和 HomeTrace 说一句":
+    - heading "和 HomeTrace 说一句" [level=2]
+    - generic: "03"
+    - generic: 你现在所在的位置
+    - combobox "你现在所在的位置":
+      - option "暂不指定" [selected]
+      - option "玄关托盘"
+      - option "书房桌面"
+      - option "客厅茶几"
+    - paragraph: “这里”指上面手动选择的地点；不会自动定位主人。
+    - generic: 你的请求
+    - textbox "你的请求":
+      - /placeholder: 例如：帮我记住蓝色挂件钥匙放在这里了
+    - button "记住位置"
+    - button "帮我寻找"
+    - button "查看历史"
+    - paragraph: 先登记名称和外观，然后保存位置或发起寻找。
+    - button "发送并执行"
+  - region "本次执行":
+    - heading "本次执行" [level=2]
+    - generic: 等待核对候选
+    - paragraph: 蓝色钥匙 · 版本 3 · deterministic_langgraph
+    - status: 书房桌面出现了外观候选，请核对参考图和检测框。尚不能确认是同一实体。
+    - button "取消后续操作"
+    - link "下载本次真实执行 JSON":
+      - /url: /api/home-flow/runs/8adc6697281b44e381205caee3427f37/report
+  - region "发现外观候选，请你核对":
+    - heading "发现外观候选，请你核对" [level=2]
+    - generic: 尚未确认实例
+    - paragraph: 检测框来自实际匹配结果。相似外观不能证明物理身份；请对照登记参考判断。确认仅记录为主人确认，不写成自动视觉 FOUND。
+    - figure "登记参考与人工固定区域 · AI 合成图":
+      - img "登记参考与人工固定区域"
+      - generic: 登记参考与人工固定区域 · AI 合成图
+    - figure "书房桌面 · 实际匹配框 · AI 合成图":
+      - img "书房桌面 · 实际匹配框"
+      - generic: 书房桌面 · 实际匹配框 · AI 合成图
+    - button "是我要找的物品，记录此位置"
+    - button "不是它，继续寻找"
+  - region "历史记忆与搜索顺序":
+    - heading "历史记忆与搜索顺序" [level=2]
+    - generic: 历史是线索
+    - list:
+      - listitem: 1. 玄关托盘 · 历史优先
+      - listitem: 2. 书房桌面 · 历史优先
+      - listitem: 3. 客厅茶几 · 剩余地点
+    - generic "已保存的位置记录 2 条"
+    - list:
+      - strong: 玄关托盘
+      - paragraph: 2026/10/28 09:23:38 · 主人陈述 / 非视觉确认
+      - paragraph: 来源：photo_workspace_owner_statement:71a6d0361b9c45549081d8738015d756:local_system_clock
+      - strong: 书房桌面
+      - paragraph: 2026/10/28 09:23:25 · 主人陈述 / 非视觉确认
+      - paragraph: 来源：photo_workspace_owner_statement:2cd13f8d27e54c1d980033bcbf33b475:local_system_clock
+  - region "实际观察与匹配证据":
+    - heading "实际观察与匹配证据" [level=2]
+    - generic: 2 次
+    - article:
+      - heading "玄关托盘" [level=3]
+      - generic: UNKNOWN
+      - img "玄关托盘观察证据"
+      - paragraph: AI 合成图 · insufficient_distinct_matches
+      - generic "实际匹配诊断与坐标"
+    - article:
+      - heading "书房桌面" [level=3]
+      - generic: SUSPECTED
+      - img "书房桌面观察证据"
+      - paragraph: AI 合成图 · appearance_candidate_requires_review
+      - generic "实际匹配诊断与坐标"
+  - region "Agent 状态与工具轨迹":
+    - heading "Agent 状态与工具轨迹" [level=2]
+    - generic: deterministic_langgraph
+    - paragraph: 这里展示后端已执行的工具调用与反馈。导航为软件模拟，图像来自本次配置；不生成虚构的机器人到达或视觉确认。
+    - list:
+      - strong: 1. resolve_registered_object
+      - time: 09:23:44
+      - generic "输入与真实返回"
+      - strong: 2. query_owner_memory
+      - time: 09:23:44
+      - generic "输入与真实返回"
+      - strong: 3. plan_search
+      - time: 09:23:44
+      - generic "输入与真实返回"
+      - strong: 4. navigate_simulated
+      - time: 09:23:44
+      - generic "输入与真实返回"
+      - strong: 5. observe_uploaded_image
+      - time: 09:23:44
+      - generic "输入与真实返回"
+      - strong: 6. match_reference_image
+      - time: 09:23:45
+      - generic "输入与真实返回"
+      - strong: 7. review_or_continue
+      - time: 09:23:45
+      - generic "输入与真实返回"
+      - strong: 8. navigate_simulated
+      - time: 09:23:45
+      - generic "输入与真实返回"
+      - strong: 9. observe_uploaded_image
+      - time: 09:23:45
+      - generic "输入与真实返回"
+      - strong: 10. match_reference_image
+      - time: 09:23:45
+      - generic "输入与真实返回"
+      - strong: 11. review_or_continue
+      - time: 09:23:45
+      - generic "输入与真实返回"
+  - strong: 用记忆决定去哪里，用当前图像提出候选，用明确确认保留边界。
+  - paragraph: 合成素材用于软件流程体验；实拍能力需要独立真实数据验证。浏览器仅保存用于恢复本次执行的编号。

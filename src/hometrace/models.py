@@ -16,6 +16,8 @@ class Status(str, Enum):
 class DataSource(str, Enum):
     FIXTURE = "fixture"
     RECORDED_IMAGE = "recorded_image"
+    SYNTHETIC_IMAGE = "synthetic_image"
+    USER_IMAGE = "user_image"
 
 
 class NavigationMode(str, Enum):

@@ -2,9 +2,11 @@
 
 > Huawei Embedded AI Challenge 2026 / 开放创新赛道
 
-**项目状态（2026-10-27）：** 当前分支增量实现 [Issue #24 家庭记忆工作区](docs/HOUSEHOLD_WORKSPACE.md)，依赖未合并的 [PR #23](https://github.com/Qcx526/HomeTrace/pull/23)。名称登记、主人陈述位置和待确认交互可持久保存；本页尚未接入照片外观登记或自动寻找。[共享冻结模型实验](docs/VISION_R3_SHARED_MEMORY_20261027.md) 仍不足以证明家庭实例识别通过。已有 [真实 LLM Agent](docs/P4_AGENT.md)、经典三场景及历史证据保留；导航始终为模拟，没有真实机器人运行数据。本分支不代表 main 已包含这些增量，也不代表正式参赛包完成。
+**项目状态（2026-10-28）：** 当前分支增量实现 [Issue #26 照片登记与寻物闭环](docs/HOUSEHOLD_PHOTO_FLOW.md)，依赖未合并的 [PR #25](https://github.com/Qcx526/HomeTrace/pull/25)。上传参考与固定 ROI → 保存主人位置陈述 → 历史优先搜索上传场景 → 实际匹配候选 → 主人接受/拒绝 → 持久记忆与旧图保护，已完成 HTTP、浏览器与 738 项全量回归。演示使用 AI 合成图片；新流程只提出外观候选，主人确认不升级为自动 FOUND。[真实家庭识别](docs/VISION_R3_SHARED_MEMORY_20261027.md) 仍为 BLOCKED。导航始终模拟，本分支不代表 main 或正式参赛包完成。
 
-新增入口：按下方命令启动后打开 [家庭记忆工作区](http://127.0.0.1:8765/household.html)，无需 API Key 或模型训练。默认数据目录为 `artifacts/household/`，可用 `--household-dir` 指定并在重启时复用。同名物品须选择、位置须确认；主人陈述不会变成视觉 FOUND。HTTP 持久化、630 项全量回归及[浏览器补验收](docs/evidence/issue-24/browser-20261027/README.md)已完成，涵盖刷新/重启恢复、确认/取消、旧版本冲突和历史排序；详见[验收与限制](docs/HOUSEHOLD_WORKSPACE.md)。内部材料目标为 **11 月 2 日结束前完成整理**，与赛事平台截止时间分别核验。
+最新入口：启动后打开 [照片登记与寻找](http://127.0.0.1:8765/home-flow.html)。无需 API Key 或每物品训练；支持明确的中文单意图规则请求，可选确定性 LangGraph，原云端 LLM Agent 保持独立。照片、数据库和合成素材全部留在 Git ignored 目录。[一键准备本机合成 Demo、实际运行命令与限制](docs/HOUSEHOLD_PHOTO_FLOW.md)。
+
+保留的文字入口：按下方命令启动后打开 [家庭记忆工作区](http://127.0.0.1:8765/household.html)，无需 API Key 或模型训练。默认数据目录为 `artifacts/household/`，可用 `--household-dir` 指定并在重启时复用。同名物品须选择、位置须确认；主人陈述不会变成视觉 FOUND。Issue #24 留存的 HTTP 持久化、630 项全量回归及[浏览器补验收](docs/evidence/issue-24/browser-20261027/README.md)涵盖刷新/重启恢复、确认/取消、旧版本冲突和历史排序；详见[历史验收与限制](docs/HOUSEHOLD_WORKSPACE.md)。内部材料目标为 **11 月 2 日结束前完成整理**，与赛事平台截止时间分别核验。
 
 ## 一句话产品定义
 

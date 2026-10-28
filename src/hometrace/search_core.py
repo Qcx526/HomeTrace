@@ -1,7 +1,7 @@
 """Deterministic search decisions using memory and observations already acquired."""
 
 from copy import deepcopy
-from dataclasses import asdict
+from dataclasses import asdict, replace
 from datetime import datetime
 import math
 import re
@@ -41,13 +41,16 @@ class SearchCore:
         if (self.data_source, self.navigation_mode) not in (
             (DataSource.FIXTURE, NavigationMode.MOCK),
             (DataSource.RECORDED_IMAGE, NavigationMode.SIMULATED),
+            (DataSource.SYNTHETIC_IMAGE, NavigationMode.SIMULATED),
+            (DataSource.USER_IMAGE, NavigationMode.SIMULATED),
         ):
             raise ValueError("Unsupported evidence/navigation combination")
         if operation not in ("search", "register"):
             raise ValueError("Unsupported operation")
         self.operation = operation
         self.strategy = SearchStrategy(strategy)
-        self.adapter_kind = "mock" if self.data_source == DataSource.FIXTURE else "recorded_image"
+        self.adapter_kind = "mock" if self.data_source == DataSource.FIXTURE else self.data_source.value
+        self._candidate_images = self.data_source in (DataSource.SYNTHETIC_IMAGE, DataSource.USER_IMAGE)
         self._state: TaskState | None = None
         self._phase = "idle"
         self._current_viewpoint: str | None = None
@@ -211,12 +214,14 @@ class SearchCore:
             or basis != TimestampBasis.FIXTURE
         ):
             rejection = "unsupported_evidence_source"
-        elif source == DataSource.RECORDED_IMAGE and (
+        elif source in (DataSource.RECORDED_IMAGE, DataSource.SYNTHETIC_IMAGE, DataSource.USER_IMAGE) and (
             not observation.image_path or not observation.capture_source
             or basis not in (TimestampBasis.DECLARED_CAPTURE, TimestampBasis.DEMO_SEQUENCE)
             or (not observation.error and not re.fullmatch(r"[0-9a-f]{64}", observation.image_hash or ""))
         ):
             rejection = "incomplete_image_provenance"
+        elif source == DataSource.SYNTHETIC_IMAGE and basis != TimestampBasis.DEMO_SEQUENCE:
+            rejection = "synthetic_image_requires_demo_sequence"
         elif self._bases and basis not in self._bases:
             rejection = "timestamp_basis_changed"
         elif observation.evidence_id in self._seen_ids:
@@ -272,6 +277,23 @@ class SearchCore:
                     or detection.bbox[1] >= detection.bbox[3]
                 ))
             ))
+            or (self._candidate_images and (
+                detection.data_source != self.data_source
+                or not detection.matcher or detection.matcher == "fixture_annotation"
+                or detection.verification_kind != "appearance_candidate"
+                or detection.status == Status.NOT_FOUND_IN_VIEW
+                or (detection.score is not None and (
+                    type(detection.score) not in (int, float) or not math.isfinite(detection.score)
+                ))
+                or (detection.bbox is not None and (
+                    not self._valid_candidate_bbox(detection.bbox)
+                    or detection.diagnostics.get("image_decoded") is not True
+                ))
+                or (detection.status in (Status.FOUND, Status.SUSPECTED) and (
+                    detection.diagnostics.get("image_decoded") is not True
+                    or not self._valid_candidate_bbox(detection.bbox)
+                ))
+            ))
         ):
             detection = DetectionResult(
                 object_id, observation.evidence_id, Status.UNKNOWN,
@@ -279,6 +301,14 @@ class SearchCore:
                 verification_kind=detection.verification_kind,
                 diagnostics={**detection.diagnostics, "rejection": observation.error or "unusable_detection"},
             )
+        elif self._candidate_images and detection.status == Status.FOUND:
+            # A model/appearance candidate cannot assert physical instance identity.
+            # Keep the actual candidate evidence, but never enter the FOUND path.
+            detection = replace(detection, status=Status.SUSPECTED, diagnostics={
+                **detection.diagnostics, "detector_status": Status.FOUND.value,
+                "automatic_confirmation_blocked": True,
+                "rejection": "appearance_candidate_cannot_confirm_identity",
+            })
         state.evidence.append(MemoryRecord(observation, detection))
         self._event(state, "detect_target", [observation.evidence_id, object_id], asdict(detection))
         inserted = self.memory.update_memory(observation, detection)
@@ -301,10 +331,20 @@ class SearchCore:
             value = detection.diagnostics.get(key)
             if isinstance(value, str) and re.fullmatch(r"[a-z][a-z0-9_]{0,100}", value):
                 diagnostics[key] = value
-        return {"object_id": object_id, "viewpoint_id": view_id, "evidence_id": observation.evidence_id,
+        result = {"object_id": object_id, "viewpoint_id": view_id, "evidence_id": observation.evidence_id,
                 "status": detection.status, "result_status": state.result_status, "location": state.location,
                 "bbox": deepcopy(detection.bbox) if detection.status == Status.FOUND else None,
                 "diagnostics": diagnostics, "memory_inserted": inserted, "phase": self._phase}
+        if self._candidate_images:
+            result["candidate_bbox"] = deepcopy(detection.bbox)
+            result["identity_confirmed"] = False
+        return result
+
+    @staticmethod
+    def _valid_candidate_bbox(bbox) -> bool:
+        return (isinstance(bbox, (list, tuple)) and len(bbox) == 4
+                and all(type(value) in (int, float) and math.isfinite(value) for value in bbox)
+                and 0 <= bbox[0] < bbox[2] and 0 <= bbox[1] < bbox[3])
 
     def finish_search(self) -> SearchReport:
         """End explicitly, without silently observing or verifying pending work."""
@@ -344,7 +384,7 @@ class SearchCore:
                 "All observations, annotations and timestamps are synthetic fixtures; no images were captured or analyzed.",
                 "FOUND confirms a fixture annotation only, not a real-world object.",
             ]
-        else:
+        elif self.data_source == DataSource.RECORDED_IMAGE:
             limitations = [
                 "Navigation is simulated; images are recorded photographs, never real_robot observations.",
                 "FOUND is a geometric reference-appearance match in a recorded image, not live presence or category recognition.",
@@ -354,6 +394,20 @@ class SearchCore:
                 "demo_sequence timestamps order a replay only; original photo capture dates may be unknown.",
                 "SHA256 blocks byte-identical replay, but cannot prove capture time or detect every edited copy.",
                 "Reference-image enrollment is not independent confirmation; search must use different image content.",
+            ]
+        else:
+            origin = ("Inputs are AI-generated or otherwise synthetic images, not real household photographs."
+                      if self.data_source == DataSource.SYNTHETIC_IMAGE else
+                      "Inputs are user-supplied images; their physical origin and capture time are not authenticated.")
+            limitations = [
+                "Navigation is simulated; no physical robot or live camera was run.",
+                origin,
+                "Appearance candidates and model scores cannot establish physical instance identity or automatic FOUND.",
+                "User confirmation is recorded separately and does not replace the automatic visual conclusion.",
+                "UNKNOWN/SUSPECTED does not establish that the object is absent.",
+                "demo_sequence timestamps order processing only, not authenticated photo capture.",
+                "SHA256 blocks byte-identical reference/previous-evidence replay, not every edited copy.",
+                "Synthetic-image results are software demonstrations, not independent real-household validation.",
             ]
         limitations.extend([
             "History guides planning but cannot confirm the current location.",
