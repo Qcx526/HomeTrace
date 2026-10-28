@@ -1,0 +1,166 @@
+Browser tab: 1, Title: "HomeTrace · 记住与寻找", URL: "http://127.0.0.1:8772/home-flow.html".
+1 AXWebArea HomeTrace · 记住与寻找, URL: 127.0.0.1:8772/home-flow.html
+	2 container
+		3 link Description: H· HomeTrace, Value: 127.0.0.1:8772/
+		4 container 当前演示
+			5 text 记住与寻找
+	6 container
+		7 text HOME MEMORY / PHOTO WORKSPACE
+		8 heading 记住一件物品，再循着证据去寻找。, Value: 1
+			9 text 记住一件物品，再循着证据去寻找。
+		10 text 登记外观 → 保存位置 → 查看当前场景 → 候选核验。每一步都保留实际执行记录。
+		11 text 模拟导航 · 外观候选需要你核对
+		12 text 主人位置由你提供，观察来自你配置的图片；系统不控制真实机器人。外观匹配不会自动变成实例 FOUND。
+		13 text 真实 LLM 工具决策 · 模拟导航 · 本地图像匹配 · 外观候选需主人核对 · 图片不发送给 LLM · 当前服务：真实 LLM 决策
+		14 container 我的物品
+			15 heading 我的物品, Value: 2, ID: catalog-title
+				16 text 我的物品
+			17 text 1 件
+			18 content list catalog
+				19 container
+					20 text 蓝色钥匙 blue-keys 外观参考已固定 · AI 合成图
+					21 button 选择这件物品
+			22 button (collapsed) ＋ 登记新的物品名称, Secondary Actions: Expand
+				23 text ＋ 登记新的物品名称
+		24 container 登记物品外观
+			25 heading 登记物品外观, Value: 2, ID: reference-title
+				26 text 登记物品外观
+			27 text 01
+			28 text 先选物品，再上传参考图并框选完整目标。登记后参考固定；不会训练一个新网络或覆盖旧参考。
+			29 container reference-form
+				30 text 对应的物品
+				31 pop up button (collapsed, settable) 对应的物品, Value: 请选择已登记物品, ID: reference-object, Secondary Actions: Expand
+					32 menu
+						33 (disabled) 请选择已登记物品
+						34 (disabled) 蓝色钥匙
+				35 container reference-edit-fields
+					36 text 参考图来源
+					37 pop up button (collapsed, settable) 参考图来源, Value: AI 合成测试图, ID: reference-source, Secondary Actions: Expand
+						38 menu
+							39 (disabled) AI 合成测试图
+							40 (disabled) 用户上传的实拍图片
+					41 text 参考图片（JPEG / PNG，最大 8 MB）
+					42 button 参考图片（JPEG / PNG，最大 8 MB）, ID: reference-file
+					43 button (disabled) 确认登记此参考, ID: save-reference
+		44 container 配置当前场景
+			45 heading 配置当前场景, Value: 2, ID: scene-title
+				46 text 配置当前场景
+			47 text 02
+			48 text 每个地点放一张当前照片。搜索会按历史与实际反馈访问地点；未配置图像的地点会明确报告不可观察。
+			49 content list scenes
+				50 container
+					51 image 玄关托盘当前配置
+					52 text 玄关托盘 AI 合成图 · 1672×941
+				53 container
+					54 image 书房桌面当前配置
+					55 text 书房桌面 AI 合成图 · 1448×1086
+				56 container
+					57 image 客厅茶几当前配置
+					58 text 客厅茶几 AI 合成图 · 1448×1086
+			59 container scene-form
+				60 text 照片对应地点
+				61 pop up button (collapsed, settable) 照片对应地点, Value: 请选择地点, ID: scene-location, Secondary Actions: Expand
+					62 menu
+						63 (disabled) 请选择地点
+						64 (disabled) 玄关托盘
+						65 (disabled) 书房桌面
+						66 (disabled) 客厅茶几
+				67 text 场景图来源
+				68 pop up button (collapsed, settable) 场景图来源, Value: AI 合成测试图, ID: scene-source, Secondary Actions: Expand
+					69 menu
+						70 (disabled) AI 合成测试图
+						71 (disabled) 用户上传的实拍图片
+				72 text 当前场景图片（JPEG / PNG，最大 8 MB）
+				73 button 当前场景图片（JPEG / PNG，最大 8 MB）, ID: scene-file
+				74 button 保存此地点的当前场景
+			75 button (collapsed) 关于测试素材, Secondary Actions: Expand
+				76 text 关于测试素材
+		77 container 和 HomeTrace 说一句
+			78 heading 和 HomeTrace 说一句, Value: 2, ID: request-title
+				79 text 和 HomeTrace 说一句
+			80 text 03
+			81 container request-form
+				82 text 你现在所在的位置
+				83 pop up button (collapsed, settable) 你现在所在的位置, Value: 暂不指定, ID: current-location, Secondary Actions: Expand
+					84 menu
+						85 (disabled) 暂不指定
+						86 (disabled) 玄关托盘
+						87 (disabled) 书房桌面
+						88 (disabled) 客厅茶几
+				89 text “这里”指上面手动选择的地点；不会自动定位主人。
+				90 text 你的请求
+				91 text entry area (settable) 你的请求, Value: 蓝色钥匙最近一次记在哪里？, ID: message
+				92 button 记住位置
+				93 button 帮我寻找
+				94 button 查看历史
+				95 text 先登记名称和外观，然后保存位置或发起寻找。
+				96 button 发送并执行, ID: start
+				97 text 真实 LLM 模式：请求文字、物品名称、地点及结构化工具结果会发送给已配置的模型 API；原始图片留在本地。模型决定下一步工具，图片证据由本地程序产生。
+		98 container 谁在做下一步决定
+			99 heading 谁在做下一步决定, Value: 2, ID: model-title
+				100 text 谁在做下一步决定
+			277 text 真实 LLM 决策
+			278 text LLM 根据请求和真实工具反馈选择下一步。下方摘要是模型给出的决策说明，不是视觉证据；位置、检测框与状态以实际工具返回为准。
+			103 definition list model-metrics
+				104 container 实际模型
+					105 text 实际模型
+				279 text deepseek-v4.1-flash-1017
+				107 container 模型调用
+					108 text 模型调用
+				280 text 1
+				110 container 工具调用
+					111 text 工具调用
+				281 text 1
+				113 container 已用 Token
+					114 text 已用 Token
+				282 text 1180
+			116 container model-decision
+				117 text 最近一次模型决策摘要
+				283 text 主人询问蓝色钥匙最近一次记录的位置，查询其历史记录。
+				284 text 选择工具：理解请求并读取物品历史。是否实际执行请查看下方工具轨迹。
+		120 container 本次执行
+			121 heading 本次执行, Value: 2, ID: session-title
+				122 text 本次执行
+			285 text 已完成
+			286 text 蓝色钥匙 · 版本 4 · 真实 LLM 决策
+			287 text 最近记录的位置是书房桌面；这是主人陈述的历史，不代表当前位置。
+			288 link Description: 下载本次真实执行 JSON, Value: 127.0.0.1:8772/api/home-flow/runs/b538426d33894a3d887863856af94d5b/report
+		127 container 历史记忆与搜索顺序, ID: memory-panel
+			128 heading 历史记忆与搜索顺序, Value: 2, ID: memory-title
+				129 text 历史记忆与搜索顺序
+			130 text 历史是线索
+			135 container
+				136 button (expanded) 已保存的位置记录 2 条, Secondary Actions: Collapse
+					137 text 已保存的位置记录
+					289 text 2 条
+				139 content list history
+					290 container
+						291 text 书房桌面 2026/10/28 20:38:08 · 主人陈述 / 非视觉确认 来源：photo_candidate_owner_review:67af92cb13784203af5a16a125a259af:ac06b717b7171daa0b4b26c6adcbb1556938717929b7a68d53ba785494239502
+					292 container
+						293 text 玄关托盘 2026/10/28 20:30:54 · 主人陈述 / 非视觉确认 来源：photo_workspace_owner_statement:121d07bd22f84d3b981154ea4e491ddf:local_system_clock
+		173 container Agent 状态与工具轨迹, ID: trace-panel
+			174 heading Agent 状态与工具轨迹, Value: 2, ID: trace-title
+				175 text Agent 状态与工具轨迹
+			294 text 真实 LLM 决策
+			177 text 这里展示后端已执行的工具调用与反馈。导航为软件模拟，图像来自本次配置；不生成虚构的机器人到达或视觉确认。
+			178 content list trace
+				295 container
+					296 text 1. 发起真实模型请求 20:39:33 实际工具返回
+					297 button (collapsed) 工具输入与实际返回, Secondary Actions: Expand
+						298 text 工具输入与实际返回
+				299 container
+					300 text 2. LLM 决策摘要 20:39:35 模型选择 · 非观察证据 主人询问蓝色钥匙最近一次记录的位置，查询其历史记录。 选择工具：理解请求并读取物品历史 模型耗时 2196.574 ms · 1180 Token
+					301 button (collapsed) 模型结构化选择与用量, Secondary Actions: Expand
+						302 text 模型结构化选择与用量
+				303 container
+					304 text 3. 查询位置记忆 20:39:35 实际工具返回
+					305 button (collapsed) 工具输入与实际返回, Secondary Actions: Expand
+						306 text 工具输入与实际返回
+				307 container
+					308 text 4. 执行模型所选工具 20:39:35 实际工具返回 状态：已完成
+					309 button (collapsed) 工具输入与实际返回, Secondary Actions: Expand
+						310 text 工具输入与实际返回
+		275 text 用记忆决定去哪里，用当前图像提出候选，用明确确认保留边界。
+		276 text 合成素材用于软件流程体验；实拍能力需要独立真实数据验证。浏览器仅保存用于恢复本次执行的编号。
+
+The focused UI element is 1 AXWebArea HomeTrace · 记住与寻找, URL: 127.0.0.1:8772/home-flow.html

@@ -1,0 +1,1189 @@
+{
+  "source": "synthetic images; simulated navigation; real configured LLM",
+  "method": "HTTP operator actions; NOT browser interaction",
+  "original_sha256": "0fc0830115163a7fcd0fbc9e4701a452ccf70e62f8380c17d19e282e7574818a",
+  "checks_passed": true,
+  "checks": [
+    {
+      "name": "accept: directory absent before first boot",
+      "passed": true
+    },
+    {
+      "name": "1: real model available",
+      "passed": true
+    },
+    {
+      "name": "accept: empty catalog/scenes/evidence",
+      "passed": true
+    },
+    {
+      "name": "reference saved from reviewed synthetic ROI",
+      "passed": true
+    },
+    {
+      "name": "accept-remember-entry: completed model step",
+      "passed": true
+    },
+    {
+      "name": "remember waits for owner",
+      "passed": true
+    },
+    {
+      "name": "accept-memory-confirmed: completed model step",
+      "passed": true
+    },
+    {
+      "name": "one owner statement saved",
+      "passed": true
+    },
+    {
+      "name": "find: completed model step",
+      "passed": true
+    },
+    {
+      "name": "old location checked then new candidate",
+      "passed": true
+    },
+    {
+      "name": "refresh preserves candidate",
+      "passed": true
+    },
+    {
+      "name": "2: real model available",
+      "passed": true
+    },
+    {
+      "name": "process restart preserves candidate",
+      "passed": true
+    },
+    {
+      "name": "candidate-confirmed: completed model step",
+      "passed": true
+    },
+    {
+      "name": "owner confirmation is not visual FOUND",
+      "passed": true
+    },
+    {
+      "name": "3: real model available",
+      "passed": true
+    },
+    {
+      "name": "history-after-restart: completed model step",
+      "passed": true
+    },
+    {
+      "name": "new process reads updated memory",
+      "passed": true
+    },
+    {
+      "name": "replay: completed model step",
+      "passed": true
+    },
+    {
+      "name": "used photos cannot confirm again",
+      "passed": true
+    },
+    {
+      "name": "reject: directory absent before first boot",
+      "passed": true
+    },
+    {
+      "name": "4: real model available",
+      "passed": true
+    },
+    {
+      "name": "reject: empty catalog/scenes/evidence",
+      "passed": true
+    },
+    {
+      "name": "reference saved from reviewed synthetic ROI",
+      "passed": true
+    },
+    {
+      "name": "reject-remember-entry: completed model step",
+      "passed": true
+    },
+    {
+      "name": "remember waits for owner",
+      "passed": true
+    },
+    {
+      "name": "reject-memory-confirmed: completed model step",
+      "passed": true
+    },
+    {
+      "name": "one owner statement saved",
+      "passed": true
+    },
+    {
+      "name": "reject-find: completed model step",
+      "passed": true
+    },
+    {
+      "name": "reject branch has actual candidate",
+      "passed": true
+    },
+    {
+      "name": "reject-continue: completed model step",
+      "passed": true
+    },
+    {
+      "name": "rejection triggers model and no new memory",
+      "passed": true
+    }
+  ],
+  "initial_workspaces": [
+    {
+      "name": "accept",
+      "catalog": [],
+      "scenes": [],
+      "evidence_count": 0
+    },
+    {
+      "name": "reject",
+      "catalog": [],
+      "scenes": [],
+      "evidence_count": 0
+    }
+  ],
+  "input_sha256": {
+    "01_reference_keys.png": "3cc149287c013dd6b9ff8f4ff9f54a4d32d9dfeb5b4200612ec2ea0d40e94fe8",
+    "03_keys_study_desk.png": "ac06b717b7171daa0b4b26c6adcbb1556938717929b7a68d53ba785494239502",
+    "04_rival_red_keys.png": "5646c45ed7f793136e85ce9183a96d6ef9055af428d47a35ce4215fa447d3b50",
+    "05_empty_entry_tray.png": "0b66fbf63b2255ecd3d2535974e0a730403e88c35c9038a67663006a879ae307"
+  },
+  "unique_requests": 6,
+  "model_calls_deduplicated": 16,
+  "runs": {
+    "accept-remember-entry": {
+      "run_id": "6df0f7089e9b44bea6fc624474e2d620",
+      "state": "CONFIRM_MEMORY",
+      "version": 4,
+      "mode": "llm_langgraph",
+      "model": "deepseek-v4.1-flash-1017",
+      "model_calls": 1,
+      "tool_calls": 1,
+      "total_tokens": 1186,
+      "visited": [],
+      "raw_images_sent": false,
+      "visual_confirmed": false,
+      "reply": "请确认将蓝色钥匙的位置记录为玄关托盘。这是一条主人陈述，不是视觉确认。",
+      "intent": "remember",
+      "history": [],
+      "observations": [],
+      "trace_tools": [
+        "llm_request",
+        "llm_decision",
+        "query_owner_memory",
+        "llm_tool"
+      ],
+      "candidate_location": null
+    },
+    "accept-memory-confirmed": {
+      "run_id": "6df0f7089e9b44bea6fc624474e2d620",
+      "state": "COMPLETED",
+      "version": 5,
+      "mode": "llm_langgraph",
+      "model": "deepseek-v4.1-flash-1017",
+      "model_calls": 1,
+      "tool_calls": 1,
+      "total_tokens": 1186,
+      "visited": [],
+      "raw_images_sent": false,
+      "visual_confirmed": false,
+      "reply": "好的，我记住了：玄关托盘。保存为主人确认的位置，自动视觉结论仍未确认为 FOUND。",
+      "intent": "remember",
+      "history": [
+        {
+          "object_id": "blue-keys",
+          "location_id": "entry-tray",
+          "observed_at": null,
+          "source": "photo_workspace_owner_statement:6df0f7089e9b44bea6fc624474e2d620:local_system_clock"
+        }
+      ],
+      "observations": [],
+      "trace_tools": [
+        "llm_request",
+        "llm_decision",
+        "query_owner_memory",
+        "llm_tool",
+        "save_owner_memory"
+      ],
+      "candidate_location": null
+    },
+    "find": {
+      "run_id": "97fa551b6a9f45da83d36bfae12a79ee",
+      "state": "AWAITING_REVIEW",
+      "version": 10,
+      "mode": "llm_langgraph",
+      "model": "deepseek-v4.1-flash-1017",
+      "model_calls": 3,
+      "tool_calls": 3,
+      "total_tokens": 3755,
+      "visited": [
+        "entry-tray",
+        "study-desk"
+      ],
+      "raw_images_sent": false,
+      "visual_confirmed": false,
+      "reply": "书房桌面出现了外观候选，请核对参考图和检测框。尚不能确认是同一实体。",
+      "intent": "find",
+      "history": [
+        {
+          "object_id": "blue-keys",
+          "location_id": "entry-tray",
+          "observed_at": null,
+          "source": "photo_workspace_owner_statement:6df0f7089e9b44bea6fc624474e2d620:local_system_clock"
+        }
+      ],
+      "observations": [
+        {
+          "location_id": "entry-tray",
+          "source_kind": "synthetic",
+          "status": "UNKNOWN",
+          "reason": "insufficient_distinct_matches",
+          "bbox": null,
+          "image_sha256": "0b66fbf63b2255ecd3d2535974e0a730403e88c35c9038a67663006a879ae307",
+          "width": 1672,
+          "height": 941,
+          "identity_confirmed": false,
+          "diagnostics": {
+            "elapsed_ms": 91.925,
+            "good_matches": 10,
+            "image_decoded": true,
+            "inlier_ratio": 0.0,
+            "inliers": 0,
+            "opencv_version": "4.12.0",
+            "reason": "insufficient_distinct_matches",
+            "reference_coverage": 0.0,
+            "reference_image_hash": "3cc149287c013dd6b9ff8f4ff9f54a4d32d9dfeb5b4200612ec2ea0d40e94fe8",
+            "reference_keypoints": 2000,
+            "reference_original_size": [
+              1448,
+              1086
+            ],
+            "reference_preprocessing": "registration_roi",
+            "reference_roi": [
+              110,
+              120,
+              1390,
+              950
+            ],
+            "reference_sharpness": 399.499,
+            "reference_size": [
+              1280,
+              830
+            ],
+            "scene_keypoints": 1974,
+            "scene_preprocessing": "full_image",
+            "scene_size": [
+              1672,
+              941
+            ],
+            "seed": 0,
+            "sharpness": 265.205,
+            "threads": 1
+          }
+        },
+        {
+          "location_id": "study-desk",
+          "source_kind": "synthetic",
+          "status": "SUSPECTED",
+          "reason": "appearance_candidate_requires_review",
+          "bbox": [
+            439.12,
+            511.97,
+            1194.69,
+            1003.22
+          ],
+          "image_sha256": "ac06b717b7171daa0b4b26c6adcbb1556938717929b7a68d53ba785494239502",
+          "width": 1448,
+          "height": 1086,
+          "identity_confirmed": false,
+          "diagnostics": {
+            "elapsed_ms": 93.971,
+            "good_matches": 174,
+            "image_decoded": true,
+            "inlier_ratio": 0.8161,
+            "inliers": 142,
+            "opencv_version": "4.12.0",
+            "projected_area_fraction": 0.2089,
+            "projected_corners": [
+              [
+                470.62,
+                511.97
+              ],
+              [
+                1194.69,
+                540.04
+              ],
+              [
+                1163.77,
+                1003.22
+              ],
+              [
+                439.12,
+                952.55
+              ]
+            ],
+            "projected_visible_fraction": 1.0,
+            "raw_match_reason": "verified_planar_reference_match",
+            "reason": "appearance_candidate_requires_review",
+            "reference_coverage": 0.1458,
+            "reference_image_hash": "3cc149287c013dd6b9ff8f4ff9f54a4d32d9dfeb5b4200612ec2ea0d40e94fe8",
+            "reference_keypoints": 2000,
+            "reference_original_size": [
+              1448,
+              1086
+            ],
+            "reference_preprocessing": "registration_roi",
+            "reference_roi": [
+              110,
+              120,
+              1390,
+              950
+            ],
+            "reference_sharpness": 399.499,
+            "reference_size": [
+              1280,
+              830
+            ],
+            "scene_keypoints": 2000,
+            "scene_preprocessing": "full_image",
+            "scene_size": [
+              1448,
+              1086
+            ],
+            "seed": 0,
+            "sharpness": 389.037,
+            "threads": 1
+          }
+        }
+      ],
+      "trace_tools": [
+        "llm_request",
+        "llm_decision",
+        "query_owner_memory",
+        "list_search_options",
+        "llm_tool",
+        "llm_request",
+        "llm_decision",
+        "navigate_simulated",
+        "observe_uploaded_image",
+        "match_reference_image",
+        "review_or_continue",
+        "llm_request",
+        "llm_decision",
+        "navigate_simulated",
+        "observe_uploaded_image",
+        "match_reference_image",
+        "review_or_continue"
+      ],
+      "candidate_location": "study-desk"
+    },
+    "candidate-confirmed": {
+      "run_id": "97fa551b6a9f45da83d36bfae12a79ee",
+      "state": "USER_CONFIRMED",
+      "version": 11,
+      "mode": "llm_langgraph",
+      "model": "deepseek-v4.1-flash-1017",
+      "model_calls": 3,
+      "tool_calls": 3,
+      "total_tokens": 3755,
+      "visited": [
+        "entry-tray",
+        "study-desk"
+      ],
+      "raw_images_sent": false,
+      "visual_confirmed": false,
+      "reply": "好的，我记住了：书房桌面。保存为主人确认的位置，自动视觉结论仍未确认为 FOUND。",
+      "intent": "find",
+      "history": [
+        {
+          "object_id": "blue-keys",
+          "location_id": "study-desk",
+          "observed_at": null,
+          "source": "photo_candidate_owner_review:97fa551b6a9f45da83d36bfae12a79ee:ac06b717b7171daa0b4b26c6adcbb1556938717929b7a68d53ba785494239502"
+        },
+        {
+          "object_id": "blue-keys",
+          "location_id": "entry-tray",
+          "observed_at": null,
+          "source": "photo_workspace_owner_statement:6df0f7089e9b44bea6fc624474e2d620:local_system_clock"
+        }
+      ],
+      "observations": [
+        {
+          "location_id": "entry-tray",
+          "source_kind": "synthetic",
+          "status": "UNKNOWN",
+          "reason": "insufficient_distinct_matches",
+          "bbox": null,
+          "image_sha256": "0b66fbf63b2255ecd3d2535974e0a730403e88c35c9038a67663006a879ae307",
+          "width": 1672,
+          "height": 941,
+          "identity_confirmed": false,
+          "diagnostics": {
+            "elapsed_ms": 91.925,
+            "good_matches": 10,
+            "image_decoded": true,
+            "inlier_ratio": 0.0,
+            "inliers": 0,
+            "opencv_version": "4.12.0",
+            "reason": "insufficient_distinct_matches",
+            "reference_coverage": 0.0,
+            "reference_image_hash": "3cc149287c013dd6b9ff8f4ff9f54a4d32d9dfeb5b4200612ec2ea0d40e94fe8",
+            "reference_keypoints": 2000,
+            "reference_original_size": [
+              1448,
+              1086
+            ],
+            "reference_preprocessing": "registration_roi",
+            "reference_roi": [
+              110,
+              120,
+              1390,
+              950
+            ],
+            "reference_sharpness": 399.499,
+            "reference_size": [
+              1280,
+              830
+            ],
+            "scene_keypoints": 1974,
+            "scene_preprocessing": "full_image",
+            "scene_size": [
+              1672,
+              941
+            ],
+            "seed": 0,
+            "sharpness": 265.205,
+            "threads": 1
+          }
+        },
+        {
+          "location_id": "study-desk",
+          "source_kind": "synthetic",
+          "status": "SUSPECTED",
+          "reason": "appearance_candidate_requires_review",
+          "bbox": [
+            439.12,
+            511.97,
+            1194.69,
+            1003.22
+          ],
+          "image_sha256": "ac06b717b7171daa0b4b26c6adcbb1556938717929b7a68d53ba785494239502",
+          "width": 1448,
+          "height": 1086,
+          "identity_confirmed": false,
+          "diagnostics": {
+            "elapsed_ms": 93.971,
+            "good_matches": 174,
+            "image_decoded": true,
+            "inlier_ratio": 0.8161,
+            "inliers": 142,
+            "opencv_version": "4.12.0",
+            "projected_area_fraction": 0.2089,
+            "projected_corners": [
+              [
+                470.62,
+                511.97
+              ],
+              [
+                1194.69,
+                540.04
+              ],
+              [
+                1163.77,
+                1003.22
+              ],
+              [
+                439.12,
+                952.55
+              ]
+            ],
+            "projected_visible_fraction": 1.0,
+            "raw_match_reason": "verified_planar_reference_match",
+            "reason": "appearance_candidate_requires_review",
+            "reference_coverage": 0.1458,
+            "reference_image_hash": "3cc149287c013dd6b9ff8f4ff9f54a4d32d9dfeb5b4200612ec2ea0d40e94fe8",
+            "reference_keypoints": 2000,
+            "reference_original_size": [
+              1448,
+              1086
+            ],
+            "reference_preprocessing": "registration_roi",
+            "reference_roi": [
+              110,
+              120,
+              1390,
+              950
+            ],
+            "reference_sharpness": 399.499,
+            "reference_size": [
+              1280,
+              830
+            ],
+            "scene_keypoints": 2000,
+            "scene_preprocessing": "full_image",
+            "scene_size": [
+              1448,
+              1086
+            ],
+            "seed": 0,
+            "sharpness": 389.037,
+            "threads": 1
+          }
+        }
+      ],
+      "trace_tools": [
+        "llm_request",
+        "llm_decision",
+        "query_owner_memory",
+        "list_search_options",
+        "llm_tool",
+        "llm_request",
+        "llm_decision",
+        "navigate_simulated",
+        "observe_uploaded_image",
+        "match_reference_image",
+        "review_or_continue",
+        "llm_request",
+        "llm_decision",
+        "navigate_simulated",
+        "observe_uploaded_image",
+        "match_reference_image",
+        "review_or_continue",
+        "save_owner_memory"
+      ],
+      "candidate_location": "study-desk"
+    },
+    "history-after-restart": {
+      "run_id": "ecec241e0e7143e982f9d996eb0a780b",
+      "state": "COMPLETED",
+      "version": 4,
+      "mode": "llm_langgraph",
+      "model": "deepseek-v4.1-flash-1017",
+      "model_calls": 1,
+      "tool_calls": 1,
+      "total_tokens": 1185,
+      "visited": [],
+      "raw_images_sent": false,
+      "visual_confirmed": false,
+      "reply": "最近记录的位置是书房桌面；这是主人陈述的历史，不代表当前位置。",
+      "intent": "history",
+      "history": [
+        {
+          "object_id": "blue-keys",
+          "location_id": "study-desk",
+          "observed_at": null,
+          "source": "photo_candidate_owner_review:97fa551b6a9f45da83d36bfae12a79ee:ac06b717b7171daa0b4b26c6adcbb1556938717929b7a68d53ba785494239502"
+        },
+        {
+          "object_id": "blue-keys",
+          "location_id": "entry-tray",
+          "observed_at": null,
+          "source": "photo_workspace_owner_statement:6df0f7089e9b44bea6fc624474e2d620:local_system_clock"
+        }
+      ],
+      "observations": [],
+      "trace_tools": [
+        "llm_request",
+        "llm_decision",
+        "query_owner_memory",
+        "llm_tool"
+      ],
+      "candidate_location": null
+    },
+    "replay": {
+      "run_id": "9433ff842d86477990f92c310d4acc24",
+      "state": "UNKNOWN",
+      "version": 16,
+      "mode": "llm_langgraph",
+      "model": "deepseek-v4.1-flash-1017",
+      "model_calls": 5,
+      "tool_calls": 5,
+      "total_tokens": 6641,
+      "visited": [
+        "study-desk",
+        "entry-tray",
+        "living-table"
+      ],
+      "raw_images_sent": false,
+      "visual_confirmed": false,
+      "reply": "LLM 已停止搜索；现有工具证据仍未确认目标。UNKNOWN 不等于目标不存在。",
+      "intent": "find",
+      "history": [
+        {
+          "object_id": "blue-keys",
+          "location_id": "study-desk",
+          "observed_at": null,
+          "source": "photo_candidate_owner_review:97fa551b6a9f45da83d36bfae12a79ee:ac06b717b7171daa0b4b26c6adcbb1556938717929b7a68d53ba785494239502"
+        },
+        {
+          "object_id": "blue-keys",
+          "location_id": "entry-tray",
+          "observed_at": null,
+          "source": "photo_workspace_owner_statement:6df0f7089e9b44bea6fc624474e2d620:local_system_clock"
+        }
+      ],
+      "observations": [
+        {
+          "location_id": "study-desk",
+          "source_kind": "synthetic",
+          "status": "UNKNOWN",
+          "reason": "replayed_image_content",
+          "bbox": null,
+          "image_sha256": "ac06b717b7171daa0b4b26c6adcbb1556938717929b7a68d53ba785494239502",
+          "width": 1448,
+          "height": 1086,
+          "identity_confirmed": false,
+          "diagnostics": {}
+        },
+        {
+          "location_id": "entry-tray",
+          "source_kind": "synthetic",
+          "status": "UNKNOWN",
+          "reason": "replayed_image_content",
+          "bbox": null,
+          "image_sha256": "0b66fbf63b2255ecd3d2535974e0a730403e88c35c9038a67663006a879ae307",
+          "width": 1672,
+          "height": 941,
+          "identity_confirmed": false,
+          "diagnostics": {}
+        },
+        {
+          "location_id": "living-table",
+          "source_kind": "synthetic",
+          "status": "UNKNOWN",
+          "reason": "no_verified_match",
+          "bbox": null,
+          "image_sha256": "5646c45ed7f793136e85ce9183a96d6ef9055af428d47a35ce4215fa447d3b50",
+          "width": 1448,
+          "height": 1086,
+          "identity_confirmed": false,
+          "diagnostics": {
+            "elapsed_ms": 97.327,
+            "good_matches": 2,
+            "image_decoded": true,
+            "inlier_ratio": 0.0,
+            "inliers": 0,
+            "opencv_version": "4.12.0",
+            "reason": "no_verified_match",
+            "reference_coverage": 0.0,
+            "reference_image_hash": "3cc149287c013dd6b9ff8f4ff9f54a4d32d9dfeb5b4200612ec2ea0d40e94fe8",
+            "reference_keypoints": 2000,
+            "reference_original_size": [
+              1448,
+              1086
+            ],
+            "reference_preprocessing": "registration_roi",
+            "reference_roi": [
+              110,
+              120,
+              1390,
+              950
+            ],
+            "reference_sharpness": 399.499,
+            "reference_size": [
+              1280,
+              830
+            ],
+            "scene_keypoints": 2000,
+            "scene_preprocessing": "full_image",
+            "scene_size": [
+              1448,
+              1086
+            ],
+            "seed": 0,
+            "sharpness": 265.23,
+            "threads": 1
+          }
+        }
+      ],
+      "trace_tools": [
+        "llm_request",
+        "llm_decision",
+        "query_owner_memory",
+        "list_search_options",
+        "llm_tool",
+        "llm_request",
+        "llm_decision",
+        "navigate_simulated",
+        "observe_uploaded_image",
+        "review_or_continue",
+        "llm_request",
+        "llm_decision",
+        "navigate_simulated",
+        "observe_uploaded_image",
+        "review_or_continue",
+        "llm_request",
+        "llm_decision",
+        "navigate_simulated",
+        "observe_uploaded_image",
+        "match_reference_image",
+        "review_or_continue",
+        "llm_request",
+        "llm_decision",
+        "llm_tool"
+      ],
+      "candidate_location": null
+    },
+    "reject-remember-entry": {
+      "run_id": "a5861c82968e446a8c1e90bfd870a80c",
+      "state": "CONFIRM_MEMORY",
+      "version": 4,
+      "mode": "llm_langgraph",
+      "model": "deepseek-v4.1-flash-1017",
+      "model_calls": 1,
+      "tool_calls": 1,
+      "total_tokens": 1190,
+      "visited": [],
+      "raw_images_sent": false,
+      "visual_confirmed": false,
+      "reply": "请确认将蓝色钥匙的位置记录为玄关托盘。这是一条主人陈述，不是视觉确认。",
+      "intent": "remember",
+      "history": [],
+      "observations": [],
+      "trace_tools": [
+        "llm_request",
+        "llm_decision",
+        "query_owner_memory",
+        "llm_tool"
+      ],
+      "candidate_location": null
+    },
+    "reject-memory-confirmed": {
+      "run_id": "a5861c82968e446a8c1e90bfd870a80c",
+      "state": "COMPLETED",
+      "version": 5,
+      "mode": "llm_langgraph",
+      "model": "deepseek-v4.1-flash-1017",
+      "model_calls": 1,
+      "tool_calls": 1,
+      "total_tokens": 1190,
+      "visited": [],
+      "raw_images_sent": false,
+      "visual_confirmed": false,
+      "reply": "好的，我记住了：玄关托盘。保存为主人确认的位置，自动视觉结论仍未确认为 FOUND。",
+      "intent": "remember",
+      "history": [
+        {
+          "object_id": "blue-keys",
+          "location_id": "entry-tray",
+          "observed_at": null,
+          "source": "photo_workspace_owner_statement:a5861c82968e446a8c1e90bfd870a80c:local_system_clock"
+        }
+      ],
+      "observations": [],
+      "trace_tools": [
+        "llm_request",
+        "llm_decision",
+        "query_owner_memory",
+        "llm_tool",
+        "save_owner_memory"
+      ],
+      "candidate_location": null
+    },
+    "reject-find": {
+      "run_id": "d70a81cc642b4d95ae0596224de12aed",
+      "state": "AWAITING_REVIEW",
+      "version": 10,
+      "mode": "llm_langgraph",
+      "model": "deepseek-v4.1-flash-1017",
+      "model_calls": 3,
+      "tool_calls": 3,
+      "total_tokens": 3774,
+      "visited": [
+        "entry-tray",
+        "study-desk"
+      ],
+      "raw_images_sent": false,
+      "visual_confirmed": false,
+      "reply": "书房桌面出现了外观候选，请核对参考图和检测框。尚不能确认是同一实体。",
+      "intent": "find",
+      "history": [
+        {
+          "object_id": "blue-keys",
+          "location_id": "entry-tray",
+          "observed_at": null,
+          "source": "photo_workspace_owner_statement:a5861c82968e446a8c1e90bfd870a80c:local_system_clock"
+        }
+      ],
+      "observations": [
+        {
+          "location_id": "entry-tray",
+          "source_kind": "synthetic",
+          "status": "UNKNOWN",
+          "reason": "insufficient_distinct_matches",
+          "bbox": null,
+          "image_sha256": "0b66fbf63b2255ecd3d2535974e0a730403e88c35c9038a67663006a879ae307",
+          "width": 1672,
+          "height": 941,
+          "identity_confirmed": false,
+          "diagnostics": {
+            "elapsed_ms": 96.486,
+            "good_matches": 10,
+            "image_decoded": true,
+            "inlier_ratio": 0.0,
+            "inliers": 0,
+            "opencv_version": "4.12.0",
+            "reason": "insufficient_distinct_matches",
+            "reference_coverage": 0.0,
+            "reference_image_hash": "3cc149287c013dd6b9ff8f4ff9f54a4d32d9dfeb5b4200612ec2ea0d40e94fe8",
+            "reference_keypoints": 2000,
+            "reference_original_size": [
+              1448,
+              1086
+            ],
+            "reference_preprocessing": "registration_roi",
+            "reference_roi": [
+              110,
+              120,
+              1390,
+              950
+            ],
+            "reference_sharpness": 399.499,
+            "reference_size": [
+              1280,
+              830
+            ],
+            "scene_keypoints": 1974,
+            "scene_preprocessing": "full_image",
+            "scene_size": [
+              1672,
+              941
+            ],
+            "seed": 0,
+            "sharpness": 265.205,
+            "threads": 1
+          }
+        },
+        {
+          "location_id": "study-desk",
+          "source_kind": "synthetic",
+          "status": "SUSPECTED",
+          "reason": "appearance_candidate_requires_review",
+          "bbox": [
+            439.12,
+            511.97,
+            1194.69,
+            1003.22
+          ],
+          "image_sha256": "ac06b717b7171daa0b4b26c6adcbb1556938717929b7a68d53ba785494239502",
+          "width": 1448,
+          "height": 1086,
+          "identity_confirmed": false,
+          "diagnostics": {
+            "elapsed_ms": 101.67,
+            "good_matches": 174,
+            "image_decoded": true,
+            "inlier_ratio": 0.8161,
+            "inliers": 142,
+            "opencv_version": "4.12.0",
+            "projected_area_fraction": 0.2089,
+            "projected_corners": [
+              [
+                470.62,
+                511.97
+              ],
+              [
+                1194.69,
+                540.04
+              ],
+              [
+                1163.77,
+                1003.22
+              ],
+              [
+                439.12,
+                952.55
+              ]
+            ],
+            "projected_visible_fraction": 1.0,
+            "raw_match_reason": "verified_planar_reference_match",
+            "reason": "appearance_candidate_requires_review",
+            "reference_coverage": 0.1458,
+            "reference_image_hash": "3cc149287c013dd6b9ff8f4ff9f54a4d32d9dfeb5b4200612ec2ea0d40e94fe8",
+            "reference_keypoints": 2000,
+            "reference_original_size": [
+              1448,
+              1086
+            ],
+            "reference_preprocessing": "registration_roi",
+            "reference_roi": [
+              110,
+              120,
+              1390,
+              950
+            ],
+            "reference_sharpness": 399.499,
+            "reference_size": [
+              1280,
+              830
+            ],
+            "scene_keypoints": 2000,
+            "scene_preprocessing": "full_image",
+            "scene_size": [
+              1448,
+              1086
+            ],
+            "seed": 0,
+            "sharpness": 389.037,
+            "threads": 1
+          }
+        }
+      ],
+      "trace_tools": [
+        "llm_request",
+        "llm_decision",
+        "query_owner_memory",
+        "list_search_options",
+        "llm_tool",
+        "llm_request",
+        "llm_decision",
+        "navigate_simulated",
+        "observe_uploaded_image",
+        "match_reference_image",
+        "review_or_continue",
+        "llm_request",
+        "llm_decision",
+        "navigate_simulated",
+        "observe_uploaded_image",
+        "match_reference_image",
+        "review_or_continue"
+      ],
+      "candidate_location": "study-desk"
+    },
+    "reject-continue": {
+      "run_id": "d70a81cc642b4d95ae0596224de12aed",
+      "state": "UNKNOWN",
+      "version": 17,
+      "mode": "llm_langgraph",
+      "model": "deepseek-v4.1-flash-1017",
+      "model_calls": 5,
+      "tool_calls": 5,
+      "total_tokens": 6799,
+      "visited": [
+        "entry-tray",
+        "study-desk",
+        "living-table"
+      ],
+      "raw_images_sent": false,
+      "visual_confirmed": false,
+      "reply": "LLM 已停止搜索；现有工具证据仍未确认目标。UNKNOWN 不等于目标不存在。",
+      "intent": "find",
+      "history": [
+        {
+          "object_id": "blue-keys",
+          "location_id": "entry-tray",
+          "observed_at": null,
+          "source": "photo_workspace_owner_statement:a5861c82968e446a8c1e90bfd870a80c:local_system_clock"
+        }
+      ],
+      "observations": [
+        {
+          "location_id": "entry-tray",
+          "source_kind": "synthetic",
+          "status": "UNKNOWN",
+          "reason": "insufficient_distinct_matches",
+          "bbox": null,
+          "image_sha256": "0b66fbf63b2255ecd3d2535974e0a730403e88c35c9038a67663006a879ae307",
+          "width": 1672,
+          "height": 941,
+          "identity_confirmed": false,
+          "diagnostics": {
+            "elapsed_ms": 96.486,
+            "good_matches": 10,
+            "image_decoded": true,
+            "inlier_ratio": 0.0,
+            "inliers": 0,
+            "opencv_version": "4.12.0",
+            "reason": "insufficient_distinct_matches",
+            "reference_coverage": 0.0,
+            "reference_image_hash": "3cc149287c013dd6b9ff8f4ff9f54a4d32d9dfeb5b4200612ec2ea0d40e94fe8",
+            "reference_keypoints": 2000,
+            "reference_original_size": [
+              1448,
+              1086
+            ],
+            "reference_preprocessing": "registration_roi",
+            "reference_roi": [
+              110,
+              120,
+              1390,
+              950
+            ],
+            "reference_sharpness": 399.499,
+            "reference_size": [
+              1280,
+              830
+            ],
+            "scene_keypoints": 1974,
+            "scene_preprocessing": "full_image",
+            "scene_size": [
+              1672,
+              941
+            ],
+            "seed": 0,
+            "sharpness": 265.205,
+            "threads": 1
+          }
+        },
+        {
+          "location_id": "study-desk",
+          "source_kind": "synthetic",
+          "status": "SUSPECTED",
+          "reason": "appearance_candidate_requires_review",
+          "bbox": [
+            439.12,
+            511.97,
+            1194.69,
+            1003.22
+          ],
+          "image_sha256": "ac06b717b7171daa0b4b26c6adcbb1556938717929b7a68d53ba785494239502",
+          "width": 1448,
+          "height": 1086,
+          "identity_confirmed": false,
+          "diagnostics": {
+            "elapsed_ms": 101.67,
+            "good_matches": 174,
+            "image_decoded": true,
+            "inlier_ratio": 0.8161,
+            "inliers": 142,
+            "opencv_version": "4.12.0",
+            "projected_area_fraction": 0.2089,
+            "projected_corners": [
+              [
+                470.62,
+                511.97
+              ],
+              [
+                1194.69,
+                540.04
+              ],
+              [
+                1163.77,
+                1003.22
+              ],
+              [
+                439.12,
+                952.55
+              ]
+            ],
+            "projected_visible_fraction": 1.0,
+            "raw_match_reason": "verified_planar_reference_match",
+            "reason": "appearance_candidate_requires_review",
+            "reference_coverage": 0.1458,
+            "reference_image_hash": "3cc149287c013dd6b9ff8f4ff9f54a4d32d9dfeb5b4200612ec2ea0d40e94fe8",
+            "reference_keypoints": 2000,
+            "reference_original_size": [
+              1448,
+              1086
+            ],
+            "reference_preprocessing": "registration_roi",
+            "reference_roi": [
+              110,
+              120,
+              1390,
+              950
+            ],
+            "reference_sharpness": 399.499,
+            "reference_size": [
+              1280,
+              830
+            ],
+            "scene_keypoints": 2000,
+            "scene_preprocessing": "full_image",
+            "scene_size": [
+              1448,
+              1086
+            ],
+            "seed": 0,
+            "sharpness": 389.037,
+            "threads": 1
+          }
+        },
+        {
+          "location_id": "living-table",
+          "source_kind": "synthetic",
+          "status": "UNKNOWN",
+          "reason": "no_verified_match",
+          "bbox": null,
+          "image_sha256": "5646c45ed7f793136e85ce9183a96d6ef9055af428d47a35ce4215fa447d3b50",
+          "width": 1448,
+          "height": 1086,
+          "identity_confirmed": false,
+          "diagnostics": {
+            "elapsed_ms": 119.168,
+            "good_matches": 2,
+            "image_decoded": true,
+            "inlier_ratio": 0.0,
+            "inliers": 0,
+            "opencv_version": "4.12.0",
+            "reason": "no_verified_match",
+            "reference_coverage": 0.0,
+            "reference_image_hash": "3cc149287c013dd6b9ff8f4ff9f54a4d32d9dfeb5b4200612ec2ea0d40e94fe8",
+            "reference_keypoints": 2000,
+            "reference_original_size": [
+              1448,
+              1086
+            ],
+            "reference_preprocessing": "registration_roi",
+            "reference_roi": [
+              110,
+              120,
+              1390,
+              950
+            ],
+            "reference_sharpness": 399.499,
+            "reference_size": [
+              1280,
+              830
+            ],
+            "scene_keypoints": 2000,
+            "scene_preprocessing": "full_image",
+            "scene_size": [
+              1448,
+              1086
+            ],
+            "seed": 0,
+            "sharpness": 265.23,
+            "threads": 1
+          }
+        }
+      ],
+      "trace_tools": [
+        "llm_request",
+        "llm_decision",
+        "query_owner_memory",
+        "list_search_options",
+        "llm_tool",
+        "llm_request",
+        "llm_decision",
+        "navigate_simulated",
+        "observe_uploaded_image",
+        "match_reference_image",
+        "review_or_continue",
+        "llm_request",
+        "llm_decision",
+        "navigate_simulated",
+        "observe_uploaded_image",
+        "match_reference_image",
+        "review_or_continue",
+        "owner_reject_candidate",
+        "llm_request",
+        "llm_decision",
+        "navigate_simulated",
+        "observe_uploaded_image",
+        "match_reference_image",
+        "review_or_continue",
+        "llm_request",
+        "llm_decision",
+        "llm_tool"
+      ],
+      "candidate_location": null
+    }
+  }
+}

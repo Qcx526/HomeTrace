@@ -1,0 +1,25 @@
+[
+  {
+    "attempt": "http-01",
+    "result": "interrupted; not counted as pass",
+    "sha256": "43d76498cd0d48bec37a656eab78971880555c8e82499e99fa399002ff459df8"
+  },
+  {
+    "attempt": "http-02",
+    "result": "completed",
+    "passed": true,
+    "sha256": "1ddd06869ade28b80e48614b0d1eccc1a4e77b0db79718d71ab60015abc0c138"
+  },
+  {
+    "attempt": "http-03",
+    "result": "completed",
+    "passed": true,
+    "sha256": "9701568f0fa5201eec63884e21b71fb8ae757a579f5f39a0badac66d5bff2d1a"
+  },
+  {
+    "attempt": "http-04",
+    "result": "completed",
+    "passed": true,
+    "sha256": "0fc0830115163a7fcd0fbc9e4701a452ccf70e62f8380c17d19e282e7574818a"
+  }
+]

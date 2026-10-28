@@ -1,5 +1,6 @@
 """HTTP boundary tests with a stub service; no model capability claims."""
 import json
+from pathlib import Path
 import threading
 from urllib.error import HTTPError
 from urllib.request import Request,urlopen
@@ -22,7 +23,7 @@ class Agent:
 
 @pytest.fixture
 def server():
-    with make_server(Demo(),0,agent_service=Agent()) as http:
+    with make_server(Demo(),0,agent_service=Agent(),legacy_web_dir=Path(__file__).parent / "fixtures" / "legacy_web") as http:
         thread=threading.Thread(target=http.serve_forever,daemon=True); thread.start()
         yield f"http://127.0.0.1:{http.server_port}"
         http.shutdown();thread.join()

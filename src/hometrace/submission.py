@@ -31,7 +31,13 @@ SOURCE_DOCS = {
     "P0_IMPLEMENTATION.md", "P1_IMPLEMENTATION.md", "P1_VISION_CHOICE.md",
     "P2_DEMO.md", "P3_DELIVERY.md", "SUBMISSION_TOOL.md", "SUBMISSION_PLAN.md",
     "TEAM_PHOTO_EVALUATION.md", "SUBMISSION_READINESS.md", "REGISTRATION_ROI_EVALUATION.md",
-    "P4_AGENT.md", "HOUSEHOLD_WORKSPACE.md",
+    "P4_AGENT.md", "HOUSEHOLD_WORKSPACE.md", "HOUSEHOLD_PHOTO_FLOW.md",
+    "HOUSEHOLD_PHOTO_AGENT.md", "DELIVERABLE_DEMO.md", "REAL_PHOTO_CAPTURE_GUIDE.md",
+    "HISTORY_INDEX.md",
+}
+LEGACY_WEB_FIXTURES = {
+    "index.html", "app.js", "style.css", "agent.html", "agent.js", "agent.css",
+    "household.html", "household.js", "household.css",
 }
 CONFIRMATIONS = ("privacy_reviewed", "media_truthful", "materials_consistent")
 MATERIALS = ("application", "presentation", "video", "run_report", "originality")
@@ -245,6 +251,8 @@ def source_allowed(name: str) -> bool:
         return True
     if path.parts[0] == "src" and path.suffix in {".py", ".json", ".html", ".css", ".js"}:
         return True
+    if path.parts[:3] == ("tests", "fixtures", "legacy_web") and len(path.parts) == 4:
+        return path.name in LEGACY_WEB_FIXTURES
     return path.parts[0] in {"tests", "tools"} and path.suffix in {".py", ".cjs"}
 
 

@@ -1,0 +1,100 @@
+{
+  "base_commit": "dc2c4f81bee31e8e3fbd5c52991d73ee2550c31f",
+  "snapshot": {
+    "commit": "dc2c4f81bee31e8e3fbd5c52991d73ee2550c31f",
+    "dirty": true,
+    "snapshot": "working_tree",
+    "snapshot_sha256": "1ea5a673afaa4d771b3837ebf9d4a34df9e9f232ef516e69793884b14a9d150d",
+    "untracked_allowlisted_files": 0,
+    "file_count": 153,
+    "source_policy": "Git tracked and nonignored working files, filtered through the source allowlist; private data, databases, caches, logs and repository metadata are excluded. File hashes describe the actual snapshot, which may differ from HEAD."
+  },
+  "source_export_file_count": 153,
+  "export_copy_hashes_verified": true,
+  "runtime_web_files": [
+    "home-flow.css",
+    "home-flow.html",
+    "home-flow.js"
+  ],
+  "legacy_files": [
+    {
+      "file": "agent.css",
+      "git_blob_content_sha256": "f172c61cff6427ef7828af9a7f28a411d877fd352eef02901eb8ae6abdb68438",
+      "equal_to_base": true
+    },
+    {
+      "file": "agent.html",
+      "git_blob_content_sha256": "036cb6a629634f1dca4795a9435eab2af254f8a462b52d4fd2e9e207501e8afe",
+      "equal_to_base": true
+    },
+    {
+      "file": "agent.js",
+      "git_blob_content_sha256": "63ccc9e2a7e5e7e5b972a1a96bace2bb0a80fc2ca897c1f0482d8173dfb41f3d",
+      "equal_to_base": true
+    },
+    {
+      "file": "app.js",
+      "git_blob_content_sha256": "0701f04e71b06c24a90fee08c5634fe2cdc4df01f2f75e9810628d67e2307d1d",
+      "equal_to_base": true
+    },
+    {
+      "file": "household.css",
+      "git_blob_content_sha256": "6bfe22ca6fa3add339216c7d4b816a58a25ce4c174bf6368d22cc2b7a3d9f2f8",
+      "equal_to_base": true
+    },
+    {
+      "file": "household.html",
+      "git_blob_content_sha256": "c4926245a49d084bcc15a3887460a910a77f76aedce4ea90e27b3b5440d38149",
+      "equal_to_base": true
+    },
+    {
+      "file": "household.js",
+      "git_blob_content_sha256": "24b9798ed109477f5ebee33462d285589901be14f7921adc9d43fa3b0412d7c4",
+      "equal_to_base": true
+    },
+    {
+      "file": "index.html",
+      "git_blob_content_sha256": "c585e0e2d344c1cda08bba324d7c9ae07081ee927a2d0ed2f0dacbf8d36a7246",
+      "equal_to_base": true
+    },
+    {
+      "file": "style.css",
+      "git_blob_content_sha256": "b3a0e121a92cc67976258e8af37bacf70855e7cfe5e18f2d00504b2376208801",
+      "equal_to_base": true
+    }
+  ],
+  "original_assertions": [
+    {
+      "path": "tests/test_demo.py",
+      "unchanged_assert_count": 31
+    },
+    {
+      "path": "tests/test_agent_http.py",
+      "unchanged_assert_count": 7
+    }
+  ],
+  "historical_docs_unchanged": true,
+  "runtime_changes": [
+    "src/hometrace/demo_server.py",
+    "src/hometrace/submission.py",
+    "src/hometrace/web/home-flow.html"
+  ],
+  "core_visual_agent_schema_config_unchanged": true,
+  "privacy": {
+    "staged_files_scanned": 32,
+    "configured_key_checked": true,
+    "secret_matches": 0,
+    "private_media_staged": 0,
+    "ignored_paths_checked": [
+      ".env",
+      "local_data/",
+      "artifacts/",
+      "example.sqlite3",
+      "example.pt"
+    ]
+  },
+  "limitations": [
+    "Pattern and exact local key scans do not prove absence of every possible private datum. Human diff review also performed.",
+    "Source snapshot is the audited working tree, not a formal competition ZIP."
+  ]
+}
