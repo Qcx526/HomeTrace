@@ -1,0 +1,61 @@
+{
+  "staged_files": [
+    {
+      "path": "docs/VISUAL_ADVISOR_DIAGNOSTIC.md",
+      "sha256": "4a10844d0f8abb29acdbe024d4578cd24c6f7d731bb77cdb16dcace25af8276e",
+      "bytes": 10489
+    },
+    {
+      "path": "docs/evidence/issue-32/diagnostic-summary.json",
+      "sha256": "9e83c61eafec8b77fc599520e3a5d3a5d3197cdce3431e7f558bbc1650b17eaf",
+      "bytes": 4134
+    },
+    {
+      "path": "docs/evidence/issue-32/http-recheck.txt",
+      "sha256": "9d1821969e2dafac10fb433f90dc3b556eb639fb4dce86f359ee1d084c51f91a",
+      "bytes": 99
+    },
+    {
+      "path": "docs/evidence/issue-32/node-01.txt",
+      "sha256": "a6a2d89e28de32a8e574b68753906f307221bd0fa66edcae92b455f94550fbf3",
+      "bytes": 849
+    },
+    {
+      "path": "docs/evidence/issue-32/pytest-full-01.txt",
+      "sha256": "6a1343a473421dd352a1f05edad1edf6bd8206de572f3880998b84eb502c7f79",
+      "bytes": 5307
+    },
+    {
+      "path": "docs/evidence/issue-32/pytest-full-02.txt",
+      "sha256": "cc4f859c5b78e29ef432474d53c8080c5ec29685f7c47baa73ccb47528510e6d",
+      "bytes": 1599
+    },
+    {
+      "path": "docs/evidence/issue-32/tests-targeted.txt",
+      "sha256": "d0271350d8c3c6db74bd6ce9b3dd3578455905bd2518383fc9946ef3991ac463",
+      "bytes": 179
+    },
+    {
+      "path": "tests/test_vision_advisor.py",
+      "sha256": "572e9264938199fd81afd7fd06b3d42559f4864f61f1da0deeb90360e8aa9c76",
+      "bytes": 19433
+    },
+    {
+      "path": "tools/run_vision_advisor.py",
+      "sha256": "fd213568d11d7ab0258262210b54b5bb2cb016fb160c888af845b2c940d79b29",
+      "bytes": 9414
+    },
+    {
+      "path": "tools/vision_advisor.py",
+      "sha256": "242988d4b0b689f4ca449ae4b9dd1813a88d2dc142a769c3df2cceb1c8b593e6",
+      "bytes": 5453
+    }
+  ],
+  "hash_list_excludes_this_self_referential_audit": true,
+  "only_authorized_new_experiment_files": true,
+  "production_files_unchanged": true,
+  "key_absent_from_staged_content": true,
+  "private_images_and_consent_ignored": true,
+  "input_derivatives_unchanged": 16,
+  "new_api_requests": 0
+}

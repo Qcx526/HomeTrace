@@ -1,0 +1,87 @@
+....................................................................F... [  8%]
+........................................................................ [ 16%]
+........................................................................ [ 25%]
+........................................................................ [ 33%]
+........................................................................ [ 42%]
+........................................................................ [ 50%]
+........................................................................ [ 58%]
+........................................................................ [ 67%]
+........................................................................ [ 75%]
+........................................................................ [ 84%]
+........................................................................ [ 92%]
+...............................................................          [100%]
+================================== FAILURES ===================================
+__________________ test_external_control_rejected[headers1] ___________________
+
+server = 'http://127.0.0.1:7908', headers = {'Origin': 'https://evil.example'}
+
+    @pytest.mark.parametrize("headers",[{"Host":"evil.example"},{"Origin":"https://evil.example"}])
+    def test_external_control_rejected(server,headers):
+>       assert request(server+"/api/agent/run",{"goal":"��","scenario":"moved"},headers)[0]==403
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_agent_http.py:53:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_agent_http.py:35: in request
+    with urlopen(req,timeout=5) as result:return result.status,result.read()
+         ^^^^^^^^^^^^^^^^^^^^^^
+<user-home>\AppData\Local\Programs\Python\Python311\Lib\urllib\request.py:216: in urlopen
+    return opener.open(url, data, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<user-home>\AppData\Local\Programs\Python\Python311\Lib\urllib\request.py:519: in open
+    response = self._open(req, data)
+               ^^^^^^^^^^^^^^^^^^^^^
+<user-home>\AppData\Local\Programs\Python\Python311\Lib\urllib\request.py:536: in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+<user-home>\AppData\Local\Programs\Python\Python311\Lib\urllib\request.py:496: in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+<user-home>\AppData\Local\Programs\Python\Python311\Lib\urllib\request.py:1377: in http_open
+    return self.do_open(http.client.HTTPConnection, req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<user-home>\AppData\Local\Programs\Python\Python311\Lib\urllib\request.py:1352: in do_open
+    r = h.getresponse()
+        ^^^^^^^^^^^^^^^
+<user-home>\AppData\Local\Programs\Python\Python311\Lib\http\client.py:1378: in getresponse
+    response.begin()
+<user-home>\AppData\Local\Programs\Python\Python311\Lib\http\client.py:318: in begin
+    version, status, reason = self._read_status()
+                              ^^^^^^^^^^^^^^^^^^^
+<user-home>\AppData\Local\Programs\Python\Python311\Lib\http\client.py:279: in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <socket.SocketIO object at 0x00000208B1F3B0D0>
+b = <memory at 0x00000208B1E31540>
+
+    def readinto(self, b):
+        """Read up to len(b) bytes into the writable buffer *b* and return
+        the number of bytes read.  If the socket is non-blocking and no bytes
+        are available, None is returned.
+
+        If *b* is non-empty, a 0 return value indicates that the connection
+        was shutdown at the other end.
+        """
+        self._checkClosed()
+        self._checkReadable()
+        if self._timeout_occurred:
+            raise OSError("cannot read from timed out object")
+        while True:
+            try:
+>               return self._sock.recv_into(b)
+                       ^^^^^^^^^^^^^^^^^^^^^^^
+E               ConnectionAbortedError: [WinError 10053] ��������е�������ֹ��һ���ѽ��������ӡ�
+
+<user-home>\AppData\Local\Programs\Python\Python311\Lib\socket.py:706: ConnectionAbortedError
+---------------------------- Captured stderr call -----------------------------
+127.0.0.1 - - [29/Oct/2026 16:06:38] "POST /api/agent/run HTTP/1.1" 403 -
+============================== warnings summary ===============================
+tests/test_agent_loop.py::test_feedback_and_shared_found
+  <workspace>\artifacts\issue-11\agent-env\Lib\site-packages\langgraph\cache\base\__init__.py:8: LangChainPendingDeprecationWarning: The default value of `allowed_objects` will change in a future version. Pass an explicit value (e.g., allowed_objects='messages' or allowed_objects='core') to suppress this warning.
+    from langgraph.checkpoint.serde.jsonplus import JsonPlusSerializer
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/test_agent_http.py::test_external_control_rejected[headers1] - C...
+1 failed, 854 passed, 1 warning in 122.21s (0:02:02)

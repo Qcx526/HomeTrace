@@ -1,0 +1,160 @@
+{
+  "method": "visual-advisor-v1",
+  "scope": "reused_development_scene_advice_only",
+  "metrics": {
+    "scope": "reused_development_scene_advice_only",
+    "original_positive_count": 4,
+    "original_positive_similar": 3,
+    "original_positive_ask_owner_review": 2,
+    "original_positive_uncertain": 1,
+    "original_negative_count": 4,
+    "original_negative_similar": 0,
+    "followup_images": 2,
+    "followup_scored_as_independent_test": false,
+    "identity_confirmations": 0,
+    "ground_truth_iou": "not_scored_no_model_boxes_or_approved_numeric_truth",
+    "full_pipeline_acceptance": "BLOCKED",
+    "network_calls": 10,
+    "tokens": 48117,
+    "latency_ms": {
+      "min": 3867.352,
+      "max": 16744.922,
+      "median": 10722.918000000001
+    },
+    "unchanged_input_historical_output_and_payload_checks": 73
+  },
+  "rows": [
+    {
+      "sample": "D01",
+      "group": "owner_reviewed_positive",
+      "appearance": "similar",
+      "next_action": "ask_owner_review",
+      "quality_flags": [
+        "small_target",
+        "background_clutter"
+      ],
+      "latency_ms": 13538.307,
+      "tokens": 5395,
+      "identity_confirmed": false
+    },
+    {
+      "sample": "D02",
+      "group": "owner_reviewed_positive",
+      "appearance": "similar",
+      "next_action": "request_closeup",
+      "quality_flags": [
+        "small_target",
+        "occluded",
+        "background_clutter"
+      ],
+      "latency_ms": 6936.895,
+      "tokens": 4620,
+      "identity_confirmed": false
+    },
+    {
+      "sample": "D03",
+      "group": "owner_reviewed_positive",
+      "appearance": "similar",
+      "next_action": "ask_owner_review",
+      "quality_flags": [
+        "small_target",
+        "background_clutter"
+      ],
+      "latency_ms": 11853.217,
+      "tokens": 5268,
+      "identity_confirmed": false
+    },
+    {
+      "sample": "D04",
+      "group": "owner_reviewed_positive",
+      "appearance": "uncertain",
+      "next_action": "request_closeup",
+      "quality_flags": [
+        "small_target",
+        "occluded",
+        "view_mismatch",
+        "background_clutter"
+      ],
+      "latency_ms": 14133.697,
+      "tokens": 5622,
+      "identity_confirmed": false
+    },
+    {
+      "sample": "D05",
+      "group": "owner_reviewed_negative",
+      "appearance": "not_visible",
+      "next_action": "continue_search",
+      "quality_flags": [
+        "background_clutter"
+      ],
+      "latency_ms": 16744.922,
+      "tokens": 5594,
+      "identity_confirmed": false
+    },
+    {
+      "sample": "D06",
+      "group": "owner_reviewed_negative",
+      "appearance": "not_visible",
+      "next_action": "continue_search",
+      "quality_flags": [
+        "background_clutter"
+      ],
+      "latency_ms": 4992.184,
+      "tokens": 4185,
+      "identity_confirmed": false
+    },
+    {
+      "sample": "D07",
+      "group": "owner_reviewed_negative",
+      "appearance": "different",
+      "next_action": "continue_search",
+      "quality_flags": [
+        "small_target",
+        "background_clutter",
+        "view_mismatch"
+      ],
+      "latency_ms": 3867.352,
+      "tokens": 4060,
+      "identity_confirmed": false
+    },
+    {
+      "sample": "D08",
+      "group": "owner_reviewed_negative",
+      "appearance": "not_visible",
+      "next_action": "continue_search",
+      "quality_flags": [
+        "background_clutter",
+        "blurred"
+      ],
+      "latency_ms": 4905.877,
+      "tokens": 4146,
+      "identity_confirmed": false
+    },
+    {
+      "sample": "D09",
+      "group": "followup_development_unscored",
+      "appearance": "similar",
+      "next_action": "ask_owner_review",
+      "quality_flags": [
+        "occluded",
+        "background_clutter"
+      ],
+      "latency_ms": 12215.155,
+      "tokens": 4683,
+      "identity_confirmed": false
+    },
+    {
+      "sample": "D10",
+      "group": "followup_development_unscored",
+      "appearance": "similar",
+      "next_action": "ask_owner_review",
+      "quality_flags": [
+        "occluded",
+        "background_clutter"
+      ],
+      "latency_ms": 9592.619,
+      "tokens": 4544,
+      "identity_confirmed": false
+    }
+  ]
+}
