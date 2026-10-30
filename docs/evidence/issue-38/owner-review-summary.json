@@ -1,0 +1,15 @@
+{
+  "review_source": "explicit_owner_reply_in_chat",
+  "review_date": "2026-10-30",
+  "reviewed_scene_count": 3,
+  "same_registered_physical_instance": true,
+  "scope": "diagnostic_reused",
+  "independent_test": false,
+  "numeric_bbox_reviewed": false,
+  "actual_locations_reviewed": false,
+  "location_memory_written": false,
+  "image_transmission_authorized_by_this_review": false,
+  "frozen_results_unchanged": true,
+  "private_bindings_saved_locally": true,
+  "automatic_identity_confirmation": false
+}

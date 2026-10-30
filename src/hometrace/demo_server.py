@@ -10,6 +10,7 @@ import re
 import sqlite3
 import subprocess
 import sys
+import time
 from urllib.parse import urlsplit
 
 from .demo_service import DemoBusyError, DemoService
@@ -33,15 +34,42 @@ def make_server(service: DemoService | None = None, port: int = 8765, *, agent_s
             raise ValueError("Legacy web directory must contain the complete historical test fixtures")
 
     class Handler(BaseHTTPRequestHandler):
+        def _reject(self, value: dict, status: int):
+            # A late POST body can reset a closing Windows socket and discard
+            # the error response. Drain only bounded, unambiguous framing;
+            # never parse or execute a rejected request, or wait indefinitely.
+            self.close_connection = True
+            lengths = self.headers.get_all("Content-Length", [])
+            if (self.command == "POST" and not self.headers.get_all("Transfer-Encoding")
+                    and len(lengths) == 1 and re.fullmatch(r"[0-9]{1,5}", lengths[0].strip())
+                    and 0 < (remaining := int(lengths[0])) <= 64 * 1024):
+                previous_timeout = self.connection.gettimeout()
+                deadline = time.monotonic() + 1.0
+                try:
+                    while remaining:
+                        timeout = deadline - time.monotonic()
+                        if timeout <= 0:
+                            break
+                        self.connection.settimeout(timeout)
+                        chunk = self.rfile.read1(min(remaining, 8192))
+                        if not chunk:
+                            break
+                        remaining -= len(chunk)
+                except OSError:
+                    pass
+                finally:
+                    self.connection.settimeout(previous_timeout)
+            self._json(value, status)
+
         def _local(self) -> bool:
             actual_port = self.server.server_port
             allowed = {f"127.0.0.1:{actual_port}", f"localhost:{actual_port}"}
             if self.headers.get("Host") not in allowed:
-                self._json({"error": "Only the local demo host is accepted"}, 403)
+                self._reject({"error": "Only the local demo host is accepted"}, 403)
                 return False
             origin = self.headers.get("Origin")
             if origin and origin not in {f"http://{h}" for h in allowed}:
-                self._json({"error": "Cross-origin requests are not accepted"}, 403)
+                self._reject({"error": "Cross-origin requests are not accepted"}, 403)
                 return False
             return True
 
@@ -170,10 +198,10 @@ def make_server(service: DemoService | None = None, port: int = 8765, *, agent_s
             household_paths = ('/api/household/enroll', '/api/household/start', '/api/household/act')
             photo_paths = ('/api/home-flow/assets', '/api/home-flow/reference', '/api/home-flow/scene', '/api/home-flow/start', '/api/home-flow/act', '/api/home-flow/new-photo')
             if self.path not in ("/api/run", "/api/agent/run", *household_paths, *photo_paths):
-                self._json({"error": "Not found"}, 404)
+                self._reject({"error": "Not found"}, 404)
                 return
             if self.headers.get("Content-Type", "").split(";")[0] != "application/json":
-                self._json({"error": "Use application/json"}, 415)
+                self._reject({"error": "Use application/json"}, 415)
                 return
             try:
                 length = int(self.headers.get("Content-Length", "0"))

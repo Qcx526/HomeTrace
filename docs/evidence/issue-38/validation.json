@@ -1,0 +1,55 @@
+{
+  "first_full_suite": {
+    "passed": 987,
+    "failed": 1,
+    "duration_seconds": 148.81,
+    "failure": "test_demo::test_http_rejects_external_hosts_origins_and_form_posts[headers2-415]",
+    "reason": "existing early-close race: server logged 415, Windows client raised WinError 10053"
+  },
+  "final_full_suite": {
+    "passed": 1003,
+    "failed": 0,
+    "warnings": 1,
+    "duration_seconds": 151.73
+  },
+  "node_tests": {
+    "passed": 21,
+    "failed": 0
+  },
+  "focused_http_tests": {
+    "passed": 34,
+    "failed": 0,
+    "duration_seconds": 19.56
+  },
+  "transport_reproduction": {
+    "before": {
+      "single_send": {
+        "total": 100,
+        "delivered": 100
+      },
+      "delayed_body": {
+        "total": 20,
+        "delivered": 0
+      }
+    },
+    "after": {
+      "single_send": {
+        "total": 100,
+        "delivered": 100
+      },
+      "delayed_body": {
+        "total": 20,
+        "delivered": 20
+      }
+    }
+  },
+  "environment": "Windows / Python 3.11; same existing optional Agent environment",
+  "validation_kind": "offline software and local TCP; not visual recognition accuracy",
+  "known_warning": "LangChainPendingDeprecationWarning: allowed_objects default",
+  "whole_browser_workflow_rerun": false,
+  "commands": [
+    "python -m pytest -q",
+    "python -m pytest -q tests/test_http_rejection_delivery.py tests/test_demo.py",
+    "node --test tests/test_photo_flow_client.cjs tests/test_photo_agent_client.cjs tests/test_visual_photo_agent_client.cjs"
+  ]
+}
