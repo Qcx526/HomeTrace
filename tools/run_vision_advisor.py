@@ -9,6 +9,7 @@ from time import perf_counter
 from hometrace.agent_config import load_agent_config
 from hometrace.agent_model import safe_model_error
 from vision_advisor import METHOD, PARAMETERS, build_messages, strict_json, validate_advice
+import hometrace.visual_advisor as advisor_contract
 
 
 def digest(raw):
@@ -104,7 +105,7 @@ def run(root, manifest_path, consent_path, output, config):
     binding = {'method':METHOD,'parameters':PARAMETERS,'endpoint':config.llm.base_url,
                'model':config.llm.model,'manifest_sha256':consent['manifest_sha256'],
                'source_type':manifest['source_type'],'training':False,'production_integration':False,
-               'code':{p.name:digest(p.read_bytes()) for p in (Path(__file__),Path(__file__).with_name('vision_advisor.py'))},
+               'code':{p.name:digest(p.read_bytes()) for p in (Path(__file__),Path(advisor_contract.__file__))},
                'git_head':subprocess.check_output(['git','rev-parse','HEAD'],cwd=root,text=True).strip()}
     save('protocol.private.json',binding)
     from openai import OpenAI

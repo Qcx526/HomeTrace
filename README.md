@@ -2,6 +2,8 @@
 
 HomeTrace 把物品参考、位置历史和当前图片放入同一个持久工作区。真实 LLM 理解请求、调用记忆工具，并根据本轮观察或主人拒绝选择下一处地点；本地视觉提出候选，由主人核对。
 
+**新增可选视觉 Agent 闭环（Issue #34）**：LLM 可请求看图、依据视觉建议决定补拍或继续搜索；每张场景单独批准外发，最后由主人核对并保存位置。启动与实际证据见 [视觉 Agent 说明](docs/VISUAL_AGENT_LOOP.md)。本增量叠加在未合并的 PR #33 上，未发布到 main。
+
 **当前是受限软件 Demo，真实家庭实例识别仍未通过验收。** 图片由用户上传，当前位置由用户选择，导航模拟；LLM 不生成检测框或自动 FOUND。合成图片只能用于流程演示。当前开发分支依赖未合并的 PR #29，不能视作 main 已发布或比赛已提交。
 
 ## 启动当前 Demo
@@ -24,13 +26,13 @@ python -m venv .venv
 4. 查看 LLM 实际调用、访问顺序、检测框和工具返回；核对候选，或拒绝后继续寻找。
 5. 重启后查看历史。历史是主人陈述，不保证物品现在仍在那里；已使用的旧图片不能成为新的搜索证据。
 
-详细步骤、验收结果和兼容说明见 [当前交付 Demo](docs/DELIVERABLE_DEMO.md)。真实照片请按 [拍摄指南](docs/REAL_PHOTO_CAPTURE_GUIDE.md)准备，先验证同一只 SONY 杯，不要求为每件物品训练网络。
+详细步骤、验收结果和兼容说明见 [当前交付 Demo](docs/DELIVERABLE_DEMO.md)。真实照片请按 [拍摄指南](docs/REAL_PHOTO_CAPTURE_GUIDE.md)准备，先验证你登记的同一件实物，不要求为每件物品训练网络。
 
 ## 当前能力与边界
 
 - 持久 SQLite 名称、别名、位置历史、照片参考与证据；支持刷新和服务重启后恢复。
 - 真正的 LangGraph / LangChain 工具调用；LLM 选择目标、意图、下一地点与停止，程序负责执行和事实校验。
-- 图像只在本地匹配，不发送模型；只有必要文字与结构化反馈发送已配置 API。
+- 默认 `--photo-agent` 图像只在本地匹配；可选 `--photo-vision-agent` 在每次明确批准后，将参考 ROI 和完整场景的去元数据缩小副本发往页面显示的第三方网关。上传到本机不等于批准外发。
 - 当前三个固定地点：玄关托盘、书房桌面、客厅茶几。不是实时摄像或自动定位，也没有经过验证的习惯学习。
 - 网页使用 ORB 外观匹配，候选为 `SUSPECTED`；主人接受为 `USER_CONFIRMED` / `owner_reported`，不变成自动视觉 `FOUND`。
 - 共享神经网络视觉仍是隔离实验，不能将类别框、少量开发成功或合成图演示说成真实家庭通用识别。
@@ -41,7 +43,7 @@ LLM 版原验证为 773 项 Python、8 项前端回归，真实 API 22 次调用
 
 ```powershell
 .\.venv\Scripts\python.exe -m pytest -q
-node --test tests/test_photo_flow_client.cjs tests/test_photo_agent_client.cjs
+node --test tests/test_photo_flow_client.cjs tests/test_photo_agent_client.cjs tests/test_visual_photo_agent_client.cjs
 # 可选：需要本机已授权的固定合成素材包和真实 API；输出目录必须不存在。
 .\.venv\Scripts\python.exe tools/accept_photo_workflow.py --output-dir artifacts/acceptance-new
 ```

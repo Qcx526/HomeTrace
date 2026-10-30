@@ -168,7 +168,7 @@ def make_server(service: DemoService | None = None, port: int = 8765, *, agent_s
             if not self._local():
                 return
             household_paths = ('/api/household/enroll', '/api/household/start', '/api/household/act')
-            photo_paths = ('/api/home-flow/assets', '/api/home-flow/reference', '/api/home-flow/scene', '/api/home-flow/start', '/api/home-flow/act')
+            photo_paths = ('/api/home-flow/assets', '/api/home-flow/reference', '/api/home-flow/scene', '/api/home-flow/start', '/api/home-flow/act', '/api/home-flow/new-photo')
             if self.path not in ("/api/run", "/api/agent/run", *household_paths, *photo_paths):
                 self._json({"error": "Not found"}, 404)
                 return
@@ -193,6 +193,12 @@ def make_server(service: DemoService | None = None, port: int = 8765, *, agent_s
                         '/api/home-flow/start': ({'message'}, {'current_location_id'}, photo_flow_service.start),
                         '/api/home-flow/act': ({'run_id', 'version', 'action'}, {'object_id'}, photo_flow_service.act),
                     }
+                    if getattr(photo_flow_service, 'visual_advisor_enabled', False):
+                        contracts['/api/home-flow/new-photo'] = ({'run_id', 'version', 'asset_id'}, set(), photo_flow_service.submit_new_photo)
+                        contracts['/api/home-flow/act'] = ({'run_id', 'version', 'action'}, {'object_id', 'request_id'}, photo_flow_service.act)
+                    if self.path not in contracts:
+                        self._json({'error':'此服务未启用视觉顾问补拍'}, 409)
+                        return
                     required, optional, operation = contracts[self.path]
                     if not isinstance(value, dict) or not required <= set(value) or set(value) - required - optional:
                         raise ValueError('照片操作字段不符合合同')
@@ -258,6 +264,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--agent", action="store_true", help="Enable the real API Agent; requires [agent] dependencies and local .env")
     parser.add_argument("--legacy-web-dir", type=Path, help="Development only: serve historical pages from tests/fixtures/legacy_web and enable public sample scenarios")
     parser.add_argument("--photo-agent", action="store_true", help="Use real LLM tool decisions in /home-flow.html; never silently falls back to rules")
+    parser.add_argument("--photo-vision-agent", action="store_true", help="Opt-in visual advice with per-image consent and new-photo feedback; requires [agent,vision,vision-advisor]")
     parser.add_argument("--config", type=Path, help="Optional Agent config.yaml path")
     parser.add_argument('--household-dir', type=Path, default=Path('artifacts/household'),
                         help='Persistent private household workspace; reuse across restarts')
@@ -278,7 +285,10 @@ def main(argv: list[str] | None = None) -> int:
             agent_service = AgentService(args.samples_dir,args.output_dir/"agent",config_path=args.config)
         household_service = HouseholdService(args.household_dir)
         from .photo_flow_service import PhotoFlowService
-        if args.photo_agent:
+        if args.photo_vision_agent:
+            from .visual_photo_agent_service import VisualPhotoAgentService
+            photo_flow_service = VisualPhotoAgentService(household_service, config_path=args.config)
+        elif args.photo_agent:
             from .photo_agent_service import PhotoAgentService
             photo_flow_service = PhotoAgentService(household_service, config_path=args.config)
         else:

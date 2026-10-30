@@ -1,0 +1,32 @@
+{
+  "browser_01": {
+    "source": "synthetic",
+    "interaction": "actual browser",
+    "state": "ERROR",
+    "steps": [
+      "enroll",
+      "upload reference",
+      "review ROI",
+      "configure rival scene",
+      "start search",
+      "approve image request"
+    ],
+    "decision_calls": 6,
+    "decision_tokens": 10289,
+    "vision_calls": 1,
+    "vision_known_tokens": 0,
+    "reserved_vision_tokens": 8192,
+    "automatic_found": false,
+    "owner_memory_written": false,
+    "advisor_failed": true
+  },
+  "browser_02": {
+    "source": "synthetic",
+    "interaction": "actual browser",
+    "state": "COMPLETED",
+    "decision_calls": 1,
+    "decision_tokens": 1427,
+    "history_records": 2,
+    "vision_calls": 0
+  }
+}

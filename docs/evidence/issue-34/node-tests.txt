@@ -1,0 +1,29 @@
+✔ LLM metrics and choice are visible without turning a model rationale into a tool fact (27.8606ms)
+✔ offline and restored offline runs do not claim LLM execution (2.9422ms)
+✔ model outages, budget exhaustion and protocol failure stay explicit and do not offer false fallback (1.9587ms)
+✔ unknown model usage stays unknown and model text is rendered as literal non-authoritative text (1.5811ms)
+✔ an old poll cannot replace a newly started run or its recovery ID (6.8198ms)
+✔ a lower version response cannot roll back the same run (2.4607ms)
+✔ an invalidated request error cannot disturb the new run or its polling timer (2.6408ms)
+✔ a failed replacement upload cannot submit the previously reviewed reference (1.904ms)
+✔ consent is unchecked, bound to one request, and not inherited by a later request (7.9221ms)
+✔ declining sends only the bound denial and never requires approval checkbox (1.4359ms)
+✔ visual token reservations and all actual advice enum values have honest labels (2.0403ms)
+✔ a failed advisor call has an explicit unavailable record, not empty success advice (1.1592ms)
+✔ new photo uses local upload then the run-scoped endpoint without granting image consent (1.5823ms)
+✔ cancelling while a new image upload is pending cannot submit that image afterward (1.5888ms)
+✔ an approval response arriving after cancellation cannot restore the old run (1.6665ms)
+✔ an outdated conflict-refresh response cannot undo cancellation (1.218ms)
+✔ cancel retries its intent after a concurrently committed approval causes a version conflict (1.3405ms)
+✔ cancel retry is bounded and does not claim success when the server keeps advancing (1.3977ms)
+✔ cancelled scene uploads cannot mutate global scene configuration (1.2809ms)
+✔ a visual-only candidate displays the complete image without inventing a detection rectangle (1.6368ms)
+✔ a late cancelled response is explicitly discarded rather than rendered as model advice (0.9677ms)
+ℹ tests 21
+ℹ suites 0
+ℹ pass 21
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 236.4627

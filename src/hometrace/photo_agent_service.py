@@ -57,6 +57,9 @@ def _bounded_text(value, key='', maximum=240):
 
 
 class PhotoAgentService(PhotoFlowService):
+    visual_advisor_enabled = False
+    model_output_limit = 512
+
     def __init__(self, household_service, *, config_path=None, model=None,
                  agent_config=None, engine_factory=None):
         super().__init__(household_service, engine_factory=engine_factory, use_graph=False)
@@ -151,6 +154,7 @@ class PhotoAgentService(PhotoFlowService):
                'model': self.agent_config.llm.model if self.agent_config else None,
                'llm_explanation': '', 'raw_images_sent': False,
                'agent_internal': {'active_seconds': 0, 'last_tool_result': None}}
+        self._initialize_run(run)
         if self._available_error:
             run.update(state='MODEL_UNAVAILABLE', reply='LLM 配置或依赖不可用；没有启用规则替代。请检查本地配置后重试。')
             self._trace(run, 'llm_unavailable', {}, {'code': self._available_error})
@@ -159,6 +163,16 @@ class PhotoAgentService(PhotoFlowService):
         if run['state'] == 'RUNNING':
             self._launch(run['run_id'])
         return self._public(run)
+
+    def _initialize_run(self, run):
+        """Optional modes add durable state before the first worker can run."""
+
+    def _system_prompt(self):
+        return SYSTEM
+
+    def _last_tool_result(self, run, observations):
+        return ({'tool': 'inspect_location', 'observation': observations[-1]}
+                if observations else run['agent_internal']['last_tool_result'])
 
     def _select(self, db, run, obj):
         super()._select(db, run, obj)
@@ -176,6 +190,8 @@ class PhotoAgentService(PhotoFlowService):
         before = self.get(run_id)
         if before['mode'] != MODE:
             raise ValueError('该会话由规则模式创建；请在原模式继续，或新建 LLM 会话')
+        if bool(before.get('visual_advisor_enabled')) != self.visual_advisor_enabled:
+            raise ValueError('该会话的视觉顾问模式与当前服务不一致，请用原模式继续')
         if action == 'retry' and before['state'] in ('MODEL_UNAVAILABLE', 'ERROR', 'RUNNING'):
             if type(version) is not int or version < 1 or object_id is not None:
                 raise ValueError('重试参数无效')
@@ -225,8 +241,7 @@ class PhotoAgentService(PhotoFlowService):
                 'locations': [{**x, 'has_uploaded_image': x['location_id'] in run.get('snapshot', {}).get('scenes', {})}
                               for x in LOCATIONS], 'visited': run['visited'], 'observations': observations,
                 'owner_rejected_locations': rejected, 'navigation_mode': 'simulated_navigation',
-                'last_tool_result': ({'tool':'inspect_location', 'observation':observations[-1]}
-                                     if observations else run['agent_internal']['last_tool_result']),
+                'last_tool_result': self._last_tool_result(run, observations),
                 'budgets_used': {k: run[k] for k in ('model_calls', 'tool_calls', 'total_tokens')},
                 'automatic_found_enabled': False}
 
@@ -272,7 +287,8 @@ class PhotoAgentService(PhotoFlowService):
         with closing(self._connect()) as db, db:
             db.execute('BEGIN IMMEDIATE')
             run = self._load(db, run_id)
-            if run['state'] != 'RUNNING' or run['mode'] != MODE:
+            if (run['state'] != 'RUNNING' or run['mode'] != MODE
+                    or bool(run.get('visual_advisor_enabled')) != self.visual_advisor_enabled):
                 return False
             internal = run['agent_internal']
             # An interrupted request's reserved cost is retained across restart.
@@ -283,13 +299,13 @@ class PhotoAgentService(PhotoFlowService):
                     or internal['active_seconds'] >= MAX_ACTIVE_SECONDS):
                 return self._stop(db, run, 'BUDGET_EXCEEDED', 'DURABLE_BUDGET')
             context = self._context(run)
-            messages = [SystemMessage(content=SYSTEM), HumanMessage(content=json.dumps(context, ensure_ascii=False))]
+            messages = [SystemMessage(content=self._system_prompt()), HumanMessage(content=json.dumps(context, ensure_ascii=False))]
             schemas = [self.tools[name].args_schema.model_json_schema() for name in context['allowed_tools']]
             input_bound = sum(len(m.content.encode('utf-8'))+64 for m in messages) + len(json.dumps(schemas).encode()) + 1024
             remaining = limits.max_total_tokens-run['budget_tokens_used']-input_bound
             if remaining < 128:
                 return self._stop(db, run, 'BUDGET_EXCEEDED', 'TOKEN_INPUT_BOUND')
-            output_limit = min(512, remaining)
+            output_limit = min(self.model_output_limit, remaining)
             reserved_tokens = input_bound+output_limit
             seconds = min(self.agent_config.llm.timeout_seconds*(self.agent_config.llm.max_retries+1)+2,
                           MAX_ACTIVE_SECONDS-internal['active_seconds'])
@@ -328,6 +344,12 @@ class PhotoAgentService(PhotoFlowService):
                 return self._stop(db, run, 'BUDGET_EXCEEDED', 'PROVIDER_TOKEN_OVERFLOW')
             calls = getattr(response, 'tool_calls', [])
             if getattr(response, 'invalid_tool_calls', []) or not isinstance(calls, list) or len(calls) != 1:
+                self._trace(run, 'llm_protocol_rejected', {}, {
+                    'tool_call_count': len(calls) if isinstance(calls, list) else None,
+                    'invalid_tool_call_count': len(getattr(response, 'invalid_tool_calls', []) or []),
+                    'finish_reason': _bounded_text((getattr(response, 'response_metadata', None) or {}).get('finish_reason'), maximum=40),
+                    'usage': {k: usage[k] for k in ('input_tokens', 'output_tokens', 'total_tokens')
+                              if type(usage.get(k)) is int and usage[k] >= 0}})
                 return self._stop(db, run, 'ERROR', 'EXACTLY_ONE_TOOL_REQUIRED')
             call = calls[0]
             name, args = call.get('name'), call.get('args')

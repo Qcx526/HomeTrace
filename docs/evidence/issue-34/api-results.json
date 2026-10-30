@@ -1,0 +1,917 @@
+[
+  {
+    "case": "live-01",
+    "source": "synthetic",
+    "interaction": "scripted HTTP operator",
+    "original_summary_sha256": "95510383d73e394463e3e8bd538e11e7617468b4febf6cf56e84fdfd8e1e6a5a",
+    "original_script_checks_passed": false,
+    "checks": [
+      {
+        "name": "workspace absent before first boot",
+        "passed": true
+      },
+      {
+        "name": "boot 1: real visual Agent available",
+        "passed": true
+      },
+      {
+        "name": "empty initial catalog, scenes and evidence",
+        "passed": true
+      },
+      {
+        "name": "remember: actual model executed",
+        "passed": true
+      },
+      {
+        "name": "empty history requires owner confirmation",
+        "passed": true
+      },
+      {
+        "name": "remember-confirmed: actual model executed",
+        "passed": true
+      },
+      {
+        "name": "one owner-reported memory saved",
+        "passed": true
+      },
+      {
+        "name": "find-initial: actual model executed",
+        "passed": true
+      },
+      {
+        "name": "advisor call limit preserved",
+        "passed": true
+      },
+      {
+        "name": "consent bound to authorized synthetic inputs",
+        "passed": true
+      },
+      {
+        "name": "fresh consent request and call budget",
+        "passed": true
+      },
+      {
+        "name": "after-consent-1: actual model executed",
+        "passed": true
+      },
+      {
+        "name": "advisor call limit preserved",
+        "passed": true
+      },
+      {
+        "name": "LLM requested one follow-up at same location",
+        "passed": true
+      },
+      {
+        "name": "new-photo-observed: actual model executed",
+        "passed": true
+      },
+      {
+        "name": "advisor call limit preserved",
+        "passed": true
+      },
+      {
+        "name": "LLM reached owner review after both actual image comparisons",
+        "passed": false
+      }
+    ],
+    "explicit_protocol_retry": false,
+    "decision_calls": 6,
+    "decision_tokens": 10933,
+    "vision_calls": 1,
+    "vision_known_tokens": 1831,
+    "stages": {
+      "remember": {
+        "state": "CONFIRM_MEMORY",
+        "model_calls": 1,
+        "vision_calls": 0,
+        "visual_confirmed": false,
+        "new_photo_count": 0
+      },
+      "remember-confirmed": {
+        "state": "COMPLETED",
+        "model_calls": 1,
+        "vision_calls": 0,
+        "visual_confirmed": false,
+        "new_photo_count": 0
+      },
+      "find-initial": {
+        "state": "AWAITING_IMAGE_CONSENT",
+        "model_calls": 3,
+        "vision_calls": 0,
+        "visual_confirmed": false,
+        "new_photo_count": 0
+      },
+      "after-consent-1": {
+        "state": "AWAITING_NEW_PHOTO",
+        "model_calls": 4,
+        "vision_calls": 1,
+        "visual_confirmed": false,
+        "new_photo_count": 0
+      },
+      "new-photo-observed": {
+        "state": "ERROR",
+        "model_calls": 5,
+        "vision_calls": 1,
+        "visual_confirmed": false,
+        "new_photo_count": 1
+      }
+    },
+    "advice": [
+      {
+        "observation_index": 0,
+        "execution_status": "completed",
+        "advice": {
+          "identity_confirmed": false,
+          "method": "visual-advisor-v1",
+          "model_advice": {
+            "appearance": "similar",
+            "next_action": "request_closeup",
+            "quality_flags": [
+              "small_target",
+              "blurred"
+            ],
+            "reason": "远景中可见蓝色编织带钥匙扣、金属环及两把钥匙，轮廓与参考视图基本一致；但画面模糊且目标较小，编织纹理、白色标记形状和钥匙齿细节无法核对，需近景确认后再作判断。",
+            "visible_features": [
+              "蓝色编织带钥匙扣",
+              "金属钥匙环",
+              "两把银色钥匙",
+              "钥匙形状与朝向相似",
+              "蓝色织带末端有浅色小方块标记",
+              "整体为桌面远景"
+            ]
+          },
+          "production_status": "UNKNOWN",
+          "status": "ADVISORY_ONLY"
+        },
+        "usage": {
+          "input_tokens": 1707,
+          "output_tokens": 124,
+          "total_tokens": 1831
+        },
+        "elapsed_ms": 3711.666,
+        "requested_model": "deepseek-v4.1-flash-1017",
+        "returned_model": "deepseek-v4.1-flash-1017"
+      }
+    ]
+  },
+  {
+    "case": "live-02",
+    "source": "synthetic",
+    "interaction": "scripted HTTP operator",
+    "original_summary_sha256": "5c4fce13e8fc319a76550450184b6a3794a180df6fdc814b133e0c50fecae7a4",
+    "original_script_checks_passed": true,
+    "checks": [
+      {
+        "name": "workspace absent before first boot",
+        "passed": true
+      },
+      {
+        "name": "boot 1: real visual Agent available",
+        "passed": true
+      },
+      {
+        "name": "empty initial catalog, scenes and evidence",
+        "passed": true
+      },
+      {
+        "name": "remember: actual model executed",
+        "passed": true
+      },
+      {
+        "name": "empty history requires owner confirmation",
+        "passed": true
+      },
+      {
+        "name": "remember-confirmed: actual model executed",
+        "passed": true
+      },
+      {
+        "name": "one owner-reported memory saved",
+        "passed": true
+      },
+      {
+        "name": "find-initial: actual model executed",
+        "passed": true
+      },
+      {
+        "name": "advisor call limit preserved",
+        "passed": true
+      },
+      {
+        "name": "consent bound to authorized synthetic inputs",
+        "passed": true
+      },
+      {
+        "name": "fresh consent request and call budget",
+        "passed": true
+      },
+      {
+        "name": "after-consent-1: actual model executed",
+        "passed": true
+      },
+      {
+        "name": "advisor call limit preserved",
+        "passed": true
+      },
+      {
+        "name": "LLM requested one follow-up at same location",
+        "passed": true
+      },
+      {
+        "name": "new-photo-observed: actual model executed",
+        "passed": true
+      },
+      {
+        "name": "advisor call limit preserved",
+        "passed": true
+      },
+      {
+        "name": "consent bound to authorized synthetic inputs",
+        "passed": true
+      },
+      {
+        "name": "fresh consent request and call budget",
+        "passed": true
+      },
+      {
+        "name": "after-consent-2: actual model executed",
+        "passed": true
+      },
+      {
+        "name": "advisor call limit preserved",
+        "passed": true
+      },
+      {
+        "name": "after-explicit-protocol-retry: actual model executed",
+        "passed": true
+      },
+      {
+        "name": "advisor call limit preserved",
+        "passed": true
+      },
+      {
+        "name": "LLM reached owner review after both actual image comparisons",
+        "passed": true
+      },
+      {
+        "name": "same place has two preserved and different image hashes",
+        "passed": true
+      },
+      {
+        "name": "same-place reobservation has unique Core evidence IDs",
+        "passed": true
+      },
+      {
+        "name": "each returned advice has its own approved request",
+        "passed": true
+      },
+      {
+        "name": "both images were individually consented",
+        "passed": true
+      },
+      {
+        "name": "actual LLM tool trace includes feedback decisions",
+        "passed": true
+      },
+      {
+        "name": "Core never auto-confirms identity",
+        "passed": true
+      },
+      {
+        "name": "advisor never invents bbox or FOUND",
+        "passed": true
+      },
+      {
+        "name": "actual model and advisor usage recorded",
+        "passed": true
+      },
+      {
+        "name": "boot 2: real visual Agent available",
+        "passed": true
+      },
+      {
+        "name": "restart retains complete pending review and tool trace",
+        "passed": true
+      },
+      {
+        "name": "scripted-owner-confirmed: actual model executed",
+        "passed": true
+      },
+      {
+        "name": "scripted owner confirmation only writes reported memory",
+        "passed": true
+      },
+      {
+        "name": "boot 3: real visual Agent available",
+        "passed": true
+      },
+      {
+        "name": "restart preserves owner-confirmed record",
+        "passed": true
+      },
+      {
+        "name": "history-after-restart: actual model executed",
+        "passed": true
+      },
+      {
+        "name": "fresh LLM query reads persisted history",
+        "passed": true
+      }
+    ],
+    "explicit_protocol_retry": true,
+    "decision_calls": 9,
+    "decision_tokens": 18238,
+    "vision_calls": 2,
+    "vision_known_tokens": 5881,
+    "stages": {
+      "remember": {
+        "state": "CONFIRM_MEMORY",
+        "model_calls": 1,
+        "vision_calls": 0,
+        "visual_confirmed": false,
+        "new_photo_count": 0
+      },
+      "remember-confirmed": {
+        "state": "COMPLETED",
+        "model_calls": 1,
+        "vision_calls": 0,
+        "visual_confirmed": false,
+        "new_photo_count": 0
+      },
+      "find-initial": {
+        "state": "AWAITING_IMAGE_CONSENT",
+        "model_calls": 3,
+        "vision_calls": 0,
+        "visual_confirmed": false,
+        "new_photo_count": 0
+      },
+      "after-consent-1": {
+        "state": "AWAITING_NEW_PHOTO",
+        "model_calls": 4,
+        "vision_calls": 1,
+        "visual_confirmed": false,
+        "new_photo_count": 0
+      },
+      "new-photo-observed": {
+        "state": "AWAITING_IMAGE_CONSENT",
+        "model_calls": 5,
+        "vision_calls": 1,
+        "visual_confirmed": false,
+        "new_photo_count": 1
+      },
+      "after-consent-2": {
+        "state": "ERROR",
+        "model_calls": 6,
+        "vision_calls": 2,
+        "visual_confirmed": false,
+        "new_photo_count": 1
+      },
+      "after-explicit-protocol-retry": {
+        "state": "AWAITING_REVIEW",
+        "model_calls": 7,
+        "vision_calls": 2,
+        "visual_confirmed": false,
+        "new_photo_count": 1
+      },
+      "scripted-owner-confirmed": {
+        "state": "USER_CONFIRMED",
+        "model_calls": 7,
+        "vision_calls": 2,
+        "visual_confirmed": false,
+        "new_photo_count": 1
+      },
+      "history-after-restart": {
+        "state": "COMPLETED",
+        "model_calls": 1,
+        "vision_calls": 0,
+        "visual_confirmed": false,
+        "new_photo_count": 0
+      }
+    },
+    "advice": [
+      {
+        "observation_index": 0,
+        "execution_status": "completed",
+        "advice": {
+          "identity_confirmed": false,
+          "method": "visual-advisor-v1",
+          "model_advice": {
+            "appearance": "similar",
+            "next_action": "ask_owner_review",
+            "quality_flags": [
+              "small_target",
+              "blurred",
+              "background_clutter",
+              "view_mismatch"
+            ],
+            "reason": "参考图中的蓝色织带钥匙扣带有两把银色钥匙，末端有白色方形标记。当前场景中可见蓝色长条钥匙带、金属环、两把钥匙及末端白点，颜色、轮廓和组合方式与参考相符；但目标较小且模糊，织纹、钥匙齿形等细节无法确认，因此仅建议人工复核，不能据此确认身份。",
+            "visible_features": [
+              "蓝色长条织带钥匙扣",
+              "末端可见白色小方形标记",
+              "金属钥匙环连接两把银色钥匙",
+              "两把钥匙头部轮廓与参考大致相符",
+              "蓝色带子的颜色和整体比例接近",
+              "织带表面纹理因模糊无法细辨",
+              "目标在画面中较小并有背景杂物"
+            ]
+          },
+          "production_status": "UNKNOWN",
+          "status": "ADVISORY_ONLY"
+        },
+        "usage": {
+          "input_tokens": 1707,
+          "output_tokens": 1972,
+          "total_tokens": 3679
+        },
+        "elapsed_ms": 15733.61,
+        "requested_model": "deepseek-v4.1-flash-1017",
+        "returned_model": "deepseek-v4.1-flash-1017"
+      },
+      {
+        "observation_index": 1,
+        "execution_status": "completed",
+        "advice": {
+          "identity_confirmed": false,
+          "method": "visual-advisor-v1",
+          "model_advice": {
+            "appearance": "similar",
+            "next_action": "ask_owner_review",
+            "quality_flags": [
+              "small_target",
+              "view_mismatch"
+            ],
+            "reason": "当前场景中的钥匙串与参考视图高度一致：两把金属钥匙、蓝色编织带钥匙环以及带端白色菱形缝线标记均可见，形状与表面纹理吻合。仅因拍摄角度与距离不同（物体在宽景中偏小），建议由物主做最终核对，此结果不构成确认。",
+            "visible_features": [
+              "两把金属钥匙",
+              "蓝色编织带",
+              "带端白色菱形缝线标记",
+              "金属圆环连接",
+              "钥匙齿纹清晰",
+              "编织带纹理与参考一致"
+            ]
+          },
+          "production_status": "UNKNOWN",
+          "status": "ADVISORY_ONLY"
+        },
+        "usage": {
+          "input_tokens": 1707,
+          "output_tokens": 495,
+          "total_tokens": 2202
+        },
+        "elapsed_ms": 6057.579,
+        "requested_model": "deepseek-v4.1-flash-1017",
+        "returned_model": "deepseek-v4.1-flash-1017"
+      }
+    ]
+  },
+  {
+    "case": "live-03",
+    "source": "synthetic",
+    "interaction": "scripted HTTP operator",
+    "original_summary_sha256": "79d9684c2d4d0e3e987dc6cc0c071fc252751aa37e9310647783e01e90548f9c",
+    "original_script_checks_passed": true,
+    "checks": [
+      {
+        "name": "workspace absent before first boot",
+        "passed": true
+      },
+      {
+        "name": "boot 1: real visual Agent available",
+        "passed": true
+      },
+      {
+        "name": "empty initial catalog, scenes and evidence",
+        "passed": true
+      },
+      {
+        "name": "remember: actual model executed",
+        "passed": true
+      },
+      {
+        "name": "empty history requires owner confirmation",
+        "passed": true
+      },
+      {
+        "name": "remember-confirmed: actual model executed",
+        "passed": true
+      },
+      {
+        "name": "one owner-reported memory saved",
+        "passed": true
+      },
+      {
+        "name": "find-initial: actual model executed",
+        "passed": true
+      },
+      {
+        "name": "advisor call limit preserved",
+        "passed": true
+      },
+      {
+        "name": "consent bound to authorized synthetic inputs",
+        "passed": true
+      },
+      {
+        "name": "fresh consent request and call budget",
+        "passed": true
+      },
+      {
+        "name": "after-consent-1: actual model executed",
+        "passed": true
+      },
+      {
+        "name": "advisor call limit preserved",
+        "passed": true
+      },
+      {
+        "name": "LLM requested one follow-up at same location",
+        "passed": true
+      },
+      {
+        "name": "new-photo-observed: actual model executed",
+        "passed": true
+      },
+      {
+        "name": "advisor call limit preserved",
+        "passed": true
+      },
+      {
+        "name": "consent bound to authorized synthetic inputs",
+        "passed": true
+      },
+      {
+        "name": "fresh consent request and call budget",
+        "passed": true
+      },
+      {
+        "name": "after-consent-2: actual model executed",
+        "passed": true
+      },
+      {
+        "name": "advisor call limit preserved",
+        "passed": true
+      },
+      {
+        "name": "LLM reached owner review after both actual image comparisons",
+        "passed": true
+      },
+      {
+        "name": "same place has two preserved and different image hashes",
+        "passed": true
+      },
+      {
+        "name": "same-place reobservation has unique Core evidence IDs",
+        "passed": true
+      },
+      {
+        "name": "each returned advice has its own approved request",
+        "passed": true
+      },
+      {
+        "name": "both images were individually consented",
+        "passed": true
+      },
+      {
+        "name": "actual LLM tool trace includes feedback decisions",
+        "passed": true
+      },
+      {
+        "name": "Core never auto-confirms identity",
+        "passed": true
+      },
+      {
+        "name": "advisor never invents bbox or FOUND",
+        "passed": true
+      },
+      {
+        "name": "actual model and advisor usage recorded",
+        "passed": true
+      },
+      {
+        "name": "boot 2: real visual Agent available",
+        "passed": true
+      },
+      {
+        "name": "restart retains complete pending review and tool trace",
+        "passed": true
+      },
+      {
+        "name": "scripted-owner-confirmed: actual model executed",
+        "passed": true
+      },
+      {
+        "name": "scripted owner confirmation only writes reported memory",
+        "passed": true
+      },
+      {
+        "name": "boot 3: real visual Agent available",
+        "passed": true
+      },
+      {
+        "name": "restart preserves owner-confirmed record",
+        "passed": true
+      },
+      {
+        "name": "history-after-restart: actual model executed",
+        "passed": true
+      },
+      {
+        "name": "fresh LLM query reads persisted history",
+        "passed": true
+      }
+    ],
+    "explicit_protocol_retry": false,
+    "decision_calls": 8,
+    "decision_tokens": 15690,
+    "vision_calls": 2,
+    "vision_known_tokens": 4655,
+    "stages": {
+      "remember": {
+        "state": "CONFIRM_MEMORY",
+        "model_calls": 1,
+        "vision_calls": 0,
+        "visual_confirmed": false,
+        "new_photo_count": 0
+      },
+      "remember-confirmed": {
+        "state": "COMPLETED",
+        "model_calls": 1,
+        "vision_calls": 0,
+        "visual_confirmed": false,
+        "new_photo_count": 0
+      },
+      "find-initial": {
+        "state": "AWAITING_IMAGE_CONSENT",
+        "model_calls": 3,
+        "vision_calls": 0,
+        "visual_confirmed": false,
+        "new_photo_count": 0
+      },
+      "after-consent-1": {
+        "state": "AWAITING_NEW_PHOTO",
+        "model_calls": 4,
+        "vision_calls": 1,
+        "visual_confirmed": false,
+        "new_photo_count": 0
+      },
+      "new-photo-observed": {
+        "state": "AWAITING_IMAGE_CONSENT",
+        "model_calls": 5,
+        "vision_calls": 1,
+        "visual_confirmed": false,
+        "new_photo_count": 1
+      },
+      "after-consent-2": {
+        "state": "AWAITING_REVIEW",
+        "model_calls": 6,
+        "vision_calls": 2,
+        "visual_confirmed": false,
+        "new_photo_count": 1
+      },
+      "scripted-owner-confirmed": {
+        "state": "USER_CONFIRMED",
+        "model_calls": 6,
+        "vision_calls": 2,
+        "visual_confirmed": false,
+        "new_photo_count": 1
+      },
+      "history-after-restart": {
+        "state": "COMPLETED",
+        "model_calls": 1,
+        "vision_calls": 0,
+        "visual_confirmed": false,
+        "new_photo_count": 0
+      }
+    },
+    "advice": [
+      {
+        "observation_index": 0,
+        "execution_status": "completed",
+        "advice": {
+          "identity_confirmed": false,
+          "method": "visual-advisor-v1",
+          "model_advice": {
+            "appearance": "uncertain",
+            "next_action": "request_closeup",
+            "quality_flags": [
+              "small_target",
+              "blurred",
+              "view_mismatch"
+            ],
+            "reason": "蓝色钥匙带、两把钥匙和白色小标记的布局与参考图相符，但当前画面模糊、目标较小且视角不同，无法清楚核对白色标记形状和编织纹理，需更近距离的清晰视图再判断。",
+            "visible_features": [
+              "蓝色编织钥匙带",
+              "两把银色钥匙",
+              "钥匙圈连接结构",
+              "钥匙带末端有白色小标记",
+              "钥匙带折叠成环",
+              "当前画面模糊且目标较小",
+              "拍摄角度与参考图不同"
+            ]
+          },
+          "production_status": "UNKNOWN",
+          "status": "ADVISORY_ONLY"
+        },
+        "usage": {
+          "input_tokens": 1707,
+          "output_tokens": 698,
+          "total_tokens": 2405
+        },
+        "elapsed_ms": 8631.593,
+        "requested_model": "deepseek-v4.1-flash-1017",
+        "returned_model": "deepseek-v4.1-flash-1017"
+      },
+      {
+        "observation_index": 1,
+        "execution_status": "completed",
+        "advice": {
+          "identity_confirmed": false,
+          "method": "visual-advisor-v1",
+          "model_advice": {
+            "appearance": "similar",
+            "next_action": "ask_owner_review",
+            "quality_flags": [
+              "small_target",
+              "background_clutter"
+            ],
+            "reason": "当前场景中的钥匙串在蓝色编织带、白色小方块标记、两把钥匙和圆环结构上与参考视图一致；但目标较小且周围物品较多，仅凭外观不能确认唯一身份，建议人工复核。",
+            "visible_features": [
+              "蓝色编织带钥匙扣",
+              "白色方形缝线标记",
+              "两只金属钥匙",
+              "同一金属圆环串联",
+              "钥匙齿形轮廓可见",
+              "编带折叠连接方式一致"
+            ]
+          },
+          "production_status": "UNKNOWN",
+          "status": "ADVISORY_ONLY"
+        },
+        "usage": {
+          "input_tokens": 1707,
+          "output_tokens": 543,
+          "total_tokens": 2250
+        },
+        "elapsed_ms": 6910.787,
+        "requested_model": "deepseek-v4.1-flash-1017",
+        "returned_model": "deepseek-v4.1-flash-1017"
+      }
+    ]
+  },
+  {
+    "case": "rival-01",
+    "source": "synthetic",
+    "interaction": "scripted HTTP operator",
+    "original_summary_sha256": "e3636ce095f09f518f2c47cf3d89f0e034005e9149f24a54340da371acb85b41",
+    "original_script_checks_passed": false,
+    "checks": [
+      {
+        "name": "workspace absent before first boot",
+        "passed": true
+      },
+      {
+        "name": "boot 1: real visual Agent available",
+        "passed": true
+      },
+      {
+        "name": "empty initial catalog, scenes and evidence",
+        "passed": true
+      },
+      {
+        "name": "remember: actual model executed",
+        "passed": true
+      },
+      {
+        "name": "empty history requires owner confirmation",
+        "passed": true
+      },
+      {
+        "name": "remember-confirmed: actual model executed",
+        "passed": true
+      },
+      {
+        "name": "one owner-reported memory saved",
+        "passed": true
+      },
+      {
+        "name": "find-initial: actual model executed",
+        "passed": true
+      },
+      {
+        "name": "advisor call limit preserved",
+        "passed": true
+      },
+      {
+        "name": "consent bound to authorized synthetic inputs",
+        "passed": true
+      },
+      {
+        "name": "fresh consent request and call budget",
+        "passed": true
+      },
+      {
+        "name": "after-consent-1: actual model executed",
+        "passed": true
+      },
+      {
+        "name": "advisor call limit preserved",
+        "passed": true
+      },
+      {
+        "name": "one actual rival comparison completed",
+        "passed": true
+      },
+      {
+        "name": "actual advisor rejected rival appearance",
+        "passed": true
+      },
+      {
+        "name": "negative search ends UNKNOWN without candidate or confirmation",
+        "passed": true
+      },
+      {
+        "name": "only rival full frame was observed and consented",
+        "passed": true
+      },
+      {
+        "name": "negative tool trace contains real observation comparison and finish",
+        "passed": false
+      }
+    ],
+    "explicit_protocol_retry": false,
+    "decision_calls": 5,
+    "decision_tokens": 8831,
+    "vision_calls": 1,
+    "vision_known_tokens": 2016,
+    "stages": {
+      "remember": {
+        "state": "CONFIRM_MEMORY",
+        "model_calls": 1,
+        "vision_calls": 0,
+        "visual_confirmed": false,
+        "new_photo_count": 0
+      },
+      "remember-confirmed": {
+        "state": "COMPLETED",
+        "model_calls": 1,
+        "vision_calls": 0,
+        "visual_confirmed": false,
+        "new_photo_count": 0
+      },
+      "find-initial": {
+        "state": "AWAITING_IMAGE_CONSENT",
+        "model_calls": 3,
+        "vision_calls": 0,
+        "visual_confirmed": false,
+        "new_photo_count": 0
+      },
+      "after-consent-1": {
+        "state": "UNKNOWN",
+        "model_calls": 4,
+        "vision_calls": 1,
+        "visual_confirmed": false,
+        "new_photo_count": 0
+      }
+    },
+    "advice": [
+      {
+        "observation_index": 0,
+        "execution_status": "completed",
+        "advice": {
+          "identity_confirmed": false,
+          "method": "visual-advisor-v1",
+          "model_advice": {
+            "appearance": "different",
+            "next_action": "continue_search",
+            "quality_flags": [
+              "small_target",
+              "view_mismatch"
+            ],
+            "reason": "参考视图中的钥匙串特征为蓝色编织带挂件（带白色方形缝线）、银色金属圈和两把银色钥匙；当前场景中的钥匙串为棕红色皮质挂件、偏黄铜色金属圈及三把黄铜色钥匙，挂件材质、颜色与钥匙数量均明显不同，判定为不同物体，应继续搜索。",
+            "visible_features": [
+              "蓝色编织织物钥匙扣",
+              "钥匙扣上有白色方形缝线标记",
+              "银色金属钥匙圈",
+              "两把银色钥匙",
+              "当前场景为棕红色皮质钥匙扣",
+              "当前场景钥匙圈偏向黄铜色",
+              "当前场景三把钥匙为黄铜色",
+              "当前钥匙放在米色陶瓷浅盘中"
+            ]
+          },
+          "production_status": "UNKNOWN",
+          "status": "ADVISORY_ONLY"
+        },
+        "usage": {
+          "input_tokens": 1707,
+          "output_tokens": 309,
+          "total_tokens": 2016
+        },
+        "elapsed_ms": 3981.852,
+        "requested_model": "deepseek-v4.1-flash-1017",
+        "returned_model": "deepseek-v4.1-flash-1017"
+      }
+    ]
+  }
+]

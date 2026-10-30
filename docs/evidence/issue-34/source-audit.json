@@ -1,0 +1,163 @@
+{
+  "base_commit": "f0935341ec201c0ccd444d0229b1d000b25e1216",
+  "staged_files": [
+    {
+      "path": "README.md",
+      "sha256": "8aaa8f7701a9273ab5be06ad5cf7c7823c527d64f79f52ddf82bf79279ca2be6",
+      "bytes": 5208
+    },
+    {
+      "path": "docs/VISUAL_AGENT_LOOP.md",
+      "sha256": "ab5f4d211282044631a754475ee456e0822569f11b30a822086b7f254e4b58f4",
+      "bytes": 9752
+    },
+    {
+      "path": "docs/evidence/issue-34/api-results.json",
+      "sha256": "fb7a03216838e8f97b42d0295ca6928531a47d2c00b3a59b54b0b90bc4463760",
+      "bytes": 26526
+    },
+    {
+      "path": "docs/evidence/issue-34/browser-history.png",
+      "sha256": "4ea16262a8b212b1724ab1e3ea866082c661d034f75e5c9ee49d32fd1248085d",
+      "bytes": 65795
+    },
+    {
+      "path": "docs/evidence/issue-34/browser-results.json",
+      "sha256": "584db58cd10457588777f820a6006b2dd5dcf3bdb952572626d4a548d64671c1",
+      "bytes": 730
+    },
+    {
+      "path": "docs/evidence/issue-34/live-01-failed.txt",
+      "sha256": "d6f0605264be5b6e3299bcefda2dac7c97529a76d749c3850485b438a5b5508c",
+      "bytes": 1098
+    },
+    {
+      "path": "docs/evidence/issue-34/live-02-retry.txt",
+      "sha256": "a05dcd6da24e9e3b69c63f20226efcac6dba044f4961798bb3c96d492acd2e82",
+      "bytes": 1035
+    },
+    {
+      "path": "docs/evidence/issue-34/live-03.txt",
+      "sha256": "ed8221635fb7084336a4be5373a16ee5f314e6b4520861679a1d917980c276fd",
+      "bytes": 918
+    },
+    {
+      "path": "docs/evidence/issue-34/node-tests.txt",
+      "sha256": "3cc4bee0eff6139aa166fc124cf6ca2e4e26b8841715337be0e7534641910ce5",
+      "bytes": 2091
+    },
+    {
+      "path": "docs/evidence/issue-34/pytest.txt",
+      "sha256": "82054f98454d8dbb958a7245423481c2d1224f2adacefffd5f037740ae5f3baa",
+      "bytes": 1679
+    },
+    {
+      "path": "docs/evidence/issue-34/rival-01-harness-failed.txt",
+      "sha256": "de9793f831b59070043dd43a3ec3c9e05d083b6d0132ac87657a52f74b295237",
+      "bytes": 962
+    },
+    {
+      "path": "docs/evidence/issue-34/rival-posthoc.json",
+      "sha256": "a8b24366423d84d4b630e49c04220a0b052c63a140ce29910c8fd3f6f8191706",
+      "bytes": 1910
+    },
+    {
+      "path": "docs/evidence/issue-34/versions.json",
+      "sha256": "a85766dce3a73495b0e6a797f45b7d5e5d305b8ce07e87474c509544c7253b44",
+      "bytes": 155
+    },
+    {
+      "path": "pyproject.toml",
+      "sha256": "879f1dd07b0064cb418721000d045a0a62ee70d2a7ca52e70e1aa9cf6280dee4",
+      "bytes": 807
+    },
+    {
+      "path": "src/hometrace/demo_server.py",
+      "sha256": "d5b79a5d767448bd04626e530c09f88928bdb2c424eded396de46ceadf6e3971",
+      "bytes": 19085
+    },
+    {
+      "path": "src/hometrace/photo_agent_service.py",
+      "sha256": "7f0e2723ba4cc112488d8fbe8c17c5f71b7c6a32707cee1e2d5198e0f2dc8c62",
+      "bytes": 27044
+    },
+    {
+      "path": "src/hometrace/photo_flow_service.py",
+      "sha256": "38fb628ea518a06106e58c5e40b0f6a227871b64abf75501cec8f7356383d5fe",
+      "bytes": 34436
+    },
+    {
+      "path": "src/hometrace/visual_advisor.py",
+      "sha256": "3a17495c3bd5cbe38c4a5966d36fdc7003bb78536c444768fb31c0000c4b970c",
+      "bytes": 5452
+    },
+    {
+      "path": "src/hometrace/visual_advisor_client.py",
+      "sha256": "31a62de7959cb6e0f1fa19e7ec1f2e69f9cd6e4c1ccf37b8b39ea5444f7c8897",
+      "bytes": 4985
+    },
+    {
+      "path": "src/hometrace/visual_photo_agent_service.py",
+      "sha256": "9342b2acc37e9ec56e6734831989a7f741df59c82c23c9d68af134c4360b1c43",
+      "bytes": 27991
+    },
+    {
+      "path": "src/hometrace/web/home-flow.css",
+      "sha256": "8a2cd7acb564578f1de1794c67aea31b3859f56457ef71ae0b509a72c65d9727",
+      "bytes": 12012
+    },
+    {
+      "path": "src/hometrace/web/home-flow.html",
+      "sha256": "eb0e12730a438057857cc47faf51b5f086ac3c907bee15380f8557831d810784",
+      "bytes": 15312
+    },
+    {
+      "path": "src/hometrace/web/home-flow.js",
+      "sha256": "ddc0f1cf9c49752212ec2c060bee43d8f828041b30cf426254f7d81c6fe82f7c",
+      "bytes": 32845
+    },
+    {
+      "path": "tests/test_visual_advisor_client.py",
+      "sha256": "af3158afffe008bcedb187bd7ab052644c6e941a310ebf1bf8ecac12616b3fa7",
+      "bytes": 3560
+    },
+    {
+      "path": "tests/test_visual_photo_agent_client.cjs",
+      "sha256": "4bbcf816027a2b95a5d2ad5c83ccc37534d8a0696f541d966987bf0d2e35fcb5",
+      "bytes": 14393
+    },
+    {
+      "path": "tests/test_visual_photo_agent_service.py",
+      "sha256": "3a71c7fb96cdad9927e678580484a17fc676444da373b3e4e4b7d7eb29443094",
+      "bytes": 23612
+    },
+    {
+      "path": "tests/test_visual_photo_http.py",
+      "sha256": "7c433323730513932d04a3af1b90a79d5373b1077beeed03c4d56a1789fddb37",
+      "bytes": 1916
+    },
+    {
+      "path": "tools/accept_visual_agent.py",
+      "sha256": "a84e2b752b8e7f7fc4d3fc5251e3ec58c2a773f20161a2f440aba7dc07477b7a",
+      "bytes": 23368
+    },
+    {
+      "path": "tools/run_vision_advisor.py",
+      "sha256": "9f2597b01a43fbffe2aa25fb15055eea1fc632dd957aa0783eedccc9dd0beef9",
+      "bytes": 9452
+    },
+    {
+      "path": "tools/vision_advisor.py",
+      "sha256": "e42ff6d78a4377e7ca646ec721124fab229e6ded91444ce6f88090065d7ecbf6",
+      "bytes": 243
+    }
+  ],
+  "hash_list_excludes_this_self_referential_audit": true,
+  "key_absent_from_staged_content": true,
+  "private_photos_databases_and_env_ignored": true,
+  "only_new_synthetic_browser_screenshot_in_public_images": true,
+  "core_config_agent_service_unchanged": true,
+  "historical_reports_unchanged": true,
+  "no_new_private_image_api_calls": true,
+  "diff_check_passed": true
+}
