@@ -1,0 +1,497 @@
+{
+  "baseline_commit": "66eae126aa775e76d58e5de06116f184d3ae7770",
+  "call_count": 12,
+  "max_calls": 12,
+  "comparison": "prompt + request_new_photo description + decision_support context bundle",
+  "source_kind": "public_software_fixtures",
+  "full_agent_acceptance": false,
+  "summary": {
+    "baseline": {
+      "passed": 4,
+      "errors": 0
+    },
+    "new": {
+      "passed": 6,
+      "errors": 0
+    }
+  },
+  "results": [
+    {
+      "case": 1,
+      "mode": "baseline",
+      "execution_status": "completed",
+      "tool_calls": [
+        {
+          "name": "request_new_photo",
+          "args": {
+            "reason": "书房桌面首次观察未形成候选框，请补拍同地点新视角，以便再做一次本地校验。"
+          }
+        }
+      ],
+      "score": {
+        "valid": true,
+        "pass": false,
+        "expected_tool": "finish_search",
+        "reason": "UNEXPECTED_DECISION"
+      },
+      "usage": {
+        "input_tokens": 1435,
+        "output_tokens": 260,
+        "total_tokens": 1695,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 145
+        }
+      },
+      "elapsed_ms": 2440.822,
+      "returned_model": "deepseek-v4.1-flash-1017",
+      "finish_reason": "tool_calls",
+      "prompt_sha256": "4ed593b30cfb81a860f597565fe855e9ce2520a98a2774f067ec9cf79ca1afcc",
+      "error": null,
+      "images_sent": false,
+      "tools_executed": false
+    },
+    {
+      "case": 1,
+      "mode": "new",
+      "execution_status": "completed",
+      "tool_calls": [
+        {
+          "name": "finish_search",
+          "args": {
+            "reason": "书房桌面已检查，最新观察未见目标，许可范围内无其他可检查地点；保留 UNKNOWN。"
+          }
+        }
+      ],
+      "score": {
+        "valid": true,
+        "pass": true,
+        "expected_tool": "finish_search",
+        "reason": "MATCH"
+      },
+      "usage": {
+        "input_tokens": 1756,
+        "output_tokens": 180,
+        "total_tokens": 1936,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 82
+        }
+      },
+      "elapsed_ms": 1763.271,
+      "returned_model": "deepseek-v4.1-flash-1017",
+      "finish_reason": "tool_calls",
+      "prompt_sha256": "7d11c7a47f44f39f2de9f0e956cf80bb15514a940da5f971e48a75dede39f70d",
+      "error": null,
+      "images_sent": false,
+      "tools_executed": false
+    },
+    {
+      "case": 2,
+      "mode": "baseline",
+      "execution_status": "completed",
+      "tool_calls": [
+        {
+          "name": "inspect_location",
+          "args": {
+            "location_id": "living-table",
+            "reason": "书房桌面未形成候选框、视觉建议为外观不同，继续检查用户指定的客厅茶几"
+          }
+        }
+      ],
+      "score": {
+        "valid": true,
+        "pass": true,
+        "expected_tool": "inspect_location",
+        "reason": "MATCH"
+      },
+      "usage": {
+        "input_tokens": 1438,
+        "output_tokens": 119,
+        "total_tokens": 1557,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 31
+        }
+      },
+      "elapsed_ms": 1100.166,
+      "returned_model": "deepseek-v4.1-flash-1017",
+      "finish_reason": "tool_calls",
+      "prompt_sha256": "4ed593b30cfb81a860f597565fe855e9ce2520a98a2774f067ec9cf79ca1afcc",
+      "error": null,
+      "images_sent": false,
+      "tools_executed": false
+    },
+    {
+      "case": 2,
+      "mode": "new",
+      "execution_status": "completed",
+      "tool_calls": [
+        {
+          "name": "inspect_location",
+          "args": {
+            "location_id": "living-table",
+            "reason": "书房桌面未发现目标，继续检查用户许可的客厅茶几"
+          }
+        }
+      ],
+      "score": {
+        "valid": true,
+        "pass": true,
+        "expected_tool": "inspect_location",
+        "reason": "MATCH"
+      },
+      "usage": {
+        "input_tokens": 1760,
+        "output_tokens": 134,
+        "total_tokens": 1894,
+        "input_token_details": {
+          "cache_read": 1024
+        },
+        "output_token_details": {
+          "reasoning": 41
+        }
+      },
+      "elapsed_ms": 2406.159,
+      "returned_model": "deepseek-v4.1-flash-1017",
+      "finish_reason": "tool_calls",
+      "prompt_sha256": "7d11c7a47f44f39f2de9f0e956cf80bb15514a940da5f971e48a75dede39f70d",
+      "error": null,
+      "images_sent": false,
+      "tools_executed": false
+    },
+    {
+      "case": 3,
+      "mode": "baseline",
+      "execution_status": "completed",
+      "tool_calls": [
+        {
+          "name": "request_new_photo",
+          "args": {
+            "reason": "书房桌面这张图没有形成任何候选框，且视觉顾问提示视角不匹配。请补一张书房桌面的新视角照片，我再实际检查。"
+          }
+        }
+      ],
+      "score": {
+        "valid": true,
+        "pass": false,
+        "expected_tool": "request_owner_review",
+        "reason": "UNEXPECTED_DECISION"
+      },
+      "usage": {
+        "input_tokens": 1516,
+        "output_tokens": 370,
+        "total_tokens": 1886,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 299
+        }
+      },
+      "elapsed_ms": 2881.081,
+      "returned_model": "deepseek-v4.1-flash-1017",
+      "finish_reason": "tool_calls",
+      "prompt_sha256": "4ed593b30cfb81a860f597565fe855e9ce2520a98a2774f067ec9cf79ca1afcc",
+      "error": null,
+      "images_sent": false,
+      "tools_executed": false
+    },
+    {
+      "case": 3,
+      "mode": "new",
+      "execution_status": "completed",
+      "tool_calls": [
+        {
+          "name": "request_owner_review",
+          "args": {
+            "reason": "书房桌面最新观察的视觉建议为相似并建议由主人核对；本地无候选框，请您核对整幅场景图是否为测试物品。"
+          }
+        }
+      ],
+      "score": {
+        "valid": true,
+        "pass": true,
+        "expected_tool": "request_owner_review",
+        "reason": "MATCH"
+      },
+      "usage": {
+        "input_tokens": 1843,
+        "output_tokens": 184,
+        "total_tokens": 2027,
+        "input_token_details": {
+          "cache_read": 1024
+        },
+        "output_token_details": {
+          "reasoning": 60
+        }
+      },
+      "elapsed_ms": 1856.768,
+      "returned_model": "deepseek-v4.1-flash-1017",
+      "finish_reason": "tool_calls",
+      "prompt_sha256": "7d11c7a47f44f39f2de9f0e956cf80bb15514a940da5f971e48a75dede39f70d",
+      "error": null,
+      "images_sent": false,
+      "tools_executed": false
+    },
+    {
+      "case": 4,
+      "mode": "baseline",
+      "execution_status": "completed",
+      "tool_calls": [
+        {
+          "name": "request_new_photo",
+          "args": {
+            "reason": "书房桌面首次观察未形成候选框，视觉建议提示目标偏小且有遮挡；请补充该桌面的新视角照片。"
+          }
+        }
+      ],
+      "score": {
+        "valid": true,
+        "pass": true,
+        "expected_tool": "request_new_photo",
+        "reason": "MATCH"
+      },
+      "usage": {
+        "input_tokens": 1442,
+        "output_tokens": 249,
+        "total_tokens": 1691,
+        "input_token_details": {
+          "cache_read": 1024
+        },
+        "output_token_details": {
+          "reasoning": 137
+        }
+      },
+      "elapsed_ms": 2362.149,
+      "returned_model": "deepseek-v4.1-flash-1017",
+      "finish_reason": "tool_calls",
+      "prompt_sha256": "4ed593b30cfb81a860f597565fe855e9ce2520a98a2774f067ec9cf79ca1afcc",
+      "error": null,
+      "images_sent": false,
+      "tools_executed": false
+    },
+    {
+      "case": 4,
+      "mode": "new",
+      "execution_status": "completed",
+      "tool_calls": [
+        {
+          "name": "request_new_photo",
+          "args": {
+            "reason": "书房桌面的现有画面里目标很小且被遮挡，视觉意见为“不确定”，需要补一张近景或另一角度照片来确认桌面是否有测试物品。"
+          }
+        }
+      ],
+      "score": {
+        "valid": true,
+        "pass": true,
+        "expected_tool": "request_new_photo",
+        "reason": "MATCH"
+      },
+      "usage": {
+        "input_tokens": 1770,
+        "output_tokens": 200,
+        "total_tokens": 1970,
+        "input_token_details": {
+          "cache_read": 1536
+        },
+        "output_token_details": {
+          "reasoning": 127
+        }
+      },
+      "elapsed_ms": 2173.038,
+      "returned_model": "deepseek-v4.1-flash-1017",
+      "finish_reason": "tool_calls",
+      "prompt_sha256": "7d11c7a47f44f39f2de9f0e956cf80bb15514a940da5f971e48a75dede39f70d",
+      "error": null,
+      "images_sent": false,
+      "tools_executed": false
+    },
+    {
+      "case": 5,
+      "mode": "baseline",
+      "execution_status": "completed",
+      "tool_calls": [
+        {
+          "name": "request_new_photo",
+          "args": {
+            "reason": "书房桌面已检查但未形成本地候选框；视觉建议提示目标较小，建议补一张更近视角的桌面照片再复核（范围仍仅限书房桌面）。"
+          }
+        }
+      ],
+      "score": {
+        "valid": true,
+        "pass": true,
+        "expected_tool": "request_new_photo",
+        "reason": "MATCH"
+      },
+      "usage": {
+        "input_tokens": 1512,
+        "output_tokens": 424,
+        "total_tokens": 1936,
+        "input_token_details": {
+          "cache_read": 1024
+        },
+        "output_token_details": {
+          "reasoning": 348
+        }
+      },
+      "elapsed_ms": 3220.999,
+      "returned_model": "deepseek-v4.1-flash-1017",
+      "finish_reason": "tool_calls",
+      "prompt_sha256": "4ed593b30cfb81a860f597565fe855e9ce2520a98a2774f067ec9cf79ca1afcc",
+      "error": null,
+      "images_sent": false,
+      "tools_executed": false
+    },
+    {
+      "case": 5,
+      "mode": "new",
+      "execution_status": "completed",
+      "tool_calls": [
+        {
+          "name": "request_new_photo",
+          "args": {
+            "reason": "书房桌面的最新视觉意见为“相似但目标很小”，需一张更近或侧面的新视角来核对细节；这是本次在你允许范围内的最后检查地点。"
+          }
+        }
+      ],
+      "score": {
+        "valid": true,
+        "pass": true,
+        "expected_tool": "request_new_photo",
+        "reason": "MATCH"
+      },
+      "usage": {
+        "input_tokens": 1835,
+        "output_tokens": 276,
+        "total_tokens": 2111,
+        "input_token_details": {
+          "cache_read": 1536
+        },
+        "output_token_details": {
+          "reasoning": 202
+        }
+      },
+      "elapsed_ms": 2696.066,
+      "returned_model": "deepseek-v4.1-flash-1017",
+      "finish_reason": "tool_calls",
+      "prompt_sha256": "7d11c7a47f44f39f2de9f0e956cf80bb15514a940da5f971e48a75dede39f70d",
+      "error": null,
+      "images_sent": false,
+      "tools_executed": false
+    },
+    {
+      "case": 6,
+      "mode": "baseline",
+      "execution_status": "completed",
+      "tool_calls": [
+        {
+          "name": "inspect_location",
+          "args": {
+            "location_id": "living-table",
+            "reason": "书房桌面未形成候选框，按主人许可继续检查客厅茶几"
+          }
+        }
+      ],
+      "score": {
+        "valid": true,
+        "pass": true,
+        "expected_tool": "inspect_location",
+        "reason": "MATCH"
+      },
+      "usage": {
+        "input_tokens": 1444,
+        "output_tokens": 128,
+        "total_tokens": 1572,
+        "input_token_details": {
+          "cache_read": 1024
+        },
+        "output_token_details": {
+          "reasoning": 42
+        }
+      },
+      "elapsed_ms": 1087.68,
+      "returned_model": "deepseek-v4.1-flash-1017",
+      "finish_reason": "tool_calls",
+      "prompt_sha256": "4ed593b30cfb81a860f597565fe855e9ce2520a98a2774f067ec9cf79ca1afcc",
+      "error": null,
+      "images_sent": false,
+      "tools_executed": false
+    },
+    {
+      "case": 6,
+      "mode": "new",
+      "execution_status": "completed",
+      "tool_calls": [
+        {
+          "name": "inspect_location",
+          "args": {
+            "location_id": "living-table",
+            "reason": "书房桌面未见到目标，按用户允许范围检查尚未查看的客厅茶几。"
+          }
+        }
+      ],
+      "score": {
+        "valid": true,
+        "pass": true,
+        "expected_tool": "inspect_location",
+        "reason": "MATCH"
+      },
+      "usage": {
+        "input_tokens": 1772,
+        "output_tokens": 118,
+        "total_tokens": 1890,
+        "input_token_details": {
+          "cache_read": 1536
+        },
+        "output_token_details": {
+          "reasoning": 27
+        }
+      },
+      "elapsed_ms": 2062.675,
+      "returned_model": "deepseek-v4.1-flash-1017",
+      "finish_reason": "tool_calls",
+      "prompt_sha256": "7d11c7a47f44f39f2de9f0e956cf80bb15514a940da5f971e48a75dede39f70d",
+      "error": null,
+      "images_sent": false,
+      "tools_executed": false
+    }
+  ],
+  "execution": {
+    "head": "66eae126aa775e76d58e5de06116f184d3ae7770",
+    "working_tree_dirty": true,
+    "versions": {
+      "hometrace": "0.4.1",
+      "langgraph": "1.0.2",
+      "langchain-core": "1.7.0",
+      "langchain-openai": "1.0.1",
+      "openai": "2.54.0"
+    },
+    "max_output_tokens": 1024,
+    "network_timeout_seconds": 45,
+    "max_retries": 0,
+    "input_kind": "public software fixtures; no images, private labels or household descriptions",
+    "current_source_sha256": {
+      "src/hometrace/photo_agent_service.py": "7f0e2723ba4cc112488d8fbe8c17c5f71b7c6a32707cee1e2d5198e0f2dc8c62",
+      "src/hometrace/visual_photo_agent_service.py": "f245e6fc69b454416b7bfb9b4fffbdb587f60d335eea70207bc5cc86b054cc91",
+      "tools/probe_visual_decisions.py": "c2a97154d4ccf585a1165ee9ce62946ea57ab61ea6ec16ea09762675dece6053"
+    },
+    "baseline_source_sha256": {
+      "src/hometrace/photo_agent_service.py": "7f0e2723ba4cc112488d8fbe8c17c5f71b7c6a32707cee1e2d5198e0f2dc8c62",
+      "src/hometrace/visual_photo_agent_service.py": "9342b2acc37e9ec56e6734831989a7f741df59c82c23c9d68af134c4360b1c43"
+    }
+  },
+  "usage_totals": {
+    "baseline": 10337,
+    "new": 11828
+  },
+  "limits": "Six public software cases, one call per mode; not independent visual or full-workflow acceptance."
+}

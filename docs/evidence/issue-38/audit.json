@@ -1,0 +1,29 @@
+{
+  "base_commit": "66eae126aa775e76d58e5de06116f184d3ae7770",
+  "audit_date": "2026-10-31",
+  "production_files": [
+    "src/hometrace/demo_server.py",
+    "src/hometrace/visual_photo_agent_service.py"
+  ],
+  "matched_executed_probe_sources": {
+    "src/hometrace/photo_agent_service.py": "7f0e2723ba4cc112488d8fbe8c17c5f71b7c6a32707cee1e2d5198e0f2dc8c62",
+    "src/hometrace/visual_photo_agent_service.py": "f245e6fc69b454416b7bfb9b4fffbdb587f60d335eea70207bc5cc86b054cc91",
+    "tools/probe_visual_decisions.py": "c2a97154d4ccf585a1165ee9ce62946ea57ab61ea6ec16ea09762675dece6053"
+  },
+  "current_production_source_sha256": {
+    "src/hometrace/demo_server.py": "67074a60a2674df7be13976606b80a3af61054a2d403d13d6dce27eaf26629d4",
+    "src/hometrace/visual_photo_agent_service.py": "f245e6fc69b454416b7bfb9b4fffbdb587f60d335eea70207bc5cc86b054cc91"
+  },
+  "hash_convention": "UTF-8 decoded text normalized by Python read_text, then re-encoded; not Windows CRLF file bytes",
+  "frozen_photo_summary_unchanged": true,
+  "actual_secret_scan": "PASS",
+  "private_input_hash_scan": "PASS",
+  "private_path_scan": "PASS",
+  "source_scope_audit": "PASS",
+  "git_diff_check": "PASS",
+  "photographs_databases_models_credentials_committed": false,
+  "new_image_requests": 0,
+  "new_text_probe_requests": 12,
+  "local_identity_reviews": 3,
+  "location_memory_writes": 0
+}

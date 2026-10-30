@@ -28,6 +28,17 @@ VISUAL_SYSTEM = SYSTEM.replace('所有图片只在本地处理。', '图片仅�
     'request_new_photo 用于最后检查的地点，等待主人上传新视角；最多两次，不代表机器人移动或拍照。'
     'request_owner_review 仅有本地候选框或最新视觉建议 similar 时可用；没有检测框时必须说没有框，'
     '不能生成坐标。任何模型结论仍不是 FOUND。主人拒绝的候选不能再次请求确认。'
+    ' 决策时先看 decision_support 对应的最新观察；旧视角的意见不能当作新照片结论。'
+    '若最新意见为 not_visible 或 different，通常应检查用户范围内其他未查且有图的地点；'
+    '范围内没有可检查地点时用 finish_search 保留 UNKNOWN，不能说物品一定不存在。'
+    '此时不要仅因没有本地框、一般背景杂乱或视角不同就反复要求补拍。'
+    '若最新意见 similar 且建议 ask_owner_review，并且 owner_review_available 为真，'
+    '优先请求主人核对；无本地框也可以核对整幅图，不必为了产生框再补拍。'
+    'uncertain，或 similar 但明确建议近景/侧面且有小目标、遮挡等具体待核对细节时，'
+    '才优先考虑 request_new_photo；说明这次新视角要解决什么，不把补拍作为默认动作。'
+    '明确的用户补拍要求仍需考虑，但不能绕过次数与授权限制。'
+    'unvisited_uploaded_locations 仅说明已上传照片，不扩大用户许可的搜索范围。'
+    '你仍须自己选择一个可用工具；结构化建议不是命令，也不赋予位置写入或身份确认权限。'
 )
 
 
@@ -68,7 +79,7 @@ class VisualPhotoAgentService(PhotoAgentService):
 
         @tool
         def request_new_photo(reason: str) -> dict:
-            """请主人为最后检查地点补充新视角照片；等待上传后真实执行本地观察。"""
+            """有具体未辨明细节或主人明确要求时，请为最后地点补新视角；未见目标通常换地点或停止。"""
             return self._execute('request_new_photo', {'reason': reason})
 
         @tool
@@ -132,10 +143,32 @@ class VisualPhotoAgentService(PhotoAgentService):
     def _last_tool_result(self, run, observations):
         return run['agent_internal']['last_tool_result']
 
+    @staticmethod
+    def _decision_support(run):
+        """Observed facts for the model, never a preselected action or identity label."""
+        index = len(run['observations']) - 1
+        latest = next((item for item in reversed(run['visual_advice'])
+                       if item['observation_index'] == index), None) if index >= 0 else None
+        feedback = (latest.get('advice', {}).get('model_advice', {})
+                    if latest and latest['execution_status'] == 'completed' else {})
+        return {
+            'observation_ref': f'E{index + 1}' if index >= 0 else None,
+            'local_bbox_available': bool(index >= 0 and run['observations'][index].get('bbox')),
+            'latest_advisor_status': latest['execution_status'] if latest else 'not_requested_or_pending',
+            'appearance': feedback.get('appearance'),
+            'advisor_next_action': feedback.get('next_action'),
+            'quality_flags': list(feedback.get('quality_flags', [])),
+            'owner_review_available': VisualPhotoAgentService._review_supported(run),
+            'unvisited_uploaded_locations': [location['location_id'] for location in LOCATIONS
+                if location['location_id'] not in run['visited']
+                and location['location_id'] in run.get('snapshot', {}).get('scenes', {})],
+        }
+
     def _context(self, run):
         value = super()._context(run)
         clean = lambda text: _bounded_text(text, self.agent_config.api_key)
         value.update(visual_advisor_enabled=True,
+                     decision_support=self._decision_support(run),
                      vision_budget={'calls': run['vision_calls'], 'max_calls': MAX_VISION_CALLS,
                                     'tokens': run['vision_tokens_used'], 'max_tokens': MAX_VISION_TOKENS},
                      new_photo_count=run['new_photo_count'], max_new_photos=MAX_NEW_PHOTOS,
