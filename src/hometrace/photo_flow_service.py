@@ -111,7 +111,9 @@ class _PhotoEnvironment:
         scene = self.run['snapshot']['scenes'].get(viewpoint_id)
         if self.arrived != viewpoint_id or scene is None:
             return None
-        return Observation(f"photo-{self.run['run_id']}-{viewpoint_id}", viewpoint_id, _now(),
+        attempt = self.run.get('agent_internal', {}).get('observation_attempt')
+        suffix = f'-{attempt}' if attempt else ''
+        return Observation(f"photo-{self.run['run_id']}-{viewpoint_id}{suffix}", viewpoint_id, _now(),
                            SOURCES[scene['source_kind']], image_path=scene['path'], image_hash=scene['sha256'],
                            capture_source='operator_uploaded:' + scene['source_kind'],
                            timestamp_basis=TimestampBasis.DEMO_SEQUENCE)
@@ -417,7 +419,7 @@ class PhotoFlowService:
                     candidate = run['candidate']
                     self.asset(candidate['asset_id'])  # Content must still match the evidence hash.
                     location_id = candidate['location_id']
-                    source = f"photo_candidate_owner_review:{run_id}:{candidate['image_sha256']}"
+                    source = self._candidate_memory_source(run, candidate)
                 else:
                     location_id = run['current_location_id']
                     source = f'photo_workspace_owner_statement:{run_id}:local_system_clock'
@@ -435,6 +437,9 @@ class PhotoFlowService:
                 db.rollback()
                 raise
         return self._public(run)
+
+    def _candidate_memory_source(self, run, candidate):
+        return f"photo_candidate_owner_review:{run['run_id']}:{candidate['image_sha256']}"
 
     def act(self, run_id, version, action, object_id=None):
         if type(version) is not int or version < 1:
@@ -523,7 +528,7 @@ class PhotoFlowService:
             # its successor. Wait on that worker, not just the first thread.
             sleep(min(.01, max(0, deadline-monotonic())))
 
-    def _step(self, run_id, *, location_id=None, reason=None, expected_version=None):
+    def _step(self, run_id, *, location_id=None, reason=None, expected_version=None, observation_attempt=None):
         # Evidence + completed location + trace commit together. A crash rolls
         # back the entire step, so resume does not consume invisible evidence.
         with closing(self._connect()) as db, db:
@@ -534,6 +539,13 @@ class PhotoFlowService:
             if expected_version is not None and run['version'] != expected_version:
                 return False
             remaining = [x for x in run['planned_locations'] if x['location_id'] not in run['visited']]
+            if observation_attempt is not None:
+                pending = run.get('agent_internal', {}).get('new_photo_pending')
+                if (not run.get('visual_advisor_enabled') or not pending or pending['attempt_id'] != observation_attempt
+                        or pending['location_id'] != location_id):
+                    raise ValueError('补拍观察必须绑定已批准的新照片')
+                remaining = [x for x in run['planned_locations'] if x['location_id'] == location_id]
+                run['agent_internal']['observation_attempt'] = observation_attempt
             chosen = None
             if location_id is not None:
                 chosen = next((x for x in remaining if x['location_id'] == location_id), None)
@@ -552,7 +564,7 @@ class PhotoFlowService:
             detector = _PhotoDetector(self.root, run, self._engine)
             core = SearchCore(memory, _PhotoEnvironment(run, source), detector,
                               data_source=source, navigation_mode=NavigationMode.SIMULATED)
-            core.start_search(run['selected_object']['object_id'], f'{run_id}-{len(run["visited"])}')
+            core.start_search(run['selected_object']['object_id'], f'{run_id}-{len(run["observations"])}')
             self._trace(run, 'navigate_simulated', {'location_id': loc, 'reason': view['reason']}, core.navigate_viewpoint(loc, view['reason']))
             acquired = core.observe_current()
             self._trace(run, 'observe_uploaded_image', {'location_id': loc}, acquired)
@@ -568,14 +580,21 @@ class PhotoFlowService:
                    'reason': result.get('reason') or raw.get('reason', 'not_confirmed'),
                    'duration_ms': raw.get('duration_ms'), 'raw_match_status': raw.get('raw_match_status'),
                    'identity_confirmed': False}
-            run['visited'].append(loc)
+            if loc not in run['visited']:
+                run['visited'].append(loc)
             run['observations'].append(row)
             run['core_reports'].append(core.finish_search().to_dict())
-            if row['bbox'] and row['status'] == Status.SUSPECTED:
-                run.update(state='AWAITING_REVIEW', candidate=row,
-                           reply=f'{view["location_name"]}出现了外观候选，请核对参考图和检测框。尚不能确认是同一实体。')
-            else:
-                run['reply'] = f'{view["location_name"]}未获得可确认的候选，继续检查其他地点。'
+            self._after_observation(run, row)
+            if observation_attempt is not None:
+                run['agent_internal'].pop('observation_attempt', None)
+                run['agent_internal'].pop('new_photo_pending', None)
             self._trace(run, 'review_or_continue', {'location_id': loc}, {'state': run['state'], 'reason': row['reason']})
             self._save(db, run)
             return run['state'] == 'RUNNING'
+
+    def _after_observation(self, run, row):
+        if row['bbox'] and row['status'] == Status.SUSPECTED:
+            run.update(state='AWAITING_REVIEW', candidate=row,
+                       reply=f'{row["location_name"]}出现了外观候选，请核对参考图和检测框。尚不能确认是同一实体。')
+        else:
+            run['reply'] = f'{row["location_name"]}未获得可确认的候选，继续检查其他地点。'

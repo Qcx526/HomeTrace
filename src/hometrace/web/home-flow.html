@@ -102,6 +102,11 @@
             <div><dt>工具调用</dt><dd id="tool-calls">待执行</dd></div>
             <div><dt>已用 Token</dt><dd id="model-tokens">待执行</dd></div>
           </dl>
+          <dl id="vision-metrics" class="model-metrics vision-metrics" hidden>
+            <div><dt>视觉顾问模型</dt><dd id="vision-model">待执行</dd></div>
+            <div><dt>视觉调用（单独计数）</dt><dd id="vision-calls">待执行</dd></div>
+            <div><dt>视觉预算 Token（含未结算预留）</dt><dd id="vision-tokens">待执行</dd></div>
+          </dl>
           <div id="model-decision" class="model-decision" hidden>
             <strong>最近一次模型决策摘要</strong><p id="model-reason"></p>
             <p id="model-next-tool" class="field-help"></p>
@@ -116,9 +121,38 @@
           <div id="session-actions" class="session-actions"></div>
         </section>
 
+        <section id="vision-consent-panel" class="panel vision-consent-panel" aria-labelledby="vision-consent-title" hidden>
+          <div class="panel-heading"><h2 id="vision-consent-title">本次图片发送确认</h2><span class="badge amber">尚未发送</span></div>
+          <p id="vision-destination" class="note"></p>
+          <p class="note">将发送下方登记参考 ROI 和完整场景的缩小、去 EXIF 副本。场景桌面背景仍会发送到该第三方端点；原图保留在本地。本次批准最多调用一次，不授权后续图片。</p>
+          <p class="field-help">已发送的图片无法撤回。取消成功后将停止后续操作，不再采纳正在等待的模型返回。</p>
+          <div id="vision-preview" class="compare-grid"></div>
+          <label class="check-label"><input id="vision-consent" type="checkbox" disabled><span>我已查看这两张图及接收端点，同意仅发送本次所列副本。</span></label>
+          <div class="action-buttons"><button id="approve-vision" class="primary" type="button" disabled>仅批准本次看图</button><button id="deny-vision" class="secondary" type="button" disabled>不发送，继续本地流程</button></div>
+          <p id="vision-request-meta" class="field-help"></p>
+        </section>
+
+        <section id="new-photo-panel" class="panel" aria-labelledby="new-photo-title" hidden>
+          <div class="panel-heading"><h2 id="new-photo-title">按建议补充当前照片</h2><span class="badge amber">等待新观察</span></div>
+          <p id="new-photo-reason" class="note"></p>
+          <p class="note">照片先保存到本机，并继续本次执行。不会替换常规场景配置；如需模型看图，还需逐次批准发送。模拟导航没有自动拍照能力。</p>
+          <form id="new-photo-form">
+            <label for="new-photo-source">补拍图片来源</label><select id="new-photo-source" required disabled><option value="real_upload">用户上传的实拍图片</option><option value="synthetic">AI 合成测试图</option></select>
+            <label for="new-photo-file">新照片（JPEG / PNG，最大 8 MB）</label><input id="new-photo-file" type="file" accept="image/jpeg,image/png" required disabled>
+            <button id="submit-new-photo" class="primary" type="submit" disabled>保存到本机并继续本次寻找</button>
+            <p id="new-photo-status" class="inline-status" role="status"></p>
+          </form>
+        </section>
+
+        <section id="visual-advice-panel" class="panel" aria-labelledby="visual-advice-title" hidden>
+          <div class="panel-heading"><h2 id="visual-advice-title">视觉顾问反馈</h2><span class="badge amber">模型建议 · 非实例确认</span></div>
+          <p class="note">以下是实际模型调用返回的外观分析与下一步建议。模型文字不构成检测框、物理身份或自动 FOUND 证据。</p>
+          <div id="visual-advice" class="visual-advice"></div>
+        </section>
+
         <section id="candidate-panel" class="panel candidate-panel" aria-labelledby="candidate-title" hidden>
           <div class="panel-heading"><h2 id="candidate-title">发现外观候选，请你核对</h2><span class="badge amber">尚未确认实例</span></div>
-          <p class="note">检测框来自实际匹配结果。相似外观不能证明物理身份；请对照登记参考判断。确认仅记录为主人确认，不写成自动视觉 FOUND。</p>
+          <p id="candidate-notice" class="note">检测框来自实际匹配结果。相似外观不能证明物理身份；请对照登记参考判断。确认仅记录为主人确认，不写成自动视觉 FOUND。</p>
           <div id="candidate-content"></div>
           <div id="candidate-actions" class="action-buttons"></div>
         </section>

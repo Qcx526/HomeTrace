@@ -1,0 +1,50 @@
+{
+  "source_summary_sha256": "e3636ce095f09f518f2c47cf3d89f0e034005e9149f24a54340da371acb85b41",
+  "original_script_passed": false,
+  "reason": "Harness incorrectly expected inspect_location in llm_tool trace; actual observation is observe_uploaded_image.",
+  "new_api_calls": 0,
+  "checks": {
+    "persisted_result_equals_recorded_response": true,
+    "one_actual_observation": true,
+    "one_actual_visual_request": true,
+    "actual_advisor_completed": true,
+    "rival_rejected": true,
+    "actual_finish_without_owner_review": true,
+    "unknown_and_no_new_history": true,
+    "no_visual_confirmation": true,
+    "no_new_image": true,
+    "usage_recorded": true
+  },
+  "posthoc_checks_passed": true,
+  "state": "UNKNOWN",
+  "model_calls": 4,
+  "model_tokens": 7398,
+  "vision_calls": 1,
+  "vision_tokens": 2016,
+  "advice": {
+    "identity_confirmed": false,
+    "method": "visual-advisor-v1",
+    "model_advice": {
+      "appearance": "different",
+      "next_action": "continue_search",
+      "quality_flags": [
+        "small_target",
+        "view_mismatch"
+      ],
+      "reason": "参考视图中的钥匙串特征为蓝色编织带挂件（带白色方形缝线）、银色金属圈和两把银色钥匙；当前场景中的钥匙串为棕红色皮质挂件、偏黄铜色金属圈及三把黄铜色钥匙，挂件材质、颜色与钥匙数量均明显不同，判定为不同物体，应继续搜索。",
+      "visible_features": [
+        "蓝色编织织物钥匙扣",
+        "钥匙扣上有白色方形缝线标记",
+        "银色金属钥匙圈",
+        "两把银色钥匙",
+        "当前场景为棕红色皮质钥匙扣",
+        "当前场景钥匙圈偏向黄铜色",
+        "当前场景三把钥匙为黄铜色",
+        "当前钥匙放在米色陶瓷浅盘中"
+      ]
+    },
+    "production_status": "UNKNOWN",
+    "status": "ADVISORY_ONLY"
+  },
+  "elapsed_ms": 3981.852
+}

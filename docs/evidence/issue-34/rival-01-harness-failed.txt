@@ -1,0 +1,13 @@
+{"stage": "remember", "state": "CONFIRM_MEMORY", "model_calls": 1, "vision_calls": 0, "observations": 0}
+{"stage": "remember-confirmed", "state": "COMPLETED", "model_calls": 1, "vision_calls": 0, "observations": 0}
+{"stage": "find-initial", "state": "AWAITING_IMAGE_CONSENT", "model_calls": 3, "vision_calls": 0, "observations": 1}
+{"stage": "after-consent-1", "state": "UNKNOWN", "model_calls": 4, "vision_calls": 1, "observations": 1}
+Acceptance failed; all completed HTTP stages and server logs retained.
+Traceback (most recent call last):
+  File "<workspace>\tools\accept_visual_agent.py", line 367, in <module>
+    main()
+  File "<workspace>\tools\accept_visual_agent.py", line 294, in main
+    check('negative tool trace contains real observation comparison and finish',
+  File "<workspace>\tools\accept_visual_agent.py", line 103, in check
+    raise AssertionError(name)
+AssertionError: negative tool trace contains real observation comparison and finish

@@ -1,13 +1,14 @@
 'use strict';
 // Server-owned state and evidence only. No client-side detector or pretend trace.
 const $ = id => document.getElementById(id);
-let config = null, run = null, referenceAsset = null, busy = false, timer = null, interactionEpoch = 0;
+let config = null, run = null, referenceAsset = null, busy = false, cancelling = false, timer = null, interactionEpoch = 0, consentRequestId = null;
 const storageKey = 'hometrace.photo-flow.run.v1';
 const sourceText = s => s === 'synthetic' ? 'AI 合成图' : s === 'real_upload' ? '用户声明实拍图' : '无图片';
 const labels = {CONFIRM_MEMORY:'等待确认位置', RUNNING:'正在搜索', AWAITING_REVIEW:'等待核对候选',
   USER_CONFIRMED:'主人已确认', UNKNOWN:'未确认 UNKNOWN', COMPLETED:'已完成', CLARIFY:'需要选择物品',
   UNKNOWN_OBJECT:'物品尚未登记', NEEDS_REFERENCE:'需要登记参考', ERROR:'执行遇到问题', CANCELLED:'已取消',
-  MODEL_UNAVAILABLE:'模型服务不可用', BUDGET_EXCEEDED:'本次调用预算已用尽', AGENT_FAILED:'Agent 执行失败'};
+  MODEL_UNAVAILABLE:'模型服务不可用', BUDGET_EXCEEDED:'本次调用预算已用尽', AGENT_FAILED:'Agent 执行失败',
+  AWAITING_IMAGE_CONSENT:'等待本次图片发送确认', AWAITING_NEW_PHOTO:'等待补充当前照片'};
 const modelFailures = {
   MODEL_UNAVAILABLE:'模型调用失败，本次执行已停止。没有切换成规则搜索；请检查模型服务后重试，已有调用预算会保留。',
   BUDGET_EXCEEDED:'本次执行达到调用或 Token 预算，已停止继续调用。请查看已有证据，再发送新的请求。',
@@ -19,7 +20,11 @@ const toolLabels = {list_registered_objects:'读取登记目录',resolve_registe
   review_or_continue:'根据观察更新状态',save_owner_memory:'保存主人位置陈述',
   owner_reject_candidate:'主人拒绝候选',finish_search:'结束搜索',execution_error:'记录执行错误',decline_request:'说明无法执行并结束',
   resolve_request:'理解请求并读取物品历史',clarify_request:'请主人选择物品',unknown_object:'报告未登记物品',
-  inspect_location:'检查所选地点',list_search_options:'列出可选地点',llm_request:'发起真实模型请求',llm_tool:'执行模型所选工具'};
+  inspect_location:'检查所选地点',list_search_options:'列出可选地点',llm_request:'发起真实模型请求',llm_tool:'执行模型所选工具',
+  visual_advice:'调用视觉顾问',request_new_photo:'请求补充当前照片',request_owner_review:'请求主人核对外观',
+  owner_image_consent:'记录本次图片授权',owner_new_photo:'接收本次补拍',
+  visual_advisor_request:'实际发送获批图片副本',visual_advisor_result:'视觉顾问实际返回',
+  visual_advisor_discarded:'丢弃过期视觉返回',llm_protocol_rejected:'模型工具协议校验未通过'};
 const modeLabel = mode => ({llm_langgraph:'真实 LLM 决策',deterministic_langgraph:'离线规则 + LangGraph',deterministic_rules:'离线确定性规则'}[mode] || mode || '模式未知');
 function node(tag, text, cls) { const n=document.createElement(tag); if(text!==undefined)n.textContent=text; if(cls)n.className=cls; return n; }
 function error(e) { $('error').textContent=e?.message || String(e); $('error').hidden=false; }
@@ -31,16 +36,29 @@ async function api(path, value) {
   return data;
 }
 function controls() {
-  document.querySelectorAll('input,select,textarea,button').forEach(el=>{el.disabled=busy || !config;});
-  $('save-reference').disabled=busy || !config || !referenceAsset || !$('reference-object').value || !$('roi-reviewed').checked;
-  $('start').disabled=busy || !config || run?.state==='RUNNING';
+  const locked=busy || cancelling || !config;
+  document.querySelectorAll('input,select,textarea,button').forEach(el=>{el.disabled=locked;});
+  document.querySelectorAll('[data-cancel-run]').forEach(el=>{el.disabled=cancelling || !config;});
+  $('save-reference').disabled=locked || !referenceAsset || !$('reference-object').value || !$('roi-reviewed').checked;
+  $('start').disabled=locked || ['RUNNING','AWAITING_IMAGE_CONSENT','AWAITING_NEW_PHOTO'].includes(run?.state);
+  const consent=run?.state==='AWAITING_IMAGE_CONSENT' && run.vision_request?.request_id===consentRequestId;
+  $('vision-consent').disabled=locked || !consent;
+  $('approve-vision').disabled=locked || !consent || !$('vision-consent').checked;
+  $('deny-vision').disabled=locked || !consent;
+  $('submit-new-photo').disabled=locked || run?.state!=='AWAITING_NEW_PHOTO';
 }
 async function perform(fn) {
-  if(busy)return; busy=true; interactionEpoch++; clearTimeout(timer); $('error').hidden=true; controls();
-  try {await fn();} catch(e) {
+  if(busy || cancelling)return; busy=true; const epoch=++interactionEpoch; clearTimeout(timer); $('error').hidden=true; controls();
+  const current=()=>epoch===interactionEpoch;
+  try {await fn(current);} catch(e) {
+    if(epoch!==interactionEpoch)return;
     error(e);
-    if(e.status===409 && run) {try{run=await api('/api/home-flow/runs/'+run.run_id); renderRun();}catch{}}
+    if(e.status===409 && run) {
+      const runId=run.run_id;
+      try {const next=await api('/api/home-flow/runs/'+runId);if(current() && run?.run_id===runId && next.version>=run.version){run=next;renderRun();}}catch{}
+    }
   } finally {
+    if(epoch!==interactionEpoch)return;
     busy=false; controls();
     if(run?.state==='RUNNING') {clearTimeout(timer);timer=setTimeout(poll,700);}
   }
@@ -64,11 +82,13 @@ function imageFrame(asset,bbox,caption) {
   box.append(svg);return box;
 }
 function details(title,value) {const d=node('details',undefined,'diagnostics');d.append(node('summary',title),node('pre',JSON.stringify(value,null,2)));return d;}
-async function reloadConfig() {config=await api('/api/home-flow/config');renderConfig();}
+async function reloadConfig(current=()=>true) {const next=await api('/api/home-flow/config');if(current()){config=next;renderConfig();}}
 function renderConfig() {
   $('service-notice').textContent=config.notice+' · 当前服务：'+modeLabel(config.mode);
   $('model-privacy').textContent=config.mode==='llm_langgraph'
-    ? '真实 LLM 模式：请求文字、物品名称、地点及结构化工具结果会发送给已配置的模型 API；原始图片留在本地。模型决定下一步工具，图片证据由本地程序产生。'
+    ? (config.visual_advisor_enabled
+      ? '真实 LLM 模式：请求文字、物品名称、地点及工具反馈会发送给模型 API。视觉顾问需逐次确认后才发送参考 ROI 和完整场景的缩小、去 EXIF 副本；桌面背景仍外发，原始图片留在本地。模型建议不直接产生实例 FOUND。'
+      : '真实 LLM 模式：请求文字、物品名称、地点及结构化工具结果会发送给已配置的模型 API；原始图片留在本地。模型决定下一步工具，图片证据由本地程序产生。')
     : '当前服务使用本地确定性规则，不调用 LLM。LangGraph 负责流程状态，不代表模型正在参与决策。';
   $('catalog-count').textContent=config.catalog.length+' 件';
   $('catalog').replaceChildren();
@@ -100,6 +120,11 @@ function renderModel() {
   $('model-calls').textContent=real?count(run?.model_calls):'未调用';
   $('tool-calls').textContent=real?count(run?.tool_calls):'待执行';
   $('model-tokens').textContent=real?count(run?.total_tokens):'未调用';
+  const visual=real && (run ? run.visual_advisor_enabled : config?.visual_advisor_enabled);
+  $('vision-metrics').hidden=!visual;
+  $('vision-model').textContent=visual?(run?.vision_model || config?.vision_model || '待返回'):'未调用';
+  $('vision-calls').textContent=visual?count(run?.vision_calls):'未调用';
+  $('vision-tokens').textContent=visual?count(run?.vision_tokens_used):'未调用';
   const last=real?(run?.trace || []).filter(t=>t.tool==='llm_decision').at(-1):null;
   const reason=last?.result?.decision_reason || (real?run?.llm_explanation:null);
   $('model-decision').hidden=!reason;
@@ -132,23 +157,109 @@ function editRoi() {
   svg.addEventListener('pointermove',e=>{if(!start)return;const p=point(e);changeRoi([Math.min(start[0],p[0]),Math.min(start[1],p[1]),Math.max(start[0],p[0]),Math.max(start[1],p[1])]);});
   svg.addEventListener('pointerup',()=>{start=null;});svg.addEventListener('pointercancel',()=>{start=null;});
 }
-async function upload(file,source) {
+async function upload(file,source,current=()=>true) {
   if(!file || !['image/jpeg','image/png'].includes(file.type) || file.size>8*1024*1024)throw new Error('请选择不超过 8 MB 的 JPEG/PNG 图片');
   const data=await new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(String(reader.result).split(',')[1]);reader.onerror=()=>reject(new Error('图片读取失败'));reader.readAsDataURL(file);});
+  if(!current())return null;
   return api('/api/home-flow/assets',{data_base64:data,source_kind:source});
 }
 function actionButton(container,text,action,objectId,cls='secondary') {
-  const b=node('button',text,cls);b.type='button';b.onclick=()=>perform(async()=>{
+  const b=node('button',text,cls);b.type='button';
+  if(action==='cancel') {b.dataset.cancelRun='true';b.onclick=cancelRun;container.append(b);return;}
+  b.onclick=()=>perform(async current=>{
+    const epoch=interactionEpoch, runId=run.run_id;
     const args={run_id:run.run_id,version:run.version,action};if(objectId)args.object_id=objectId;
-    run=await api('/api/home-flow/act',args);renderRun();await reloadConfig();
+    const next=await api('/api/home-flow/act',args);
+    if(epoch!==interactionEpoch || run?.run_id!==runId)return;
+    run=next;renderRun();await reloadConfig(current);
   });container.append(b);
+}
+async function cancelRun() {
+  if(cancelling || !run)return;
+  cancelling=true;const epoch=++interactionEpoch, runId=run.run_id;
+  const current=()=>epoch===interactionEpoch && run?.run_id===runId;
+  clearTimeout(timer);$('error').hidden=true;controls();
+  try {
+    // Approval/upload may already have committed a newer server version before
+    // its response arrives. Preserve the owner's cancel intent across one such
+    // conflict; never turn the refresh itself into a successful cancellation.
+    for(let attempt=0;attempt<2 && current();attempt++) {
+      try {
+        const next=await api('/api/home-flow/act',{run_id:runId,version:run.version,action:'cancel'});
+        if(current()){run=next;renderRun();}
+        return;
+      } catch(e) {
+        if(!current())return;
+        if(e.status!==409)throw e;
+        const next=await api('/api/home-flow/runs/'+runId);
+        if(!current())return;
+        if(next.version>=run.version){run=next;renderRun();}
+        if(['COMPLETED','USER_CONFIRMED','UNKNOWN','CANCELLED'].includes(run.state)) {
+          if(run.state!=='CANCELLED')error(new Error('本次执行已经结束；取消没有改变既有结果，请查看实际状态。'));
+          return;
+        }
+        if(attempt===1)throw new Error('状态仍在更新，尚未确认取消成功。请再点击取消；已发送的图片无法撤回。');
+      }
+    }
+  } catch(e) {
+    if(current())error(e);
+  } finally {
+    if(epoch===interactionEpoch){cancelling=false;busy=false;controls();if(run?.state==='RUNNING')timer=setTimeout(poll,700);}
+  }
+}
+function renderVisual() {
+  const request=run?.state==='AWAITING_IMAGE_CONSENT'?run.vision_request:null;
+  $('vision-consent-panel').hidden=!request;
+  if(consentRequestId!==(request?.request_id || null)) {
+    consentRequestId=request?.request_id || null;$('vision-consent').checked=false;
+  }
+  $('vision-preview').replaceChildren();
+  if(request) {
+    $('vision-destination').textContent='第三方接收端点：'+request.endpoint+' · 请求模型：'+request.model;
+    $('vision-request-meta').textContent='请求编号：'+request.request_id+' · 观察序号：'+request.observation_index;
+    for(const [asset,box,title] of [[request.reference,request.reference?.roi,'仅发送框内参考 ROI'],[request.scene,null,'发送完整场景的缩小副本']]) {
+      const figure=node('figure');figure.append(imageFrame(asset,box,title),node('figcaption',title+' · '+sourceText(asset?.source_kind)));$('vision-preview').append(figure);
+    }
+  }
+  const photo=run?.state==='AWAITING_NEW_PHOTO'?run.photo_request:null;
+  $('new-photo-panel').hidden=!photo;
+  $('new-photo-reason').textContent=photo?'请求地点：'+(photo.location_name || photo.location_id)+'。模型建议：'+photo.reason:'';
+  const rows=Array.isArray(run?.visual_advice)?run.visual_advice:[];
+  $('visual-advice-panel').hidden=!rows.length;$('visual-advice').replaceChildren();
+  const appearance={similar:'外观相似建议',different:'外观不同建议',uncertain:'无法判定',not_visible:'未看到目标外观'};
+  const nextAction={request_closeup:'建议靠近补拍',request_side_view:'建议换角度补拍',ask_owner_review:'建议主人核对',continue_search:'建议继续寻找'};
+  const flags={small_target:'目标较小',occluded:'目标被遮挡',blurred:'图像模糊',view_mismatch:'视角差异',background_clutter:'背景杂乱'};
+  for(const row of rows) {
+    const advice=row.advice?.model_advice || {}, card=node('article',undefined,'visual-advice-card');
+    if(row.execution_status==='discarded') {
+      card.append(node('h3','观察 '+(row.observation_index+1)+' · 返回已丢弃'),
+        node('p','该请求返回时会话已取消或版本已变更。结果未用于判断或写入记忆；已发送的图片无法撤回。','note'),
+        details('实际丢弃与用量记录',row));
+      $('visual-advice').append(card);continue;
+    }
+    if(row.execution_status==='failed') {
+      card.append(node('h3','观察 '+(row.observation_index+1)+' · 视觉调用未完成'),
+        node('p','未取得有效视觉建议，不会自动重试。'+(row.reserved_budget_retained?'本次预算预留仍保留。':''),'note'),
+        node('p','错误编号：'+(row.error_code || '未知'),'field-help'),details('实际失败记录',row));
+      $('visual-advice').append(card);continue;
+    }
+    card.append(node('h3','观察 '+(row.observation_index+1)+' · '+(appearance[advice.appearance] || advice.appearance || '未返回外观判断')),
+      node('p','模型建议：'+(nextAction[advice.next_action] || advice.next_action || '未返回')),
+      node('p',advice.reason || '未返回说明','note'),node('p','实例仍未确认 · 自动视觉状态 UNKNOWN','field-help'));
+    if(Array.isArray(advice.visible_features))card.append(node('p','模型描述的可见特征：'+advice.visible_features.join('、'),'note'));
+    if(Array.isArray(advice.quality_flags))card.append(node('p','图像局限：'+advice.quality_flags.map(x=>flags[x] || x).join('、'),'note'));
+    const metrics=[];if(Number.isFinite(row.elapsed_ms))metrics.push('看图耗时 '+row.elapsed_ms+' ms');
+    if(Number.isSafeInteger(row.usage?.total_tokens))metrics.push(row.usage.total_tokens+' Token');
+    if(metrics.length)card.append(node('p',metrics.join(' · '),'field-help'));
+    card.append(details('实际视觉顾问返回（非视觉确认）',row));$('visual-advice').append(card);
+  }
 }
 function renderRun() {
   if(!run)return;
   clearTimeout(timer); rememberRun(run.run_id);
   $('session-state').textContent=labels[run.state] || run.state;
   $('session-meta').textContent=`${run.selected_object?.name || '待解析物品'} · 版本 ${run.version} · ${modeLabel(run.mode)}`;
-  $('reply').textContent=run.reply;$('mode-badge').textContent=modeLabel(run.mode);renderModel();
+  $('reply').textContent=run.reply;$('mode-badge').textContent=modeLabel(run.mode);renderModel();renderVisual();
   const actions=$('session-actions');actions.replaceChildren();
   if(run.state==='CLARIFY')run.matches.forEach(obj=>actionButton(actions,obj.name+' · '+obj.object_id,'select',obj.object_id));
   if(run.state==='CONFIRM_MEMORY')actionButton(actions,'确认记住这个位置','confirm_memory',null,'primary');
@@ -157,9 +268,13 @@ function renderRun() {
   const report=node('a','下载本次真实执行 JSON');report.href='/api/home-flow/runs/'+run.run_id+'/report';report.className='small-link';report.style.marginLeft='12px';actions.append(report);
   $('candidate-panel').hidden=run.state!=='AWAITING_REVIEW';$('candidate-content').replaceChildren();$('candidate-actions').replaceChildren();
   if(run.state==='AWAITING_REVIEW'&&run.candidate) {
+    const visual=run.candidate.kind==='visual_advisor';
+    $('candidate-notice').textContent=visual
+      ? '全图外观相似建议，无检测框。模型认为外观相似，尚未证明物理身份；请对照参考核对。确认仅记录为主人确认（owner_reported），不写成自动视觉 FOUND。'
+      : '检测框来自实际匹配结果。相似外观不能证明物理身份；请对照登记参考判断。确认仅记录为主人确认，不写成自动视觉 FOUND。';
     const grid=node('div',undefined,'compare-grid');
     const ref=config?.catalog.find(x=>x.object_id===run.selected_object.object_id)?.reference;
-    for(const [asset,box,title] of [[ref,ref?.roi,'登记参考与人工固定区域'],[run.candidate,run.candidate.bbox,run.candidate.location_name+' · 实际匹配框']]) {
+    for(const [asset,box,title] of [[ref,ref?.roi,'登记参考与人工固定区域'],[run.candidate,visual?null:run.candidate.bbox,run.candidate.location_name+(visual?' · 全图外观相似建议，无检测框':' · 实际匹配框')]]) {
       const f=node('figure');f.append(imageFrame(asset,box,title),node('figcaption',title+' · '+sourceText(asset?.source_kind)));grid.append(f);
     }
     $('candidate-content').append(grid);
@@ -193,7 +308,7 @@ function renderRun() {
       if(Number.isSafeInteger(t.result?.usage?.total_tokens))metrics.push(t.result.usage.total_tokens+' Token');
       if(metrics.length)li.append(node('p',metrics.join(' · '),'field-help'));
     } else {
-      li.append(node('span',t.tool==='navigate_simulated'?'实际工具执行 · 模拟导航':'实际工具返回','badge'));
+      li.append(node('span',t.tool==='navigate_simulated'?'实际工具执行 · 模拟导航':t.tool==='visual_advice'?'实际模型反馈 · 非实例确认':'实际工具返回','badge'));
       const facts=[];
       if(t.result?.status || t.result?.state)facts.push('状态：'+(labels[t.result.status || t.result.state] || t.result.status || t.result.state));
       if(t.result?.reason)facts.push('返回原因：'+t.result.reason);
@@ -205,7 +320,7 @@ function renderRun() {
   controls();
 }
 async function poll() {
-  if(busy){timer=setTimeout(poll,700);return;}
+  if(busy || cancelling){timer=setTimeout(poll,700);return;}
   if(!run || run.state!=='RUNNING')return;
   const runId=run.run_id, epoch=interactionEpoch;
   const current=()=>!busy && epoch===interactionEpoch && run?.run_id===runId;
@@ -218,36 +333,66 @@ async function poll() {
     run=next;renderRun();
   } catch(e) {if(current()){error(e);timer=setTimeout(poll,3000);}}
 }
-$('enroll-form').addEventListener('submit',e=>{e.preventDefault();perform(async()=>{
+$('enroll-form').addEventListener('submit',e=>{e.preventDefault();perform(async current=>{
   const id=$('object-id').value.trim();await api('/api/household/enroll',{object_id:id,name:$('object-name').value.trim(),aliases:$('object-aliases').value.split(/[,，]/).map(x=>x.trim()).filter(Boolean)});
-  await reloadConfig();$('reference-object').value=id;referenceAsset=null;renderReference();$('enroll-status').textContent='名称已保存；接下来上传参考图。';
+  if(!current())return;await reloadConfig(current);if(!current())return;
+  $('reference-object').value=id;referenceAsset=null;renderReference();$('enroll-status').textContent='名称已保存；接下来上传参考图。';
 });});
 $('reference-object').addEventListener('change',()=>{referenceAsset=null;$('reference-file').value='';renderReference();controls();});
-$('reference-file').addEventListener('change',()=>perform(async()=>{
+$('reference-file').addEventListener('change',()=>perform(async current=>{
   referenceAsset=null;$('roi-editor').hidden=true;$('roi-reviewed').checked=false;
   $('reference-upload-status').textContent='正在校验所选图片…';controls();
-  try {referenceAsset=await upload($('reference-file').files[0],$('reference-source').value);}
-  catch(e) {$('reference-upload-status').textContent='图片未保存，请重新选择。';throw e;}
+  try {const next=await upload($('reference-file').files[0],$('reference-source').value,current);if(!current())return;referenceAsset=next;}
+  catch(e) {if(current())$('reference-upload-status').textContent='图片未保存，请重新选择。';throw e;}
   editRoi();$('reference-upload-status').textContent='图片已保存。请框选目标并确认区域。';
 }));
 $('reference-source').addEventListener('change',()=>{referenceAsset=null;$('reference-file').value='';$('roi-editor').hidden=true;$('reference-upload-status').textContent='来源已改变，请重新选择照片。';controls();});
 ['x1','y1','x2','y2'].forEach(k=>$('roi-'+k).addEventListener('input',()=>{if(referenceAsset)changeRoi(roi());}));
 $('roi-reviewed').addEventListener('change',controls);
-$('reference-form').addEventListener('submit',e=>{e.preventDefault();perform(async()=>{
+$('reference-form').addEventListener('submit',e=>{e.preventDefault();perform(async current=>{
   if(!referenceAsset || !$('roi-reviewed').checked)throw new Error('请上传并确认目标区域');
-  await api('/api/home-flow/reference',{object_id:$('reference-object').value,asset_id:referenceAsset.asset_id,roi:roi(),roi_reviewed:true});referenceAsset=null;await reloadConfig();$('reference-status').textContent='参考已固定，未训练新模型。';
+  await api('/api/home-flow/reference',{object_id:$('reference-object').value,asset_id:referenceAsset.asset_id,roi:roi(),roi_reviewed:true});
+  if(!current())return;referenceAsset=null;await reloadConfig(current);if(current())$('reference-status').textContent='参考已固定，未训练新模型。';
 });});
-$('scene-form').addEventListener('submit',e=>{e.preventDefault();perform(async()=>{
-  const asset=await upload($('scene-file').files[0],$('scene-source').value);await api('/api/home-flow/scene',{location_id:$('scene-location').value,asset_id:asset.asset_id});await reloadConfig();$('scene-status').textContent='场景已保存，下一次搜索使用新配置；进行中的搜索保持原始输入。';
+$('scene-form').addEventListener('submit',e=>{e.preventDefault();perform(async current=>{
+  const location=$('scene-location').value;
+  const asset=await upload($('scene-file').files[0],$('scene-source').value,current);if(!current())return;
+  await api('/api/home-flow/scene',{location_id:location,asset_id:asset.asset_id});if(!current())return;
+  await reloadConfig(current);if(current())$('scene-status').textContent='场景已保存，下一次搜索使用新配置；进行中的搜索保持原始输入。';
+});});
+function consentAction(action) {
+  return perform(async current=>{
+    if(run?.state!=='AWAITING_IMAGE_CONSENT' || !run.vision_request?.request_id
+      || consentRequestId!==run.vision_request.request_id)throw new Error('本次图片发送请求已变化，请重新核对。');
+    if(action==='approve_vision' && !$('vision-consent').checked)throw new Error('请先勾选本次图片发送确认。');
+    const runId=run.run_id;
+    const next=await api('/api/home-flow/act',{run_id:runId,version:run.version,action,request_id:consentRequestId});
+    if(!current() || run?.run_id!==runId)return;
+    run=next;renderRun();
+  });
+}
+$('vision-consent').addEventListener('change',controls);
+$('approve-vision').addEventListener('click',()=>consentAction('approve_vision'));
+$('deny-vision').addEventListener('click',()=>consentAction('deny_vision'));
+$('new-photo-form').addEventListener('submit',e=>{e.preventDefault();perform(async current=>{
+  if(run?.state!=='AWAITING_NEW_PHOTO')throw new Error('当前没有等待补拍的请求。');
+  const runId=run.run_id, version=run.version;
+  $('new-photo-status').textContent='正在保存新照片到本机…';
+  const asset=await upload($('new-photo-file').files[0],$('new-photo-source').value,current);
+  if(!current() || run?.run_id!==runId)return;
+  const next=await api('/api/home-flow/new-photo',{run_id:runId,version,asset_id:asset.asset_id});
+  if(!current() || run?.run_id!==runId)return;
+  run=next;$('new-photo-file').value='';$('new-photo-status').textContent='已保存新观察，继续本次寻找；尚未因此授权图片外发。';renderRun();
 });});
 document.querySelectorAll('[data-template]').forEach(b=>b.addEventListener('click',()=>{
   const name=config?.catalog.find(x=>x.object_id===$('reference-object').value)?.name || '钥匙';
   $('message').value={remember:`记住${name}放在这里了`,find:`帮我找${name}`,history:`查看${name}历史`}[b.dataset.template];$('message').focus();
 }));
-$('request-form').addEventListener('submit',e=>{e.preventDefault();perform(async()=>{
-  run=await api('/api/home-flow/start',{message:$('message').value,current_location_id:$('current-location').value || null});renderRun();
+$('request-form').addEventListener('submit',e=>{e.preventDefault();perform(async current=>{
+  const next=await api('/api/home-flow/start',{message:$('message').value,current_location_id:$('current-location').value || null});if(current()){run=next;renderRun();}
 });});
-perform(async()=>{
-  await reloadConfig();let id=null;try{id=localStorage.getItem(storageKey);}catch{rememberRun('');}
-  if(id&&/^[0-9a-f]{32}$/.test(id)) {try{run=await api('/api/home-flow/runs/'+id);renderRun();}catch(e){error(e);}}
+perform(async current=>{
+  await reloadConfig(current);if(!current())return;
+  let id=null;try{id=localStorage.getItem(storageKey);}catch{rememberRun('');}
+  if(id&&/^[0-9a-f]{32}$/.test(id)) {try{const next=await api('/api/home-flow/runs/'+id);if(current()){run=next;renderRun();}}catch(e){if(current())error(e);}}
 });

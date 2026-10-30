@@ -1,0 +1,9 @@
+{"stage": "remember", "state": "CONFIRM_MEMORY", "model_calls": 1, "vision_calls": 0, "observations": 0}
+{"stage": "remember-confirmed", "state": "COMPLETED", "model_calls": 1, "vision_calls": 0, "observations": 0}
+{"stage": "find-initial", "state": "AWAITING_IMAGE_CONSENT", "model_calls": 3, "vision_calls": 0, "observations": 1}
+{"stage": "after-consent-1", "state": "AWAITING_NEW_PHOTO", "model_calls": 4, "vision_calls": 1, "observations": 1}
+{"stage": "new-photo-observed", "state": "AWAITING_IMAGE_CONSENT", "model_calls": 5, "vision_calls": 1, "observations": 2}
+{"stage": "after-consent-2", "state": "ERROR", "model_calls": 6, "vision_calls": 2, "observations": 2}
+{"stage": "after-explicit-protocol-retry", "state": "AWAITING_REVIEW", "model_calls": 7, "vision_calls": 2, "observations": 2}
+{"stage": "scripted-owner-confirmed", "state": "USER_CONFIRMED", "model_calls": 7, "vision_calls": 2, "observations": 2}
+{"stage": "history-after-restart", "state": "COMPLETED", "model_calls": 1, "vision_calls": 0, "observations": 0}
