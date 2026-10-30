@@ -1,0 +1,35 @@
+{
+  "baseline": "ed2693bef36636f5a1b42a63ed9588522f6ff65f",
+  "staged_file_sha256": {
+    "README.md": "41d41f396ea04d5de74739375f4bee591434511bd8ee24f526ab13af791e7018",
+    "docs/REAL_CUP_AGENT_ACCEPTANCE.md": "32ce48becdaffbe3d913ce2d1fbd059267af6dd0b6745bf0ca06b667b5ad668b",
+    "docs/evidence/issue-36/node-tests.txt": "1f224ea2a182b8cc29bb1d3389add3e391bbdbf0db752af2023822f889de3489",
+    "docs/evidence/issue-36/pytest-full.txt": "4eacc18373240e1d130122996dbfd2845d731ddfbdffc3b2adf5eb8f192b6009",
+    "docs/evidence/issue-36/real-photo-results.json": "b7a3cc983a89e49efca2aecea042c54f2d05731699d7c0b9b96875c8743a0406",
+    "tests/test_accept_private_photo_agent.py": "4bb3e7fb58bc4b6383bdc6a01f5272ce8989a1e371ea9cbd706a14e63f707b80",
+    "tests/test_prepare_photo_acceptance.py": "d99e92bc63c2947eb39da510a3b6ccccb989d3823191c6d24adc18c10789e2f7",
+    "tests/test_report_private_photo_agent.py": "dac0a2c8379b115a28d8793df53f9cfc6a7a2ae3f56128a6265d1ef1f2a6b3d8",
+    "tools/accept_private_photo_agent.py": "4b87b0798be6c096a755cf9006dfd5d29c90be5d0b3b82222b430b90ad263e1c",
+    "tools/prepare_photo_acceptance.py": "dfc4986d4cd37428f468d13fd32f712dc44ab083c1f3ebe4444919dd4fa285b0",
+    "tools/report_private_photo_agent.py": "3b43709b4f7084de37ba8356ae32f5f871f908b64bae0738030721a4788824f5"
+  },
+  "production_source_config_unchanged": true,
+  "previous_report_unchanged": true,
+  "private_tracked_files": 0,
+  "actual_key_scan_passed": true,
+  "raw_image_hashes_not_public": true,
+  "originals_unchanged": true,
+  "restored_run_count": 9,
+  "fresh_service_reads_only_no_api": true,
+  "distinct_evidence_ids": 10,
+  "owner_memory_rows": 0,
+  "automatic_found_count": 0,
+  "scope": "software integration review; independent household validation BLOCKED",
+  "browser": {
+    "page": "private offline results",
+    "verified": true,
+    "images_loaded": true,
+    "followup_state": "AWAITING_REVIEW",
+    "screenshots": "private ignored only"
+  }
+}
