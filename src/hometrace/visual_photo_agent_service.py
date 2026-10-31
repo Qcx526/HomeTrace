@@ -10,7 +10,8 @@ from math import isfinite
 from time import perf_counter
 from uuid import uuid4
 
-from .household_service import HouseholdConflict, LOCATIONS
+from .household_service import HouseholdConflict
+from .household_locations import run_locations
 from .photo_agent_service import PhotoAgentService, SYSTEM, _bounded_text
 from .photo_flow_service import PhotoFlowService
 
@@ -159,7 +160,7 @@ class VisualPhotoAgentService(PhotoAgentService):
             'advisor_next_action': feedback.get('next_action'),
             'quality_flags': list(feedback.get('quality_flags', [])),
             'owner_review_available': VisualPhotoAgentService._review_supported(run),
-            'unvisited_uploaded_locations': [location['location_id'] for location in LOCATIONS
+            'unvisited_uploaded_locations': [location['location_id'] for location in run_locations(run)
                 if location['location_id'] not in run['visited']
                 and location['location_id'] in run.get('snapshot', {}).get('scenes', {})],
         }

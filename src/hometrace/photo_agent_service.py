@@ -16,7 +16,8 @@ from uuid import uuid4
 from .agent_config import AgentConfigError, disable_external_tracing, load_agent_config
 from .agent_model import create_model, response_metrics, safe_model_error
 from .household_memory import HouseholdMemory, _text
-from .household_service import HouseholdConflict, LOCATIONS, _now
+from .household_service import HouseholdConflict, _now
+from .household_locations import run_locations
 from .photo_flow_service import PhotoFlowService
 
 
@@ -143,9 +144,10 @@ class PhotoAgentService(PhotoFlowService):
 
     def start(self, message, current_location_id=None):
         message = _text(message, '请求', 1000)
-        if current_location_id not in (None, '', *(x['location_id'] for x in LOCATIONS)):
+        if current_location_id not in (None, '', *(x['location_id'] for x in self.household.locations)):
             raise ValueError('未知当前地点')
         run = {'run_id': uuid4().hex, 'version': 0, 'state': 'RUNNING', 'intent': None,
+               'location_snapshot': [dict(x) for x in self.household.locations],
                'message': message, 'current_location_id': current_location_id or None,
                'selected_object': None, 'matches': [], 'history': [], 'planned_locations': [], 'visited': [],
                'trace': [], 'observations': [], 'candidate': None, 'reply': 'LLM 正在理解请求并选择工具。',
@@ -238,8 +240,9 @@ class PhotoAgentService(PhotoFlowService):
                 'allowed_tools': self._allowed_tools(run),
                 'intent': run['intent'], 'selected_object_id': (run['selected_object'] or {}).get('object_id'),
                 'current_location_id': run['current_location_id'], 'history': history,
-                'locations': [{**x, 'has_uploaded_image': x['location_id'] in run.get('snapshot', {}).get('scenes', {})}
-                              for x in LOCATIONS], 'visited': run['visited'], 'observations': observations,
+                'locations': [{**x, 'location_name': clean(x['location_name']),
+                               'has_uploaded_image': x['location_id'] in run.get('snapshot', {}).get('scenes', {})}
+                              for x in run_locations(run)], 'visited': run['visited'], 'observations': observations,
                 'owner_rejected_locations': rejected, 'navigation_mode': 'simulated_navigation',
                 'last_tool_result': self._last_tool_result(run, observations),
                 'budgets_used': {k: run[k] for k in ('model_calls', 'tool_calls', 'total_tokens')},
@@ -257,7 +260,7 @@ class PhotoAgentService(PhotoFlowService):
     @staticmethod
     def _allowed_tools(run):
         if run['selected_object']:
-            if len(run['visited']) >= len(LOCATIONS):
+            if {x['location_id'] for x in run_locations(run)} <= set(run['visited']):
                 return ['finish_search', 'decline_request']
             return ['inspect_location', 'finish_search', 'decline_request']
         return ['resolve_request', 'clarify_request', 'unknown_object', 'decline_request']
@@ -414,7 +417,7 @@ class PhotoAgentService(PhotoFlowService):
                     raise ValueError('尚未选择搜索目标')
                 if len(run['visited']) >= self.agent_config.agent.max_viewpoints:
                     return {'again': self._stop(db, run, 'BUDGET_EXCEEDED', 'VIEWPOINT_BUDGET')}
-                if args['location_id'] not in {x['location_id'] for x in LOCATIONS} or args['location_id'] in run['visited']:
+                if args['location_id'] not in {x['location_id'] for x in run_locations(run)} or args['location_id'] in run['visited']:
                     raise ValueError('未知或已访问地点')
             else:
                 if name in ('resolve_request', 'clarify_request', 'unknown_object') and run['selected_object']:

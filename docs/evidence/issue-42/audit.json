@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-31",
+  "base_commit": "e14569f018188464e225296d705afe38c293bc7a",
+  "source_scope": "workspace location loading and per-run snapshot consumers",
+  "actual_secret_scan": "PASS",
+  "private_names_paths_and_image_hash_scan": "PASS",
+  "original_image_hash_check": "PASS",
+  "git_diff_check": "PASS",
+  "executed_source_hash_match": "PASS",
+  "scope_review": "PASS",
+  "image_matcher_search_core_schema_thresholds_changed": false,
+  "frozen_reports_changed": false,
+  "private_images_databases_models_credentials_committed": false,
+  "image_calls": 8,
+  "provider_retries": 0,
+  "additional_image_transmissions": 0,
+  "new_owner_events": 0,
+  "automatic_found": false,
+  "test_log_redaction": "Only repo absolute path replaced with <repo>; outcomes retained."
+}

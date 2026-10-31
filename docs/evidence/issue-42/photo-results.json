@@ -1,0 +1,276 @@
+{
+  "input_count": 8,
+  "source": "owner real photographs",
+  "split": "development_diagnostic",
+  "owner_filename_presence_labels": true,
+  "reviewed_numeric_boxes": false,
+  "independent_acceptance": false,
+  "capture_times_and_sequence": "unknown",
+  "input_original_bytes_preserved": true,
+  "exact_prior_duplicates": 0,
+  "single_reviewed_reference": true,
+  "local_scene_preprocessing": "original full image",
+  "local_threshold_changes": false,
+  "gateway_inputs": "reviewed reference ROI and full-scene metadata-free JPEGs, max side 1280; no labels or names",
+  "approved_calls": 8,
+  "actual_calls": 8,
+  "valid_advice": 7,
+  "provider_retries": 0,
+  "total_tokens": 21001,
+  "production_images_or_results_written": false,
+  "rows": [
+    {
+      "sample": "scene-01",
+      "owner_filename_label": "present",
+      "numeric_ground_truth_bbox": null,
+      "local_match": {
+        "status": "SUSPECTED",
+        "bbox": null,
+        "reason": "reference_support_too_local",
+        "elapsed_ms": 511.278,
+        "good_matches": 44,
+        "inliers": 30,
+        "inlier_ratio": 0.6818,
+        "reference_coverage": 0.0759,
+        "scene_keypoints": 2000,
+        "reference_keypoints": 2000
+      },
+      "advisory": {
+        "execution_status": "ADVISORY_ONLY",
+        "appearance": "similar",
+        "next_action": "ask_owner_review",
+        "quality_flags": [
+          "small_target",
+          "background_clutter"
+        ],
+        "finish_reason": "stop",
+        "elapsed_ms": 11507.636,
+        "total_tokens": 2754,
+        "failure": null
+      },
+      "instance_confirmed": false,
+      "production_found": false
+    },
+    {
+      "sample": "scene-02",
+      "owner_filename_label": "absent",
+      "numeric_ground_truth_bbox": null,
+      "local_match": {
+        "status": "SUSPECTED",
+        "bbox": null,
+        "reason": "insufficient_distinct_matches",
+        "elapsed_ms": 249.448,
+        "good_matches": 7,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "scene_keypoints": 2000,
+        "reference_keypoints": 2000
+      },
+      "advisory": {
+        "execution_status": "ADVISORY_ONLY",
+        "appearance": "not_visible",
+        "next_action": "continue_search",
+        "quality_flags": [
+          "background_clutter"
+        ],
+        "finish_reason": "stop",
+        "elapsed_ms": 3549.607,
+        "total_tokens": 1780,
+        "failure": null
+      },
+      "instance_confirmed": false,
+      "production_found": false
+    },
+    {
+      "sample": "scene-03",
+      "owner_filename_label": "present",
+      "numeric_ground_truth_bbox": null,
+      "local_match": {
+        "status": "SUSPECTED",
+        "bbox": null,
+        "reason": "insufficient_distinct_matches",
+        "elapsed_ms": 250.591,
+        "good_matches": 4,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "scene_keypoints": 2000,
+        "reference_keypoints": 2000
+      },
+      "advisory": {
+        "execution_status": "ERROR",
+        "appearance": null,
+        "next_action": null,
+        "quality_flags": null,
+        "finish_reason": "length",
+        "elapsed_ms": 14545.324,
+        "total_tokens": 3526,
+        "failure": "output_limit_reached_no_valid_json"
+      },
+      "instance_confirmed": false,
+      "production_found": false
+    },
+    {
+      "sample": "scene-04",
+      "owner_filename_label": "present",
+      "numeric_ground_truth_bbox": null,
+      "local_match": {
+        "status": "SUSPECTED",
+        "bbox": null,
+        "reason": "insufficient_distinct_matches",
+        "elapsed_ms": 285.281,
+        "good_matches": 11,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "scene_keypoints": 2000,
+        "reference_keypoints": 2000
+      },
+      "advisory": {
+        "execution_status": "ADVISORY_ONLY",
+        "appearance": "uncertain",
+        "next_action": "request_closeup",
+        "quality_flags": [
+          "small_target",
+          "view_mismatch",
+          "background_clutter"
+        ],
+        "finish_reason": "stop",
+        "elapsed_ms": 7070.04,
+        "total_tokens": 2333,
+        "failure": null
+      },
+      "instance_confirmed": false,
+      "production_found": false
+    },
+    {
+      "sample": "scene-05",
+      "owner_filename_label": "absent",
+      "numeric_ground_truth_bbox": null,
+      "local_match": {
+        "status": "SUSPECTED",
+        "bbox": null,
+        "reason": "insufficient_distinct_matches",
+        "elapsed_ms": 249.564,
+        "good_matches": 9,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "scene_keypoints": 1988,
+        "reference_keypoints": 2000
+      },
+      "advisory": {
+        "execution_status": "ADVISORY_ONLY",
+        "appearance": "not_visible",
+        "next_action": "continue_search",
+        "quality_flags": [
+          "view_mismatch"
+        ],
+        "finish_reason": "stop",
+        "elapsed_ms": 4616.019,
+        "total_tokens": 2010,
+        "failure": null
+      },
+      "instance_confirmed": false,
+      "production_found": false
+    },
+    {
+      "sample": "scene-06",
+      "owner_filename_label": "present",
+      "numeric_ground_truth_bbox": null,
+      "local_match": {
+        "status": "SUSPECTED",
+        "bbox": null,
+        "reason": "insufficient_distinct_matches",
+        "elapsed_ms": 290.992,
+        "good_matches": 10,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "scene_keypoints": 2000,
+        "reference_keypoints": 2000
+      },
+      "advisory": {
+        "execution_status": "ADVISORY_ONLY",
+        "appearance": "similar",
+        "next_action": "request_closeup",
+        "quality_flags": [
+          "small_target",
+          "view_mismatch"
+        ],
+        "finish_reason": "stop",
+        "elapsed_ms": 7999.204,
+        "total_tokens": 2443,
+        "failure": null
+      },
+      "instance_confirmed": false,
+      "production_found": false
+    },
+    {
+      "sample": "scene-07",
+      "owner_filename_label": "present",
+      "numeric_ground_truth_bbox": null,
+      "local_match": {
+        "status": "SUSPECTED",
+        "bbox": null,
+        "reason": "insufficient_distinct_matches",
+        "elapsed_ms": 269.353,
+        "good_matches": 8,
+        "inliers": 0,
+        "inlier_ratio": 0.0,
+        "reference_coverage": 0.0,
+        "scene_keypoints": 2000,
+        "reference_keypoints": 2000
+      },
+      "advisory": {
+        "execution_status": "ADVISORY_ONLY",
+        "appearance": "similar",
+        "next_action": "request_closeup",
+        "quality_flags": [
+          "small_target"
+        ],
+        "finish_reason": "stop",
+        "elapsed_ms": 9592.501,
+        "total_tokens": 2794,
+        "failure": null
+      },
+      "instance_confirmed": false,
+      "production_found": false
+    },
+    {
+      "sample": "scene-08",
+      "owner_filename_label": "present",
+      "numeric_ground_truth_bbox": null,
+      "local_match": {
+        "status": "SUSPECTED",
+        "bbox": null,
+        "reason": "insufficient_geometric_inliers",
+        "elapsed_ms": 285.536,
+        "good_matches": 26,
+        "inliers": 8,
+        "inlier_ratio": 0.3077,
+        "reference_coverage": 0.0099,
+        "scene_keypoints": 2000,
+        "reference_keypoints": 2000
+      },
+      "advisory": {
+        "execution_status": "ADVISORY_ONLY",
+        "appearance": "similar",
+        "next_action": "request_closeup",
+        "quality_flags": [
+          "small_target",
+          "occluded",
+          "view_mismatch",
+          "background_clutter"
+        ],
+        "finish_reason": "stop",
+        "elapsed_ms": 14157.652,
+        "total_tokens": 3361,
+        "failure": null
+      },
+      "instance_confirmed": false,
+      "production_found": false
+    }
+  ]
+}
