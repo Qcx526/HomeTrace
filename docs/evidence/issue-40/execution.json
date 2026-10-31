@@ -1,0 +1,56 @@
+{
+  "base_commit": "9f8bcd3ea1e370600c2df1c7201b7befac5a762d",
+  "working_tree_dirty_at_run": true,
+  "source_sha256": {
+    "tools/accept_memory_restart.py": "293170ffe723ba647d40cc7fd2d14239435cae5ffb4646d287652e514e4d56c1",
+    "src/hometrace/__init__.py": "1485bd0a2fc69a1a03435cbf7246635db530a4e3c6c6ee5c00b7fae48199ecc7",
+    "src/hometrace/__main__.py": "482b8693e2fe6dbd732e3d7961e03827d3efa187bad11d29da188be580ebbeea",
+    "src/hometrace/agent.py": "189b18ceded03684aa91f3de1f17a8817c843a9b165eb91111352b3cbca481a1",
+    "src/hometrace/agent_config.py": "f91c7042f98d9b0c73085e446ee5358532e24c801994b1bb644f62bc5293c11e",
+    "src/hometrace/agent_model.py": "6b2f78309326632178216f1c41b0a6d91907aea52644c6bfb9d690e1a0cbc2b3",
+    "src/hometrace/agent_service.py": "1254755c2a4ba31b8e1ef687d72beb5ea268d5568b557caa0152ac6ce909a4cb",
+    "src/hometrace/cli.py": "e7b4ba4bf754ed3a137a8832e3f7f9119bf4ea0db3d8b0f3668a4a49de629658",
+    "src/hometrace/demo_cases.py": "2685e7077ac8509d1e6ed01e1598090d0a7871684a3f4ff711d65c8b26d1db96",
+    "src/hometrace/demo_server.py": "f9946a40428a253fc5063a9419b856bfb8f6e05fc50a9a3041b56a1b0e6286d4",
+    "src/hometrace/demo_service.py": "d29341183224c934fbf2cbf679719ee93ad3bfc6fb00d8a5d93552809ccdaace",
+    "src/hometrace/environment.py": "e0397adaed58fb77f543f5a0d6ef625b1aa9281ccc95d3b8531647e5b744b562",
+    "src/hometrace/fixtures.py": "97c78aa408315b60e159a6e91bf9c407178050b82c4d1b297abb80c7eeb38f12",
+    "src/hometrace/household_memory.py": "e7f3026fe0568240342222021501621f7250573c856be9eb6a55c23ea5726706",
+    "src/hometrace/household_service.py": "112bbcba6c69b6b76d2f5eb08c283beef8f375a65dab0ae230546e2ba4cab6c3",
+    "src/hometrace/image_matcher.py": "8a33462d59c45fba28bbb02b6aaa135ab9528b1f627c9495fa05f862d5f66ea1",
+    "src/hometrace/memory.py": "36f650afe00dde56edfc71ba9c72f5f642942d6a58c9c04a1baf8ddb515b5f15",
+    "src/hometrace/models.py": "91e903301e258bf088ba0dd3ad03373b9bb4b187d822856f16a583ee128972cd",
+    "src/hometrace/perception.py": "dea36dc706333aa51993b9a7db3b4adb87164e9595fd63ffb699e59b09f50973",
+    "src/hometrace/photo_agent_service.py": "7f0e2723ba4cc112488d8fbe8c17c5f71b7c6a32707cee1e2d5198e0f2dc8c62",
+    "src/hometrace/photo_engine.py": "a78eda9c3e1abc36c4e19e760e551e11fefa046ef2b528bea5058a035df5e1c1",
+    "src/hometrace/photo_flow_service.py": "38fb628ea518a06106e58c5e40b0f6a227871b64abf75501cec8f7356383d5fe",
+    "src/hometrace/recorded.py": "96af31efb6123f47453f827354342732240d7a213bfba71edd5392590e66f0b4",
+    "src/hometrace/recorded_cli.py": "003646a368a3f4af4cf2db8cfeb5cd5bb43496b630bea7823de2ae0957a3c569",
+    "src/hometrace/search_core.py": "789e7e88a0a17adf892433b22f486f3e5375ae2ae1832d0f4b56509cb310b81a",
+    "src/hometrace/submission.py": "ad5f707dde065009f14f1cabd02d2498e9cacbed8ceacec9365bc409cbe05889",
+    "src/hometrace/visual_advisor.py": "3a17495c3bd5cbe38c4a5966d36fdc7003bb78536c444768fb31c0000c4b970c",
+    "src/hometrace/visual_advisor_client.py": "31a62de7959cb6e0f1fa19e7ec1f2e69f9cd6e4c1ccf37b8b39ea5444f7c8897",
+    "src/hometrace/visual_photo_agent_service.py": "f245e6fc69b454416b7bfb9b4fffbdb587f60d335eea70207bc5cc86b054cc91"
+  },
+  "hash_convention": "Actual local file bytes at execution, including line endings.",
+  "executed_source_matches_current": true,
+  "versions": {
+    "hometrace": "0.4.1",
+    "Pillow": "12.0.0",
+    "langchain-openai": "1.0.1",
+    "langgraph": "1.0.2"
+  },
+  "provider": "openai_compatible",
+  "requested_model_identifier": "deepseek-v4.1-flash-1017",
+  "provider_model_identity_independently_verified": false,
+  "effective_limits": {
+    "model_timeout_seconds": 45,
+    "provider_retries": 0,
+    "max_calls_per_phase": 2,
+    "max_total_tokens_per_run": 24000
+  },
+  "privacy": {
+    "send_raw_images_to_llm": false,
+    "external_tracing_enabled": false
+  }
+}

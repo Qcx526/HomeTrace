@@ -1,0 +1,21 @@
+{
+  "base_commit": "9f8bcd3ea1e370600c2df1c7201b7befac5a762d",
+  "audit_date": "2026-10-31",
+  "source_scope": [
+    "src/hometrace/household_memory.py"
+  ],
+  "database_schema_changed": false,
+  "original_events_or_timestamps_rewritten": false,
+  "frozen_photo_result_unchanged": true,
+  "executed_source_hashes_match": true,
+  "public_evidence_method": "whitelist projection; no raw private response or image content copied",
+  "actual_configured_secret_scan": "PASS",
+  "private_binding_and_absolute_path_scan": "PASS",
+  "private_image_hash_scan": "PASS",
+  "file_scope_review": "PASS",
+  "git_diff_check": "PASS",
+  "private_images_databases_models_credentials_committed": false,
+  "new_image_transmissions": 0,
+  "automatic_found": false,
+  "test_logs_redaction": "Only repository absolute path replaced with <repo>; test outcomes unchanged."
+}

@@ -189,6 +189,20 @@ class HouseholdMemory:
             basis = event["source"][len(prefix):]
             if basis in ("session_creation_time", "owner_supplied_timestamp"):
                 event["reported_at_basis"] = basis
+        # These workflows save their local confirmation time, not a time the
+        # owner supplied or the photograph was captured. Chat review IDs use
+        # UUID hex, like photo run IDs; the associated private review records
+        # the owner's explicit statement. This describes provenance, not proof
+        # of an object's current location or identity. Unknown CLI sources keep
+        # their legacy semantics, and stored events/timestamps remain unchanged.
+        local_confirmation = (
+            r"(?:photo_workspace_owner_statement|owner_chat_confirmation):"
+            r"[0-9a-f]{32}:local_system_clock"
+            r"|(?:photo_candidate_owner_review|visual_advisor_owner_review):"
+            r"[0-9a-f]{32}:[0-9a-f]{64}"
+        )
+        if re.fullmatch(local_confirmation, event["source"]):
+            event["reported_at_basis"] = "local_system_clock"
         event["recorded_at_basis"] = "local_system_clock"
         return event
 
