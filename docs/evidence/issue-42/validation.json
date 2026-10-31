@@ -1,0 +1,48 @@
+{
+  "date": "2026-10-31",
+  "full_suite": {
+    "passed": 1061,
+    "failed": 0,
+    "warnings": 1,
+    "seconds": 155.35,
+    "exit_code": 0
+  },
+  "focused_workspace_tests": {
+    "passed": 27,
+    "failed": 0,
+    "seconds": 3.37
+  },
+  "frontend": {
+    "passed": 22,
+    "failed": 0
+  },
+  "first_focused_attempt": {
+    "passed": 26,
+    "failed": 1,
+    "retained_summary": "Retired scene still appeared in current config; filtered config without deleting old scene."
+  },
+  "environment": {
+    "os": "Windows",
+    "python": "3.11.4",
+    "node": "24.18.0"
+  },
+  "browser": {
+    "actual_page_loaded": true,
+    "configured_place_count": 7,
+    "distinct_old_and_new_desks": true,
+    "configured_photo_count": 2,
+    "review_page_loaded": true,
+    "review_page_records": 8,
+    "requests_submitted": 0,
+    "new_model_calls": 0,
+    "claim": "UI configuration/read-only review only, not complete real-photo Agent acceptance"
+  },
+  "private_workspace": {
+    "original_owner_database_unchanged": true,
+    "owner_events_copied": 1,
+    "new_events": 0,
+    "runs": 0,
+    "evidence": 0
+  },
+  "new_windows_install": false
+}

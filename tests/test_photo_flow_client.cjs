@@ -138,6 +138,32 @@ async function startNewRunWhileOldPollIsPending() {
   return { client, oldRequest, poll };
 }
 
+test('workspace places appear as literal names and submit their actual IDs', async () => {
+  const places = [{location_id: 'fixture-shelf', location_name: '样例架'},
+    {location_id: 'fixture-table', location_name: '<b>样例桌</b>'}];
+  let submitted;
+  const client = createClient(async (url, options) => {
+    if (url === '/api/home-flow/config') return response({...config, locations: places});
+    if (url === '/api/home-flow/start') {
+      submitted = JSON.parse(options.body);
+      return response(runFixture(NEW_ID, {state: 'CONFIRM_MEMORY'}));
+    }
+    throw new Error('Unexpected request: ' + url);
+  });
+  await settle();
+  for (const id of ['current-location', 'scene-location']) {
+    assert.deepEqual(client.element(id).options.slice(1).map(x => [x.value, x.text]),
+      places.map(x => [x.location_id, x.location_name]));
+  }
+  assert.equal(client.element('scenes').children.length, 2);
+  client.element('message').value = '请记住测试物品';
+  client.element('current-location').value = 'fixture-table';
+  client.element('request-form').listeners.submit({preventDefault() {}});
+  await settle();
+  assert.equal(submitted.current_location_id, 'fixture-table');
+  assert.equal(client.evaluate('run.state'), 'CONFIRM_MEMORY');
+});
+
 test('an old poll cannot replace a newly started run or its recovery ID', async () => {
   const { client, oldRequest, poll } = await startNewRunWhileOldPollIsPending();
   oldRequest.resolve(response(runFixture(OLD_ID)));

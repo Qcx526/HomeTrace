@@ -1,0 +1,31 @@
+{
+  "base_commit": "e14569f018188464e225296d705afe38c293bc7a",
+  "tested_working_tree_dirty": true,
+  "source_sha256": {
+    "src/hometrace/household_locations.py": "ad97674c3f9b03cff90918d9a1344bd7e3a3480c17f55dc6cff249ab2cff9d11",
+    "src/hometrace/household_service.py": "4dc36405acc0479103e44fdb51ef5a8e37389d4c30c42d69bfdf3dc46ac433e3",
+    "src/hometrace/photo_flow_service.py": "d2ff82084e5ee075a25f562b16819686e369e6d222b68ed61c262fea39c6d68e",
+    "src/hometrace/photo_agent_service.py": "c00a69aca64a19a1b5b1ccd3ca499f2c9352290e411448510f2962ddcdc6cd4d",
+    "src/hometrace/visual_photo_agent_service.py": "6953052d2cdc12d475cc5e8a0af5c532c2f6036cdd4d3681c14db76a26ffad2c",
+    "src/hometrace/image_matcher.py": "8a33462d59c45fba28bbb02b6aaa135ab9528b1f627c9495fa05f862d5f66ea1",
+    "src/hometrace/search_core.py": "789e7e88a0a17adf892433b22f486f3e5375ae2ae1832d0f4b56509cb310b81a",
+    "src/hometrace/visual_advisor.py": "3a17495c3bd5cbe38c4a5966d36fdc7003bb78536c444768fb31c0000c4b970c",
+    "tools/run_vision_advisor.py": "9f2597b01a43fbffe2aa25fb15055eea1fc632dd957aa0783eedccc9dd0beef9"
+  },
+  "hash_convention": "actual local file bytes, including line endings",
+  "local_matcher_source_matches": true,
+  "advisor_source_matches": true,
+  "requested_model": "deepseek-v4.1-flash-1017",
+  "model_identity_independently_verified": false,
+  "parameters": {
+    "temperature": 0,
+    "max_tokens": 2048,
+    "timeout_seconds": 45,
+    "max_retries": 0,
+    "max_calls": 10,
+    "detail": "high"
+  },
+  "effective_consent_max_calls": 8,
+  "training": false,
+  "vision_production_integration": false
+}

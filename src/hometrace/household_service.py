@@ -14,10 +14,10 @@ import subprocess
 from uuid import uuid4
 
 from .household_memory import HouseholdMemory, _text, _time
+from .household_locations import DEFAULT_LOCATIONS, load_workspace_locations
 
-LOCATIONS = ({'location_id': 'entry-tray', 'location_name': '玄关托盘'},
-             {'location_id': 'study-desk', 'location_name': '书房桌面'},
-             {'location_id': 'living-table', 'location_name': '客厅茶几'})
+# Compatibility export for existing tools and old workspaces.
+LOCATIONS = DEFAULT_LOCATIONS
 SESSION_APPLICATION_ID = 0x48544853
 
 
@@ -43,6 +43,7 @@ class HouseholdService:
         self.workspace = path.resolve()
         self.workspace.mkdir(parents=True, exist_ok=True)
         self._check_private_output()
+        self.locations = load_workspace_locations(self.workspace)
         self.memory_path = self.workspace / 'owner-memory.sqlite3'
         self.sessions_path = self.workspace / 'sessions.sqlite3'
         if self.sessions_path.is_symlink():
@@ -93,7 +94,7 @@ class HouseholdService:
     def config(self):
         with HouseholdMemory(self.memory_path) as memory:
             catalog = memory.catalog()
-        return {'enabled': True, 'catalog': catalog, 'locations': list(LOCATIONS),
+        return {'enabled': True, 'catalog': catalog, 'locations': [dict(x) for x in self.locations],
                 'notice': '本地规则与确认控件 · 主人陈述记忆 · 尚未进行视觉识别或机器人动作',
                 'visual_confirmed': False}
 
@@ -148,7 +149,7 @@ class HouseholdService:
         location = None
         time_basis = 'owner_supplied_timestamp' if reported_at is not None else 'session_creation_time'
         if intent == 'remember':
-            location = next((dict(x) for x in LOCATIONS if x['location_id'] == location_id), None)
+            location = next((dict(x) for x in self.locations if x['location_id'] == location_id), None)
             if location is None:
                 raise ValueError('请明确选择已配置地点；系统不会自动猜测“这里”')
             if reported_at is not None:

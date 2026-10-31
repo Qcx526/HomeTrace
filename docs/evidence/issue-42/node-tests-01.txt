@@ -1,0 +1,30 @@
+✔ LLM metrics and choice are visible without turning a model rationale into a tool fact (29.2163ms)
+✔ offline and restored offline runs do not claim LLM execution (3.5732ms)
+✔ model outages, budget exhaustion and protocol failure stay explicit and do not offer false fallback (2.1118ms)
+✔ unknown model usage stays unknown and model text is rendered as literal non-authoritative text (1.7278ms)
+✔ workspace places appear as literal names and submit their actual IDs (8.5298ms)
+✔ an old poll cannot replace a newly started run or its recovery ID (4.4291ms)
+✔ a lower version response cannot roll back the same run (2.2476ms)
+✔ an invalidated request error cannot disturb the new run or its polling timer (1.5433ms)
+✔ a failed replacement upload cannot submit the previously reviewed reference (2.0568ms)
+✔ consent is unchecked, bound to one request, and not inherited by a later request (8.1368ms)
+✔ declining sends only the bound denial and never requires approval checkbox (1.6659ms)
+✔ visual token reservations and all actual advice enum values have honest labels (2.3391ms)
+✔ a failed advisor call has an explicit unavailable record, not empty success advice (1.1149ms)
+✔ new photo uses local upload then the run-scoped endpoint without granting image consent (1.6043ms)
+✔ cancelling while a new image upload is pending cannot submit that image afterward (1.6967ms)
+✔ an approval response arriving after cancellation cannot restore the old run (1.7048ms)
+✔ an outdated conflict-refresh response cannot undo cancellation (1.3207ms)
+✔ cancel retries its intent after a concurrently committed approval causes a version conflict (1.3222ms)
+✔ cancel retry is bounded and does not claim success when the server keeps advancing (1.4507ms)
+✔ cancelled scene uploads cannot mutate global scene configuration (1.3607ms)
+✔ a visual-only candidate displays the complete image without inventing a detection rectangle (1.8188ms)
+✔ a late cancelled response is explicitly discarded rather than rendered as model advice (0.9877ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 22
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 224.4354

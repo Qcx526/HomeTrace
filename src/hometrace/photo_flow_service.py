@@ -17,7 +17,8 @@ from typing import TypedDict
 from uuid import uuid4
 
 from .household_memory import HouseholdMemory, _text
-from .household_service import HouseholdConflict, LOCATIONS, _now, _sid
+from .household_service import HouseholdConflict, _now, _sid
+from .household_locations import run_locations
 from .memory import SQLiteMemory
 from .models import (DataSource, DetectionResult, MemoryRecord, NavigationMode,
                      NavigationResult, Observation, RegisteredObject, Status,
@@ -101,7 +102,7 @@ class _PhotoEnvironment:
         self.run, self.source, self.arrived = run, source, None
 
     def list_viewpoints(self):
-        return [Viewpoint(x['location_id'], x['location_name']) for x in LOCATIONS]
+        return [Viewpoint(x['location_id'], x['location_name']) for x in run_locations(self.run)]
 
     def navigate_to(self, viewpoint_id):
         self.arrived = viewpoint_id
@@ -206,7 +207,9 @@ class PhotoFlowService:
         row = db.execute('SELECT payload FROM runs WHERE run_id=?', (_sid(run_id),)).fetchone()
         if row is None:
             raise KeyError(run_id)
-        return json.loads(row[0])
+        run = json.loads(row[0])
+        run_locations(run)  # A corrupt snapshot must not silently use new/default places.
+        return run
 
     @staticmethod
     def _public(run):
@@ -299,7 +302,7 @@ class PhotoFlowService:
         return {k: v for k, v in row.items() if k != 'path'}
 
     def scene(self, location_id, asset_id):
-        if not isinstance(location_id, str) or location_id not in {x['location_id'] for x in LOCATIONS}:
+        if not isinstance(location_id, str) or location_id not in {x['location_id'] for x in self.household.locations}:
             raise ValueError('未知地点')
         with closing(self._connect()) as db, db:
             row = self._asset_row(db, asset_id)
@@ -308,10 +311,11 @@ class PhotoFlowService:
 
     def config(self):
         config = self.household.config()
+        known = {x['location_id'] for x in config['locations']}
         with closing(self._connect()) as db:
             refs = {key: json.loads(value) for key, value in db.execute('SELECT * FROM refs')}
             scenes = [{'location_id': loc, **{k: v for k, v in self._asset_row(db, aid).items() if k != 'path'}}
-                      for loc, aid in db.execute('SELECT * FROM scenes')]
+                      for loc, aid in db.execute('SELECT * FROM scenes') if loc in known]
         for obj in config['catalog']:
             ref = refs.get(obj['object_id'])
             obj['reference'] = {k: v for k, v in ref.items() if k != 'path'} if ref else None
@@ -358,22 +362,23 @@ class PhotoFlowService:
             if not run['current_location_id']:
                 run.update(state='ERROR', reply='“这里”需要你选择当前地点，然后重新发送请求。系统没有主人定位传感器。')
                 return
-            name = next(x['location_name'] for x in LOCATIONS if x['location_id'] == run['current_location_id'])
+            name = next(x['location_name'] for x in run_locations(run) if x['location_id'] == run['current_location_id'])
             run.update(state='CONFIRM_MEMORY', reply=f'请确认将{obj["name"]}的位置记录为{name}。这是一条主人陈述，不是视觉确认。')
             return
-        known = {x['location_id']: x['location_name'] for x in LOCATIONS}
+        known = {x['location_id']: x['location_name'] for x in run_locations(run)}
         order = [x['location_id'] for x in locations if x['location_id'] in known]
         run['planned_locations'] = [{'location_id': key, 'location_name': known[key],
                                     'reason': 'recent_owner_memory' if key in order else 'unvisited_fallback'}
                                    for key in order + sorted(set(known)-set(order))]
         run['snapshot'] = {'reference': json.loads(ref[0]),
-                           'scenes': {loc: self._asset_row(db, aid) for loc, aid in db.execute('SELECT * FROM scenes')}}
+                           'scenes': {loc: self._asset_row(db, aid) for loc, aid in db.execute('SELECT * FROM scenes')
+                                      if loc in known}}
         run.update(state='RUNNING', reply='已读取历史，开始按顺序检查配置的场景图片。导航为模拟。')
         self._trace(run, 'plan_search', {'history_event_ids': [x['event_id'] for x in run['history']]}, {'locations': run['planned_locations']})
 
     def start(self, message, current_location_id=None):
         message = _text(message, '请求', 1000)
-        if current_location_id not in (None, '', *(x['location_id'] for x in LOCATIONS)):
+        if current_location_id not in (None, '', *(x['location_id'] for x in self.household.locations)):
             raise ValueError('未知当前地点')
         # This is an explicit deterministic language subset, not an LLM claim.
         remember = any(x in message for x in ('记住', '放这里', '放在这里', '我放'))
@@ -385,6 +390,7 @@ class PhotoFlowService:
             raise ValueError('收到否定或取消意图，没有执行。可用当前会话的取消按钮。')
         intent = 'remember' if remember else 'history' if history else 'find'
         run = {'run_id': uuid4().hex, 'version': 0, 'state': 'RESOLVING', 'intent': intent,
+               'location_snapshot': [dict(x) for x in self.household.locations],
                'message': message, 'current_location_id': current_location_id or None,
                'selected_object': None, 'matches': [], 'history': [], 'planned_locations': [], 'visited': [],
                'trace': [], 'observations': [], 'candidate': None, 'reply': '', 'mode': self.mode,
@@ -423,7 +429,7 @@ class PhotoFlowService:
                 else:
                     location_id = run['current_location_id']
                     source = f'photo_workspace_owner_statement:{run_id}:local_system_clock'
-                location_name = next(x['location_name'] for x in LOCATIONS if x['location_id'] == location_id)
+                location_name = next(x['location_name'] for x in run_locations(run) if x['location_id'] == location_id)
                 event = memory.remember(event_id='photo-'+run_id, object_id=run['selected_object']['object_id'],
                                         location_id=location_id, location_name=location_name, reported_at=_now(), source=source)
                 run.update(state='USER_CONFIRMED' if action == 'accept_candidate' else 'COMPLETED',
