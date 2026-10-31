@@ -81,6 +81,62 @@ def test_statement_keeps_provenance_and_is_immutable(memory):
         memory.connection.execute("DELETE FROM hm_owner_events")
 
 
+@pytest.mark.parametrize("source", [
+    f"photo_workspace_owner_statement:{'a' * 32}:local_system_clock",
+    f"photo_candidate_owner_review:{'a' * 32}:{'b' * 64}",
+    f"visual_advisor_owner_review:{'a' * 32}:{'b' * 64}",
+    f"owner_chat_confirmation:{'a' * 32}:local_system_clock",
+])
+def test_local_confirmation_time_semantics_survive_reopen_without_rewriting_event(tmp_path, source):
+    database = tmp_path / "household.sqlite3"
+    with HouseholdMemory(database) as memory:
+        memory.enroll("keys-blue", "蓝色钥匙")
+        event = memory.remember(**statement(source=source))
+        assert event["reported_at_basis"] == "local_system_clock"
+        assert event["source_kind"] == "owner_reported"
+        assert event["visual_confirmed"] is False
+        assert event["source"] == source
+        assert event["reported_at"] == statement()["reported_at"]
+    digest = hashlib.sha256(database.read_bytes()).hexdigest()
+    with HouseholdMemory(database) as reopened:
+        recalled = reopened.history("keys-blue")
+        assert recalled == [{key: value for key, value in event.items() if key != "created"}]
+        stored = reopened.connection.execute(
+            "SELECT source, reported_at FROM hm_owner_events WHERE event_id=?", (event["event_id"],)
+        ).fetchone()
+        assert tuple(stored) == (source, statement()["reported_at"])
+    assert hashlib.sha256(database.read_bytes()).hexdigest() == digest
+
+
+@pytest.mark.parametrize("source", [
+    "owner_chat_confirmation:review-name:local_system_clock",
+    f"owner_chat_confirmation:{'a' * 31}:local_system_clock",
+    f"owner_chat_confirmation:{'A' * 32}:local_system_clock",
+    f"owner_chat_confirmation:{'a' * 32}:owner_declared",
+    f"owner_chat_confirmation:{'a' * 32}:local_system_clock:extra",
+    f"photo_workspace_owner_statement:{'a' * 32}:unknown_clock",
+    "photo_workspace_owner_statement::local_system_clock",
+    f"photo_candidate_owner_review:{'a' * 32}:{'b' * 63}",
+    f"photo_candidate_owner_review:{'a' * 31}:{'b' * 64}",
+    f"visual_advisor_owner_review:{'a' * 32}:{'g' * 64}",
+    f"visual_advisor_owner_review:{'a' * 32}:{'b' * 64}:extra",
+    f"unknown_owner_review:{'a' * 32}:{'b' * 64}",
+    "local_workspace_explicit_owner_confirmation:unknown_basis",
+])
+def test_unrecognized_or_malformed_source_preserves_legacy_time_semantics(memory, source):
+    event = memory.remember(**statement(source=source))
+    assert event["reported_at_basis"] == "owner_declared"
+    assert event["source"] == source
+    assert memory.history("keys-blue")[0]["reported_at_basis"] == "owner_declared"
+
+
+@pytest.mark.parametrize("basis", ["session_creation_time", "owner_supplied_timestamp"])
+def test_existing_explicit_owner_confirmation_time_semantics_are_preserved(memory, basis):
+    event = memory.remember(**statement(source="local_workspace_explicit_owner_confirmation:" + basis))
+    assert event["reported_at_basis"] == basis
+    assert event["reported_at"] == statement()["reported_at"]
+
+
 def test_history_uses_absolute_declared_time_not_insert_order(memory):
     memory.remember(**statement())  # 01:00 UTC
     memory.remember(**statement(event_id="statement-02", reported_at="2026-10-27T02:00:00Z"))

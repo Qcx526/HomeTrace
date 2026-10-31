@@ -1,0 +1,48 @@
+{
+  "audit_date": "2026-10-31",
+  "environment": {
+    "os": "Windows",
+    "python": "3.11.4",
+    "node": "24.18.0",
+    "interpreter": "existing optional Agent environment"
+  },
+  "whole_suite": {
+    "passed": 1034,
+    "failed": 0,
+    "warnings": 1,
+    "duration_seconds": 157.63,
+    "exit_code": 0
+  },
+  "frontend": {
+    "passed": 21,
+    "failed": 0
+  },
+  "prior_attempts": [
+    {
+      "attempt": 1,
+      "status": "incomplete_log",
+      "counts_not_used": true
+    },
+    {
+      "attempt": 2,
+      "status": "pytest_not_installed_in_system_python",
+      "tests_executed": 0,
+      "exit_code": 1
+    },
+    {
+      "attempt": 3,
+      "status": "incomplete_log",
+      "counts_not_used": true
+    }
+  ],
+  "raw_prior_logs_retained_locally": true,
+  "offline_software_tests_are_not_real_photo_metrics": true,
+  "new_windows_install_test": false,
+  "whole_browser_workflow_rerun": false,
+  "known_warning": "LangChainPendingDeprecationWarning: allowed_objects default",
+  "commands": [
+    "python -X utf8 -m pytest -q",
+    "node --test tests/test_photo_flow_client.cjs tests/test_photo_agent_client.cjs tests/test_visual_photo_agent_client.cjs",
+    "python -X utf8 tools/accept_memory_restart.py --output-dir artifacts/issue-40/memory-restart-NEW"
+  ]
+}

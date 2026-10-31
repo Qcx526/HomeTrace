@@ -1,0 +1,202 @@
+{
+  "redaction": "No object identity, place name, photo hash, private path, event/run ID, raw model response or credentials exported.",
+  "scope": "Explicit owner statement stored through existing HouseholdMemory CLI; fresh local workspace retains original enrollment binding.",
+  "initial_write": {
+    "created_events": 1,
+    "source_kind": "owner_reported",
+    "visual_confirmed": false,
+    "reported_at_basis": "local_system_clock",
+    "actual_placement_time": "unknown"
+  },
+  "first_query": {
+    "checks_passed": false,
+    "state": "BUDGET_EXCEEDED",
+    "model_calls": 0,
+    "failure_code": "TOKEN_INPUT_BOUND",
+    "configured_max_total_tokens": 6000,
+    "failure_preserved": true,
+    "provider_retries": 0
+  },
+  "subsequent_explicit_query": {
+    "checks_passed": true,
+    "limits": {
+      "text_phases": 3,
+      "model_calls_per_phase": 2,
+      "total_model_calls": 6,
+      "provider_retries": 0,
+      "model_timeout_seconds": 45,
+      "overall_seconds": 360
+    },
+    "actual_model_calls": 1,
+    "actual_total_tokens": 1738,
+    "processes": [
+      {
+        "boot": 1,
+        "exit_code": 1,
+        "stopped": true
+      },
+      {
+        "boot": 2,
+        "exit_code": 1,
+        "stopped": true
+      }
+    ],
+    "distinct_process_count": 2,
+    "database_snapshots": [
+      {
+        "stage": "before-restart",
+        "event_count": 1,
+        "evidence_count": 0,
+        "inspection_mode": "read_only_sqlite"
+      },
+      {
+        "stage": "after-restart",
+        "event_count": 1,
+        "evidence_count": 0,
+        "inspection_mode": "read_only_sqlite"
+      },
+      {
+        "stage": "final",
+        "event_count": 1,
+        "evidence_count": 0,
+        "inspection_mode": "read_only_sqlite"
+      }
+    ],
+    "checks": [
+      {
+        "name": "HTTP status matches expected",
+        "passed": true
+      },
+      {
+        "name": "real visual Agent available",
+        "passed": true
+      },
+      {
+        "name": "no scenes or automatic FOUND",
+        "passed": true
+      },
+      {
+        "name": "no visual evidence generated",
+        "passed": true
+      },
+      {
+        "name": "only existing approved owner event",
+        "passed": true
+      },
+      {
+        "name": "HTTP status matches expected",
+        "passed": true
+      },
+      {
+        "name": "real visual Agent available",
+        "passed": true
+      },
+      {
+        "name": "no scenes or automatic FOUND",
+        "passed": true
+      },
+      {
+        "name": "no visual evidence generated",
+        "passed": true
+      },
+      {
+        "name": "restart does not alter owner event",
+        "passed": true
+      },
+      {
+        "name": "three text phases maximum",
+        "passed": true
+      },
+      {
+        "name": "HTTP status matches expected",
+        "passed": true
+      },
+      {
+        "name": "HTTP status matches expected",
+        "passed": true
+      },
+      {
+        "name": "HTTP status matches expected",
+        "passed": true
+      },
+      {
+        "name": "HTTP status matches expected",
+        "passed": true
+      },
+      {
+        "name": "HTTP status matches expected",
+        "passed": true
+      },
+      {
+        "name": "HTTP status matches expected",
+        "passed": true
+      },
+      {
+        "name": "HTTP status matches expected",
+        "passed": true
+      },
+      {
+        "name": "HTTP status matches expected",
+        "passed": true
+      },
+      {
+        "name": "HTTP status matches expected",
+        "passed": true
+      },
+      {
+        "name": "HTTP status matches expected",
+        "passed": true
+      },
+      {
+        "name": "actual bounded model invocation",
+        "passed": true
+      },
+      {
+        "name": "no vision calls, observations, or consent",
+        "passed": true
+      },
+      {
+        "name": "no visual evidence generated",
+        "passed": true
+      },
+      {
+        "name": "real model resolves history without new write",
+        "passed": true
+      },
+      {
+        "name": "owner database bytes unchanged",
+        "passed": true
+      }
+    ],
+    "result": {
+      "state": "COMPLETED",
+      "intent": "history",
+      "model_calls": 1,
+      "tool_calls": 1,
+      "total_tokens": 1738,
+      "vision_calls": 0,
+      "images_sent_to_advisor": false,
+      "raw_images_sent": false,
+      "visual_confirmed": false,
+      "history_event_count": 1,
+      "observations": 0,
+      "visited_places": 0,
+      "executed_trace_tools": [
+        "llm_request",
+        "llm_decision",
+        "query_owner_memory",
+        "llm_tool"
+      ]
+    },
+    "original_max_total_tokens": 24000,
+    "writes_performed": false,
+    "saved_event_and_timestamp_match": true,
+    "owner_database_bytes_unchanged": true
+  },
+  "custom_location_configured_for_search": false,
+  "images_sent": false,
+  "navigation_executed": false,
+  "automatic_found": false,
+  "independent_visual_recognition_acceptance": "BLOCKED",
+  "old_frozen_photo_result_unchanged": true
+}

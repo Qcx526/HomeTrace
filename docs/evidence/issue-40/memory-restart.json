@@ -1,0 +1,463 @@
+{
+  "scope": "Software fixture; real text LLM, localhost HTTP, SQLite and child-process restarts; scripted owner actions.",
+  "not_real_household_recognition": true,
+  "checks_passed": true,
+  "limits": {
+    "text_phases": 3,
+    "model_calls_per_phase": 2,
+    "total_model_calls": 6,
+    "provider_retries": 0,
+    "model_timeout_seconds": 45,
+    "overall_seconds": 360
+  },
+  "actual_model_calls": 3,
+  "actual_total_tokens": 5196,
+  "processes": [
+    {
+      "boot": 1,
+      "exit_code": 1,
+      "stopped": true
+    },
+    {
+      "boot": 2,
+      "exit_code": 1,
+      "stopped": true
+    },
+    {
+      "boot": 3,
+      "exit_code": 1,
+      "stopped": true
+    }
+  ],
+  "distinct_process_count": 3,
+  "database_snapshots": [
+    {
+      "stage": "initial",
+      "event_count": 0,
+      "evidence_count": 0,
+      "inspection_mode": "read_only_sqlite"
+    },
+    {
+      "stage": "missing-location",
+      "event_count": 0,
+      "evidence_count": 0,
+      "inspection_mode": "read_only_sqlite"
+    },
+    {
+      "stage": "pending",
+      "event_count": 0,
+      "evidence_count": 0,
+      "inspection_mode": "read_only_sqlite"
+    },
+    {
+      "stage": "restored-pending",
+      "event_count": 0,
+      "evidence_count": 0,
+      "inspection_mode": "read_only_sqlite"
+    },
+    {
+      "stage": "confirmed",
+      "event_count": 1,
+      "evidence_count": 0,
+      "inspection_mode": "read_only_sqlite"
+    },
+    {
+      "stage": "duplicate-rejected",
+      "event_count": 1,
+      "evidence_count": 0,
+      "inspection_mode": "read_only_sqlite"
+    },
+    {
+      "stage": "restored-event",
+      "event_count": 1,
+      "evidence_count": 0,
+      "inspection_mode": "read_only_sqlite"
+    },
+    {
+      "stage": "final",
+      "event_count": 1,
+      "evidence_count": 0,
+      "inspection_mode": "read_only_sqlite"
+    }
+  ],
+  "checks": [
+    {
+      "name": "fresh workspace",
+      "passed": true
+    },
+    {
+      "name": "HTTP status matches expected",
+      "passed": true
+    },
+    {
+      "name": "real visual Agent available",
+      "passed": true
+    },
+    {
+      "name": "no scenes or automatic FOUND",
+      "passed": true
+    },
+    {
+      "name": "no visual evidence generated",
+      "passed": true
+    },
+    {
+      "name": "initial memory empty",
+      "passed": true
+    },
+    {
+      "name": "HTTP status matches expected",
+      "passed": true
+    },
+    {
+      "name": "HTTP status matches expected",
+      "passed": true
+    },
+    {
+      "name": "HTTP status matches expected",
+      "passed": true
+    },
+    {
+      "name": "three text phases maximum",
+      "passed": true
+    },
+    {
+      "name": "HTTP status matches expected",
+      "passed": true
+    },
+    {
+      "name": "HTTP status matches expected",
+      "passed": true
+    },
+    {
+      "name": "HTTP status matches expected",
+      "passed": true
+    },
+    {
+      "name": "HTTP status matches expected",
+      "passed": true
+    },
+    {
+      "name": "HTTP status matches expected",
+      "passed": true
+    },
+    {
+      "name": "HTTP status matches expected",
+      "passed": true
+    },
+    {
+      "name": "HTTP status matches expected",
+      "passed": true
+    },
+    {
+      "name": "HTTP status matches expected",
+      "passed": true
+    },
+    {
+      "name": "HTTP status matches expected",
+      "passed": true
+    },
+    {
+      "name": "HTTP status matches expected",
+      "passed": true
+    },
+    {
+      "name": "HTTP status matches expected",
+      "passed": true
+    },
+    {
+      "name": "HTTP status matches expected",
+      "passed": true
+    },
+    {
+      "name": "actual bounded model invocation",
+      "passed": true
+    },
+    {
+      "name": "no vision calls, observations, or consent",
+      "passed": true
+    },
+    {
+      "name": "no visual evidence generated",
+      "passed": true
+    },
+    {
+      "name": "missing location rejected without write",
+      "passed": true
+    },
+    {
+      "name": "three text phases maximum",
+      "passed": true
+    },
+    {
+      "name": "HTTP status matches expected",
+      "passed": true
+    },
+    {
+      "name": "HTTP status matches expected",
+      "passed": true
+    },
+    {
+      "name": "HTTP status matches expected",
+      "passed": true
+    },
+    {
+      "name": "HTTP status matches expected",
+      "passed": true
+    },
+    {
+      "name": "HTTP status matches expected",
+      "passed": true
+    },
+    {
+      "name": "HTTP status matches expected",
+      "passed": true
+    },
+    {
+      "name": "HTTP status matches expected",
+      "passed": true
+    },
+    {
+      "name": "HTTP status matches expected",
+      "passed": true
+    },
+    {
+      "name": "actual bounded model invocation",
+      "passed": true
+    },
+    {
+      "name": "no vision calls, observations, or consent",
+      "passed": true
+    },
+    {
+      "name": "no visual evidence generated",
+      "passed": true
+    },
+    {
+      "name": "explicit location still needs confirmation",
+      "passed": true
+    },
+    {
+      "name": "HTTP status matches expected",
+      "passed": true
+    },
+    {
+      "name": "real visual Agent available",
+      "passed": true
+    },
+    {
+      "name": "no scenes or automatic FOUND",
+      "passed": true
+    },
+    {
+      "name": "HTTP status matches expected",
+      "passed": true
+    },
+    {
+      "name": "no visual evidence generated",
+      "passed": true
+    },
+    {
+      "name": "pending state survives process restart exactly",
+      "passed": true
+    },
+    {
+      "name": "HTTP status matches expected",
+      "passed": true
+    },
+    {
+      "name": "no visual evidence generated",
+      "passed": true
+    },
+    {
+      "name": "one owner-reported non-visual event",
+      "passed": true
+    },
+    {
+      "name": "HTTP status matches expected",
+      "passed": true
+    },
+    {
+      "name": "no visual evidence generated",
+      "passed": true
+    },
+    {
+      "name": "stale duplicate confirmation writes nothing",
+      "passed": true
+    },
+    {
+      "name": "HTTP status matches expected",
+      "passed": true
+    },
+    {
+      "name": "real visual Agent available",
+      "passed": true
+    },
+    {
+      "name": "no scenes or automatic FOUND",
+      "passed": true
+    },
+    {
+      "name": "no visual evidence generated",
+      "passed": true
+    },
+    {
+      "name": "event survives second restart unchanged",
+      "passed": true
+    },
+    {
+      "name": "three text phases maximum",
+      "passed": true
+    },
+    {
+      "name": "HTTP status matches expected",
+      "passed": true
+    },
+    {
+      "name": "HTTP status matches expected",
+      "passed": true
+    },
+    {
+      "name": "HTTP status matches expected",
+      "passed": true
+    },
+    {
+      "name": "HTTP status matches expected",
+      "passed": true
+    },
+    {
+      "name": "HTTP status matches expected",
+      "passed": true
+    },
+    {
+      "name": "HTTP status matches expected",
+      "passed": true
+    },
+    {
+      "name": "HTTP status matches expected",
+      "passed": true
+    },
+    {
+      "name": "HTTP status matches expected",
+      "passed": true
+    },
+    {
+      "name": "HTTP status matches expected",
+      "passed": true
+    },
+    {
+      "name": "HTTP status matches expected",
+      "passed": true
+    },
+    {
+      "name": "actual bounded model invocation",
+      "passed": true
+    },
+    {
+      "name": "no vision calls, observations, or consent",
+      "passed": true
+    },
+    {
+      "name": "no visual evidence generated",
+      "passed": true
+    },
+    {
+      "name": "actual LLM queries exact saved history",
+      "passed": true
+    },
+    {
+      "name": "total real text calls bounded",
+      "passed": true
+    }
+  ],
+  "phases": {
+    "missing-location": {
+      "state": "ERROR",
+      "intent": "remember",
+      "model_calls": 1,
+      "tool_calls": 1,
+      "total_tokens": 1746,
+      "vision_calls": 0,
+      "images_sent_to_advisor": false,
+      "raw_images_sent": false,
+      "visual_confirmed": false,
+      "history_event_count": 0,
+      "observations": 0,
+      "visited_places": 0,
+      "executed_trace_tools": [
+        "llm_request",
+        "llm_decision",
+        "query_owner_memory",
+        "llm_tool"
+      ]
+    },
+    "pending": {
+      "state": "CONFIRM_MEMORY",
+      "intent": "remember",
+      "model_calls": 1,
+      "tool_calls": 1,
+      "total_tokens": 1719,
+      "vision_calls": 0,
+      "images_sent_to_advisor": false,
+      "raw_images_sent": false,
+      "visual_confirmed": false,
+      "history_event_count": 0,
+      "observations": 0,
+      "visited_places": 0,
+      "executed_trace_tools": [
+        "llm_request",
+        "llm_decision",
+        "query_owner_memory",
+        "llm_tool"
+      ]
+    },
+    "history": {
+      "state": "COMPLETED",
+      "intent": "history",
+      "model_calls": 1,
+      "tool_calls": 1,
+      "total_tokens": 1731,
+      "vision_calls": 0,
+      "images_sent_to_advisor": false,
+      "raw_images_sent": false,
+      "visual_confirmed": false,
+      "history_event_count": 1,
+      "observations": 0,
+      "visited_places": 0,
+      "executed_trace_tools": [
+        "llm_request",
+        "llm_decision",
+        "query_owner_memory",
+        "llm_tool"
+      ]
+    }
+  },
+  "confirmation_snapshot": {
+    "state": "COMPLETED",
+    "intent": "remember",
+    "model_calls": 1,
+    "tool_calls": 1,
+    "total_tokens": 1719,
+    "vision_calls": 0,
+    "images_sent_to_advisor": false,
+    "raw_images_sent": false,
+    "visual_confirmed": false,
+    "history_event_count": 1,
+    "observations": 0,
+    "visited_places": 0,
+    "executed_trace_tools": [
+      "llm_request",
+      "llm_decision",
+      "query_owner_memory",
+      "llm_tool",
+      "save_owner_memory"
+    ]
+  },
+  "confirmation_snapshot_does_not_add_model_calls": true,
+  "stale_confirmation_http_status": [
+    409
+  ],
+  "real_photographs_used": 0,
+  "image_consent_grants": 0,
+  "navigation_executed": false
+}
