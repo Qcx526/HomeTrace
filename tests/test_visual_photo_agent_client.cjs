@@ -37,20 +37,20 @@ function consentFixture(extra = {}) {
   return runFixture({state: 'AWAITING_IMAGE_CONSENT', vision_request: {request_id: REQUEST, endpoint: 'https://example.invalid/v1',
     model: 'fixture-model', observation_index: 0, reference: {...asset, roi: [1,2,60,120]}, scene: asset}, ...extra});
 }
-async function client(handler = () => {throw new Error('Unexpected HTTP call');}) {
-  const elements = new Map(), calls = [], timers = new Map();let nextTimer = 0;
+async function client(handler = () => {throw new Error('Unexpected HTTP call');}, {search='', stored=null} = {}) {
+  const elements = new Map(), calls = [], timers = new Map(), storageWrites=[];let nextTimer = 0, storageReads=0;
   const element = id => {assert.ok(ids.has(id), 'Missing production HTML #'+id);if(!elements.has(id))elements.set(id,new Element());return elements.get(id);};
   const config = {mode: 'llm_langgraph', visual_advisor_enabled: true, vision_model: 'fixture-model', notice: 'Software fixture', catalog: [], locations: [], scenes: []};
-  const context=vm.createContext({console, Number,
+  const context=vm.createContext({console, Number, URLSearchParams, location:{search},
     fetch: async (url, options) => {const body=options?.body?JSON.parse(options.body):undefined;calls.push({url,body});return url==='/api/home-flow/config'?response(config):handler(url,body);},
     Option: class {constructor(label,value){this.text=label;this.value=value;}},
     FileReader: class {readAsDataURL(){this.result='data:image/jpeg;base64,dGVzdA==';this.onload();}},
     document: {getElementById: element, querySelectorAll: () => [], createElement: tag => new Element(tag), createElementNS: (_,tag) => new Element(tag)},
-    localStorage: {getItem: () => null, setItem(){}},
+    localStorage: {getItem: () => {storageReads++;return stored;}, setItem: (key,value) => storageWrites.push({key,value})},
     setTimeout: (fn,delay) => {timers.set(++nextTimer,{fn,delay});return nextTimer;},clearTimeout: id => timers.delete(id),
   });
   vm.runInContext(source,context);await settle();
-  return {element,calls,evaluate: code => vm.runInContext(code,context),
+  return {element,calls,storageWrites,storageReads:()=>storageReads,evaluate: code => vm.runInContext(code,context),
     show: run => vm.runInContext('run='+JSON.stringify(run)+';renderRun();',context),
     submit: id => element(id).listeners.submit({preventDefault(){}})};
 }
@@ -104,6 +104,85 @@ test('a failed advisor call has an explicit unavailable record, not empty succes
   assert.match(text(page.element('visual-advice')),/预算预留仍保留/);
   assert.match(text(page.element('visual-advice')),/CALL_FAILED/);
   assert.doesNotMatch(text(page.element('visual-advice')),/外观相似建议/);
+});
+
+test('truncated advice has a specific reason and never displays its partial body', async () => {
+  for(const failure_details of [{response_code:'OUTPUT_TRUNCATED'}, {response_code:'INVALID_CONTENT',finish_reason:'length'}]) {
+    const page=await client();
+    const failure={observation_index:0,execution_status:'failed',error_code:'ADVISOR_CALL_OR_RESPONSE_INVALID',
+      reserved_budget_retained:true,failure_details:{...failure_details,content:'PARTIAL_PRIVATE_MODEL_BODY'},
+      advice:{model_advice:{reason:'PARTIAL_PRIVATE_MODEL_BODY'}},raw_response:'PARTIAL_PRIVATE_MODEL_BODY',
+      known_total_tokens:2100,usage:{input_tokens:52,output_tokens:2048,total_tokens:2100,reasoning_tokens:2048},
+      request_limits:{max_output_tokens:2048,max_retries:0,timeout_seconds:45}};
+    page.show(runFixture({visual_advice:[failure],trace:[{seq:1,tool:'visual_advisor_result',at:'2026-11-02T00:00:00Z',input:{observation_index:0},result:failure}]}));
+    assert.match(text(page.element('visual-advice')),/视觉回复超过长度上限，未取得完整判定；本次未自动重试/);
+    assert.match(text(page.element('visual-advice')),/预算预留仍保留/);
+    assert.match(text(page.element('visual-advice')),/2100/);
+    assert.match(text(page.element('visual-advice')),/2048/);
+    assert.doesNotMatch(text(page.element('visual-advice')),/PARTIAL_PRIVATE_MODEL_BODY/);
+    assert.doesNotMatch(text(page.element('trace')),/PARTIAL_PRIVATE_MODEL_BODY/);
+    assert.equal(page.calls.length,1);
+  }
+});
+
+test('a run link restores the exact existing session using GET without acting or falling back to storage', async () => {
+  const page=await client((url,body)=>{
+    assert.equal(url,'/api/home-flow/runs/'+NEXT_ID);assert.equal(body,undefined);
+    return response(consentFixture({run_id:NEXT_ID}));
+  },{search:'?run='+NEXT_ID,stored:ID});
+  assert.equal(page.evaluate('run.run_id'),NEXT_ID);
+  assert.equal(page.storageReads(),0);
+  assert.deepEqual(page.calls.map(x=>x.url),['/api/home-flow/config','/api/home-flow/runs/'+NEXT_ID]);
+  assert.ok(page.calls.every(x=>x.body===undefined));
+  assert.equal(page.element('vision-consent').checked,false);
+  assert.equal(page.element('approve-vision').disabled,true);
+});
+
+test('opening a candidate run link does not confirm it but preserves explicit owner review actions', async () => {
+  const page=await client((url,body)=>{
+    if(body===undefined){assert.equal(url,'/api/home-flow/runs/'+ID);return response(runFixture({state:'AWAITING_REVIEW',selected_object:{object_id:'cup',name:'水杯'},candidate:{...asset,kind:'visual_advisor',location_name:'软件样例地点'}}));}
+    assert.equal(url,'/api/home-flow/act');assert.equal(body.action,'reject_candidate');
+    return response(runFixture({version:2,state:'UNKNOWN'}));
+  },{search:'?run='+ID});
+  assert.equal(page.evaluate('run.state'),'AWAITING_REVIEW');
+  assert.ok(page.calls.every(x=>x.body===undefined));
+  const buttons=page.element('candidate-actions').children;
+  assert.equal(buttons.length,2);
+  await buttons[1].onclick();
+  assert.equal(page.evaluate('run.state'),'UNKNOWN');
+  assert.equal(page.calls.filter(x=>x.body?.action==='reject_candidate').length,1);
+});
+
+test('invalid and repeated run parameters show errors without loading the old stored session', async () => {
+  for(const value of ['', '../private', 'https://example.invalid/'+ID, ID.toUpperCase(), 'a'.repeat(31), ID+'&run='+NEXT_ID]) {
+    const page=await client(undefined,{search:'?run='+value,stored:NEXT_ID});
+    assert.equal(page.evaluate('run'),null);
+    assert.match(page.element('error').textContent,/执行编号无效/);
+    assert.equal(page.element('error').hidden,false);
+    assert.equal(page.storageReads(),0);
+    assert.equal(page.storageWrites.length,0);
+    assert.deepEqual(page.calls.map(x=>x.url),['/api/home-flow/config']);
+  }
+});
+
+test('missing or mismatched linked sessions do not silently restore another run', async () => {
+  for(const result of [response({error:'执行不存在'},404),response(runFixture({run_id:NEXT_ID}))]) {
+    const page=await client(()=>result,{search:'?run='+ID,stored:NEXT_ID});
+    assert.equal(page.evaluate('run'),null);
+    assert.equal(page.element('error').hidden,false);
+    assert.equal(page.storageReads(),0);
+    assert.equal(page.storageWrites.length,0);
+    assert.deepEqual(page.calls.map(x=>x.url),['/api/home-flow/config','/api/home-flow/runs/'+ID]);
+  }
+});
+
+test('a page without a run parameter still restores the stored session without starting a run', async () => {
+  const page=await client((url,body)=>{
+    assert.equal(url,'/api/home-flow/runs/'+ID);assert.equal(body,undefined);return response(runFixture({state:'UNKNOWN'}));
+  },{search:'?tab=history',stored:ID});
+  assert.equal(page.storageReads(),1);
+  assert.equal(page.evaluate('run.run_id'),ID);
+  assert.ok(page.calls.every(x=>x.body===undefined));
 });
 
 test('new photo uses local upload then the run-scoped endpoint without granting image consent', async () => {

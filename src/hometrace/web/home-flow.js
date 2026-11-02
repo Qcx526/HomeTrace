@@ -82,6 +82,15 @@ function imageFrame(asset,bbox,caption) {
   box.append(svg);return box;
 }
 function details(title,value) {const d=node('details',undefined,'diagnostics');d.append(node('summary',title),node('pre',JSON.stringify(value,null,2)));return d;}
+function advisorFailureRecord(row) {
+  // A failed response is diagnostics only. Never expose partial model content
+  // as advice, including in the expandable raw-record or tool-trace panels.
+  const pick=(source,keys)=>Object.fromEntries(keys.filter(k=>source?.[k]!==undefined).map(k=>[k,source[k]]));
+  return {...pick(row,['observation_index','execution_status','error_code','request_id','reserved_budget_retained','known_total_tokens','elapsed_ms']),
+    failure_details:pick(row.failure_details,['error_type','http_status','response_code','finish_reason']),
+    usage:pick(row.usage,['input_tokens','output_tokens','total_tokens','reasoning_tokens']),
+    request_limits:pick(row.request_limits,['max_output_tokens','timeout_seconds','max_retries'])};
+}
 async function reloadConfig(current=()=>true) {const next=await api('/api/home-flow/config');if(current()){config=next;renderConfig();}}
 function renderConfig() {
   $('service-notice').textContent=config.notice+' · 当前服务：'+modeLabel(config.mode);
@@ -238,9 +247,10 @@ function renderVisual() {
       $('visual-advice').append(card);continue;
     }
     if(row.execution_status==='failed') {
+      const truncated=row.failure_details?.response_code==='OUTPUT_TRUNCATED' || row.failure_details?.finish_reason==='length';
       card.append(node('h3','观察 '+(row.observation_index+1)+' · 视觉调用未完成'),
-        node('p','未取得有效视觉建议，不会自动重试。'+(row.reserved_budget_retained?'本次预算预留仍保留。':''),'note'),
-        node('p','错误编号：'+(row.error_code || '未知'),'field-help'),details('实际失败记录',row));
+        node('p',(truncated?'视觉回复超过长度上限，未取得完整判定；本次未自动重试。':'未取得有效视觉建议，不会自动重试。')+(row.reserved_budget_retained?'本次预算预留仍保留。':''),'note'),
+        node('p','错误编号：'+(row.error_code || '未知'),'field-help'),details('实际失败记录',advisorFailureRecord(row)));
       $('visual-advice').append(card);continue;
     }
     card.append(node('h3','观察 '+(row.observation_index+1)+' · '+(appearance[advice.appearance] || advice.appearance || '未返回外观判断')),
@@ -314,7 +324,8 @@ function renderRun() {
       if(t.result?.reason)facts.push('返回原因：'+t.result.reason);
       if(facts.length)li.append(node('p',facts.join(' · ')));
     }
-    li.append(details(decision?'模型结构化选择与用量':'工具输入与实际返回',{input:t.input,result:t.result}));$('trace').append(li);
+    const result=t.tool==='visual_advisor_result' && t.result?.execution_status==='failed'?advisorFailureRecord(t.result):t.result;
+    li.append(details(decision?'模型结构化选择与用量':'工具输入与实际返回',{input:t.input,result}));$('trace').append(li);
   });
   if(run.state==='RUNNING')timer=setTimeout(poll,700);
   controls();
@@ -393,6 +404,13 @@ $('request-form').addEventListener('submit',e=>{e.preventDefault();perform(async
 });});
 perform(async current=>{
   await reloadConfig(current);if(!current())return;
-  let id=null;try{id=localStorage.getItem(storageKey);}catch{rememberRun('');}
-  if(id&&/^[0-9a-f]{32}$/.test(id)) {try{const next=await api('/api/home-flow/runs/'+id);if(current()){run=next;renderRun();}}catch(e){if(current())error(e);}}
+  // A shared run link selects an existing server record using GET only. It
+  // never starts a request or authorizes/accepts anything on the owner's behalf.
+  const requested=typeof location==='undefined'?[]:new URLSearchParams(location.search).getAll('run');
+  let id=null;
+  if(requested.length) {
+    if(requested.length!==1 || !/^[0-9a-f]{32}$/.test(requested[0]))throw new Error('执行编号无效：run 必须为一个 32 位小写十六进制编号；未加载其他会话。');
+    id=requested[0];
+  } else {try{id=localStorage.getItem(storageKey);}catch{rememberRun('');}}
+  if(id&&/^[0-9a-f]{32}$/.test(id)) {try{const next=await api('/api/home-flow/runs/'+id);if(next.run_id!==id)throw new Error('返回的执行编号不一致，未加载会话。');if(current()){run=next;renderRun();}}catch(e){if(current())error(e);}}
 });

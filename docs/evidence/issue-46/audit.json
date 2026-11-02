@@ -1,0 +1,26 @@
+{
+  "base_commit": "c594c6e6d2e49deb8520c12fe93846dedad785e7",
+  "source_files_sha256": {
+    "src/hometrace/visual_advisor_client.py": "d8c4def1a7df443c030d56ff5ff47925d7183346531023837038619d372b72d1",
+    "src/hometrace/visual_photo_agent_service.py": "fd59442da14579f6447baf9aec1e51e32eca27bca06fc91dbe91785b5aedb358",
+    "src/hometrace/web/home-flow.js": "b495e39f51c3a4baf456c80998084304b56832060995394d03fbf7f267ec88eb",
+    "tests/test_visual_advisor_client.py": "2b69c42451d3524554de5380c394a62e6d9e7134036032b3871fbe362f87d957",
+    "tests/test_visual_photo_agent_client.cjs": "cdf47be27338cf25d26d664da9b596b2a770a156b9a2391ce7372afc4c3a4f51",
+    "tests/test_visual_photo_agent_service.py": "4766722c6b5497be44acad91000a08dffcc4d7ace36bc7bb2016af4142fbcda8"
+  },
+  "public_files_scanned": 11,
+  "actual_key_scan": "PASS",
+  "private_binding_scan": "PASS",
+  "private_directories_ignored": true,
+  "protected_files_unchanged": [
+    "src/hometrace/image_matcher.py",
+    "src/hometrace/search_core.py",
+    "src/hometrace/household_memory.py",
+    "src/hometrace/visual_advisor.py",
+    "config.yaml"
+  ],
+  "historical_frozen_reports_modified": false,
+  "independent_code_review": "no blocking findings; cannot claim causal/stable fix based on one successful response",
+  "original_failed_reports_preserved": true,
+  "new_materials_or_zip": false
+}

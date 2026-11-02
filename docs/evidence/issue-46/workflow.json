@@ -1,0 +1,258 @@
+{
+  "schema_version": 1,
+  "scope": "diagnostic_reused",
+  "navigation": "simulated",
+  "independent_test_images": 0,
+  "automatic_instance_recognition": "BLOCKED",
+  "source_base": "c594c6e6d2e49deb8520c12fe93846dedad785e7",
+  "runs": [
+    {
+      "case": "before",
+      "state_before_owner_action": "UNKNOWN",
+      "model_calls": 6,
+      "decision_tokens": 12469,
+      "vision_calls": 1,
+      "vision_actual_tokens": 3526,
+      "visited": [
+        "H",
+        "N-location",
+        "P-location"
+      ],
+      "transport": "HTTP",
+      "observations": [
+        {
+          "place": "H",
+          "status": "UNKNOWN",
+          "reason": "no_observation",
+          "bbox": null,
+          "diagnostics": {
+            "elapsed_ms": null,
+            "good_matches": null,
+            "inliers": null,
+            "inlier_ratio": null,
+            "reference_coverage": null
+          }
+        },
+        {
+          "place": "N-location",
+          "status": "UNKNOWN",
+          "reason": "insufficient_distinct_matches",
+          "bbox": null,
+          "diagnostics": {
+            "elapsed_ms": 327.106,
+            "good_matches": 9,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0
+          }
+        },
+        {
+          "place": "P-location",
+          "status": "UNKNOWN",
+          "reason": "reference_support_too_local",
+          "bbox": null,
+          "diagnostics": {
+            "elapsed_ms": 304.318,
+            "good_matches": 44,
+            "inliers": 30,
+            "inlier_ratio": 0.6818,
+            "reference_coverage": 0.0759
+          }
+        }
+      ],
+      "advisor": [
+        {
+          "execution_status": "failed",
+          "known_total_tokens": 3526,
+          "failure_details": {
+            "error_type": "AdvisorResponseError",
+            "finish_reason": "length",
+            "http_status": null,
+            "response_code": "INVALID_CONTENT"
+          }
+        }
+      ],
+      "automatic_found": false,
+      "new_owner_events": 0
+    },
+    {
+      "case": "after",
+      "state_before_owner_action": "AWAITING_REVIEW",
+      "model_calls": 6,
+      "decision_tokens": 12833,
+      "vision_calls": 1,
+      "vision_actual_tokens": 2318,
+      "visited": [
+        "H",
+        "N-location",
+        "P-location"
+      ],
+      "transport": "HTTP",
+      "observations": [
+        {
+          "place": "H",
+          "status": "UNKNOWN",
+          "reason": "no_observation",
+          "bbox": null,
+          "diagnostics": {
+            "elapsed_ms": null,
+            "good_matches": null,
+            "inliers": null,
+            "inlier_ratio": null,
+            "reference_coverage": null
+          }
+        },
+        {
+          "place": "N-location",
+          "status": "UNKNOWN",
+          "reason": "insufficient_distinct_matches",
+          "bbox": null,
+          "diagnostics": {
+            "elapsed_ms": 280.311,
+            "good_matches": 9,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0
+          }
+        },
+        {
+          "place": "P-location",
+          "status": "UNKNOWN",
+          "reason": "reference_support_too_local",
+          "bbox": null,
+          "diagnostics": {
+            "elapsed_ms": 323.672,
+            "good_matches": 44,
+            "inliers": 30,
+            "inlier_ratio": 0.6818,
+            "reference_coverage": 0.0759
+          }
+        }
+      ],
+      "advisor": [
+        {
+          "execution_status": "completed",
+          "elapsed_ms": 7292.967,
+          "usage": {
+            "input_tokens": 1478,
+            "output_tokens": 840,
+            "reasoning_tokens": 706,
+            "total_tokens": 2318
+          },
+          "request_limits": {
+            "max_output_tokens": 4096,
+            "max_retries": 0,
+            "timeout_seconds": 45
+          },
+          "appearance": "similar",
+          "next_action": "ask_owner_review"
+        }
+      ],
+      "automatic_found": false,
+      "new_owner_events": 0
+    },
+    {
+      "case": "negative_control",
+      "state_before_owner_action": "UNKNOWN",
+      "model_calls": 4,
+      "decision_tokens": 7869,
+      "vision_calls": 1,
+      "vision_actual_tokens": 2270,
+      "visited": [
+        "N-location"
+      ],
+      "transport": "production_service_direct",
+      "observations": [
+        {
+          "place": "N-location",
+          "status": "UNKNOWN",
+          "reason": "insufficient_distinct_matches",
+          "bbox": null,
+          "diagnostics": {
+            "elapsed_ms": 313.857,
+            "good_matches": 9,
+            "inliers": 0,
+            "inlier_ratio": 0.0,
+            "reference_coverage": 0.0
+          }
+        }
+      ],
+      "advisor": [
+        {
+          "execution_status": "completed",
+          "elapsed_ms": 7248.754,
+          "usage": {
+            "input_tokens": 1478,
+            "output_tokens": 792,
+            "reasoning_tokens": 683,
+            "total_tokens": 2270
+          },
+          "request_limits": {
+            "max_output_tokens": 4096,
+            "max_retries": 0,
+            "timeout_seconds": 45
+          },
+          "appearance": "not_visible",
+          "next_action": "continue_search"
+        }
+      ],
+      "automatic_found": false,
+      "new_owner_events": 0
+    }
+  ],
+  "explicit_owner_confirmation": {
+    "approved": true,
+    "new_events": 1,
+    "state": "USER_CONFIRMED",
+    "source_kind": "owner_reported",
+    "current_position_claim": false,
+    "capture_time": "unknown"
+  },
+  "restart": {
+    "different_process": true,
+    "history_state": "COMPLETED",
+    "history_model_calls": 1,
+    "history_tokens": 1743,
+    "replay_state": "UNKNOWN",
+    "replay_model_calls": 4,
+    "replay_tokens": 7687,
+    "replay_reasons": [
+      "replayed_image_content",
+      "replayed_image_content"
+    ],
+    "new_image_calls": 0,
+    "new_owner_events": 0,
+    "runner_initial_assertion_failed": true,
+    "readonly_correction": {
+      "checks": {
+        "actual_replay_reason_matches_production": true,
+        "no_additional_images_sent": true,
+        "no_automatic_found": true,
+        "one_new_owner_event_only": true,
+        "same_events_after_history_and_replay": true,
+        "persisted_replay_identical": true,
+        "owner_confirmation_not_capture_time": true
+      },
+      "check_count": 7,
+      "all_passed": true,
+      "original_runner_failure_preserved": true,
+      "explanation": "Expected replayed_image; production emitted replayed_image_content. No product change or rerun. Existing failure retained.",
+      "new_model_calls": 0,
+      "new_image_calls": 0,
+      "new_owner_writes": 0
+    }
+  },
+  "grants": {
+    "batch1_limit": 2,
+    "batch1_actual": 1,
+    "batch2_limit": 2,
+    "batch2_actual": 2,
+    "retries": 0
+  },
+  "validation": {
+    "pytest_passed": 1137,
+    "pytest_seconds": 171.44,
+    "frontend_passed": 28,
+    "new_windows_install": false
+  }
+}
