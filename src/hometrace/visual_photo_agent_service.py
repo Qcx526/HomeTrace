@@ -43,6 +43,24 @@ VISUAL_SYSTEM = SYSTEM.replace('所有图片只在本地处理。', '图片仅�
 )
 
 
+def _advisor_accounting_metadata(usage, limits=None):
+    """Only numeric transport diagnostics, never provider reasoning or raw errors."""
+    usage = usage if type(usage) is dict else {}
+    clean = {key: usage[key] for key in ('input_tokens', 'output_tokens', 'total_tokens')
+             if type(usage.get(key)) is int and usage[key] >= 0}
+    reasoning = usage.get('reasoning_tokens')
+    if type(reasoning) is int and 0 <= reasoning <= clean.get('output_tokens', -1):
+        clean['reasoning_tokens'] = reasoning  # Already included in output/total.
+    result = {'usage': clean} if clean else {}
+    if type(limits) is dict:
+        bounds = {'max_output_tokens': (1, 4096), 'timeout_seconds': (1, 120), 'max_retries': (0, 0)}
+        safe = {key: limits[key] for key, (low, high) in bounds.items()
+                if type(limits.get(key)) is int and low <= limits[key] <= high}
+        if safe:
+            result['request_limits'] = safe
+    return result
+
+
 class VisualPhotoAgentService(PhotoAgentService):
     visual_advisor_enabled = True
     # The gateway truncated a real post-advice tool call at the legacy 512
@@ -406,6 +424,7 @@ class VisualPhotoAgentService(PhotoAgentService):
             from .agent_model import safe_model_error
             safe = safe_model_error(exc)
             failure_details = {k: safe[k] for k in ('error_type', 'http_status')}
+            failure_limits = getattr(exc, 'request_limits', None)
             if isinstance(getattr(exc, 'code', None), str):
                 failure_details['response_code'] = _bounded_text(exc.code, self.agent_config.api_key, 60)
             if isinstance(getattr(exc, 'finish_reason', None), str):
@@ -443,6 +462,7 @@ class VisualPhotoAgentService(PhotoAgentService):
             if error:
                 self._record_advice_failure(run, index, error)
                 run['visual_advice'][-1]['failure_details'] = failure_details
+                run['visual_advice'][-1].update(_advisor_accounting_metadata(usage, failure_limits))
                 if total is not None:
                     # A malformed answer cannot erase actual provider usage or
                     # release the conservative reservation retained on failure.
@@ -454,8 +474,7 @@ class VisualPhotoAgentService(PhotoAgentService):
                 run['vision_request']['status'] = 'completed'
                 run['agent_internal']['vision_attempts'][str(index)] = 'completed'
                 row = {'request_id': request_id, 'observation_index': index, 'execution_status': 'completed',
-                       'advice': advice, 'usage': {k: usage[k] for k in ('input_tokens', 'output_tokens', 'total_tokens')
-                                                 if type(usage.get(k)) is int and usage[k] >= 0},
+                       'advice': advice, **_advisor_accounting_metadata(usage, result.get('request_limits')),
                        'elapsed_ms': round(result['elapsed_ms'], 3), 'model': request['model'],
                        'requested_model': request['model'],
                        'returned_model': _bounded_text(result.get('model', ''), self.agent_config.api_key, 160)}

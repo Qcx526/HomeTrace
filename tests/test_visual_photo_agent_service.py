@@ -395,6 +395,56 @@ def test_invalid_advice_still_charges_known_usage_without_releasing_failure_rese
     assert len(advisor.calls) == 1 and not history(home)
 
 
+def test_truncated_response_keeps_safe_diagnostics_and_never_retries_or_confirms(tmp_path):
+    from hometrace.visual_advisor_client import AdvisorResponseError
+    usage = {'input_tokens': 1478, 'output_tokens': 4096, 'total_tokens': 5574,
+             'reasoning_tokens': 4000, 'reasoning_content': 'private-provider-text'}
+    limits = {'max_output_tokens': 4096, 'timeout_seconds': 45, 'max_retries': 0,
+              'untrusted_url': 'https://private.invalid/'}
+    response = AdvisorResponseError('not for display', usage, code='OUTPUT_TRUNCATED',
+                                    finish_reason='length', request_limits=limits)
+    home, service, _, _, advisor, run, _, _ = initial(tmp_path, [stop()], advisor=Advisor(response))
+    consent(service, run)
+    final = service.wait(run['run_id'])
+    row = final['visual_advice'][0]
+    assert row['failure_details']['response_code'] == 'OUTPUT_TRUNCATED'
+    assert row['failure_details']['finish_reason'] == 'length'
+    assert row['usage'] == {k: v for k, v in usage.items() if k != 'reasoning_content'}
+    assert row['request_limits'] == {k: v for k, v in limits.items() if k != 'untrusted_url'}
+    assert final['vision_actual_tokens'] == 5574
+    assert final['vision_tokens_used'] == VISION_RESERVATION
+    assert final['state'] == 'UNKNOWN' and not final['visual_confirmed']
+    assert final['candidate'] is None and not history(home) and len(advisor.calls) == 1
+    assert 'private-provider-text' not in json.dumps(final)
+    assert 'private.invalid' not in json.dumps(final)
+
+
+def test_successful_reasoning_is_an_output_subtotal_not_an_extra_charge(tmp_path):
+    response = advice(total_tokens=300)
+    response['usage']['reasoning_tokens'] = 8
+    response['request_limits'] = {'max_output_tokens': 4096, 'timeout_seconds': 45, 'max_retries': 0}
+    home, service, _, _, advisor, run, _, _ = initial(tmp_path, [stop()], advisor=Advisor(response))
+    consent(service, run)
+    final = service.wait(run['run_id'])
+    row = final['visual_advice'][0]
+    assert row['usage'] == response['usage']
+    assert row['request_limits'] == response['request_limits']
+    assert final['vision_actual_tokens'] == final['vision_tokens_used'] == 300
+    assert final['state'] == 'UNKNOWN' and not history(home) and len(advisor.calls) == 1
+
+
+@pytest.mark.parametrize('reasoning', [None, -1, True, '8', 11])
+def test_invalid_optional_reasoning_metadata_is_not_published(tmp_path, reasoning):
+    response = advice()
+    response['usage']['reasoning_tokens'] = reasoning
+    home, service, _, _, _, run, _, _ = initial(tmp_path, [stop()], advisor=Advisor(response))
+    consent(service, run)
+    final = service.wait(run['run_id'])
+    assert 'reasoning_tokens' not in final['visual_advice'][0]['usage']
+    assert final['vision_actual_tokens'] == final['vision_tokens_used'] == 300
+    assert not history(home)
+
+
 def test_owner_rejection_returns_to_llm_and_same_evidence_cannot_be_reviewed_twice(tmp_path):
     def rejected(context):
         assert context['last_tool_result']['tool'] == 'owner_reject_candidate'

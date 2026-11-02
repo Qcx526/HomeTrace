@@ -7,14 +7,20 @@ from .agent_config import disable_external_tracing
 from .visual_advisor import PARAMETERS, build_messages, validate_advice
 
 
+# Live requests have a separate limit; frozen experiment PARAMETERS stay unchanged.
+LIVE_MAX_OUTPUT_TOKENS = 4096
+
+
 class AdvisorResponseError(ValueError):
     """Invalid content can still have incurred a known provider token charge."""
 
-    def __init__(self, message, usage=None, *, code='INVALID_RESPONSE', finish_reason=None):
+    def __init__(self, message, usage=None, *, code='INVALID_RESPONSE', finish_reason=None,
+                 request_limits=None):
         super().__init__(message)
         self.usage = usage
         self.code = code
         self.finish_reason = finish_reason
+        self.request_limits = request_limits
 
 
 def _derivative(raw, roi=None):
@@ -68,21 +74,31 @@ def call_advisor(config, packet):
     from openai import OpenAI
     import httpx
     messages = build_messages([packet['reference_jpeg']], packet['scene_jpeg'])
+    request_limits = {'max_output_tokens': LIVE_MAX_OUTPUT_TOKENS,
+                      'timeout_seconds': PARAMETERS['timeout_seconds'], 'max_retries': 0}
     started = perf_counter()
     with OpenAI(api_key=config.api_key, base_url=config.llm.base_url,
                 timeout=PARAMETERS['timeout_seconds'], max_retries=0,
                 http_client=httpx.Client(follow_redirects=False, timeout=PARAMETERS['timeout_seconds'])) as client:
         response = client.chat.completions.create(model=config.llm.model, messages=messages,
-            temperature=PARAMETERS['temperature'], max_tokens=PARAMETERS['max_tokens'],
+            temperature=PARAMETERS['temperature'], max_tokens=LIVE_MAX_OUTPUT_TOKENS,
             response_format={'type':'json_object'})
     usage = response.usage
     if usage is None:
-        raise AdvisorResponseError('Missing token accounting', code='MISSING_USAGE')
+        raise AdvisorResponseError('Missing token accounting', code='MISSING_USAGE',
+                                   request_limits=request_limits)
     values = [usage.prompt_tokens, usage.completion_tokens, usage.total_tokens]
     if (any(type(v) is not int or v < 0 for v in values) or values[2] < 1
             or values[2] != values[0] + values[1]):
-        raise AdvisorResponseError('Invalid token accounting', code='INVALID_USAGE')
+        raise AdvisorResponseError('Invalid token accounting', code='INVALID_USAGE',
+                                   request_limits=request_limits)
     accounting = dict(zip(('input_tokens','output_tokens','total_tokens'),values))
+    details = getattr(usage, 'completion_tokens_details', None)
+    reasoning_tokens = getattr(details, 'reasoning_tokens', None)
+    # This optional counter is part of output_tokens, never an additional charge.
+    # Absent/invalid detail stays unknown; no model reasoning text is retained.
+    if type(reasoning_tokens) is int and 0 <= reasoning_tokens <= values[1]:
+        accounting['reasoning_tokens'] = reasoning_tokens
     finish_reason = None
     try:
         choice = response.choices[0]
@@ -92,7 +108,9 @@ def call_advisor(config, packet):
         advice = validate_advice(choice.message.content)
     except (ValueError, IndexError, TypeError, AttributeError) as exc:
         raise AdvisorResponseError('Invalid or incomplete visual advice', accounting,
-                                   code='INVALID_CONTENT', finish_reason=finish_reason) from exc
+                                   code=('OUTPUT_TRUNCATED' if finish_reason == 'length' else 'INVALID_CONTENT'),
+                                   finish_reason=finish_reason, request_limits=request_limits) from exc
     return {'advice':advice,
             'usage':accounting,
+            'request_limits':request_limits,
             'elapsed_ms':round((perf_counter()-started)*1000,3), 'model':response.model}

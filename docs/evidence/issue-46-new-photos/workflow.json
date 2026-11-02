@@ -1,0 +1,815 @@
+{
+  "schema_version": 1,
+  "source_commit": "cd75a52d1710608f316df401ea07f2e8d2008d7a",
+  "scope": "new owner-supplied workflow diagnostics, not independent 6-positive/8-negative instance benchmark",
+  "navigation": "simulated",
+  "images": 5,
+  "input_dimensions": [
+    1706,
+    1279
+  ],
+  "owner_presence_labels": {
+    "S1": false,
+    "S2": true,
+    "S3": true,
+    "S4": false,
+    "S5": false
+  },
+  "truth_boxes": null,
+  "automatic_instance_validation": "BLOCKED",
+  "production_code_changed": false,
+  "first": {
+    "text_budget": 24000,
+    "runs": {
+      "main": {
+        "state": "BUDGET_EXCEEDED",
+        "transport": "HTTP",
+        "observations": [
+          {
+            "ref": "E1",
+            "sample": "S1",
+            "place": "H",
+            "status": "UNKNOWN",
+            "reason": "insufficient_geometric_inliers",
+            "bbox": null,
+            "diagnostics": {
+              "elapsed_ms": 87.146,
+              "good_matches": 14,
+              "image_decoded": true,
+              "inlier_ratio": 0.0,
+              "inliers": 0,
+              "reference_coverage": 0.0
+            }
+          },
+          {
+            "ref": "E2",
+            "sample": "S2",
+            "place": "B",
+            "status": "UNKNOWN",
+            "reason": "insufficient_geometric_inliers",
+            "bbox": null,
+            "diagnostics": {
+              "elapsed_ms": 99.588,
+              "good_matches": 15,
+              "image_decoded": true,
+              "inlier_ratio": 0.2667,
+              "inliers": 4,
+              "reference_coverage": 0.0053
+            }
+          },
+          {
+            "ref": "E3",
+            "sample": "S3",
+            "place": "B",
+            "status": "UNKNOWN",
+            "reason": "insufficient_geometric_inliers",
+            "bbox": null,
+            "diagnostics": {
+              "elapsed_ms": 99.815,
+              "good_matches": 18,
+              "image_decoded": true,
+              "inlier_ratio": 0.2778,
+              "inliers": 5,
+              "reference_coverage": 0.055
+            }
+          }
+        ],
+        "visual_advice": [
+          {
+            "observation_ref": "E1",
+            "sample": "S1",
+            "execution_status": "completed",
+            "appearance": "not_visible",
+            "next_action": "continue_search",
+            "quality_flags": [
+              "small_target",
+              "background_clutter"
+            ],
+            "elapsed_ms": 13009.328,
+            "usage": {
+              "input_tokens": 1470,
+              "output_tokens": 1434,
+              "reasoning_tokens": 1259,
+              "total_tokens": 2904
+            },
+            "request_limits": {
+              "max_output_tokens": 4096,
+              "max_retries": 0,
+              "timeout_seconds": 45
+            }
+          },
+          {
+            "observation_ref": "E2",
+            "sample": "S2",
+            "execution_status": "completed",
+            "appearance": "uncertain",
+            "next_action": "request_closeup",
+            "quality_flags": [
+              "small_target",
+              "occluded",
+              "background_clutter"
+            ],
+            "elapsed_ms": 10159.7,
+            "usage": {
+              "input_tokens": 1470,
+              "output_tokens": 966,
+              "reasoning_tokens": 811,
+              "total_tokens": 2436
+            },
+            "request_limits": {
+              "max_output_tokens": 4096,
+              "max_retries": 0,
+              "timeout_seconds": 45
+            }
+          }
+        ],
+        "model_tool_choices": [
+          {
+            "sequence": 2,
+            "selected_tool": "resolve_request"
+          },
+          {
+            "sequence": 7,
+            "selected_tool": "inspect_location"
+          },
+          {
+            "sequence": 13,
+            "selected_tool": "visual_advice"
+          },
+          {
+            "sequence": 19,
+            "selected_tool": "inspect_location"
+          },
+          {
+            "sequence": 25,
+            "selected_tool": "visual_advice"
+          },
+          {
+            "sequence": 31,
+            "selected_tool": "request_new_photo"
+          }
+        ],
+        "automatic_found": false,
+        "new_photo_count": 1,
+        "vision_calls": 2,
+        "model_calls": 6,
+        "decision_tokens": 14011,
+        "vision_tokens": 5340,
+        "guard_codes": [
+          "TOKEN_INPUT_BOUND"
+        ]
+      },
+      "control-scene-03": {
+        "state": "AWAITING_REVIEW",
+        "transport": "direct production service",
+        "observations": [
+          {
+            "ref": "E1",
+            "sample": "S3",
+            "place": "B",
+            "status": "UNKNOWN",
+            "reason": "insufficient_geometric_inliers",
+            "bbox": null,
+            "diagnostics": {
+              "elapsed_ms": 107.187,
+              "good_matches": 18,
+              "image_decoded": true,
+              "inlier_ratio": 0.2778,
+              "inliers": 5,
+              "reference_coverage": 0.055
+            }
+          }
+        ],
+        "visual_advice": [
+          {
+            "observation_ref": "E1",
+            "sample": "S3",
+            "execution_status": "completed",
+            "appearance": "similar",
+            "next_action": "ask_owner_review",
+            "quality_flags": [
+              "view_mismatch",
+              "background_clutter"
+            ],
+            "elapsed_ms": 20334.154,
+            "usage": {
+              "input_tokens": 1470,
+              "output_tokens": 2275,
+              "reasoning_tokens": 2134,
+              "total_tokens": 3745
+            },
+            "request_limits": {
+              "max_output_tokens": 4096,
+              "max_retries": 0,
+              "timeout_seconds": 45
+            }
+          }
+        ],
+        "model_tool_choices": [
+          {
+            "sequence": 2,
+            "selected_tool": "resolve_request"
+          },
+          {
+            "sequence": 7,
+            "selected_tool": "inspect_location"
+          },
+          {
+            "sequence": 13,
+            "selected_tool": "visual_advice"
+          },
+          {
+            "sequence": 19,
+            "selected_tool": "request_owner_review"
+          }
+        ],
+        "automatic_found": false,
+        "new_photo_count": 0,
+        "vision_calls": 1,
+        "model_calls": 4,
+        "decision_tokens": 8101,
+        "vision_tokens": 3745,
+        "guard_codes": []
+      },
+      "control-scene-04": {
+        "state": "UNKNOWN",
+        "transport": "direct production service",
+        "observations": [
+          {
+            "ref": "E1",
+            "sample": "S4",
+            "place": "H",
+            "status": "UNKNOWN",
+            "reason": "insufficient_geometric_inliers",
+            "bbox": null,
+            "diagnostics": {
+              "elapsed_ms": 173.557,
+              "good_matches": 13,
+              "image_decoded": true,
+              "inlier_ratio": 0.3077,
+              "inliers": 4,
+              "reference_coverage": 0.0153
+            }
+          }
+        ],
+        "visual_advice": [
+          {
+            "observation_ref": "E1",
+            "sample": "S4",
+            "execution_status": "completed",
+            "appearance": "not_visible",
+            "next_action": "continue_search",
+            "quality_flags": [
+              "view_mismatch",
+              "background_clutter"
+            ],
+            "elapsed_ms": 16518.25,
+            "usage": {
+              "input_tokens": 1470,
+              "output_tokens": 1854,
+              "reasoning_tokens": 1701,
+              "total_tokens": 3324
+            },
+            "request_limits": {
+              "max_output_tokens": 4096,
+              "max_retries": 0,
+              "timeout_seconds": 45
+            }
+          }
+        ],
+        "model_tool_choices": [
+          {
+            "sequence": 2,
+            "selected_tool": "resolve_request"
+          },
+          {
+            "sequence": 7,
+            "selected_tool": "inspect_location"
+          },
+          {
+            "sequence": 13,
+            "selected_tool": "visual_advice"
+          },
+          {
+            "sequence": 19,
+            "selected_tool": "finish_search"
+          }
+        ],
+        "automatic_found": false,
+        "new_photo_count": 0,
+        "vision_calls": 1,
+        "model_calls": 4,
+        "decision_tokens": 8245,
+        "vision_tokens": 3324,
+        "guard_codes": []
+      },
+      "control-scene-05": {
+        "state": "UNKNOWN",
+        "transport": "direct production service",
+        "observations": [
+          {
+            "ref": "E1",
+            "sample": "S5",
+            "place": "C",
+            "status": "UNKNOWN",
+            "reason": "insufficient_distinct_matches",
+            "bbox": null,
+            "diagnostics": {
+              "elapsed_ms": 63.082,
+              "good_matches": 9,
+              "image_decoded": true,
+              "inlier_ratio": 0.0,
+              "inliers": 0,
+              "reference_coverage": 0.0
+            }
+          }
+        ],
+        "visual_advice": [
+          {
+            "observation_ref": "E1",
+            "sample": "S5",
+            "execution_status": "completed",
+            "appearance": "not_visible",
+            "next_action": "continue_search",
+            "quality_flags": [
+              "view_mismatch",
+              "background_clutter"
+            ],
+            "elapsed_ms": 3673.346,
+            "usage": {
+              "input_tokens": 1470,
+              "output_tokens": 287,
+              "reasoning_tokens": 167,
+              "total_tokens": 1757
+            },
+            "request_limits": {
+              "max_output_tokens": 4096,
+              "max_retries": 0,
+              "timeout_seconds": 45
+            }
+          }
+        ],
+        "model_tool_choices": [
+          {
+            "sequence": 2,
+            "selected_tool": "resolve_request"
+          },
+          {
+            "sequence": 7,
+            "selected_tool": "inspect_location"
+          },
+          {
+            "sequence": 13,
+            "selected_tool": "visual_advice"
+          },
+          {
+            "sequence": 19,
+            "selected_tool": "finish_search"
+          }
+        ],
+        "automatic_found": false,
+        "new_photo_count": 0,
+        "vision_calls": 1,
+        "model_calls": 4,
+        "decision_tokens": 7861,
+        "vision_tokens": 1757,
+        "guard_codes": []
+      },
+      "history": {
+        "state": "COMPLETED",
+        "transport": "HTTP",
+        "observations": [],
+        "visual_advice": [],
+        "model_tool_choices": [
+          {
+            "sequence": 2,
+            "selected_tool": "resolve_request"
+          }
+        ],
+        "automatic_found": false,
+        "new_photo_count": 0,
+        "vision_calls": 0,
+        "model_calls": 1,
+        "decision_tokens": 1758,
+        "vision_tokens": 0,
+        "guard_codes": []
+      },
+      "replay": {
+        "state": "UNKNOWN",
+        "transport": "HTTP",
+        "observations": [
+          {
+            "ref": "E1",
+            "sample": "S1",
+            "place": "H",
+            "status": "UNKNOWN",
+            "reason": "replayed_image_content",
+            "bbox": null,
+            "diagnostics": {}
+          },
+          {
+            "ref": "E2",
+            "sample": "S2",
+            "place": "B",
+            "status": "UNKNOWN",
+            "reason": "replayed_image_content",
+            "bbox": null,
+            "diagnostics": {}
+          }
+        ],
+        "visual_advice": [],
+        "model_tool_choices": [
+          {
+            "sequence": 2,
+            "selected_tool": "resolve_request"
+          },
+          {
+            "sequence": 7,
+            "selected_tool": "inspect_location"
+          },
+          {
+            "sequence": 12,
+            "selected_tool": "inspect_location"
+          },
+          {
+            "sequence": 17,
+            "selected_tool": "finish_search"
+          }
+        ],
+        "automatic_found": false,
+        "new_photo_count": 0,
+        "vision_calls": 0,
+        "model_calls": 4,
+        "decision_tokens": 7527,
+        "vision_tokens": 0,
+        "guard_codes": []
+      }
+    },
+    "checks": [
+      {
+        "name": "main requested real visual comparison",
+        "passed": true
+      },
+      {
+        "name": "old history was searched first",
+        "passed": true
+      },
+      {
+        "name": "old location had real observation",
+        "passed": true
+      },
+      {
+        "name": "main owner-assisted photo history saved",
+        "passed": false
+      },
+      {
+        "name": "scene-03 control has no owner writes",
+        "passed": true
+      },
+      {
+        "name": "scene-04 control has no owner writes",
+        "passed": true
+      },
+      {
+        "name": "scene-05 control has no owner writes",
+        "passed": true
+      },
+      {
+        "name": "five distinct scenes compared once",
+        "passed": true
+      },
+      {
+        "name": "new process restored exact main record",
+        "passed": true
+      },
+      {
+        "name": "history completed and reflects saved record",
+        "passed": true
+      },
+      {
+        "name": "old photos refused without cloud resend",
+        "passed": true
+      },
+      {
+        "name": "restart and replay did not write owner events",
+        "passed": true
+      }
+    ],
+    "usage": {
+      "model_calls": 23,
+      "total_tokens": 47503,
+      "vision_calls": 5,
+      "vision_actual_tokens": 14166
+    },
+    "new_owner_events": 0
+  },
+  "second": {
+    "text_budget": 32000,
+    "runs": {
+      "main": {
+        "state": "USER_CONFIRMED",
+        "transport": "HTTP",
+        "observations": [
+          {
+            "ref": "E1",
+            "sample": "S1",
+            "place": "H",
+            "status": "UNKNOWN",
+            "reason": "insufficient_geometric_inliers",
+            "bbox": null,
+            "diagnostics": {
+              "elapsed_ms": 87.152,
+              "good_matches": 14,
+              "image_decoded": true,
+              "inlier_ratio": 0.0,
+              "inliers": 0,
+              "reference_coverage": 0.0
+            }
+          },
+          {
+            "ref": "E2",
+            "sample": "S2",
+            "place": "B",
+            "status": "UNKNOWN",
+            "reason": "insufficient_geometric_inliers",
+            "bbox": null,
+            "diagnostics": {
+              "elapsed_ms": 106.698,
+              "good_matches": 15,
+              "image_decoded": true,
+              "inlier_ratio": 0.2667,
+              "inliers": 4,
+              "reference_coverage": 0.0053
+            }
+          },
+          {
+            "ref": "E3",
+            "sample": "S3",
+            "place": "B",
+            "status": "UNKNOWN",
+            "reason": "insufficient_geometric_inliers",
+            "bbox": null,
+            "diagnostics": {
+              "elapsed_ms": 103.801,
+              "good_matches": 18,
+              "image_decoded": true,
+              "inlier_ratio": 0.2778,
+              "inliers": 5,
+              "reference_coverage": 0.055
+            }
+          }
+        ],
+        "visual_advice": [
+          {
+            "observation_ref": "E1",
+            "sample": "S1",
+            "execution_status": "completed",
+            "appearance": "not_visible",
+            "next_action": "continue_search",
+            "quality_flags": [
+              "background_clutter"
+            ],
+            "elapsed_ms": 10676.377,
+            "usage": {
+              "input_tokens": 1470,
+              "output_tokens": 506,
+              "reasoning_tokens": 365,
+              "total_tokens": 1976
+            },
+            "request_limits": {
+              "max_output_tokens": 4096,
+              "max_retries": 0,
+              "timeout_seconds": 45
+            }
+          },
+          {
+            "observation_ref": "E2",
+            "sample": "S2",
+            "execution_status": "completed",
+            "appearance": "uncertain",
+            "next_action": "request_closeup",
+            "quality_flags": [
+              "small_target",
+              "background_clutter"
+            ],
+            "elapsed_ms": 33644.762,
+            "usage": {
+              "input_tokens": 1470,
+              "output_tokens": 4009,
+              "reasoning_tokens": 3863,
+              "total_tokens": 5479
+            },
+            "request_limits": {
+              "max_output_tokens": 4096,
+              "max_retries": 0,
+              "timeout_seconds": 45
+            }
+          },
+          {
+            "observation_ref": "E3",
+            "sample": "S3",
+            "execution_status": "completed",
+            "appearance": "similar",
+            "next_action": "ask_owner_review",
+            "quality_flags": [
+              "background_clutter"
+            ],
+            "elapsed_ms": 11206.677,
+            "usage": {
+              "input_tokens": 1470,
+              "output_tokens": 1143,
+              "reasoning_tokens": 987,
+              "total_tokens": 2613
+            },
+            "request_limits": {
+              "max_output_tokens": 4096,
+              "max_retries": 0,
+              "timeout_seconds": 45
+            }
+          }
+        ],
+        "model_tool_choices": [
+          {
+            "sequence": 2,
+            "selected_tool": "resolve_request"
+          },
+          {
+            "sequence": 7,
+            "selected_tool": "inspect_location"
+          },
+          {
+            "sequence": 13,
+            "selected_tool": "visual_advice"
+          },
+          {
+            "sequence": 19,
+            "selected_tool": "inspect_location"
+          },
+          {
+            "sequence": 25,
+            "selected_tool": "visual_advice"
+          },
+          {
+            "sequence": 31,
+            "selected_tool": "request_new_photo"
+          },
+          {
+            "sequence": 39,
+            "selected_tool": "visual_advice"
+          },
+          {
+            "sequence": 45,
+            "selected_tool": "request_owner_review"
+          }
+        ],
+        "automatic_found": false,
+        "new_photo_count": 1,
+        "vision_calls": 3,
+        "model_calls": 8,
+        "decision_tokens": 20001,
+        "vision_tokens": 10068,
+        "guard_codes": []
+      },
+      "history": {
+        "state": "COMPLETED",
+        "transport": "HTTP",
+        "observations": [],
+        "visual_advice": [],
+        "model_tool_choices": [
+          {
+            "sequence": 2,
+            "selected_tool": "resolve_request"
+          }
+        ],
+        "automatic_found": false,
+        "new_photo_count": 0,
+        "vision_calls": 0,
+        "model_calls": 1,
+        "decision_tokens": 1745,
+        "vision_tokens": 0,
+        "guard_codes": []
+      },
+      "replay": {
+        "state": "UNKNOWN",
+        "transport": "HTTP",
+        "observations": [
+          {
+            "ref": "E1",
+            "sample": "S2",
+            "place": "B",
+            "status": "UNKNOWN",
+            "reason": "replayed_image_content",
+            "bbox": null,
+            "diagnostics": {}
+          },
+          {
+            "ref": "E2",
+            "sample": "S1",
+            "place": "H",
+            "status": "UNKNOWN",
+            "reason": "replayed_image_content",
+            "bbox": null,
+            "diagnostics": {}
+          }
+        ],
+        "visual_advice": [],
+        "model_tool_choices": [
+          {
+            "sequence": 2,
+            "selected_tool": "resolve_request"
+          },
+          {
+            "sequence": 7,
+            "selected_tool": "inspect_location"
+          },
+          {
+            "sequence": 12,
+            "selected_tool": "inspect_location"
+          },
+          {
+            "sequence": 17,
+            "selected_tool": "finish_search"
+          }
+        ],
+        "automatic_found": false,
+        "new_photo_count": 0,
+        "vision_calls": 0,
+        "model_calls": 4,
+        "decision_tokens": 7910,
+        "vision_tokens": 0,
+        "guard_codes": []
+      }
+    },
+    "checks": [
+      {
+        "name": "main requested real visual comparison",
+        "passed": true
+      },
+      {
+        "name": "old history was searched first",
+        "passed": true
+      },
+      {
+        "name": "old location had real observation",
+        "passed": true
+      },
+      {
+        "name": "main owner-assisted photo history saved",
+        "passed": true
+      },
+      {
+        "name": "retry grant respected",
+        "passed": true
+      },
+      {
+        "name": "new process restored exact main record",
+        "passed": true
+      },
+      {
+        "name": "history completed and reflects saved record",
+        "passed": true
+      },
+      {
+        "name": "old photos refused without cloud resend",
+        "passed": true
+      },
+      {
+        "name": "restart and replay did not write owner events",
+        "passed": true
+      }
+    ],
+    "usage": {
+      "model_calls": 13,
+      "total_tokens": 29656,
+      "vision_calls": 3,
+      "vision_actual_tokens": 10068
+    },
+    "new_owner_events": 1,
+    "different_restart_process": true
+  },
+  "budget_diagnosis": {
+    "actual_prior_tokens": 14011,
+    "next_input_bound": 11145,
+    "old_remaining": -1156,
+    "new_remaining": 6844,
+    "new_budget_validated": true,
+    "new_image_calls": 0,
+    "source_code_changed": false,
+    "caveat": "Bound passes for the frozen failed state only; not a guarantee of real subsequent model behavior."
+  },
+  "image_grants": {
+    "first_limit": 5,
+    "first_reserved": 5,
+    "second_limit": 3,
+    "second_reserved": 3,
+    "automatic_retries": 0
+  },
+  "browser_this_round": "unverified; Windows Computer Use stopped because browser URL could not be determined reliably; no further UI input",
+  "tests": {
+    "pytest": 1137,
+    "pytest_seconds": 189.78,
+    "frontend": 28,
+    "frontend_ms": 252.4792,
+    "new_windows_install": false
+  }
+}
