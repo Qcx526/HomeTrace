@@ -1,5 +1,7 @@
 # HomeTrace 初赛交付与一键打包合同
 
+> 历史合同（2026-10-22）。后续已取得官方原表；当前要求以 [Issue #12](https://github.com/Qcx526/HomeTrace/issues/12)、[官方主表工具](OFFICIAL_SUBMISSION.md) 和 [2026-11-02 交付清单](DELIVERY_CLOSEOUT_20261101.md) 为准。以下旧日期、自编主表替代要求不适用于本轮正式提交。
+
 更新：2026-10-22。以 [Issue #4 最新 PM 评论](https://github.com/Qcx526/HomeTrace/issues/4#issuecomment-6341286246) 为准。此前“必须取得官方 Word 原件，否则所有打包 BLOCKED”的要求已撤销。自编技术说明书是本项目书面交付方案，不称为官方模板。
 
 ## 交付与外部核验

@@ -1,23 +1,25 @@
 {
   "schema_version": 1,
   "test_only": false,
-  "document_source": "team_authored",
+  "document_source": "official_template",
   "team": {
     "name": "",
-    "work_name": "HomeTrace",
+    "work_name": "HomeTrace——基于长期记忆与主动感知的智慧家庭寻物 Agent",
     "captain_name": "",
     "captain_phone": ""
   },
   "identity_confirmed": false,
   "use_private_submission_name": false,
-  "application_filename": "HomeTrace_作品设计与技术说明书.docx",
+  "application_filename": "01_HomeTrace官方初赛作品文档.docx",
   "expected_source_commit": "",
   "materials": {
-    "application": "final/HomeTrace_作品设计与技术说明书.docx",
+    "application": "final/HomeTrace官方初赛作品文档.docx",
     "presentation": "final/HomeTrace.pptx",
     "video": "final/HomeTrace.mp4",
     "run_report": "final/run-report.md",
-    "originality": "final/originality.md"
+    "originality": "final/originality.md",
+    "official_template": "official/主办方原始初赛作品文档.docx",
+    "technical_supplement": "final/HomeTrace_作品设计与技术说明书.docx"
   },
   "confirmations": {
     "privacy_reviewed": false,
@@ -32,5 +34,25 @@
     "deadline": false,
     "team_identity": false,
     "extracted_files_opened": false
+  },
+  "official_source": "",
+  "official_template_sha256": "",
+  "official_fields": {
+    "team_name": "",
+    "project_name": "HomeTrace——基于长期记忆与主动感知的智慧家庭寻物 Agent",
+    "description": "",
+    "identity_confirmed": false,
+    "members": [
+      {
+        "name": "",
+        "gender": "",
+        "education": "",
+        "school": "",
+        "major": "",
+        "graduation": "",
+        "email": "",
+        "phone": ""
+      }
+    ]
   }
 }

@@ -1,0 +1,115 @@
+{
+  "date": "2026-11-02",
+  "technical_docx": {
+    "pages": 5,
+    "word_readonly_pdf_export": true,
+    "every_page_png_reviewed": true,
+    "fixes": [
+      "removed inherited title border",
+      "widened status column"
+    ],
+    "renderer_fallback": "canonical render_docx failed: no soffice.exe; used Word read-only export and bundled Poppler"
+  },
+  "official_draft": {
+    "pages": 3,
+    "description_characters": 238,
+    "identity_blank_by_owner_instruction": true,
+    "every_page_png_reviewed": true,
+    "strict_check": "BLOCKED",
+    "poppler_warning": [
+      "Symbol",
+      "ArialUnicode"
+    ]
+  },
+  "pptx": {
+    "reviewed_at": "2026-11-02",
+    "slide_count": 10,
+    "artifact_tool_version": "2.8.106",
+    "final_sha256": "91e9a9863645cdf454d682f7db390d5e353195b727b03dae4602f1264f5518c8",
+    "package_integrity": "pass",
+    "layout_and_font_policy": "pass",
+    "first_party_import": "pass",
+    "native_tables": [
+      6,
+      8
+    ],
+    "individual_final_slide_render_review": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "unintended_overlap_or_clipping_observed": false,
+    "source_scope": "public repository evidence only; screenshot explicitly labeled synthetic software sample",
+    "no_private_photos_or_identity": true,
+    "native_powerpoint_application_opened": false,
+    "prior_failed_builds_preserved": [
+      "build-01 table policy arguments",
+      "build-02 import runtime path",
+      "build-03 receipt output separation"
+    ],
+    "claim_boundary": "Editable PPTX, package validation and rendered visual inspection. Does not assert native PowerPoint execution or new model accuracy."
+  },
+  "video": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "width": 1440,
+        "height": 1080
+      }
+    ],
+    "format": {
+      "duration": "89.920000",
+      "size": "5379612"
+    },
+    "full_decode_passed": true,
+    "source_sha256": "f53e9eb0fea189f11af7f7747f7ba970737f561cb5070ae46c239c94521e72da",
+    "output_sha256": "7cc8044b5756c045b474ce3422a565c076646edbad3ed385d40435755da372cd",
+    "browser_evidence_passed": true,
+    "frame_origin": "Actual browser recording at original speed; title/end cards and subtitles added",
+    "real_household_validation": false,
+    "image_calls": 0,
+    "usage": {
+      "model_calls": 5,
+      "total_tokens": 6207
+    },
+    "scripted_owner_actions": true,
+    "automatic_FOUND": false,
+    "key_frames_reviewed_seconds": [
+      2,
+      46,
+      64,
+      85
+    ]
+  },
+  "material_files": [
+    {
+      "name": "DRAFT_HomeTrace官方初赛作品文档.docx",
+      "bytes": 28068,
+      "sha256": "b073df3db1424e24a8d5f3c1a45830f967201cfcc3a367e8a55be40402361131"
+    },
+    {
+      "name": "HomeTrace_作品设计与技术说明书.docx",
+      "bytes": 43263,
+      "sha256": "7927551b6f7b044adfce45fda2de8ebfe1d4fc306e96c58b763f9d6fd8a2486d"
+    },
+    {
+      "name": "HomeTrace_技术展示.pptx",
+      "bytes": 109568,
+      "sha256": "91e9a9863645cdf454d682f7db390d5e353195b727b03dae4602f1264f5518c8"
+    },
+    {
+      "name": "HomeTrace_演示视频.mp4",
+      "bytes": 5379612,
+      "sha256": "7cc8044b5756c045b474ce3422a565c076646edbad3ed385d40435755da372cd"
+    }
+  ]
+}

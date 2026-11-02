@@ -1,0 +1,29 @@
+{
+  "date": "2026-11-02",
+  "staged_files_scanned": 35,
+  "actual_configured_key_scan": "PASS",
+  "private_binding_path_scan": "PASS",
+  "source_allowlist_scan": "PASS",
+  "image_matcher_search_core_memory_schema_config_unchanged": true,
+  "new_source_matches_clean_test_snapshot": true,
+  "files_compared": [
+    "src/hometrace/official_submission.py",
+    "src/hometrace/submission.py",
+    "tests/test_accept_photo_workflow.py",
+    "tests/test_delivery_source_export.py",
+    "tests/test_official_agent_integration.py",
+    "tests/test_official_attribute_whitespace.py",
+    "tests/test_official_paragraph_style.py",
+    "tests/test_official_submission.py",
+    "tests/test_review_bundle.py",
+    "tools/accept_photo_workflow.py",
+    "tools/build_review_bundle.py",
+    "tools/create_delivery_document.py",
+    "tools/create_delivery_video.py",
+    "tools/fill_official_submission.py",
+    "tools/record_delivery_demo.cjs"
+  ],
+  "tracked_private_photos_or_databases": false,
+  "frozen_evidence_modified": false,
+  "git_diff_check": "PASS"
+}

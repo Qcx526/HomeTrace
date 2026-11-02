@@ -1,0 +1,56 @@
+{
+  "copied_from_commit": "775d601f63c1201bf517b57287fe5589b8b1b1d9",
+  "base_commit": "16445f79491617b899c3c7bafca7c1241719e0c4",
+  "exact_normalized_files": [
+    {
+      "path": "src/hometrace/official_submission.py",
+      "matches_pr15_blob": true,
+      "sha256_normalized": "7d795442d7e3e2e975fa16560d4fcccc1594e68f41469a9ad35e34ca5ad1e7af"
+    },
+    {
+      "path": "tools/fill_official_submission.py",
+      "matches_pr15_blob": true,
+      "sha256_normalized": "52f1610278df809f31c8428ae45a27cc463e0df27d26259328997c25a4ed5bf8"
+    },
+    {
+      "path": "tests/test_official_submission.py",
+      "matches_pr15_blob": true,
+      "sha256_normalized": "cfa5ca849568027e3d1f7f20d2dbc2c85de4572cba409cf842e36b589f278244"
+    },
+    {
+      "path": "tests/test_official_agent_integration.py",
+      "matches_pr15_blob": true,
+      "sha256_normalized": "98c7897b1ccd33ae9657c34293af5e592ea266140a4f6167e40cd347936942f4"
+    },
+    {
+      "path": "tests/test_official_attribute_whitespace.py",
+      "matches_pr15_blob": true,
+      "sha256_normalized": "95dcd2d8acaf982e97d58fa2d5240ff014dfe98fb30e43c89fa120d3a99c2077"
+    },
+    {
+      "path": "tests/test_official_paragraph_style.py",
+      "matches_pr15_blob": true,
+      "sha256_normalized": "676028bc4fbeb6fbbc974378e376932cb7ca17cf42007a28c235c4a081b5094d"
+    },
+    {
+      "path": "examples/submission_config.example.json",
+      "matches_pr15_blob": true,
+      "sha256_normalized": "839e4f4703b5c6cf9facb97cd80c6446bf6a79b0477f1dde0dd3c27a768d0101"
+    },
+    {
+      "path": "docs/OFFICIAL_SUBMISSION.md",
+      "matches_pr15_blob": true,
+      "sha256_normalized": "1535abc90af321442ebb7f18d1abe6fa1738e80350ab14fb206f1e58aa210bf8"
+    }
+  ],
+  "prior_security_functions_unchanged": {
+    "collect_source": true,
+    "_check_secret": true,
+    "local_file": true,
+    "safe_name": true,
+    "ooxml_text": true,
+    "check_video": true,
+    "check_report": true
+  },
+  "production_search_and_vision_changes": false
+}

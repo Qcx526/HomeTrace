@@ -1,0 +1,244 @@
+{
+  "date": "2026-11-02",
+  "base_commit": "16445f79491617b899c3c7bafca7c1241719e0c4",
+  "http": {
+    "source": "synthetic",
+    "navigation": "simulated",
+    "checks_passed": true,
+    "checks": [
+      {
+        "name": "accept: directory absent before first boot",
+        "passed": true
+      },
+      {
+        "name": "1: real model available",
+        "passed": true
+      },
+      {
+        "name": "1: image advisor disabled",
+        "passed": true
+      },
+      {
+        "name": "1: custom places preserved",
+        "passed": true
+      },
+      {
+        "name": "accept: empty catalog/scenes/evidence",
+        "passed": true
+      },
+      {
+        "name": "reference saved from reviewed synthetic ROI",
+        "passed": true
+      },
+      {
+        "name": "accept-remember-entry: completed model step",
+        "passed": true
+      },
+      {
+        "name": "remember waits for owner",
+        "passed": true
+      },
+      {
+        "name": "accept-memory-confirmed: completed model step",
+        "passed": true
+      },
+      {
+        "name": "one owner statement saved",
+        "passed": true
+      },
+      {
+        "name": "find: completed model step",
+        "passed": true
+      },
+      {
+        "name": "old location checked then new candidate",
+        "passed": true
+      },
+      {
+        "name": "refresh preserves candidate",
+        "passed": true
+      },
+      {
+        "name": "2: real model available",
+        "passed": true
+      },
+      {
+        "name": "2: image advisor disabled",
+        "passed": true
+      },
+      {
+        "name": "2: custom places preserved",
+        "passed": true
+      },
+      {
+        "name": "process restart preserves candidate",
+        "passed": true
+      },
+      {
+        "name": "candidate-confirmed: completed model step",
+        "passed": true
+      },
+      {
+        "name": "owner confirmation is not visual FOUND",
+        "passed": true
+      },
+      {
+        "name": "3: real model available",
+        "passed": true
+      },
+      {
+        "name": "3: image advisor disabled",
+        "passed": true
+      },
+      {
+        "name": "3: custom places preserved",
+        "passed": true
+      },
+      {
+        "name": "history-after-restart: completed model step",
+        "passed": true
+      },
+      {
+        "name": "new process reads updated memory",
+        "passed": true
+      },
+      {
+        "name": "replay: completed model step",
+        "passed": true
+      },
+      {
+        "name": "used photos cannot confirm again",
+        "passed": true
+      },
+      {
+        "name": "reject: directory absent before first boot",
+        "passed": true
+      },
+      {
+        "name": "4: real model available",
+        "passed": true
+      },
+      {
+        "name": "4: image advisor disabled",
+        "passed": true
+      },
+      {
+        "name": "4: custom places preserved",
+        "passed": true
+      },
+      {
+        "name": "reject: empty catalog/scenes/evidence",
+        "passed": true
+      },
+      {
+        "name": "reference saved from reviewed synthetic ROI",
+        "passed": true
+      },
+      {
+        "name": "reject-remember-entry: completed model step",
+        "passed": true
+      },
+      {
+        "name": "remember waits for owner",
+        "passed": true
+      },
+      {
+        "name": "reject-memory-confirmed: completed model step",
+        "passed": true
+      },
+      {
+        "name": "one owner statement saved",
+        "passed": true
+      },
+      {
+        "name": "reject-find: completed model step",
+        "passed": true
+      },
+      {
+        "name": "reject branch has actual candidate",
+        "passed": true
+      },
+      {
+        "name": "reject-continue: completed model step",
+        "passed": true
+      },
+      {
+        "name": "rejection triggers model and no new memory",
+        "passed": true
+      }
+    ],
+    "usage": {
+      "unique_runs": 6,
+      "model_calls": 16,
+      "total_tokens": 20933
+    },
+    "scripted_owner_actions": true,
+    "independent_household_validation": false
+  },
+  "browser": {
+    "source": "hash_locked_AI_synthetic_software_fixture",
+    "navigation": "simulated",
+    "owner_actions": "scripted_browser_clicks",
+    "real_text_llm": true,
+    "local_ORB": true,
+    "image_calls": 0,
+    "private_photographs": false,
+    "automatic_FOUND": false,
+    "passed": true,
+    "checkpoints": [
+      {
+        "name": "empty catalog visible",
+        "passed": true,
+        "seconds": 0.192
+      },
+      {
+        "name": "owner memory saved after click",
+        "passed": true,
+        "seconds": 18.873
+      },
+      {
+        "name": "real LLM follows last history then actual candidate",
+        "passed": true,
+        "seconds": 37.459
+      },
+      {
+        "name": "scripted owner confirmation is not automatic FOUND",
+        "passed": true,
+        "seconds": 58.458
+      },
+      {
+        "name": "history query reads changed location",
+        "passed": true,
+        "seconds": 65.841
+      },
+      {
+        "name": "all browser network local",
+        "passed": true,
+        "seconds": 75.025
+      },
+      {
+        "name": "no image network approval",
+        "passed": true,
+        "seconds": 75.025
+      },
+      {
+        "name": "no page errors",
+        "passed": true,
+        "seconds": 75.025
+      }
+    ],
+    "usage": {
+      "model_calls": 5,
+      "total_tokens": 6207
+    },
+    "browser": "156.0.4314.42",
+    "limits": {
+      "max_new_runs": 3,
+      "max_provider_retries": 0,
+      "max_model_calls_per_run": 10,
+      "overall_seconds": 600
+    }
+  },
+  "new_private_image_transmissions": 0,
+  "new_household_recognition_claim": false
+}
