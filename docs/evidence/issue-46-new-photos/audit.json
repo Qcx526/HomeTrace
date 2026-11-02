@@ -1,0 +1,35 @@
+{
+  "source_commit": "cd75a52d1710608f316df401ea07f2e8d2008d7a",
+  "production_source_changed": false,
+  "historical_reports_modified": false,
+  "public_files_scanned_before_audit": 7,
+  "actual_key_scan": "PASS",
+  "private_bindings_scan": "PASS",
+  "private_directories_ignored": true,
+  "public_configuration_equals_executed": true,
+  "config_only_runtime_change_between_batches": "agent.max_total_tokens:24000->32000",
+  "image_limits": {
+    "batch1": 5,
+    "batch2": 3,
+    "actual": 8,
+    "automatic_retries": 0
+  },
+  "no_false_browser_acceptance_claim": true,
+  "new_windows_install": false,
+  "material_package_updated": false,
+  "tests": {
+    "pytest": 1137,
+    "frontend": 28
+  },
+  "first_main_failed_preserved": true,
+  "second_actual_checks": 9,
+  "file_sha256": {
+    "config.photo-demo.yaml": "9911bd986b181bac444cdf00ceaab1c4f94259f019618bbf20be67896daf9623",
+    "README.md": "48b56a0fad166c39e0fd5052fd100fc0338c36028488fb78522589c029084cad",
+    "docs/REAL_CUP_FRESH_WORKFLOW_20261102.md": "20063a3f00ccaaaf3aef6767d2e81f45d821e2cff0b8d429ebd599d70c1781a6",
+    "docs/evidence/issue-46-new-photos/frontend.txt": "d79057339e78d35bce5a5e3cd14e61447a4f8cc179f3dc8f65a22f026534ba4c",
+    "docs/evidence/issue-46-new-photos/pytest.txt": "8591d695a95b5017e4a7085112c173c9a8c3d53d5741984aedb5402baed6ee0a",
+    "docs/evidence/issue-46-new-photos/README.md": "47dba3a438c0e2529a9e7853a77b0b872a783e4e2ac262524fdf7d3f84ab3edb",
+    "docs/evidence/issue-46-new-photos/workflow.json": "0453318844aed408379f361682874976b28cf048a046a6a71a103266e8e905e0"
+  }
+}
