@@ -1,5 +1,7 @@
 # 初赛交付准备表
 
+> 以下是2026-10-23历史状态，不是本轮完成清单。官方主表已取得，自编说明书仅为补充；最新成果与未完成项见 [交付收口](DELIVERY_CLOSEOUT_20261101.md)。历史ZIP不得上传。
+
 更新：2026-10-23。遵循 [R1 PM 评论](https://github.com/Qcx526/HomeTrace/issues/4#issuecomment-6360118290)、[候选交付审查](https://github.com/Qcx526/HomeTrace/issues/4#issuecomment-6359758417) 与 [交付合同](SUBMISSION_PLAN.md)。官方模板未知不再阻断开发或候选打包；使用团队自编技术说明书，提交前人工核验赛事平台。
 
 | 成果或输入 | 状态与保存位置 |

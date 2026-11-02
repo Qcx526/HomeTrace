@@ -1,5 +1,7 @@
 # 本地候选提交包工具
 
+> 旧版工具说明保留供追溯。当前正式主表必须使用已提供的官方DOCX并通过身份/结构校验，见 [官方主表](OFFICIAL_SUBMISSION.md) 和 [最新交付](DELIVERY_CLOSEOUT_20261101.md)。自编主表仅可构成历史技术候选，不能替代正式附件；未填身份的审阅ZIP明确不可上传。
+
 以 [Issue #4 最新 PM 评论](https://github.com/Qcx526/HomeTrace/issues/4#issuecomment-6341286246) 为准：当前使用团队自编作品说明书，`document_source=team_authored`，不要求尚未取得的官方 Word 模板。工具生成本地候选包并校验；不上传，不自动认定官方格式、内容或参赛资格通过。
 
 ## 输入与运行

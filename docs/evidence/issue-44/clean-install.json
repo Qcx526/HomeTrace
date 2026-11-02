@@ -1,0 +1,47 @@
+{
+  "installed_module": "<fresh-venv>/Lib/site-packages/hometrace/__init__.py",
+  "source": "clean wheel installation",
+  "network": "localhost only",
+  "model_calls": 0,
+  "image_calls": 0,
+  "checks": [
+    {
+      "name": "http /",
+      "passed": true
+    },
+    {
+      "name": "http /home-flow.js",
+      "passed": true
+    },
+    {
+      "name": "http /home-flow.css",
+      "passed": true
+    },
+    {
+      "name": "empty catalog",
+      "passed": true
+    },
+    {
+      "name": "empty scenes",
+      "passed": true
+    },
+    {
+      "name": "default three places",
+      "passed": true
+    },
+    {
+      "name": "wheel import isolated",
+      "passed": true
+    },
+    {
+      "name": "only current three web resources",
+      "passed": true
+    },
+    {
+      "name": "no private inputs",
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "wheel_sha256": "0ec75b2ae84edeb485bc31e0edf3a51bf5fab6889837bf06278f1d6d340971d9"
+}
