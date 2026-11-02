@@ -1,0 +1,25 @@
+{
+  "date": "2026-11-02",
+  "status": "REVIEW_ONLY_NOT_FOR_UPLOAD",
+  "ready_to_submit": false,
+  "uploaded": false,
+  "source": {
+    "commit": "a9abc812b159746811b34d7335d4dbeac2efaae5",
+    "dirty": false,
+    "snapshot": "working_tree",
+    "snapshot_sha256": "9ffed84e3abbfe57e68103f9f7793183a4667d17ec0b7f5be60835230e41e6b3",
+    "untracked_allowlisted_files": 0,
+    "file_count": 199,
+    "source_policy": "Git tracked and nonignored working files, filtered through the source allowlist; private data, databases, caches, logs and repository metadata are excluded. File hashes describe the actual snapshot, which may differ from HEAD."
+  },
+  "archive_bytes": 6474226,
+  "archive_sha256": "0cedca0c8057fb6f1cc706a4b80c73663cde501835f693d1c17dce029321c18c",
+  "verified_entries": 209,
+  "crc_and_sha256_verified": true,
+  "extracted_all_entries_verified": true,
+  "nested_office_readable": true,
+  "source_matches_current": true,
+  "actual_configured_key_scan": "PASS",
+  "official_check": "BLOCKED_IDENTITY_MISSING",
+  "review_package_is_not_official_candidate": true
+}
