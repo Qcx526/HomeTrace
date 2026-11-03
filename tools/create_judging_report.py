@@ -10,6 +10,7 @@ from __future__ import annotations
 import argparse
 from copy import deepcopy
 import hashlib
+from io import BytesIO
 import json
 from pathlib import Path
 import re
@@ -21,6 +22,78 @@ from hometrace.official_submission import (
     FIELDS, NS, W, OfficialFormError, _clear_editable, _original_rows,
     _package, _text, digest, fill_official, validate_content,
 )
+
+REL='http://schemas.openxmlformats.org/package/2006/relationships'
+IMAGE_REL='http://schemas.openxmlformats.org/officeDocument/2006/relationships/image'
+R='http://schemas.openxmlformats.org/officeDocument/2006/relationships'
+CT='http://schemas.openxmlformats.org/package/2006/content-types'
+
+
+def verify_added_images(a, b, body):
+    """Permit only hash-named, internally referenced PNG/JPEG figure additions."""
+    extra=set(b)-set(a)
+    if set(a)-set(b):raise OfficialFormError('Original package parts removed')
+    if not extra:
+        for part in ('word/_rels/document.xml.rels','[Content_Types].xml'):
+            if a.get(part)!=b.get(part):raise OfficialFormError('Preserved package metadata changed without figures')
+        return 0
+    for name in extra:
+        m=re.fullmatch(r'word/media/ht-([a-f0-9]{64})\.(png|jpg)',name)
+        if not m or hashlib.sha256(b[name]).hexdigest()!=m[1]:
+            raise OfficialFormError('Unexpected or changed figure part')
+        from hometrace.photo_flow_service import _dimensions
+        try:w,h,ext=_dimensions(b[name])
+        except ValueError as exc:raise OfficialFormError('Invalid figure format') from exc
+        if ext!=m[2] or min(w,h)<32 or w*h>24_000_000:
+            raise OfficialFormError('Invalid figure dimensions')
+        # Header dimensions bound allocations, but cannot establish that the
+        # picture is readable. Verify the container and decode every pixel.
+        try:
+            from PIL import Image
+        except ImportError as exc:
+            raise OfficialFormError('Pillow is required to validate report figures') from exc
+        try:
+            with Image.open(BytesIO(b[name])) as image:
+                if image.format != {'png': 'PNG', 'jpg': 'JPEG'}[ext] or image.size != (w,h):
+                    raise ValueError('Figure format or dimensions differ')
+                image.verify()
+            with Image.open(BytesIO(b[name])) as image:
+                image.load()
+        except (OSError, ValueError, SyntaxError) as exc:
+            raise OfficialFormError('Figure cannot be fully decoded') from exc
+    rel_name='word/_rels/document.xml.rels'
+    if rel_name not in a or rel_name not in b:
+        if extra:raise OfficialFormError('Figure relationships missing')
+        return 0
+    old,new=ET.fromstring(a[rel_name]),ET.fromstring(b[rel_name])
+    old_ids={x.get('Id') for x in old};new_ids=[x.get('Id') for x in new]
+    if len(new_ids)!=len(set(new_ids)):raise OfficialFormError('Duplicate relationship ID')
+    added=[x for x in new if x.get('Id') not in old_ids]
+    if [ET.tostring(x) for x in new if x.get('Id') in old_ids]!=[ET.tostring(x) for x in old]:
+        raise OfficialFormError('Original relationships changed')
+    targets=set();ids=set()
+    for item in added:
+        if (item.tag!='{'+REL+'}Relationship' or set(item.attrib)!={'Id','Type','Target'}
+            or item.get('Type')!=IMAGE_REL or not re.fullmatch(r'htImage[0-9]+',item.get('Id',''))
+            or 'word/'+item.get('Target','') not in extra):
+            raise OfficialFormError('Only internal figure relationships may be added')
+        targets.add('word/'+item.get('Target'));ids.add(item.get('Id'))
+    embeds={x.get('{'+R+'}embed') for x in body.iter() if x.get('{'+R+'}embed')}
+    if targets!=extra or not ids<=embeds:
+        raise OfficialFormError('Unreferenced figure or relationship')
+    if any(x.get('{'+R+'}link') for x in body.iter()):
+        raise OfficialFormError('External image links are forbidden')
+    old_ct,new_ct=ET.fromstring(a['[Content_Types].xml']),ET.fromstring(b['[Content_Types].xml'])
+    originals=[ET.tostring(x) for x in old_ct]
+    retained=[]
+    for x in new_ct:
+        if ET.tostring(x) in originals:retained.append(ET.tostring(x));continue
+        if (x.tag!='{'+CT+'}Default' or set(x.attrib)!={'Extension','ContentType'}
+            or (x.get('Extension'),x.get('ContentType')) not in {('png','image/png'),('jpg','image/jpeg')}
+            or not any(p.endswith('.'+x.get('Extension')) for p in extra)):
+            raise OfficialFormError('Unexpected content type addition')
+    if retained!=originals:raise OfficialFormError('Original content types changed')
+    return len(extra)
 
 
 def confirmed_fields(fields):
@@ -84,8 +157,9 @@ def verify_report_table(original, report, expected_sha256, fields):
     b_before = list(body_b)[:list(body_b).index(bt)]
     if [ET.tostring(x) for x in a_before] != [ET.tostring(x) for x in b_before]:
         raise OfficialFormError("Official heading changed")
-    allowed = {"word/document.xml", "word/styles.xml"}
-    if set(a) != set(b) or any(a[k] != b[k] for k in a if k not in allowed):
+    figures=verify_added_images(a,b,body_b)
+    allowed = {"word/document.xml", "word/styles.xml", "word/_rels/document.xml.rels", "[Content_Types].xml"}
+    if any(a[k] != b[k] for k in a if k not in allowed):
         raise OfficialFormError("Preserve-only package part changed")
     old_styles = ET.fromstring(a["word/styles.xml"])
     new_styles = ET.fromstring(b["word/styles.xml"])
@@ -103,6 +177,7 @@ def verify_report_table(original, report, expected_sha256, fields):
         "description_characters": len(values["description"]),
         "member_count": count,
         "paper_tables": len(tables)-1,
+        "embedded_figures": figures,
         "text_characters": len(text),
         "identity_source": "owner_supplied",
         "platform_identity_verified": False,
@@ -111,7 +186,7 @@ def verify_report_table(original, report, expected_sha256, fields):
     }
 
 
-def make_paper():
+def make_paper(figures=None):
     from docx import Document
     from docx.enum.style import WD_STYLE_TYPE
     from docx.oxml import OxmlElement
@@ -143,6 +218,12 @@ def make_paper():
         return doc.add_paragraph(text, style)
     def h(text):
         return p(text, "HTH2")
+    def figure(name,caption,width=14.5):
+        para=p('', 'HTBody');para.paragraph_format.first_line_indent=Pt(0)
+        para.paragraph_format.keep_with_next=True;para.alignment=1
+        image=para.add_run().add_picture(str(Path(figures)/name),width=Cm(width))
+        image._inline.docPr.set('descr',caption)
+        cap=p(caption,'HTCaption');cap.alignment=1;cap.paragraph_format.keep_with_next=False
     def page(title):
         para=p(title,"HTH1")
         para.paragraph_format.page_break_before=True
@@ -289,6 +370,13 @@ def make_paper():
     ],[4.6,5.5,4.4])
     p("上述结果来自 2026 年 11 月 1 日的实际 HTTP 验收。数量用于说明执行范围，不能转换成识别准确率。随后的浏览器演示用于让评委看到相同产品流程，不将剪辑时长作为系统响应时间。")
 
+    if figures:
+        page('8.3 实际网页操作图示')
+        p('图1展示实际浏览器中的候选核对区域。左图是已登记参考，右图是当前场景；右侧框由本次匹配程序产生。用户可以确认或拒绝，结果继续进入后续记忆与搜索流程。')
+        figure('keys-candidate.png','图1 钥匙软件案例的实际候选核对界面（合成演示素材）')
+        p('画面取自完整浏览器操作录像。演示先登记物品并保存位置，再把旧地点更换为空场景，随后发起寻找。模型按实际工具反馈选择检查地点，页面呈现候选后等待核对。')
+        p('这组图验证操作与状态衔接，并不构成真实家庭钥匙识别的实验。随附视频保留从空目录、参考登记、记住位置、寻找、核对到再次查询的原速操作。')
+
     page("9 水杯实拍实验设计")
     h("9.1 数据来源与实验条件")
     p("负责人提供登记水杯参考图，并审核参考区域。2026 年 11 月 2 日新增五张真实场景照片，分别用于原位置目标缺席、新位置全景、同位置近景、相似杯干扰和空场景检查。五张图均为 1706×1279 像素，输入文件按原始字节保留。照片角色依据主人说明，不由视觉模型生成标签。")
@@ -303,6 +391,12 @@ def make_paper():
         ["S5","空场景","没有目标时是否保持未确认"],
     ],[1.7,5.2,7.6])
     p("本实验验证在真实图片条件下的寻物交互与证据处理。由于样本量有限、照片已用于开发且缺少独立采集批次，不能据此推广到所有家庭物品或全部光照、角度与遮挡条件。")
+
+    if figures:
+        page('9.3 实拍远景与补充近景')
+        p('图2和图3展示同一地点的两次观察。远景中目标占画面较小，周围杂物较多；补充近景提供杯身图案、杯盖和底圈细节。两图来自同一次开发流程，不作为两个独立成功样本。')
+        figure('cup-wide.jpg','图2 新地点完整远景 S2  细节不足时请求补充观察',11.2)
+        figure('cup-close.jpg','图3 同地点近景 S3  外观建议交给主人核对',11.2)
 
     page("10 实验结果与分析")
     table("表7 水杯逐场景结果",["场景","匹配数／内点数","视觉意见","后续处理"],[
@@ -320,9 +414,16 @@ def make_paper():
     h("10.3 结果的适用范围")
     p("S1、S4、S5 三个目标缺席场景没有错误位置写入，说明本轮保护有效，但样本数不足以证明普遍误报率为零。全流程九项实际检查通过，验证的是这件水杯和这组观察下的行为。不能把软件检查通过数与图像识别准确率相加或互相替代。")
 
+    if figures:
+        page('10.4 任务记录与记忆恢复界面')
+        p('图4是实际 HTML 页面读取已保存任务后的界面。主人的确认已作为带来源的历史保留；页面区分当前回答和过往位置，避免把照片中的地点说成此刻仍然存在的事实。')
+        figure('cup-history.png','图4 服务重启后的历史查询记录  页面只读回看，无新增推理')
+        p('水杯视频直接操作这一生产页面，选择登记物品、查看观察照片、滚动决策轨迹并展开历史。展示的是已经完成的真实任务记录，不通过重新点击确认制造第二条位置历史。')
+        p('软件原型没有接入真实机器人。地点切换由模拟导航表达，照片由主人提供。实物照片能验证观察与反馈流程，却不能替代底盘移动、避障、全屋建图或实时相机测试。')
+
     page("11 软件验证与运行方法")
     h("11.1 软件质量检查")
-    p("2026 年 11 月 3 日，完整 Python 回归实际通过 1262 项，运行约 229.26 秒；三个前端测试文件联合通过 28 项。检查覆盖记忆读写、状态恢复、模型参数与错误处理、图片授权、确认版本、旧图保护和材料工具等。测试中保留一个已有依赖弃用提示，不影响本轮通过结果。最终源码随包附带对应测试记录。")
+    p("2026 年 11 月 3 日，本轮完整 Python 回归实际通过 1286 项，运行约 205.96 秒；三个前端测试文件联合通过 28 项。检查覆盖记忆读写、状态恢复、模型参数与错误处理、图片授权、确认版本、旧图保护和材料工具等。测试中保留一个已有依赖弃用提示，不影响本轮通过结果。最终源码随包附带对应测试记录。")
     p("这些离线回归使用确定性输入，保证错误分支可重复检查，不要求云端模型每次输出相同文字。真实模型和真实照片实验另行记录；没有以单元测试替代视觉效果验收。此前从解压源码建立新环境的安装与启动检查也已完成，实际在线演示仍需要用户自备有效服务配置。")
     h("11.2 安装与启动")
     p("建议使用 Windows 与 Python 3.11 或以上版本，在解压源码目录建立虚拟环境，安装项目及演示可选依赖。服务密钥写入本机环境文件，不写入公共源码或报告。启动命令如下，详细配置说明放在源码的运行说明中。")
@@ -335,12 +436,15 @@ def make_paper():
     page("12 讨论与后续实现")
     h("12.1 产品创新与实际价值")
     p("本作品将家庭寻物组织为可解释的行动过程。历史让搜索有起点，当前观察让计划能够调整，主人确认使不确定的外观判断有明确归属。对评委和使用者而言，系统能够展示查过哪里、为何补图以及最后由谁确认，这比只给出一个地点名称更容易理解和核实。")
-    p("从产品形态看，新增物品以登记参考和名称为主，不要求每物训练一个网络；从工程形态看，搜索逻辑与视觉、页面和运动接口分离。原创工作集中在位置事件设计、工具反馈协作、重复证据保护和可追溯呈现，基础视觉算法及模型服务复用成熟技术。")
+    p("新增物品以登记参考和名称为主，不要求每物训练一个网络。原创工作集中在位置记忆、反馈协作与重复证据保护；视觉算法及模型服务复用成熟技术。")
     h("12.2 当前不足")
     p("现阶段实拍验证只有一件水杯。目标较远时需要补近景，本地匹配未形成可靠定位框，云端相似意见还需要主人核对。照片由主人提供，不能展示无人值守的巡航扫描；地点来自用户选择，不能表示已经完成自动室内定位。此外，长期生活习惯的学习与排序还没有独立实验支持。")
     h("12.3 可检验的下一步")
-    p("视觉改进应先冻结方法和参数，再采集独立批次的正例、空场景及相似物品。受限单物品验收计划至少使用六张正例与八张负例，要求至少五张正例定位正确且交并比不低于 0.5，负例无错误接受，实例精确率不低于 0.95；没有接受结果时不能视为通过。只有通过后，才考虑减少主人核对环节。")
-    p("机器人接入应分两步推进：先以摄像头提供带时间与姿态的实时观察，再接入底盘到达回执并验证导航失败。模型提出的地点必须经过设备回执确认，不能靠语言描述补齐真实运动。上述内容为后续实现计划，不属于本次已完成成果。")
+    p("视觉方法和参数冻结后，再采集独立正负例。受限单物品验收要求六张正例中至少五张定位正确且交并比不低于 0.5，八张负例无错误接受，实例精确率不低于 0.95；零接受不能通过。在此之前保留主人核对。")
+    h('12.4 语音与具身机器人接入')
+    p('后续增加语音识别与语音回复，让主人直接说“钥匙放在这里了”或“帮我找水杯”。语音转写仍需确认物品和地点歧义，位置保存继续沿用现有确认流程。当前版本采用文字输入，未实现麦克风唤醒、连续识音或语音交互验收。')
+    p('在具身机器人平台上，目标是先建立全屋地图，把房间、桌面与可观察位置关联起来；随后利用自身定位和导航逐点到达，以相机获取实时观察，再由本系统读取记忆、选择下一处位置并验证目标。导航失败、遮挡与无法到达也应作为反馈返回。')
+    p('上述扩展需完成建图、定位、避障导航、相机与设备回执的对接，并通过家庭环境测试。当前软件提供决策与记忆基础，全屋自主搜索仍是后续目标。')
 
     page("13 结论")
     p("本文实现了基于位置记忆与反馈决策的 HomeTrace 家庭寻物原型。系统能够登记物品外观、保存主人位置历史，并让智能体调用工具逐步寻找。在团队水杯实拍中，旧地点未见目标后转查新地点、请求近景、主人授权保存、重启查询与旧图保护均完成实际执行。结果支持主人参与的单物品软件流程可运行，不支持自动可靠识别全部家庭物品的结论。")
@@ -357,7 +461,7 @@ def make_paper():
     return doc
 
 
-def build(original, output, fields, expected_sha256, qa_dir=None):
+def build(original, output, fields, expected_sha256, qa_dir=None, figures=None):
     from docx.oxml.ns import qn
 
     original, output = Path(original), Path(output)
@@ -376,7 +480,25 @@ def build(original, output, fields, expected_sha256, qa_dir=None):
     index=list(body).index(table)
     last_section=deepcopy(body.find(qn("w:sectPr")))
     for item in list(body)[index+1:]:body.remove(item)
-    paper=make_paper()
+    paper=make_paper(figures)
+    if figures:
+        rels=etree.fromstring(parts['word/_rels/document.xml.rels'])
+        types=etree.fromstring(parts['[Content_Types].xml'])
+        extensions={x.get('Extension') for x in types}
+        for index,(old_id,rel) in enumerate([(k,v) for k,v in paper.part.rels.items() if v.reltype==IMAGE_REL],1):
+            blob=rel.target_part.blob
+            ext='png' if blob.startswith(b'\x89PNG') else 'jpg'
+            name='ht-'+hashlib.sha256(blob).hexdigest()+'.'+ext
+            rid='htImage'+str(index)
+            if any(x.get('Id')==rid for x in rels):raise OfficialFormError('Figure relationship collision')
+            etree.SubElement(rels,'{'+REL+'}Relationship',Id=rid,Type=IMAGE_REL,Target='media/'+name)
+            parts['word/media/'+name]=blob
+            if ext not in extensions:
+                etree.SubElement(types,'{'+CT+'}Default',Extension=ext,ContentType='image/png' if ext=='png' else 'image/jpeg');extensions.add(ext)
+            for blip in paper.element.body.iter():
+                if blip.get('{'+R+'}embed')==old_id:blip.set('{'+R+'}embed',rid)
+        parts['word/_rels/document.xml.rels']=etree.tostring(rels,xml_declaration=True,encoding='UTF-8',standalone=True)
+        parts['[Content_Types].xml']=etree.tostring(types,xml_declaration=True,encoding='UTF-8',standalone=True)
     for item in paper.element.body:
         if item.tag != qn("w:sectPr"):body.append(deepcopy(item))
     body.append(last_section)
@@ -406,9 +528,10 @@ def main():
     parser.add_argument("--template",type=Path,required=True)
     parser.add_argument("--output",type=Path,required=True)
     parser.add_argument("--qa-dir",type=Path)
+    parser.add_argument("--figures",type=Path,help='Private figure directory; never uploaded with source')
     args=parser.parse_args()
     data=json.loads(args.config.read_text(encoding="utf8"))
-    result=build(args.template,args.output,data.get("official_fields",data),data["official_template_sha256"],args.qa_dir)
+    result=build(args.template,args.output,data.get("official_fields",data),data["official_template_sha256"],args.qa_dir,args.figures)
     print(json.dumps(result,ensure_ascii=True))
 
 

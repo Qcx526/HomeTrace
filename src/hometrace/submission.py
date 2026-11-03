@@ -41,6 +41,7 @@ SOURCE_DOCS = {
     "DELIVERY_CLOSEOUT_20261102.md",
     "CUP_VIDEO_REVISION_20261103.md",
     "JUDGING_MATERIALS_20261103.md",
+    "JUDGING_UI_REVISION_20261103.md",
 }
 SOURCE_CONFIGS = {"config.yaml", "config.photo-demo.yaml"}
 # These are the already public, redacted acceptance records, not arbitrary logs.
@@ -51,6 +52,10 @@ SOURCE_EVIDENCE = {
 }
 SOURCE_EVIDENCE.update(
     f"docs/evidence/judging-20261103/{name}"
+    for name in ("README.md", "pytest.txt", "frontend.txt", "media.json")
+)
+SOURCE_EVIDENCE.update(
+    f"docs/evidence/judging-ui-20261103/{name}"
     for name in ("README.md", "pytest.txt", "frontend.txt", "media.json")
 )
 LEGACY_WEB_FIXTURES = {

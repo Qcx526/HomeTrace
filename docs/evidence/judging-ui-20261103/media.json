@@ -1,0 +1,41 @@
+{
+  "date": "2026-11-03",
+  "docx": {
+    "pages": 18,
+    "figures": 4,
+    "body_tables": 7,
+    "official_table_verified": true,
+    "sha256": "82c5e9597f2086fa6d302fb084bbceca7713fb462d2c2d91ee148dfc87dc3d5f",
+    "all_pages_reviewed": true
+  },
+  "pptx": {
+    "slides": 12,
+    "all_slides_rendered": true,
+    "sha256": "8134dd28ba18605b38430f64ac002dd6884f7c33ee0b2c365bb253410f4e6211"
+  },
+  "video": {
+    "seconds": 175.6,
+    "width": 1440,
+    "height": 1200,
+    "codec": "H.264",
+    "subtitles": "Chinese burned-in",
+    "audio": "none",
+    "sha256": "7ddd53efb579ebaedc1d6336f985190d9330df2ba03f1242cfb151214d6f2032",
+    "full_decode": true,
+    "chapters_reviewed": 28,
+    "masking": false,
+    "keys": "existing full actual operation recording, synthetic software example",
+    "cup": "production HTML viewing previously completed real-photo task"
+  },
+  "readonly_browser": {
+    "checks": 10,
+    "passed": true,
+    "only_local_GET": true,
+    "database_unchanged": true
+  },
+  "new_model_calls": 0,
+  "image_uploads": 0,
+  "production_visual_or_agent_change": false,
+  "voice_and_robot": "future work",
+  "uploaded": false
+}
