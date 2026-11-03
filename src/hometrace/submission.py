@@ -39,6 +39,7 @@ SOURCE_DOCS = {
     "WORKSPACE_LOCATIONS_AND_NEW_PHOTOS.md", "DELIVERY_CLOSEOUT_20261101.md",
     "REAL_CUP_WORKFLOW_20261102.md", "REAL_CUP_FRESH_WORKFLOW_20261102.md",
     "DELIVERY_CLOSEOUT_20261102.md",
+    "CUP_VIDEO_REVISION_20261103.md",
 }
 SOURCE_CONFIGS = {"config.yaml", "config.photo-demo.yaml"}
 # These are the already public, redacted acceptance records, not arbitrary logs.
