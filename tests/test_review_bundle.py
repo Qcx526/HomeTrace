@@ -82,3 +82,52 @@ def test_review_preserves_configured_secret_block(bundle,monkeypatch):
     (root/'README.md').write_text(fake,encoding='utf-8')
     with pytest.raises(sub.SubmissionError):review.build(path,root)
     assert not list((root/'dist_submission').glob('*.zip'))
+
+
+def test_new_review_subdir_preserves_old_bundle_and_manual_status(bundle):
+    root,_,_,path,_=draft_bundle(bundle)
+    old=review.build(path,root)
+    result=review.build(path,root,output_subdir='20261102-final')
+    old_path=root/'dist_submission/TEST_ONLY-REVIEW_ONLY_HomeTrace.zip'
+    new_path=root/'dist_submission/20261102-final/TEST_ONLY-REVIEW_ONLY_HomeTrace.zip'
+    assert review.sub.sha256(old_path)==old['archive_sha256']
+    assert review.sub.sha256(new_path)==result['archive_sha256']
+    assert result['status']=='REVIEW_ONLY_NOT_FOR_UPLOAD'
+    assert not result['ready_to_submit'] and not result['officially_verified'] and not result['uploaded']
+    assert all(value=='PENDING' for value in result['manual_checks'].values())
+    with zipfile.ZipFile(new_path) as z:
+        assert z.testzip() is None
+        assert json.loads(z.read('REVIEW_STATUS.json'))['manual_checks']==result['manual_checks']
+        for line in z.read('manifest.sha256').decode().splitlines():
+            digest,name=line.split('  ',1)
+            assert review.hashlib.sha256(z.read(name)).hexdigest()==digest
+    assert sub.build(path,root)['status']=='BLOCKED'
+    with pytest.raises(sub.SubmissionError):review.build(path,root,output_subdir='20261102-final')
+
+
+@pytest.mark.parametrize('name',['../outside','a/b','a\\b','C:/outside','/outside','..','.','','CON','trailing.'])
+def test_review_subdir_cannot_escape_private_output(bundle,name):
+    root,_,_,path,_=draft_bundle(bundle)
+    with pytest.raises(sub.SubmissionError):review.build(path,root,output_subdir=name)
+    assert not list(root.rglob('*.zip'))
+
+
+@pytest.mark.parametrize('unignore',['!dist_submission/20261102-final/TEST_ONLY-REVIEW_ONLY_HomeTrace.zip',
+                                    '!dist_submission/20261102-final/TEST_ONLY-REVIEW_ONLY_HomeTrace.audit.json'])
+def test_review_subdir_must_ignore_both_archive_and_audit(bundle,unignore):
+    root,_,_,path,_=draft_bundle(bundle)
+    # The parent is traversable, with only leaf files ignored before the exception.
+    (root/'.gitignore').write_text('dist_submission/**/*.zip\ndist_submission/**/*.audit.json\n'+unignore+'\n',encoding='utf-8')
+    with pytest.raises(sub.SubmissionError,match='Git ignored'):
+        review.build(path,root,output_subdir='20261102-final')
+    assert not list(root.rglob('*.zip'))
+
+
+def test_review_subdir_reparse_point_is_rejected(bundle,monkeypatch):
+    root,_,_,path,_=draft_bundle(bundle)
+    original=Path.is_symlink
+    blocked=root/'dist_submission/20261102-final'
+    monkeypatch.setattr(Path,'is_symlink',lambda self: self==blocked or original(self))
+    with pytest.raises(sub.SubmissionError,match='reparse'):
+        review.build(path,root,output_subdir='20261102-final')
+    assert not list(root.rglob('*.zip'))

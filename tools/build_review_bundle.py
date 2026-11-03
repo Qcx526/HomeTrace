@@ -8,6 +8,7 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
+import subprocess
 import tempfile
 import zipfile
 
@@ -15,8 +16,18 @@ from hometrace import submission as sub
 from hometrace.official_submission import fill_draft
 
 
-def build(config_path, repo_root):
+def _output_paths(repo_root, output_subdir):
+    output = repo_root / 'dist_submission'
+    if output_subdir is not None:
+        # A single safe name cannot escape the fixed private-output directory.
+        output = output / sub.safe_name(output_subdir)
+    sub._no_links(output, repo_root)
+    return output
+
+
+def build(config_path, repo_root, *, output_subdir=None):
     config_path, repo_root = Path(config_path).resolve(), Path(repo_root).resolve()
+    output = _output_paths(repo_root, output_subdir)
     config = json.loads(config_path.read_text(encoding='utf-8'), object_pairs_hook=sub._object)
     if not isinstance(config, dict) or config.get('document_source') != 'official_template':
         raise sub.SubmissionError('Review bundle requires the supplied official template')
@@ -31,16 +42,19 @@ def build(config_path, repo_root):
         with zipfile.ZipFile(expected) as a, zipfile.ZipFile(draft) as b:
             if set(a.namelist()) != set(b.namelist()) or any(a.read(n) != b.read(n) for n in a.namelist()):
                 raise sub.SubmissionError('Application is not the exact unfilled project draft')
-    output = repo_root / 'dist_submission'
-    sub._no_links(output, repo_root)
-    output.mkdir(exist_ok=True)
     name = ('TEST_ONLY-' if report['test_only'] else '') + 'REVIEW_ONLY_HomeTrace.zip'
     target = output / name
     audit = target.with_suffix('.audit.json')
     sub._no_links(target, repo_root)
     sub._no_links(audit, repo_root)
+    for path in (target, audit):
+        ignored = subprocess.run(['git', '-C', str(repo_root), 'check-ignore', '--quiet',
+                                  '--', path.relative_to(repo_root).as_posix()], capture_output=True)
+        if ignored.returncode:
+            raise sub.SubmissionError('Review ZIP and audit must remain Git ignored')
     if target.exists() or audit.exists():
         raise sub.SubmissionError('Review bundle exists; never overwrite evidence')
+    output.mkdir(parents=True, exist_ok=True)
     for entry in entries:
         if entry.path == draft:
             entries[entries.index(entry)] = sub.Entry('01_DRAFT_官方主表_个人信息未填写.docx', entry.path, entry.sha256, entry.size)
@@ -49,13 +63,15 @@ def build(config_path, repo_root):
               'officially_verified':False, 'uploaded':False, 'test_only':report['test_only'],
               'official_application':'DRAFT_IDENTITY_MISSING',
               'source':report['checks']['source'], 'materials_checked':report['checks'],
+              'content_review':report['content_review'], 'manual_checks':report['manual_checks'],
+              'warnings':report['warnings'],
               'required_before_upload':['Complete and validate official identity',
                   'Review current code and materials', 'Verify submission-page requirements',
                   'Build official candidate and extract/open files']}
     generated = {
         'NOT_FOR_UPLOAD_请先阅读.txt': ('这是待填写和审阅的工作副本，不是比赛提交包。\n'
             '官方主表个人信息按负责人要求留空，必须填写并核对；不要上传本 ZIP。\n'
-            '正式工具仍会拒绝缺身份主表。请按源码 docs/DELIVERY_CLOSEOUT_20261101.md 完成填表、正式打包与人工核验。\n'
+            '正式工具仍会拒绝缺身份主表。请按源码 docs/DELIVERY_CLOSEOUT_20261102.md 完成填表、正式打包与人工核验。\n'
             '导航模拟，软件素材演示不代表独立家庭识别通过。\n').encode('utf-8'),
         'REVIEW_STATUS.json':sub.json_bytes(status),
         'SOURCE_INFO.json':sub.json_bytes(report['checks']['source']),
@@ -95,9 +111,10 @@ if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--config',type=Path,required=True)
     parser.add_argument('--repo-root',type=Path,default=Path.cwd())
+    parser.add_argument('--output-subdir',help='One directory name below Git ignored dist_submission; never overwrites an earlier review bundle')
     args=parser.parse_args()
     try:
-        result=build(args.config,args.repo_root)
+        result=build(args.config,args.repo_root,output_subdir=args.output_subdir)
         print(result['status'])
         print('Official candidate remains blocked. Do not upload this review ZIP.')
     except (ValueError,OSError,KeyError,zipfile.BadZipFile):

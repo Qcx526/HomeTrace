@@ -16,7 +16,7 @@ for (const key of ['artifact-module', 'skill-dir', 'python']) {
   if (!args[key]) throw new Error(`Missing --${key}`);
 }
 const root = process.cwd();
-const output = path.resolve(args['output-dir'] || 'artifacts/issue-44/deck/build-01');
+const output = path.resolve(args['output-dir'] || 'artifacts/submission-closeout-20261102/pptx/build-01');
 await fs.mkdir(output, { recursive: false });
 const { Presentation, PresentationFile } = await import(pathToFileURL(path.resolve(args['artifact-module'])).href);
 // The finalizer spawns a clean import probe using the same bundled packages.
@@ -38,7 +38,7 @@ function slide(title, sources, note = '') {
   if (title) text(s, title, 72, 58, 1136, 65, 43, C.ink, true);
   text(s, `HomeTrace  /  ${String(presentation.slides.items.length).padStart(2, '0')}`, 72, 671, 700, 25, 17, C.muted);
   sources.forEach(p => cited.add(p));
-  s.speakerNotes.text = `${note}\n\n来源：\n${sources.map(p => `仓库公开文件 ${p}`).join('\n')}\n证据基线：16445f79491617b899c3c7bafca7c1241719e0c4（2026-10-31）。材料更新：2026-11-02。不同阶段验收不合并为同一次完整实拍验收。`;
+  s.speakerNotes.text = `${note}\n\n来源：\n${sources.map(p => `仓库公开文件 ${p}`).join('\n')}\n证据快照：537aa9cdb1f893f411e98ef9ff20a00250f607eb（PR #47，待合并）。真实执行源码：cd75a52d1710608f316df401ea07f2e8d2008d7a。材料更新：2026-11-02。软件回归、合成流程与实拍诊断分别统计。`;
   return s;
 }
 function para(s, y, head, body, x = 72, width = 1136) {
@@ -56,70 +56,85 @@ function table(s, values, widths, y, rowHeight = 76) {
   return t;
 }
 const demo = 'docs/DELIVERABLE_DEMO.md';
-const real = 'docs/REAL_CUP_AGENT_ACCEPTANCE.md';
 const memory = 'docs/OWNER_MEMORY_RESTART_ACCEPTANCE.md';
-const latest = 'docs/WORKSPACE_LOCATIONS_AND_NEW_PHOTOS.md';
+const latest = 'docs/REAL_CUP_FRESH_WORKFLOW_20261102.md';
+const evidencePath = 'docs/evidence/issue-46-new-photos/workflow.json';
+const evidence = JSON.parse(await fs.readFile(path.join(root, evidencePath), 'utf8'));
+const main = evidence.second.runs.main;
+const realChecks = evidence.second.checks.filter(check => check.passed).length;
+if (main.state !== 'USER_CONFIRMED' || main.automatic_found !== false || evidence.second.new_owner_events !== 1) {
+  throw new Error('Published evidence no longer matches the approved owner-assisted claim');
+}
 
-let s = slide('', [demo, latest], '开场说明：本作品展示软件 Agent 的家庭物品记忆与寻找过程。页面中的导航属于模拟。真实家庭实例自动识别仍有明确能力边界。');
+let s = slide('', [demo, latest], '本作品展示单水杯、主人参与确认的软件流程。导航模拟，真实照片由主人提供，语言和视觉调用经过第三方网关。团队名称和个人信息保留在官方主表，当前待负责人填写。');
 s.background.fill = C.ink;
 text(s, 'HomeTrace', 72, 166, 1100, 104, 84, C.white, true);
 text(s, '智慧家庭寻物 Agent', 76, 288, 1080, 78, 49, '#DCEDE6', true);
 text(s, '记住主人说过的位置，依据当前观察继续寻找', 78, 406, 1090, 60, 32, '#DCEDE6');
-text(s, '作品技术展示  ·  2026 年 11 月', 78, 593, 1040, 38, 24, '#B8D3C6');
+text(s, '作品技术展示    2026 年 11 月', 78, 593, 1040, 38, 24, '#B8D3C6');
 
-s = slide('家庭寻物场景', [demo], '本页是交互方案示例，所列话语不冒充特定真实模型响应。主人需要选择当前地点，软件没有自动获取主人位置。');
+s = slide('家庭寻物场景', [demo, latest], '本页对话是交互方案示例，不冒充真实模型逐字响应。主人选择地点并提供照片，软件没有自动定位主人或控制实体机器人。当前实拍证据仅支持单水杯受限流程。');
 text(s, '“这个物品我放这里了，帮我记住。”', 72, 178, 1136, 70, 41, C.teal, true);
-text(s, '主人登记物品外观，选择地点，确认位置记录。', 74, 270, 1120, 58, 30);
+text(s, '主人登记参考外观，选择地点，确认保存位置历史。', 74, 270, 1120, 58, 30);
 text(s, '“我找不到它了，帮我找一下。”', 72, 381, 1136, 70, 41, C.teal, true);
-text(s, 'Agent 先查询历史，再检查场景。主人核对候选，或让它继续找。', 74, 475, 1118, 94, 30);
+text(s, 'Agent 查询历史、检查照片，依据反馈换地点或请求近照。\n主人核对后，系统保存新的照片位置历史。', 74, 475, 1118, 102, 30);
 
-s = slide('物品登记与位置记忆', [demo, memory, latest], '同一物品使用固定参考图和经过主人审核的 ROI。登记不触发每物品训练。当前视觉比较不能单凭名称证明特定实体身份。');
-para(s, 163, '01  名称与外观', '物品编号、名称和别名归入同一档案。上传参考图，人工核对目标区域。');
-para(s, 322, '02  主人陈述', '主人提供地点，确认后写入 SQLite。记录来源和确认时间，不推断拍摄时间。');
-para(s, 481, '03  跨运行保留', '重启后读取同一条历史。自定义地点保持独立，新任务冻结本次地点与场景配置。');
+s = slide('物品登记与位置记忆', [demo, memory, latest], '固定参考图及经主人审核的 ROI 形成物品档案，登记不触发每物品训练。主人提供地点并确认保存。拍摄时间未知时不推断时间。新进程恢复同一事件已经实际验证。');
+para(s, 163, '01  登记外观', '名称、别名和参考图归入同一档案。主人核对物体区域，无需为每件新物品训练网络。');
+para(s, 322, '02  保存有来源的位置', 'SQLite 记录地点、确认时间及信息来源。主人陈述与视觉证据分别保存。');
+para(s, 481, '03  保留历史线索', '跨进程读取同一记录。历史地点只提供搜索线索，不保证物品现在仍在那里。');
 
-s = slide('LLM 的实际决策职责', [demo, real, latest], '运行采用 LangGraph 状态与 LangChain 模型/工具接口。页面展示实际执行的工具与反馈。LLM 只提出计划和调用，程序执行并校验。视觉外发另有明确授权。');
+s = slide('LLM 的实际决策职责', [demo, latest, evidencePath], 'LangGraph 管理状态，LangChain 提供模型和工具接口。真实 LLM 调用 resolve_request、inspect_location、visual_advice、request_new_photo 和 request_owner_review。模型只选择行动，程序执行并校验。');
 text(s, '语言模型选择下一步', 72, 164, 550, 57, 33, C.teal, true);
-text(s, '理解记住、寻找或查询请求\n读取历史后选择搜索地点\n根据观察决定换地点、补图或请主人核对', 72, 243, 545, 224, 29);
-text(s, '程序执行并留下证据', 700, 164, 508, 57, 33, C.teal, true);
-text(s, '校验已登记物品和合法地点\n执行模拟导航与照片观察\n限制步骤、Token 和调用额度\n保存工具返回、失败与确认来源', 700, 243, 508, 260, 29);
-text(s, '模型的文字推断不能生成位置事实、机器人动作或视觉证据。', 72, 572, 1136, 62, 27, C.caution, true);
+text(s, '理解记住、寻找或查询请求\n读取历史后选择搜索地点\n依据反馈换地点、请求近照\n或邀请主人核对候选', 72, 243, 545, 260, 29);
+text(s, '程序执行并记录证据', 700, 164, 508, 57, 33, C.teal, true);
+text(s, '校验物品、地点与调用权限\n执行模拟导航和照片观察\n限制步骤、Token 与图片额度\n保存工具返回和失败原因', 700, 243, 508, 260, 29);
+text(s, '模型文字不能生成权威位置事实、真实机器人动作或检测证据。', 72, 572, 1136, 62, 27, C.caution, true);
 
-s = slide('可追溯的位置历史', [memory, latest, 'docs/evidence/issue-34/browser-history.png'], '图为仓库已公开的软件样例截图，照片素材标记为 AI 合成。它说明页面如何展示历史与来源，不是本批私人水杯的识别结果。Issue40 另外验证了真实主人陈述的跨进程读取。');
-const screenshot = await fs.readFile(path.join(root, 'docs/evidence/issue-34/browser-history.png'));
-s.images.add({ blob: screenshot.buffer.slice(screenshot.byteOffset, screenshot.byteOffset + screenshot.byteLength), contentType: 'image/png', alt: '公开软件样例的历史查询页面，素材为 AI 合成图', fit: 'contain', position: { left: 70, top: 155, width: 505, height: 475 } });
-text(s, '历史只提供寻找线索', 632, 175, 576, 60, 35, C.teal, true);
-text(s, '保存物品、地点、时间和来源。\n\n刷新与进程重启保留记录。\n\n历史地点与当前照片分开，旧图片不能重复贡献新证据。', 632, 263, 576, 280, 29);
-text(s, '左侧为公开软件样例截图，包含 AI 合成素材。', 632, 585, 570, 47, 21, C.muted);
+s = slide('真实水杯流程中的反馈决策', [latest, evidencePath], '第二轮实际 HTTP 流程。配置中 B 先于 H，LLM 仍依据 H 历史先检查 H。本页是脱敏执行记录，不是新录屏。S3 由操作员提交主人提供的近景。负责人预先明确批准身份与地点后，工程师按授权通过 HTTP 保存。导航模拟。');
+table(s, [['步骤', '真实观察或工具返回', 'LLM 实际选择'], ['1  查询历史', '最近主人历史位于 H', '先检查 H，改变配置顺序'], ['2  检查 H', 'S1：未见目标', '继续检查地点 B'], ['3  检查 B', 'S2：全景不确定', 'request_new_photo 请求近照'], ['4  读取近照', 'S3：外观相似', 'request_owner_review 请求核对'], ['5  主人授权', '明确同一水杯及照片地点', '系统保存 USER_CONFIRMED']], [224, 432, 480], 158, 67);
+text(s, '照片来自主人，导航模拟。最终身份与位置历史由主人确认。', 72, 593, 1136, 52, 25, C.caution, true);
 
-s = slide('确认状态与证据边界', [demo, real, latest], '当前照片流程将本地外观匹配与物理实例确认分开。没有框的匹配不能伪造定位框。主人明确确认才形成 owner_reported 事件。');
-table(s, [['结果', '来源', '系统含义'], ['UNKNOWN', '观察不足、拒识或调用失败', '继续寻找、补图或停止'], ['SUSPECTED / similar', '本地候选或视觉顾问意见', '等待核对，尚未确认实体'], ['USER_CONFIRMED', '主人明确接受', '保存主人确认的历史来源']], [310, 390, 436], 176, 89);
-text(s, 'YOLO 类别分数、LLM 建议和几何匹配都不单独决定实体 FOUND。', 72, 581, 1136, 58, 27, C.caution, true);
+s = slide('5 张新实拍的完整结果', [latest, evidencePath], 'S1/S2/S3 为搜索链。S4/S5 为独立负例会话，不伪称五张都在同一次搜索中。存在性来自主人说明，缺少数值真值框，不能计算 IoU。全部为流程诊断，不能当作独立识别基准。公开展示不包含私人原图。');
+table(s, [['场景', '视觉顾问建议', '实际后续结果'], ['S1  原位置无目标', 'not_visible', '检查下一地点'], ['S2  新位置全景', 'uncertain', '请求同地点近照'], ['S3  同位置近景', 'similar', '请求主人核对'], ['S4  相似杯负例', 'not_visible', 'UNKNOWN，无候选/记忆写入'], ['S5  空场景', 'not_visible', 'UNKNOWN，无候选/记忆写入']], [345, 300, 491], 158, 64);
+text(s, '固定 ORB 全部没有合格框。近景支持本轮人工核对，自动定位仍未通过。', 72, 572, 1136, 71, 27, C.caution, true);
 
-s = slide('已验证的软件流程', [demo, memory, latest], '本页测试数字引用 Issue42 在提交16445f7前实际执行的联合全量回归，不累加独立分支。1061 Python 测试及22前端测试不证明真实照片定位精度。真实API流程分别来自Issue30与Issue40。');
-text(s, '1061', 72, 167, 515, 113, 92, C.teal, true);
-text(s, 'Python 全量测试通过', 76, 285, 520, 57, 28);
-text(s, '22', 700, 167, 490, 113, 92, C.teal, true);
-text(s, '前端测试通过', 704, 285, 480, 57, 28);
-text(s, '登记、记忆确认、历史查询、反馈继续与旧图重放均有回归。', 72, 385, 1136, 67, 30);
-text(s, '真实 LLM 已执行软件样例寻找流程，并完成跨进程记忆查询。', 72, 468, 1136, 67, 30);
-text(s, '证据快照：16445f7。合成流程、实拍诊断与软件测试分别统计。', 72, 578, 1136, 52, 23, C.muted);
+s = slide('确认后的记忆与旧图保护', [latest, evidencePath], '第二轮恰好新增 1 条 owner_reported，visual_confirmed=false。实际不同 PID 重启恢复同一 run。真实文本 LLM 查询新历史。旧 S1/S2 均 replayed_image_content，UNKNOWN，无图片重发、无新主人事件。未声称复查全局 S3 或当轮浏览器点击验收。');
+table(s, [['验证项', '真实结果'], ['主人确认保存', '1 条 owner_reported，未写入自动视觉确认'], ['服务进程重启', '新进程恢复同一事件，数据库没有重复写入'], ['LLM 查询历史', '返回照片地点，并保留“此刻位置未知”的边界'], ['旧照片再次搜索', 'UNKNOWN，拒绝重放，零图片外发、零新记忆']], [345, 791], 168, 78);
+text(s, 'USER_CONFIRMED 记录主人确认。它不代表系统自动识别物理实例。', 72, 591, 1136, 53, 26, C.caution, true);
 
-s = slide('最新 8 张家庭照片的实际结果', [latest, 'docs/evidence/issue-42/photo-results.json'], '全部为开发诊断照片，无独立测试集。6正2负来自主人文件名，未审核数值真值框。每图一次、零重试，8次真实视觉调用、7次有效返回。API失败为输出token耗尽且无有效JSON。');
-table(s, [['主人存在性标签', '视觉顾问实际输出', '数量'], ['目标出现，共 6 张', '外观相似 similar', '4'], ['目标出现，共 6 张', '不确定 uncertain', '1'], ['目标出现，共 6 张', '无效响应 ERROR', '1'], ['目标缺席，共 2 张', '未见目标 not_visible', '2']], [355, 576, 205], 166, 68);
-text(s, '固定 ORB 在全部 8 张图上没有有效框。未取得自动定位或独立实例识别通过证据。', 72, 546, 1136, 94, 28, C.caution, true);
+s = slide('预算失败与受控复跑', [latest, evidencePath], '首次24,000预算失败保留。14,011已使用 + 11,145下一请求输入保守上界 = 25,156，超过24,000。第二轮仅将文本总预算设置32,000，视觉门槛/模型/工具调用等保持不变。新图片授权单独获得，零自动重试。展示的调用数仅第二轮主流程，不包括历史查询与重放。');
+text(s, '首次运行：明确停止', 72, 169, 540, 57, 33, C.caution, true);
+text(s, '24,000 Token 文本预算\n近景后的决策输入超过余量\nBUDGET_EXCEEDED\n没有保存新位置', 72, 249, 535, 245, 29);
+text(s, '复跑：完成主人参与流程', 686, 169, 522, 57, 33, C.teal, true);
+text(s, `32,000 Token 文本预算\n${main.model_calls} 次文本调用，${main.decision_tokens.toLocaleString('en-US')} Token\n${main.vision_calls} 次视觉调用，${main.vision_tokens.toLocaleString('en-US')} Token\n仅按主人授权保存 1 条历史`, 686, 249, 522, 245, 29);
+text(s, '只调整文本总预算。旧失败保留，图像授权按批次单独计算。', 72, 572, 1136, 62, 27, C.muted);
 
-s = slide('隐私与失败处理', [demo, real, memory, latest], '原图、私人身份、API Key、授权账本、原始响应与数据库均留本地ignored目录。图像外发按批次和图片哈希授权，已用额度不复用。公共证据使用脱敏汇总。');
-para(s, 160, '本地保留敏感数据', '照片、私人地点和 SQLite 留在工作区。公共源码仅携带脱敏指标和测试。');
-para(s, 320, '图片外发需明确授权', '固定网关、固定图片和调用额度。发送去 EXIF 副本，仍保留画面中的背景。');
-para(s, 480, '失败保持可见', '额度耗尽、模型失败或观察不足时停止或请求协助。不给出虚假的成功结论。');
+s = slide('分开记录软件回归与实拍检查', [latest, evidencePath, 'docs/evidence/issue-46-new-photos/pytest.txt', 'docs/evidence/issue-46-new-photos/frontend.txt'], '引用 PR47 证据快照 537aa9c 下的实际联合回归：1137 pytest passed,1现有LangChain弃用警告,189.78秒；Node28 passed,252.4792ms。不是新材料分支尚未执行的测试数。9项实拍执行检查全部通过只验证受限流程，不证明识别精度。未重新执行全新Windows安装。');
+text(s, String(evidence.tests.pytest), 72, 159, 515, 113, 92, C.teal, true);
+text(s, 'Python 全量测试通过', 76, 277, 520, 57, 28);
+text(s, String(evidence.tests.frontend), 700, 159, 490, 113, 92, C.teal, true);
+text(s, '前端测试通过', 704, 277, 480, 57, 28);
+text(s, `另有 ${realChecks} 项真实执行检查通过`, 72, 382, 1136, 64, 35, C.teal, true);
+text(s, '覆盖历史优先、反馈搜索、主人确认、重启恢复和旧图拒绝。', 72, 463, 1136, 65, 30);
+text(s, 'PR #47 基线 537aa9c，待合并。软件测试数量不代表真实识别准确率。', 72, 579, 1136, 53, 24, C.muted);
 
-s = slide('当前交付范围与下一步', [demo, real, memory, latest], '作品贡献在记忆、工具决策、证据约束和人机协作流程。成熟视觉方法与模型采用既有开源/服务方案。当前还没有证明搜索效率提升，没有机器人真机运行，也未完成独立真实照片实例识别验收。');
-text(s, '已形成可运行的软件 Demo', 72, 163, 1136, 58, 36, C.teal, true);
-text(s, '物品登记、历史记忆、LLM 工具决策、自定义地点和主人确认形成可追溯流程。', 72, 245, 1136, 95, 30);
-text(s, '真实家庭识别仍需验收', 72, 393, 1136, 58, 36, C.caution, true);
-text(s, '当前重点是完成自定义地点的实拍 Agent 搜索与主人核对。自动定位、独立照片测试和真机运行尚未通过。', 72, 475, 1136, 104, 30);
-text(s, '作品贡献：把记忆线索、当前观察和主人确认放入同一条可审计的寻找过程。', 72, 603, 1136, 42, 23, C.muted);
+s = slide('隐私与外部模型调用', [demo, latest, 'config.photo-demo.yaml'], '真实文本和视觉经过当前第三方兼容网关。供应方实际模型底座未独立验证，不宣传为模型官方直连。原图与私人地点、API Key、SQLite、完整授权和响应均留本地 ignored 目录。已用图片授权不能复用。');
+para(s, 160, '敏感数据保留本地', '私人照片、地点绑定、API Key 与数据库不进入公共源码和演示材料。');
+para(s, 320, '逐批授权图片外发', '明确网关、图片及次数。发送去 EXIF 的缩小副本，背景仍存在，零自动重试。');
+para(s, 480, '调用失败明确表达', '当前方案依赖第三方网络模型。额度、超时或观察不足时停止或请求协助。');
+
+s = slide('作品创新与技术选择', [demo, memory, latest], '原创性重点是产品流程与工程规则，不声称原创基础识别算法。成熟方法包括OpenCV ORB、LangGraph/LangChain、SQLite和外部模型服务。历史导致本轮改变搜索顺序，但没有对照证据证明普遍搜索效率提升。');
+para(s, 158, '有来源的家庭位置记忆', '把主人陈述、历史地点与当前观察分开，避免把旧记忆当作当前事实。');
+para(s, 318, '根据反馈改变下一步', 'LLM 在真实工具返回后选择换地点、请求近照或交给主人核对。');
+para(s, 478, '可审计的人机协作', '拒识、预算停止和旧图重放都有明确记录。成熟算法与服务支撑轻量可运行 Demo。');
+
+s = slide('交付范围与能力边界', [latest, evidencePath], '本轮可以交付受限单水杯、主人参与确认的软件Demo。自动实例识别、可靠bbox、独立6正8负、家庭通用识别、真机运行未通过。长期习惯学习及普遍搜索效率提升未验证。团队个人信息留空，正式主表及平台格式、容量、截止时刻由负责人核验，当前未正式上传。');
+text(s, '可演示：受限单水杯的主人协作流程', 72, 161, 1136, 60, 35, C.teal, true);
+text(s, '真实 LLM 调用工具、依据照片反馈寻找、请求主人核对，\n保存位置历史并在重启后查询。', 72, 243, 1136, 105, 30);
+text(s, '尚未通过：自动实例识别与通用识别', 72, 391, 1136, 60, 35, C.caution, true);
+text(s, '没有可靠检测框和独立识别基准。导航模拟，\n长期习惯学习、效率提升和真实机器人运行均未验证。', 72, 473, 1136, 105, 30);
+text(s, '提交前仍需填写团队信息并核对赛事平台要求。当前为审查材料，尚未正式提交。', 72, 605, 1136, 43, 22, C.muted);
 
 const draft = path.join(output, 'draft.pptx');
 await (await PresentationFile.exportPptx(presentation)).save(draft);
@@ -139,17 +154,17 @@ const result = await finalizePresentation({
   pythonExecutable: args.python,
   integrityValidatorPath: path.join(args['skill-dir'], 'container_tools/inspect_presentation_package_integrity.py'),
   layoutValidatorPath: path.join(args['skill-dir'], 'container_tools/inspect_presentation_layout_geometry.py'),
-  layoutArgs: ['--expected-slide-size-emu', '12192000,6858000', '--validate-bullet-geometry', '--validate-heading-fit', '--require-native-table-slide', '6', '--require-native-table-slide', '8'],
-  explicitTotalSlideCount: 10,
-  requiredNativeTableOwnerSlides: [6, 8],
+  layoutArgs: ['--expected-slide-size-emu', '12192000,6858000', '--validate-bullet-geometry', '--validate-heading-fit', '--require-native-table-slide', '5', '--require-native-table-slide', '6', '--require-native-table-slide', '7'],
+  explicitTotalSlideCount: 12,
+  requiredNativeTableOwnerSlides: [5, 6, 7],
   fontPolicy: { basis: 'design', families: [font] },
   verifyArtifactToolImport: true,
   receiptPath: path.join(output, 'validation.json'),
 });
 await fs.writeFile(path.join(output, 'sources.json'), JSON.stringify({
-  date: '2026-11-02', code_evidence_date: '2026-10-31', code_evidence_commit: '16445f79491617b899c3c7bafca7c1241719e0c4',
+  date: '2026-11-02', code_evidence_date: '2026-11-02', code_evidence_commit: evidence.source_commit, reviewed_snapshot: '537aa9cdb1f893f411e98ef9ff20a00250f607eb', snapshot_status: 'PR47 open, not merged',
   sources: await Promise.all([...cited].map(async p => ({ path: p, sha256: crypto.createHash('sha256').update(await fs.readFile(path.join(root,p))).digest('hex') }))),
   final_sha256: crypto.createHash('sha256').update(await fs.readFile(finalPath)).digest('hex'),
-  slide_count: 10, render_review_required: true,
+  slide_count: 12, render_review_required: true,
 }, null, 2));
 console.log(JSON.stringify({ finalPath, result }, null, 2));

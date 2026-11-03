@@ -37,6 +37,15 @@ SOURCE_DOCS = {
     "VISUAL_AGENT_LOOP.md", "REAL_CUP_AGENT_ACCEPTANCE.md",
     "VISUAL_AGENT_DECISION_REFINEMENT.md", "OWNER_MEMORY_RESTART_ACCEPTANCE.md",
     "WORKSPACE_LOCATIONS_AND_NEW_PHOTOS.md", "DELIVERY_CLOSEOUT_20261101.md",
+    "REAL_CUP_WORKFLOW_20261102.md", "REAL_CUP_FRESH_WORKFLOW_20261102.md",
+    "DELIVERY_CLOSEOUT_20261102.md",
+}
+SOURCE_CONFIGS = {"config.yaml", "config.photo-demo.yaml"}
+# These are the already public, redacted acceptance records, not arbitrary logs.
+SOURCE_EVIDENCE = {
+    f"docs/evidence/{folder}/{name}"
+    for folder in ("issue-46", "issue-46-new-photos")
+    for name in ("README.md", "workflow.json", "pytest.txt", "frontend.txt", "audit.json")
 }
 LEGACY_WEB_FIXTURES = {
     "index.html", "app.js", "style.css", "agent.html", "agent.js", "agent.css",
@@ -244,13 +253,13 @@ def source_allowed(name: str) -> bool:
         return True
     if any(part.startswith(".") or part in {"__pycache__", "local_data", "artifacts", "dist_submission", "node_modules"} for part in path.parts):
         return False
-    if name in {"README.md", "AGENTS.md", "pyproject.toml", "LICENSE", "LICENSE.md", "config.yaml"}:
+    if name in {"README.md", "AGENTS.md", "pyproject.toml", "LICENSE", "LICENSE.md"} | SOURCE_CONFIGS | SOURCE_EVIDENCE:
         return True
     if len(path.parts) == 2 and path.parts[0] == "docs" and path.name in SOURCE_DOCS:
         return True
     if path.parts[:2] == ("examples", "recorded_images") and len(path.parts) == 3:
         return path.name in PUBLIC_SAMPLES
-    if name in {"examples/submission_config.example.json", "examples/demo_case.example.json"}:
+    if name in {"examples/submission_config.example.json", "examples/demo_case.example.json", "tools/create_delivery_deck.mjs"}:
         return True
     if path.parts[0] == "src" and path.suffix in {".py", ".json", ".html", ".css", ".js"}:
         return True
@@ -303,11 +312,11 @@ def collect_source(root: Path, expected_commit: str | None = None) -> tuple[list
         untracked += origin == "untracked_working_tree"
         if name == ".env.example" and path.read_text(encoding="utf-8-sig").strip() != "HOMETRACE_LLM_API_KEY=":
             raise SubmissionError(".env.example must contain only the empty API key example")
-        if name == "config.yaml":
+        if name in SOURCE_CONFIGS:
             text = path.read_text(encoding="utf-8-sig")
             if re.search(r"(?i)api[_-]?key|password|secret|token\s*:", text):
-                raise SubmissionError("config.yaml may not contain secret fields")
-        if path.suffix in {".py", ".json", ".md", ".txt", ".toml", ".html", ".js", ".cjs", ".css", ".yaml"}:
+                raise SubmissionError("Source configurations may not contain secret fields")
+        if path.suffix in {".py", ".json", ".md", ".txt", ".toml", ".html", ".js", ".mjs", ".cjs", ".css", ".yaml"}:
             _check_secret(path.read_bytes())
         entries.append(Entry("04_核心源代码/" + name, path, sha256(path), path.stat().st_size))
     names = {entry.name.removeprefix("04_核心源代码/") for entry in entries}
