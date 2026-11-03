@@ -1,0 +1,43 @@
+{
+  "status": "CANDIDATE_PLATFORM_PENDING",
+  "archive_sha256": "c3d1e922cf7ec99936724d4dd20288881b20a38839afabbcf7ce880d24008a28",
+  "archive_bytes": 18150493,
+  "outer_entries": 4,
+  "source_entries": 245,
+  "source_commit": "c72632fc0d2dcda69ff3746421f58329a2504b1e",
+  "source_dirty": false,
+  "source_files": 240,
+  "source_snapshot_sha256": "424b2041fbc7012ddd25d341848ddb4c3e0ea04cbf6d626dc40635c74451d71f",
+  "all_member_hashes_and_crc_passed": true,
+  "extracted_media_full_decode": true,
+  "extracted_ooxml_crc_passed": true,
+  "source_bytes_match_worktree": true,
+  "uploaded": false,
+  "clean_install": {
+    "new_windows_venv": true,
+    "extracted_source_wheel_install_passed": true,
+    "base_dependencies_only": true,
+    "rule_mode_http_smoke_passed": true,
+    "checks": 9,
+    "pip_check_passed": true,
+    "not_new_online_llm_acceptance": true
+  },
+  "privacy": {
+    "scan": "Exact local key and supplied member contact fields; recognizable secret formats",
+    "source_files_checked": 240,
+    "staged_source_files_checked": 13,
+    "hits": 0,
+    "private_photos_or_media_in_public_source": false,
+    "production_search_vision_agent_or_schema_changed": false,
+    "frozen_reports_changed": false,
+    "ignored_local_inputs": true,
+    "workstation_in_local_media": "Original appearance authorized by owner"
+  },
+  "review_status": "Await PM review; no merge; competition upload pending",
+  "tests": {
+    "combined_full_pytest": 1286,
+    "seconds": 205.96,
+    "frontend": 28,
+    "counts_not_added": true
+  }
+}
