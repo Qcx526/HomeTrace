@@ -1,0 +1,25 @@
+{
+  "zip_sha256": "1e222868d77c549c8afeb075cb06e51c5961cb87488fc8cbced4f8a864498e16",
+  "zip_bytes": 6611867,
+  "entries": 226,
+  "source": {
+    "commit": "e1d1d9147bbc07f2eb57546c26e45e3f2e261c4d",
+    "dirty": false,
+    "snapshot": "working_tree",
+    "snapshot_sha256": "fff169b056016e55443091e9955226e311be00450187a1b04284d53eb632b857",
+    "untracked_allowlisted_files": 0,
+    "file_count": 216,
+    "source_policy": "Git tracked and nonignored working files, filtered through the source allowlist; private data, databases, caches, logs and repository metadata are excluded. File hashes describe the actual snapshot, which may differ from HEAD."
+  },
+  "all_crc_sha256_passed": true,
+  "old_review_zip_unchanged": true,
+  "contains_private_outputs": false,
+  "difference_from_clean_test_source": [
+    "docs/DELIVERY_CLOSEOUT_20261102.md",
+    "tools/append_delivery_evidence.py"
+  ],
+  "difference_reason": "closeout report test facts and video timeline description clarified; no core behavior changes",
+  "ready_to_submit": false,
+  "officially_verified": false,
+  "uploaded": false
+}

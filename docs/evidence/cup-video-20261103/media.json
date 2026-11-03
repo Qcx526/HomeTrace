@@ -1,0 +1,32 @@
+{
+  "video": {
+    "seconds": 80.0,
+    "width": 1920,
+    "height": 1080,
+    "codec": "h264",
+    "bytes": 1443400,
+    "sha256": "04b7b8c96a0c152997daba63fbcd62d645b36a36a27364061a8621b3d79a6e20",
+    "full_decode_passed": true,
+    "chapter_frames_reviewed": 8,
+    "frame_origin": "Browser screenshots of read-only frozen actual task review",
+    "continuous_live_recording": false,
+    "synthetic_scene_images": 0,
+    "new_model_calls": 0,
+    "automatic_FOUND": false,
+    "navigation": "simulated",
+    "private_photos_in_local_video": true,
+    "private_images_in_public_commit": false,
+    "privacy_display_masks": [
+      "monitor screens",
+      "QR display",
+      "handwritten notebook"
+    ]
+  },
+  "docx": {
+    "pages": 6,
+    "sha256": "f734b24a3484fa0762afca8f1c32b93711d07bcdf335ea2a321f4dcea443b8ef",
+    "all_pages_reviewed": true,
+    "render": "Word16 read-only PDF export plus bundled Poppler; LibreOffice unavailable"
+  },
+  "old_materials_preserved": true
+}

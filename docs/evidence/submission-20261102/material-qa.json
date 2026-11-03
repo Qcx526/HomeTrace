@@ -1,0 +1,170 @@
+{
+  "docx": {
+    "status": "ARTIFACTS_RENDERED_AND_REVIEWED",
+    "official_status": "DRAFT_IDENTITY_MISSING",
+    "ready_to_submit": false,
+    "template_sha256": "44da6ca1ab0f3ad62c2588431e3a3c705b96e6a2638666ae826a2e37d29d69ec",
+    "description_characters": 233,
+    "original_template_unchanged": true,
+    "all_preserve_only_docx_parts_unchanged": true,
+    "uneditable_document_xml_structure_unchanged": true,
+    "identity_config_blank": true,
+    "official_draft_pages": 3,
+    "technical_pages": 6,
+    "visual_review": "all nine output pages inspected; text and tables readable, no clipping or overlap",
+    "official_pagination_note": "Original 3-page structure retained; enlarged description shifts fixed supplied instructions naturally. Original fonts and geometry retained.",
+    "renderer": "Microsoft Word 16.0 read-only PDF export plus bundled pdf2image/Poppler PNGs",
+    "canonical_renderer": "render_docx.py attempted for original and both outputs; missing LibreOffice on this Windows runtime; logs retained",
+    "docx_unchanged_by_render": true,
+    "outputs": {
+      "DRAFT_HomeTrace官方初赛作品文档.docx": {
+        "bytes": 28062,
+        "sha256": "e36378b9f5194f953423fdc806e3b432b88f71219ead47e55023aa02d58c10f1"
+      },
+      "HomeTrace_作品设计与技术说明书.docx": {
+        "bytes": 44786,
+        "sha256": "2f630f4ff5f15a9f413c2979a2f473563985ba519e4cb76a16d10a155b1a3bb2"
+      }
+    }
+  },
+  "pptx": {
+    "schema_version": 1,
+    "date": "2026-11-02",
+    "final_sha256": "8886c0aca8bfa93a72c100848269786357568d7781e3ada0bafbeff8bb6e4cd6",
+    "total_slides": 12,
+    "reviewed_slides": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "review_method": "Every slide imported from finalized PPTX, rendered by Artifact Tool, and individually visually inspected",
+    "text_fit": "pass",
+    "unintended_overlap": "none observed",
+    "missing_text": "none observed",
+    "native_editable_table_slides": [
+      5,
+      6,
+      7
+    ],
+    "private_photographs_included": false,
+    "power_point_native_execution": false,
+    "facts": "Reviewed against public PR47 workflow.json and REAL_CUP_FRESH_WORKFLOW_20261102.md",
+    "limits": "Single-cup owner-assisted diagnostic; simulated navigation; no automatic bbox or instance confirmation; not independent recognition benchmark; team and platform review still required"
+  },
+  "video": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "width": 1440,
+        "height": 1080
+      }
+    ],
+    "format": {
+      "duration": "161.920000",
+      "size": "5642601"
+    },
+    "output_sha256": "95d862a54af80da928ffbf27a1c91fb91e5645fdd8f1f2fc178f95cf84198a0a",
+    "full_decode_passed": true,
+    "source_video_sha256": "7cc8044b5756c045b474ce3422a565c076646edbad3ed385d40435755da372cd",
+    "source_metadata_sha256": "750506c9153041800d10a5a0014a8448b8af7967e5af8abf36dfc350ea51b8fb",
+    "public_evidence_sha256": "0453318844aed408379f361682874976b28cf048a046a6a71a103266e8e905e0",
+    "source_commit": "cd75a52d1710608f316df401ea07f2e8d2008d7a",
+    "new_model_calls": 0,
+    "new_image_sends": 0,
+    "private_photos_in_video": false,
+    "automatic_FOUND": false,
+    "independent_instance_benchmark_passed": false,
+    "audio": "No audio; Chinese subtitles and evidence cards",
+    "timeline": [
+      {
+        "start": 0,
+        "end": 89.92,
+        "kind": "existing synthetic demo video: title, original-speed browser recording, end card"
+      },
+      {
+        "start": 89.92,
+        "end": 101.92,
+        "kind": "real workflow report card, NOT browser footage",
+        "title": "真实水杯：从记忆到反馈寻找"
+      },
+      {
+        "start": 101.92,
+        "end": 113.92,
+        "kind": "real workflow report card, NOT browser footage",
+        "title": "不确定时，主动要求更好的证据"
+      },
+      {
+        "start": 113.92,
+        "end": 125.92,
+        "kind": "real workflow report card, NOT browser footage",
+        "title": "主人确认之后，才更新历史"
+      },
+      {
+        "start": 125.92,
+        "end": 137.92000000000002,
+        "kind": "real workflow report card, NOT browser footage",
+        "title": "真实结果，同时保留失败"
+      },
+      {
+        "start": 137.92000000000002,
+        "end": 149.92000000000002,
+        "kind": "real workflow report card, NOT browser footage",
+        "title": "预算失败与能力边界"
+      },
+      {
+        "start": 149.92000000000002,
+        "end": 161.92000000000002,
+        "kind": "real workflow report card, NOT browser footage",
+        "title": "可演示的创新：有依据地寻找"
+      }
+    ]
+  },
+  "materials": [
+    {
+      "name": "DRAFT_HomeTrace官方初赛作品文档.docx",
+      "bytes": 28062,
+      "sha256": "e36378b9f5194f953423fdc806e3b432b88f71219ead47e55023aa02d58c10f1"
+    },
+    {
+      "name": "HomeTrace_作品设计与技术说明书.docx",
+      "bytes": 44786,
+      "sha256": "2f630f4ff5f15a9f413c2979a2f473563985ba519e4cb76a16d10a155b1a3bb2"
+    },
+    {
+      "name": "HomeTrace_技术展示.pptx",
+      "bytes": 65555,
+      "sha256": "8886c0aca8bfa93a72c100848269786357568d7781e3ada0bafbeff8bb6e4cd6"
+    },
+    {
+      "name": "HomeTrace_演示视频.metadata.json",
+      "bytes": 2250,
+      "sha256": "3f6885fea6d43478aae5132826d335476e1b8674baf162a8ab51cd99b9666b87"
+    },
+    {
+      "name": "HomeTrace_演示视频.mp4",
+      "bytes": 5642601,
+      "sha256": "95d862a54af80da928ffbf27a1c91fb91e5645fdd8f1f2fc178f95cf84198a0a"
+    },
+    {
+      "name": "OPEN_SOURCE_AND_ORIGINALITY.md",
+      "bytes": 2864,
+      "sha256": "ad468025e0c53d13670a140bb8e896f16ea118679180f9152b0cee6fd4d8cf5f"
+    },
+    {
+      "name": "RUN_TEST_REPORT.md",
+      "bytes": 6115,
+      "sha256": "08f4e482ce512d096bb2b61d3f04c36eaa68c6133395861d9ca4b5f1e6deefae"
+    }
+  ]
+}

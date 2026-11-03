@@ -1,0 +1,26 @@
+{
+  "status": "BLOCKED",
+  "issues": [
+    {
+      "field": "official_application",
+      "reason": "Missing, placeholder or oversized field: team_name"
+    }
+  ],
+  "manual_checks": {
+    "submission_formats": "PENDING",
+    "archive_naming": "PENDING",
+    "size_limit": "PENDING",
+    "required_attachments": "PENDING",
+    "deadline": "PENDING",
+    "team_identity": "PENDING",
+    "extracted_files_opened": "PENDING"
+  },
+  "content_review": {
+    "privacy_reviewed": "locally_confirmed_not_automatically_verified",
+    "media_truthful": "locally_confirmed_not_automatically_verified",
+    "materials_consistent": "locally_confirmed_not_automatically_verified"
+  },
+  "ready_to_submit": false,
+  "officially_verified": false,
+  "uploaded": false
+}

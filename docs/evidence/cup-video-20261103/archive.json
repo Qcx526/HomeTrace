@@ -1,0 +1,23 @@
+{
+  "zip_sha256": "748d5c8e8d55ec96cc00807bca1dc6fe302b1b4bc4b107413d80ab00c912acd4",
+  "zip_bytes": 2461080,
+  "entries": 230,
+  "source": {
+    "commit": "d851935f075463812e23df876a865a97c83ba32b",
+    "dirty": false,
+    "snapshot": "working_tree",
+    "snapshot_sha256": "c5737feaff0602de28ca534b60e09b904284d29e6c1b33bfb003c16b5c1057f3",
+    "untracked_allowlisted_files": 0,
+    "file_count": 220,
+    "source_policy": "Git tracked and nonignored working files, filtered through the source allowlist; private data, databases, caches, logs and repository metadata are excluded. File hashes describe the actual snapshot, which may differ from HEAD."
+  },
+  "all_crc_sha256_passed": true,
+  "extracted_source_matches_tested_worktree": true,
+  "extracted_office_containers_readable": true,
+  "extracted_video_full_decode_passed": true,
+  "old_zip_sha256_unchanged": "1e222868d77c549c8afeb075cb06e51c5961cb87488fc8cbced4f8a864498e16",
+  "local_video_contains_owner_photographs": true,
+  "raw_photos_database_keys_absent": true,
+  "ready_to_submit": false,
+  "uploaded": false
+}

@@ -1,0 +1,37 @@
+{
+  "status": "CANDIDATE_PLATFORM_PENDING",
+  "archive_sha256": "c9c8b45bc43ece04b4f6f997e466ac951c7447e7ab15ec7492705e73765c4251",
+  "archive_bytes": 6376905,
+  "outer_entries": 4,
+  "source_entries": 235,
+  "source_commit": "352e1861077007a8d8a2cfa50e124fd3a2ec95bd",
+  "source_dirty": false,
+  "source_files": 230,
+  "source_snapshot_sha256": "5ea4a6a431fa61d5ac864a48e245a9abbd198019868cd60b65a7559112f8ad0d",
+  "all_member_hashes_and_crc_passed": true,
+  "extracted_media_full_decode": true,
+  "extracted_ooxml_crc_passed": true,
+  "source_bytes_match_worktree": true,
+  "personal_photos_and_inputs_in_source": false,
+  "uploaded": false,
+  "clean_install": {
+    "new_windows_venv": true,
+    "extracted_source_wheel_install_passed": true,
+    "base_dependencies_only": true,
+    "rule_mode_http_smoke_passed": true,
+    "checks": 9,
+    "pip_check_passed": true,
+    "not_new_online_llm_acceptance": true
+  },
+  "privacy": {
+    "scan": "Exact local key and supplied member contact fields; recognizable secret formats",
+    "source_files_checked": 230,
+    "staged_files_checked": 12,
+    "hits": 0,
+    "photos_and_media_staged": false,
+    "production_search_vision_agent_or_schema_changed": false,
+    "frozen_reports_changed": false,
+    "ignored_local_inputs": true
+  },
+  "review_status": "Await PM review; no merge; competition upload pending"
+}
