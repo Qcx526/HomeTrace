@@ -1,0 +1,88 @@
+{
+  "steps": [
+    {
+      "name": "wheel-build",
+      "returncode": 0,
+      "seconds": 1.945
+    },
+    {
+      "name": "wheel-install",
+      "returncode": 0,
+      "seconds": 1.445
+    },
+    {
+      "name": "pip-check",
+      "returncode": 0,
+      "seconds": 0.813
+    },
+    {
+      "name": "freeze",
+      "returncode": 0,
+      "seconds": 0.695
+    },
+    {
+      "name": "pytest",
+      "returncode": 0,
+      "seconds": 194.089
+    },
+    {
+      "name": "frontend",
+      "returncode": 0,
+      "seconds": 0.346
+    },
+    {
+      "name": "http-smoke",
+      "returncode": 0,
+      "seconds": 3.166
+    }
+  ],
+  "http": {
+    "source": "new Windows venv, exported source built into wheel",
+    "network": "localhost only",
+    "model_calls": 0,
+    "image_calls": 0,
+    "checks": [
+      {
+        "name": "http /",
+        "passed": true
+      },
+      {
+        "name": "http /home-flow.js",
+        "passed": true
+      },
+      {
+        "name": "http /home-flow.css",
+        "passed": true
+      },
+      {
+        "name": "empty catalog",
+        "passed": true
+      },
+      {
+        "name": "empty scenes",
+        "passed": true
+      },
+      {
+        "name": "default three places",
+        "passed": true
+      },
+      {
+        "name": "wheel import isolated",
+        "passed": true
+      },
+      {
+        "name": "only current three web resources",
+        "passed": true
+      },
+      {
+        "name": "no private inputs",
+        "passed": true
+      }
+    ],
+    "passed": true,
+    "wheel_sha256": "2b413cc5b780d32a84119a62108be73cc0586efb4cdcb680623adddbc20d7523"
+  },
+  "host": "existing Windows installation, isolated new venv; not OS reinstall",
+  "new_model_calls": 0,
+  "new_image_calls": 0
+}

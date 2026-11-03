@@ -1,0 +1,70 @@
+{
+  "final_zip_counts": {
+    "tests": 1161,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "final_zip_processes": [
+    {
+      "name": "final-zip-pytest",
+      "exit": 0,
+      "seconds": 181.148
+    },
+    {
+      "name": "final-zip-frontend",
+      "exit": 0,
+      "seconds": 0.332
+    }
+  ],
+  "clean_venv_steps": [
+    {
+      "name": "wheel-build",
+      "returncode": 0,
+      "seconds": 1.945
+    },
+    {
+      "name": "wheel-install",
+      "returncode": 0,
+      "seconds": 1.445
+    },
+    {
+      "name": "pip-check",
+      "returncode": 0,
+      "seconds": 0.813
+    },
+    {
+      "name": "freeze",
+      "returncode": 0,
+      "seconds": 0.695
+    },
+    {
+      "name": "pytest",
+      "returncode": 0,
+      "seconds": 194.089
+    },
+    {
+      "name": "frontend",
+      "returncode": 0,
+      "seconds": 0.346
+    },
+    {
+      "name": "http-smoke",
+      "returncode": 0,
+      "seconds": 3.166
+    }
+  ],
+  "working_tree_steps": [
+    {
+      "name": "pytest",
+      "returncode": 0,
+      "seconds": 198.1
+    },
+    {
+      "name": "frontend",
+      "returncode": 0,
+      "seconds": 0.344
+    }
+  ],
+  "note": "Counts are separate actual executions, never summed; final ZIP retest includes the final exported source"
+}
