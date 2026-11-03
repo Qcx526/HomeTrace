@@ -1,0 +1,52 @@
+{
+  "date": "2026-11-03",
+  "report": {
+    "pages": 15,
+    "sha256": "bbf79b5aac896a0ac04b4aa3748d654eb87a8f19397cb6be0e3d8a5fe6b84a23",
+    "official_table_preserved": true,
+    "description_characters": 233,
+    "identity_source": "owner_supplied_private_input",
+    "platform_verified": false,
+    "all_pages_rendered_and_reviewed": true,
+    "renderer": "Word16 read-only PDF + bundled Poppler; canonical unavailable"
+  },
+  "presentation": {
+    "slides": 12,
+    "sha256": "8ce8d160fe5e27d7b241e7b9d6e2f3cba83be93e2e3197768f8cc23ccdac813d",
+    "user_template_used": true,
+    "all_pages_rendered_and_reviewed": true,
+    "native_tables": 2,
+    "editable_text": true
+  },
+  "video": {
+    "seconds": 116.0,
+    "sha256": "8025efd218b915d47f44ece5ef0381e5b35a8680dde9e2b5574aa547dba429f4",
+    "width": 1920,
+    "height": 1080,
+    "codec": "h264",
+    "chapters": 16,
+    "sample_frames_checked": 26,
+    "full_decode_passed": true,
+    "captions": "Chinese burned-in",
+    "audio": "none",
+    "sequence": [
+      "keys software recording excerpts",
+      "real cup frozen task review"
+    ],
+    "continuous_live_recording": false,
+    "keys_images": "synthetic software fixtures",
+    "cup_images": "owner real photos",
+    "new_model_calls": 0,
+    "navigation": "simulated",
+    "identity": "owner confirmation",
+    "automatic_instance_recognition_passed": false
+  },
+  "regression": {
+    "python_passed": 1262,
+    "python_seconds": 229.26,
+    "python_warnings": 1,
+    "frontend_passed": 28,
+    "frontend_ms": 338.472
+  },
+  "uploaded": false
+}

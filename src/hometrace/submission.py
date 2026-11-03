@@ -40,6 +40,7 @@ SOURCE_DOCS = {
     "REAL_CUP_WORKFLOW_20261102.md", "REAL_CUP_FRESH_WORKFLOW_20261102.md",
     "DELIVERY_CLOSEOUT_20261102.md",
     "CUP_VIDEO_REVISION_20261103.md",
+    "JUDGING_MATERIALS_20261103.md",
 }
 SOURCE_CONFIGS = {"config.yaml", "config.photo-demo.yaml"}
 # These are the already public, redacted acceptance records, not arbitrary logs.
@@ -48,6 +49,10 @@ SOURCE_EVIDENCE = {
     for folder in ("issue-46", "issue-46-new-photos")
     for name in ("README.md", "workflow.json", "pytest.txt", "frontend.txt", "audit.json")
 }
+SOURCE_EVIDENCE.update(
+    f"docs/evidence/judging-20261103/{name}"
+    for name in ("README.md", "pytest.txt", "frontend.txt", "media.json")
+)
 LEGACY_WEB_FIXTURES = {
     "index.html", "app.js", "style.css", "agent.html", "agent.js", "agent.css",
     "household.html", "household.js", "household.css",
@@ -260,7 +265,7 @@ def source_allowed(name: str) -> bool:
         return True
     if path.parts[:2] == ("examples", "recorded_images") and len(path.parts) == 3:
         return path.name in PUBLIC_SAMPLES
-    if name in {"examples/submission_config.example.json", "examples/demo_case.example.json", "tools/create_delivery_deck.mjs"}:
+    if name in {"examples/submission_config.example.json", "examples/demo_case.example.json", "tools/create_delivery_deck.mjs", "tools/create_judging_deck.mjs"}:
         return True
     if path.parts[0] == "src" and path.suffix in {".py", ".json", ".html", ".css", ".js"}:
         return True

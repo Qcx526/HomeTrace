@@ -1,0 +1,36 @@
+✔ LLM metrics and choice are visible without turning a model rationale into a tool fact (37.5386ms)
+✔ offline and restored offline runs do not claim LLM execution (6.1985ms)
+✔ model outages, budget exhaustion and protocol failure stay explicit and do not offer false fallback (3.2688ms)
+✔ unknown model usage stays unknown and model text is rendered as literal non-authoritative text (1.9828ms)
+✔ workspace places appear as literal names and submit their actual IDs (8.8977ms)
+✔ an old poll cannot replace a newly started run or its recovery ID (6.1781ms)
+✔ a lower version response cannot roll back the same run (3.0319ms)
+✔ an invalidated request error cannot disturb the new run or its polling timer (2.0148ms)
+✔ a failed replacement upload cannot submit the previously reviewed reference (2.6293ms)
+✔ consent is unchecked, bound to one request, and not inherited by a later request (9.4122ms)
+✔ declining sends only the bound denial and never requires approval checkbox (2.108ms)
+✔ visual token reservations and all actual advice enum values have honest labels (2.7222ms)
+✔ a failed advisor call has an explicit unavailable record, not empty success advice (1.6682ms)
+✔ truncated advice has a specific reason and never displays its partial body (16.1935ms)
+✔ a run link restores the exact existing session using GET without acting or falling back to storage (2.1164ms)
+✔ opening a candidate run link does not confirm it but preserves explicit owner review actions (2.1089ms)
+✔ invalid and repeated run parameters show errors without loading the old stored session (4.8035ms)
+✔ missing or mismatched linked sessions do not silently restore another run (1.8572ms)
+✔ a page without a run parameter still restores the stored session without starting a run (2.4037ms)
+✔ new photo uses local upload then the run-scoped endpoint without granting image consent (2.0943ms)
+✔ cancelling while a new image upload is pending cannot submit that image afterward (1.5802ms)
+✔ an approval response arriving after cancellation cannot restore the old run (1.3668ms)
+✔ an outdated conflict-refresh response cannot undo cancellation (1.599ms)
+✔ cancel retries its intent after a concurrently committed approval causes a version conflict (2.9281ms)
+✔ cancel retry is bounded and does not claim success when the server keeps advancing (2.2645ms)
+✔ cancelled scene uploads cannot mutate global scene configuration (1.7548ms)
+✔ a visual-only candidate displays the complete image without inventing a detection rectangle (1.7836ms)
+✔ a late cancelled response is explicitly discarded rather than rendered as model advice (1.3635ms)
+ℹ tests 28
+ℹ suites 0
+ℹ pass 28
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 338.472
